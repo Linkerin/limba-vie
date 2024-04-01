@@ -1,0 +1,42 @@
+.flag {
+  --md-blue: hsl(216, 100%, 34%);
+  --md-yellow: hsl(49, 100%, 50%);
+  --md-red: hsl(348, 92%, 42%);
+
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+
+  justify-content: center;
+  height: 1.875rem;
+  width: fit-content;
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.md-blue,
+.md-yellow,
+.md-red {
+  height: 100%;
+  width: 1.25rem;
+}
+
+.md-blue {
+  background-color: var(--md-blue);
+}
+
+.md-yellow {
+  background-color: var(--md-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.md-yellow > svg {
+  height: 0.875rem;
+  width: auto;
+}
+
+.md-red {
+  background-color: var(--md-red);
+}

@@ -1,0 +1,41 @@
+.btn {
+  background: none;
+  border-radius: 1rem;
+  border-style: solid;
+  border-width: 0.125rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  height: 35dvw;
+  padding: 0.5rem;
+  position: relative;
+  width: 35dvw;
+}
+
+.btn.repeat {
+  color: var(--red);
+  border-color: var(--red);
+  box-shadow: 0rem 0.25rem var(--red);
+}
+
+.btn.repeat:active {
+  background-color: var(--red-bg);
+}
+
+.btn.learned {
+  color: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0rem 0.25rem var(--primary);
+}
+
+.btn.learned:active {
+  background-color: var(--primary-bg);
+}
+
+.btn:active {
+  box-shadow: none;
+  top: 0.25rem;
+}

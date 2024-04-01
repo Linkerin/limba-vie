@@ -1,0 +1,35 @@
+.header {
+  background-color: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.75rem;
+  padding-inline: 1rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+.header > a {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.0075em;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  user-select: none;
+}
+
+.header > a,
+.header > a:hover,
+.header > a:visited {
+  color: hsl(348, 92%, 42%);
+
+  text-decoration: none;
+}
+
+#limba {
+  color: var(--primary);
+  border-bottom: 2px solid hsl(35, 75%, 55%);
+}
