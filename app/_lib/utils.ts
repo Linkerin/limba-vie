@@ -1,5 +1,43 @@
+import { Gender } from './types';
+
 export function capitalizeWord(word: string) {
   if (word.length <= 0) return null;
 
   return word[0].toUpperCase() + word.slice(1);
+}
+
+export function getArticle(gender: Gender) {
+  if (!gender) return null;
+
+  switch (gender) {
+    case 'm':
+      return 'un';
+
+    case 'n':
+      return 'un';
+
+    case 'f':
+      return 'o';
+
+    default:
+      return null;
+  }
+}
+
+export function getFullGender(genderAbbr: Gender) {
+  if (!genderAbbr) return null;
+
+  switch (genderAbbr) {
+    case 'm':
+      return 'masculin';
+
+    case 'n':
+      return 'neutru';
+
+    case 'f':
+      return 'feminin';
+
+    default:
+      return null;
+  }
 }

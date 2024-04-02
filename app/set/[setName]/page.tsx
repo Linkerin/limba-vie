@@ -1,6 +1,6 @@
 import supabase from '@/app/_lib/supabase';
 
-import WordCard from '@/app/_components/WordCard/WordCard';
+import WordCard from '@/app/_components/WordScreen/WordCard';
 
 async function getWords(setName: string) {
   try {

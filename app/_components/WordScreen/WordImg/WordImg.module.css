@@ -1,0 +1,25 @@
+.container {
+  border-radius: 1rem;
+  box-shadow: var(--elevation-1);
+  margin-bottom: 1rem;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem 1.25rem;
+}
+
+.container > img {
+  border-radius: 0.5rem;
+  height: auto;
+  width: calc(100dvw - 6rem);
+}
+
+.m {
+  background-color: var(--masculine-color);
+}
+
+.f {
+  background-color: var(--feminine-color);
+}
+
+.n {
+  background-color: var(--neutral-color);
+}

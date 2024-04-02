@@ -1,0 +1,59 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.section > svg {
+  color: var(--primary);
+  font-size: 5rem;
+}
+
+.msg {
+  font-size: 2rem;
+  line-height: 1.5em;
+  margin-bottom: 1rem;
+}
+
+.msg > span {
+  background-color: var(--primary-bg);
+  border-radius: 0.5em;
+  color: var(--primary);
+  font-weight: bold;
+  padding-inline: 0.5em;
+  padding-block: 0.125em;
+}
+
+.btn {
+  display: block;
+  background-color: var(--primary-bg);
+  border: solid var(--primary-dark);
+  border-radius: 0.5rem;
+  border-width: 0.125rem;
+  box-shadow: 0rem 0.25rem var(--primary-dark);
+  font-size: 1.5rem;
+  padding: 0.625em 1.75em;
+  position: relative;
+  width: 100%;
+}
+
+.btn,
+.btn:hover,
+.btn:visited {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn:active {
+  background-color: var(--primary-bg-dark);
+  border-width: 0.125rem;
+  box-shadow: none;
+  top: 0.25rem;
+}

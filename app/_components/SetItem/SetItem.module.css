@@ -47,12 +47,12 @@
 /* Link overlay  */
 .section a {
   position: initial;
+}
 
-  .section::before {
-    content: '';
-    cursor: inherit;
-    display: block;
-    position: absolute;
-    inset: 0;
-  }
+.section a::before {
+  content: '';
+  cursor: inherit;
+  display: block;
+  position: absolute;
+  inset: 0;
 }
