@@ -1,8 +1,9 @@
 .section {
   display: flex;
+  color: var(--primary-dark);
   cursor: default;
   background-color: var(--primary-bg);
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
   border: solid var(--primary-dark);
   border-radius: 0.5rem;
@@ -56,4 +57,9 @@
   display: block;
   position: absolute;
   inset: 0;
+}
+
+.words-number {
+  font-size: 0.75rem;
+  margin-inline-start: auto;
 }

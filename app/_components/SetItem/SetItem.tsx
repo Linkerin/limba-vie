@@ -1,9 +1,27 @@
 import { capitalizeWord } from '@/app/_lib/utils';
+import supabase from '@/app/_lib/supabase';
 
 import styles from './SetItem.module.css';
 
-function SetItem({ emoji, set }: { emoji: string; set: string }) {
+async function getWordsNum(set: string) {
+  try {
+    const { count, error } = await supabase
+      .from('words')
+      .select('set_id!inner(set)', { count: 'exact', head: true })
+      .eq('set_id.set', set);
+
+    if (error) throw error;
+
+    return count;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function SetItem({ emoji, set }: { emoji: string; set: string }) {
   const capitalizedSet = capitalizeWord(set);
+
+  const wordsNum = await getWordsNum(set);
 
   return (
     <li className={styles.section}>
@@ -15,6 +33,7 @@ function SetItem({ emoji, set }: { emoji: string; set: string }) {
       >
         {capitalizedSet}
       </a>
+      <span className={styles['words-number']}>{wordsNum} words</span>
     </li>
   );
 }
