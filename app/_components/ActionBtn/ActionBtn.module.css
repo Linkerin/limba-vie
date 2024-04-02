@@ -9,20 +9,20 @@
   justify-content: space-evenly;
   font-size: 1.5rem;
   font-weight: bolder;
-  height: 8.25rem;
+  height: 8rem;
   padding: 0.5rem;
   position: relative;
-  width: 8.25rem;
+  width: 8rem;
 }
 
 .btn.repeat {
-  color: var(--red);
-  border-color: var(--red);
-  box-shadow: 0rem 0.25rem var(--red);
+  color: var(--orange);
+  border-color: var(--orange);
+  box-shadow: 0rem 0.25rem var(--orange);
 }
 
 .btn.repeat:active {
-  background-color: var(--red-bg);
+  background-color: var(--orange-bg);
 }
 
 .btn.learned {

@@ -4,6 +4,10 @@
   align-items: center;
   justify-content: flex-start;
   gap: 0.5rem;
+  height: 100%;
+  margin-inline: auto;
+  max-width: 740px;
+  text-align: center;
 }
 
 .section > .counter {

@@ -8,8 +8,9 @@
 
 .container > img {
   border-radius: 0.5rem;
-  height: auto;
-  width: calc(100dvw - 6rem);
+  height: min(30dvh, 480px);
+  aspect-ratio: 1 / 1;
+  width: auto;
 }
 
 .m {

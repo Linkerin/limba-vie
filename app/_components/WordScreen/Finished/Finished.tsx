@@ -6,15 +6,15 @@ import styles from './Finished.module.css';
 
 function Finished({ setName }: { setName: string }) {
   return (
-    <section className={styles.section}>
-      <IconBalloon />
+    <>
+      <IconBalloon className={styles.icon} />
       <p className={styles.msg}>
         You have finished the <span>{capitalizeWord(setName)}</span> set!
       </p>
       <a className={styles.btn} aria-label="To homepage" href="/">
         Continue
       </a>
-    </section>
+    </>
   );
 }
 

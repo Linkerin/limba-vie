@@ -13,6 +13,7 @@
   padding-block: 1rem;
   padding-inline: 0.75rem;
   position: relative;
+  white-space: nowrap;
   width: 100%;
 }
 
