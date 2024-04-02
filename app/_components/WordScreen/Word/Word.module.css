@@ -15,7 +15,7 @@
 }
 
 .container > button:active {
-  background-color: var(--primary-bg);
+  background-color: var(--primary-bg-dark);
 }
 
 .m,

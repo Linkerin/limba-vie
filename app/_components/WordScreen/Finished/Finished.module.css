@@ -10,7 +10,7 @@
 }
 
 .msg > span {
-  background-color: var(--primary-bg);
+  background-color: var(--primary-bg-dark);
   border-radius: 0.5em;
   color: var(--primary);
   font-weight: bold;
@@ -22,9 +22,9 @@
   display: block;
   background-color: var(--primary-bg);
   border: solid var(--primary-dark);
-  border-radius: 0.5rem;
+  border-radius: var(--radius-md, 0.25rem);
   border-width: 0.125rem;
-  box-shadow: 0rem 0.25rem var(--primary-dark);
+  box-shadow: 0.125rem 0.125rem var(--primary-dark);
   font-size: 1.5rem;
   padding: 0.625em 1.75em;
   position: relative;

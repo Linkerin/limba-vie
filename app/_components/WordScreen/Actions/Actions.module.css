@@ -1,6 +1,6 @@
 .actions {
   display: flex;
   justify-content: space-around;
-  margin-block: auto 1rem;
+  margin-block: auto 1.5rem;
   width: 100%;
 }

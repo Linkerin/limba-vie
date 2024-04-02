@@ -33,7 +33,9 @@ async function SetItem({ emoji, set }: { emoji: string; set: string }) {
       >
         {capitalizedSet}
       </a>
-      <span className={styles['words-number']}>{wordsNum} words</span>
+      <span className={styles['words-number']}>
+        {wordsNum} word{wordsNum !== 1 ? 's' : null}
+      </span>
     </li>
   );
 }

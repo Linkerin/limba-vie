@@ -1,5 +1,5 @@
 .header {
-  background-color: var(--bg-color);
+  background-color: var(--primary-bg);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,6 +8,7 @@
   position: sticky;
   top: 0;
   width: 100%;
+  border-bottom: 2px solid var(--primary);
 }
 .header > a {
   display: flex;

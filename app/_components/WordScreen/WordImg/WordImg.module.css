@@ -1,15 +1,14 @@
 .container {
-  border-radius: 1rem;
+  border-radius: var(--radius-md, 0.25rem);
   box-shadow: var(--elevation-1);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   padding-inline: 0.5rem;
-  padding-block: 0.5rem 1.25rem;
+  padding-block: 0.5rem 1.375rem;
 }
 
 .container > img {
-  border-radius: 0.5rem;
+  border-radius: 2px;
   height: min(30dvh, 480px);
-  aspect-ratio: 1 / 1;
   width: auto;
 }
 
