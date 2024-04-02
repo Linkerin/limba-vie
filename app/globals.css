@@ -7,7 +7,7 @@
   --black: hsl(45, 26%, 15%);
   --green: hsl(119, 58%, 40%);
   --green-bg: hsl(137, 38%, 91%);
-  --red: hsl(348, 80%, 55%);
+  --red: hsl(348, 60%, 50%);
   --red-bg: hsl(348, 80%, 96%);
   --white: hsl(60, 100%, 98%);
   --masculine-color: var(--primary, hsl(255, 58%, 40%));

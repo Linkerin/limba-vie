@@ -1,5 +1,14 @@
 import { Gender } from './types';
 
+export function shuffleArr(arr: any[]) {
+  arr.reverse().forEach((_, index) => {
+    const j = Math.floor(Math.random() * (index + 1));
+    [arr[index], arr[j]] = [arr[j], arr[index]];
+  });
+
+  return arr;
+}
+
 export function capitalizeWord(word: string) {
   if (word.length <= 0) return null;
 

@@ -1,6 +1,7 @@
 import supabase from '@/app/_lib/supabase';
 
-import WordCard from '@/app/_components/WordScreen/WordCard';
+import { shuffleArr } from '@/app/_lib/utils';
+import WordScreen from '@/app/_components/WordScreen/WordScreen';
 
 async function getWords(setName: string) {
   try {
@@ -24,20 +25,11 @@ async function getWords(setName: string) {
   }
 }
 
-function shuffle(arr: any[]) {
-  arr.reverse().forEach((_, index) => {
-    const j = Math.floor(Math.random() * (index + 1));
-    [arr[index], arr[j]] = [arr[j], arr[index]];
-  });
-
-  return arr;
-}
-
 async function SetPage({ params }: { params: { setName: string } }) {
   const words = await getWords(params.setName);
-  const shuffledWords = shuffle(words);
+  const shuffledWords = shuffleArr(words);
 
-  return <WordCard words={shuffledWords} />;
+  return <WordScreen words={shuffledWords} />;
 }
 
 export default SetPage;

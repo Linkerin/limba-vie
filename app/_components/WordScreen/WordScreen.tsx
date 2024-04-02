@@ -1,20 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Actions from './Actions/Actions';
 import Finished from './Finished/Finished';
 import Word from './Word/Word';
 import WordImg from './WordImg/WordImg';
+import { SUPABASE_STORAGE_URL } from '@/app/_lib/constants';
 
-import styles from './WordCard.module.css';
+import styles from './WordScreen.module.css';
 
-function WordCard({ words }: { words: any[] }) {
+function WordScreen({ words }: { words: any[] }) {
   const [currWord, setCurrWord] = useState(0);
 
   const nextWord = () => {
     setCurrWord(prevState => prevState + 1);
   };
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    console.log('started');
+    for (const word of words) {
+      const img = new Image();
+      const audio = new Audio();
+      img.src = `${SUPABASE_STORAGE_URL}/images/${'480'}/${word.img_name}.webp`;
+      audio.src = `${SUPABASE_STORAGE_URL}/audio_ro/${word.audio_name}.mp3`;
+    }
+  }, [words]);
 
   return currWord < words.length ? (
     <section className={styles.section}>
@@ -38,4 +50,4 @@ function WordCard({ words }: { words: any[] }) {
   );
 }
 
-export default WordCard;
+export default WordScreen;
