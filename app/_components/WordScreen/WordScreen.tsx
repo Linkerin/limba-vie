@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import Actions from './Actions/Actions';
 import Finished from './Finished/Finished';
+import useMediaLoad from '@/app/_hooks/useMediaLoad';
 import Word from './Word/Word';
 import WordImg from './WordImg/WordImg';
 
@@ -15,6 +16,8 @@ function WordScreen({ words }: { words: any[] }) {
   const nextWord = () => {
     setCurrWord(prevState => prevState + 1);
   };
+
+  useMediaLoad(words);
 
   return (
     <section className={styles.section}>

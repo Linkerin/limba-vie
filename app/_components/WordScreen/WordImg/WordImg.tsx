@@ -1,4 +1,4 @@
-import Image from 'next/image';
+/* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames';
 
 import { SUPABASE_STORAGE_URL } from '@/app/_lib/constants';
@@ -20,12 +20,12 @@ function WordImg({
 }: WordImgProps) {
   return (
     <div className={classNames(styles.container, styles[gender])}>
-      <Image
+      <img
         alt={`${wordEn} picture`}
         src={`${SUPABASE_STORAGE_URL}/images/${size}/${imgName}.webp`}
         height={size}
         width={size}
-        priority
+        loading="eager"
       />
     </div>
   );
