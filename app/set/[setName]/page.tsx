@@ -42,3 +42,5 @@ export async function generateStaticParams() {
     setName: set.set
   }));
 }
+
+export const dynamic = 'force-dynamic';
