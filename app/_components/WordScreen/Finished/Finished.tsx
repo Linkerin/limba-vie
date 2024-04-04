@@ -29,7 +29,7 @@ interface FinishedProps {
 }
 
 function Finished({ set }: FinishedProps) {
-  saveSetCompletion(set.id);
+  // saveSetCompletion(set.id);
 
   return (
     <>
