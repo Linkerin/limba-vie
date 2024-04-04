@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import Actions from './Actions/Actions';
 import Finished from './Finished/Finished';
@@ -12,10 +12,16 @@ import styles from './WordScreen.module.css';
 
 function WordScreen({ words }: { words: any[] }) {
   const [currWord, setCurrWord] = useState(0);
+  const [isImgFlipped, setIsImgFlipped] = useState(false);
 
-  const nextWord = () => {
+  const flipHandler: React.MouseEventHandler = useCallback(e => {
+    setIsImgFlipped(prevState => !prevState);
+  }, []);
+
+  const nextWord = useCallback(() => {
+    setIsImgFlipped(false);
     setCurrWord(prevState => prevState + 1);
-  };
+  }, []);
 
   useMediaLoad(words);
 
@@ -28,8 +34,10 @@ function WordScreen({ words }: { words: any[] }) {
           </p>
           <WordImg
             wordEn={words[currWord].en}
+            flipHandler={flipHandler}
             gender={words[currWord].gender_ro}
             imgName={words[currWord].img_name}
+            isFlipped={isImgFlipped}
           />
           <Word
             word={words[currWord].ro}

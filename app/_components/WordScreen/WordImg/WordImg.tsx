@@ -1,7 +1,5 @@
-'use client';
 /* eslint-disable @next/next/no-img-element */
 
-import { useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { IconRepeat } from '@tabler/icons-react';
 
@@ -11,23 +9,21 @@ import styles from './WordImg.module.css';
 
 interface WordImgProps {
   wordEn: string;
+  flipHandler?: React.MouseEventHandler;
   gender: string;
   imgName?: string;
+  isFlipped?: boolean;
   size?: '480' | '960';
 }
 
 function WordImg({
   wordEn,
   gender,
+  flipHandler,
   imgName = wordEn,
+  isFlipped = false,
   size = '480'
 }: WordImgProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  const flipHandler: React.MouseEventHandler = useCallback(e => {
-    setIsFlipped(prevState => !prevState);
-  }, []);
-
   return (
     <>
       <button
