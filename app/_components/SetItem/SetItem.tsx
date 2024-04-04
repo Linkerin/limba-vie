@@ -1,34 +1,46 @@
+'use client';
+
+import classNames from 'classnames';
+
 import { capitalizeWord } from '@/app/_lib/utils';
-import supabase from '@/app/_lib/supabase';
+import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 
 import styles from './SetItem.module.css';
 
-async function getWordsNum(set: string) {
-  try {
-    const { count, error } = await supabase
-      .from('words')
-      .select('set_id!inner(set)', { count: 'exact', head: true })
-      .eq('set_id.set', set);
+function isSetCompleted(id: number) {
+  const completedSets = ssrLocalStorage.getItem('lvCompletedSets');
+  if (!completedSets) return false;
 
-    if (error) throw error;
+  const completedSetsArr = JSON.parse(completedSets);
+  if (completedSetsArr.includes(id)) return true;
 
-    return count;
-  } catch (err) {
-    throw err;
-  }
+  return false;
 }
 
-async function SetItem({ emoji, set }: { emoji: string; set: string }) {
-  const capitalizedSet = capitalizeWord(set);
+interface SetItemProps {
+  set: {
+    id: number;
+    set: string;
+    emoji: string;
+    words: { count: number }[];
+  };
+}
 
-  const wordsNum = await getWordsNum(set);
+function SetItem({ set }: SetItemProps) {
+  const capitalizedSet = capitalizeWord(set.set);
+  const isCompleted = isSetCompleted(set.id);
+  const wordsNum = set.words[0].count;
 
   return (
-    <li className={styles.section}>
-      <span>{emoji}</span>
+    <li
+      className={classNames(styles.section, {
+        [styles.completed]: isCompleted
+      })}
+    >
+      <span>{set.emoji}</span>
       <a
         aria-label={`To ${capitalizedSet} words set`}
-        href={`/set/${set}`}
+        href={`/set/${set.set}`}
         target="_self"
       >
         {capitalizedSet}

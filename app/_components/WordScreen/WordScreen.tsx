@@ -39,7 +39,7 @@ function WordScreen({ words }: { words: any[] }) {
           <Actions setCurrWord={nextWord} />
         </>
       ) : (
-        <Finished setName={words[0]['set_id'].set} />
+        <Finished set={words[0]['set_id']} />
       )}
     </section>
   );
