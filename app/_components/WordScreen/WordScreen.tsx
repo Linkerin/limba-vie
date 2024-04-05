@@ -23,7 +23,7 @@ function WordScreen({ words }: { words: any[] }) {
     setCurrWord(prevState => prevState + 1);
   }, []);
 
-  useMediaLoad(words);
+  useMediaLoad(currWord, words);
 
   return (
     <section className={styles.section}>

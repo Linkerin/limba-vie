@@ -28,15 +28,11 @@ interface SetItemProps {
 
 function SetItem({ set }: SetItemProps) {
   const capitalizedSet = capitalizeWord(set.set);
-  const isCompleted = isSetCompleted(set.id);
+  // const isCompleted = isSetCompleted(set.id);
   const wordsNum = set.words[0].count;
 
   return (
-    <li
-      className={classNames(styles.section, {
-        [styles.completed]: isCompleted
-      })}
-    >
+    <li className={classNames(styles.section)}>
       <span>{set.emoji}</span>
       <a
         aria-label={`To ${capitalizedSet} words set`}

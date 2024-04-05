@@ -11,6 +11,7 @@
   --img-size: min(30dvh, 480px);
 
   position: relative;
+  background-color: var(--primary-bg-med);
   border-radius: var(--radius-md, 0.25rem);
   box-shadow: var(--elevation-1);
   height: calc(var(--img-size) + calc(var(--pd) + var(--pd-bottom)));
@@ -19,7 +20,7 @@
   padding-inline: var(--pd);
   padding-block: var(--pd) var(--pd-bottom);
   transform-style: preserve-3d;
-  transition: all 0.5s ease;
+  transition: transform 0.5s ease;
   z-index: 0;
 }
 

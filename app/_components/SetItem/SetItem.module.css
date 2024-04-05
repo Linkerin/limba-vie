@@ -16,6 +16,7 @@
   position: relative;
   white-space: nowrap;
   width: 100%;
+  animation: fadein ease-in 0.3s;
 }
 
 .section:hover {
@@ -65,4 +66,13 @@
 }
 
 .completed {
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
