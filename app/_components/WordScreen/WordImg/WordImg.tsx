@@ -32,9 +32,13 @@ function WordImg({
         onClick={flipHandler}
       >
         <div
-          className={classNames(styles.card, styles[gender], {
-            [styles.flip]: isFlipped
-          })}
+          className={classNames(
+            styles.card,
+            { [styles[gender]]: !!gender },
+            {
+              [styles.flip]: isFlipped
+            }
+          )}
         >
           <IconRepeat className={styles['flip-icon']} />
           <div className={styles.front}>
