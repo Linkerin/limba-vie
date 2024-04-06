@@ -17,6 +17,7 @@ function useMediaLoad(current: number, words: any[]) {
     };
 
     if (current === 0) {
+      load(current);
       load(current + 1);
     }
 
