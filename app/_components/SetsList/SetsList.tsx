@@ -1,10 +1,11 @@
-import supabase from '@/app/_lib/supabase';
+import { cache } from 'react';
 
 import SetItem from '../SetItem/SetItem';
+import supabase from '@/app/_lib/supabase';
 
 import styles from './SetsList.module.css';
 
-async function getSets() {
+const getSets = cache(async () => {
   try {
     const { data, error } = await supabase
       .from('sets')
@@ -15,7 +16,7 @@ async function getSets() {
   } catch (err) {
     throw err;
   }
-}
+});
 
 async function SetsList() {
   const sets = await getSets();
@@ -30,3 +31,5 @@ async function SetsList() {
 }
 
 export default SetsList;
+
+export const revalidate = 3600;

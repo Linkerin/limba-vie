@@ -1,9 +1,10 @@
-import supabase from '@/app/_lib/supabase';
+import { cache } from 'react';
 
 import { shuffleArr } from '@/app/_lib/utils';
+import supabase from '@/app/_lib/supabase';
 import WordScreen from '@/app/_components/WordScreen/WordScreen';
 
-async function getWords(setName: string) {
+const getWords = cache(async (setName: string) => {
   try {
     const { data, error } = await supabase
       .from('words')
@@ -23,7 +24,7 @@ async function getWords(setName: string) {
   } catch (err) {
     throw err;
   }
-}
+});
 
 async function SetPage({ params }: { params: { setName: string } }) {
   const words = await getWords(params.setName);
@@ -44,3 +45,4 @@ export async function generateStaticParams() {
 }
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
