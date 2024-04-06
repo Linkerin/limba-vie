@@ -1,6 +1,7 @@
 'use client';
 
 import classNames from 'classnames';
+import Link from 'next/link';
 
 import { capitalizeWord } from '@/app/_lib/utils';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
@@ -34,13 +35,13 @@ function SetItem({ set }: SetItemProps) {
   return (
     <li className={classNames(styles.section)}>
       <span>{set.emoji}</span>
-      <a
+      <Link
         aria-label={`To ${capitalizedSet} words set`}
         href={`/set/${set.set}`}
         target="_self"
       >
         {capitalizedSet}
-      </a>
+      </Link>
       <span className={styles['words-number']}>
         {wordsNum} word{wordsNum !== 1 ? 's' : null}
       </span>
