@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { IconBalloon } from '@tabler/icons-react';
 
 import { capitalizeWord } from '@/app/_lib/utils';
@@ -37,9 +38,9 @@ function Finished({ set }: FinishedProps) {
       <p className={styles.msg}>
         You have finished the <span>{capitalizeWord(set.set)}</span> set!
       </p>
-      <a className={styles.btn} aria-label="To homepage" href="/">
+      <Link className={styles.btn} aria-label="To homepage" href="/">
         Continue
-      </a>
+      </Link>
     </>
   );
 }

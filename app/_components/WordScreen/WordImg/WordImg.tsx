@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import { IconRepeat } from '@tabler/icons-react';
 
-import { SUPABASE_STORAGE_URL } from '@/app/_lib/constants';
+import { SUPABASE_STORAGE_URL, CLOUDINARY_IMG_URL } from '@/app/_lib/constants';
 
 import styles from './WordImg.module.css';
 
@@ -15,6 +15,8 @@ interface WordImgProps {
   isFlipped?: boolean;
   size?: '480' | '960';
 }
+
+// https://res.cloudinary.com/dgqxrmnjx/image/upload/f_auto,q_75,w_480/v1/limba/${imgName}
 
 function WordImg({
   wordEn,
@@ -44,9 +46,18 @@ function WordImg({
           <div className={styles.front}>
             <img
               alt={`${wordEn} picture`}
-              src={`${SUPABASE_STORAGE_URL}/images/${size}/${imgName}.webp`}
+              src={`${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${imgName}`}
+              // sizes={`(max-width: 479px) 256px,
+              //         (max-width: 959px) 480px,
+              //         (max-width: 1023px) 960px,
+              //         1024px`}
+              // srcSet={`${CLOUDINARY_IMG_URL}/f_auto,q_75,w_256/v1/limba/${imgName} 256w,
+              //          ${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${imgName} 480w,
+              //          ${CLOUDINARY_IMG_URL}/f_auto,q_75,w_960/v1/limba/${imgName} 960w,
+              //          ${CLOUDINARY_IMG_URL}/f_auto,q_75,w_1024/v1/limba/${imgName} 1024w`}
               height={size}
               width={size}
+              fetchPriority="high"
               loading="eager"
             />
           </div>

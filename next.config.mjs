@@ -7,6 +7,12 @@ const nextConfig = {
         hostname: 'epzcxetjipqthrjrvzcu.supabase.co',
         port: '',
         pathname: '/storage/v1/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com/dgqxrmnjx',
+        port: '',
+        pathname: '/image/**'
       }
     ]
   }

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { SUPABASE_STORAGE_URL } from '../_lib/constants';
+import { CLOUDINARY_IMG_URL, SUPABASE_STORAGE_URL } from '../_lib/constants';
 
 function useMediaLoad(current: number, words: any[]) {
   useEffect(() => {
@@ -9,7 +9,7 @@ function useMediaLoad(current: number, words: any[]) {
 
     const load = (i: number) => {
       const img = new Image();
-      img.src = `${SUPABASE_STORAGE_URL}/images/480/${words[i].img_name}.webp`;
+      img.src = `${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${words[i].img_name}`;
       const audio = new Audio();
       audio.src = `${SUPABASE_STORAGE_URL}/audio_ro/${words[i].audio_name}.mp3`;
 
