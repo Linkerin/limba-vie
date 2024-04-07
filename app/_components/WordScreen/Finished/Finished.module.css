@@ -1,7 +1,13 @@
+.img-msg-container {
+  text-align: center;
+  animation: fadein 0.5s ease;
+}
+
 .img {
   height: var(--img-size);
-  margin-bottom: 0.5rem;
+  margin-block: 1rem;
   width: auto;
+  margin-inline: auto;
 }
 
 .msg {
@@ -27,6 +33,7 @@
   border-width: 0.125rem;
   box-shadow: 0.125rem 0.125rem var(--primary-dark);
   font-size: 1.5rem;
+  margin-block: auto 0.5rem;
   padding: 0.625em 1.75em;
   position: relative;
   width: 100%;
@@ -48,4 +55,13 @@
   border-width: 0.125rem;
   box-shadow: none;
   top: 0.25rem;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

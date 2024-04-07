@@ -35,15 +35,17 @@ function Finished({ set }: FinishedProps) {
 
   return (
     <>
-      <Image
-        className={styles.img}
-        alt="Bourel mascot image congratilating with set completon"
-        src={taurImg}
-        priority
-      />
-      <p className={styles.msg}>
-        You have finished the <span>{capitalizeWord(set.set)}</span> set!
-      </p>
+      <div className={styles['img-msg-container']}>
+        <Image
+          className={styles.img}
+          alt="Bourel mascot image congratilating with set completon"
+          src={taurImg}
+          priority
+        />
+        <p className={styles.msg}>
+          You have finished the <span>{capitalizeWord(set.set)}</span> set!
+        </p>
+      </div>
       <Link className={styles.btn} aria-label="To homepage" href="/">
         Continue
       </Link>
