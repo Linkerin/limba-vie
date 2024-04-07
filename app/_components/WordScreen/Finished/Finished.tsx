@@ -1,5 +1,6 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { IconBalloon } from '@tabler/icons-react';
+import taurImg from '@/public/taur.svg';
 
 import { capitalizeWord } from '@/app/_lib/utils';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
@@ -34,7 +35,12 @@ function Finished({ set }: FinishedProps) {
 
   return (
     <>
-      <IconBalloon className={styles.icon} />
+      <Image
+        className={styles.img}
+        alt="Bourel mascot image congratilating with set completon"
+        src={taurImg}
+        priority
+      />
       <p className={styles.msg}>
         You have finished the <span>{capitalizeWord(set.set)}</span> set!
       </p>
