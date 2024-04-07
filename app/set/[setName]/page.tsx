@@ -9,7 +9,8 @@ const getWords = cache(async (setName: string) => {
     const { data, error } = await supabase
       .from('words')
       .select(
-        `en,
+        `id,
+         en,
          en_alternatives,
          ro,
          gender_ro,

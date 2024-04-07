@@ -8,7 +8,7 @@ import './globals.css';
 const alata = Alata({ subsets: ['latin'], weight: '400' });
 
 export const metadata: Metadata = {
-  title: 'Limba App',
+  title: 'Limba Vie App',
   description: 'Learn Romanian words with flashcards'
 };
 

@@ -14,11 +14,13 @@ function ActionBtn({ className, variant, ...props }: ActionBtnProps) {
       {...props}
     >
       <span>
-        {variant === 'repeat' && <IconRepeat stroke={2} />}
-        {variant === 'learned' && <IconCheck stroke={2} />}
+        {variant === 'repeat' ? (
+          <IconRepeat stroke={2} />
+        ) : (
+          <IconCheck stroke={2} />
+        )}
       </span>
-      {variant === 'repeat' && 'Once more'}
-      {variant === 'learned' && 'Got it!'}
+      {variant === 'repeat' ? 'Once more' : 'Got it!'}
     </button>
   );
 }

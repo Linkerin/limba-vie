@@ -31,11 +31,6 @@
   top: 0.25rem;
 }
 
-.section > span {
-  position: relative;
-  top: -0.12rem;
-}
-
 .section a,
 .section a:visited {
   color: var(--primary-dark);
@@ -62,12 +57,44 @@
   z-index: 1;
 }
 
+.emoji {
+  position: relative;
+  top: -0.12rem;
+}
+
 .words-number {
   font-size: 0.75rem;
   margin-inline-start: auto;
 }
 
 .completed {
+  --completed-primary: hsl(138, 30%, 25%);
+  background-color: var(--primary-bg-darsk, hsl(138, 45%, 87%));
+  border-color: var(--completed-primary);
+  box-shadow: 0.125rem 0.125rem var(--completed-primary);
+}
+
+.completed:active {
+  background-color: hsl(138, 30%, 91%);
+}
+
+.completed > a,
+.completed > a:visited,
+.completed > span {
+  color: var(--completed-primary);
+}
+
+.done {
+  border: solid var(--completed-primary);
+  border-width: 0 0 0.125rem 0.125rem;
+  border-radius: 0 0 0 var(--radius-md, 0.25rem);
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.75rem;
+  padding: 0.125rem;
+  stroke-width: 0.125rem;
+  box-shadow: 0.0625rem 0.0625rem var(--completed-primary);
 }
 
 @keyframes fadein {
