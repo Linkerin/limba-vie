@@ -2,13 +2,11 @@
   background: none;
   border: 0;
   padding: 0rem;
-  /* font-family: 'Alata', 'Segoe UI', Segoe, Tahoma, Geneva, Verdana, sans-serif; */
 }
 
 .card {
   --pd: 0.5rem;
   --pd-bottom: 1.375rem;
-  --img-size: min(30dvh, 480px);
 
   position: relative;
   background-color: var(--primary-bg-med);
@@ -20,7 +18,7 @@
   padding-inline: var(--pd);
   padding-block: var(--pd) var(--pd-bottom);
   transform-style: preserve-3d;
-  transition: transform 0.5s ease;
+  transition: all 0.5s ease;
   z-index: 0;
 }
 
@@ -35,7 +33,7 @@
 .back > p {
   aspect-ratio: 1 / 1;
   border-radius: 2px;
-  height: min(30dvh, 480px);
+  height: var(--img-size, min(30dvh, 480px));
   width: auto;
 }
 

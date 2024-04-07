@@ -8,6 +8,7 @@
   margin-inline: auto;
   max-width: 740px;
   text-align: center;
+  animation: fadein 0.4s ease;
 }
 
 .section > .counter {
@@ -16,4 +17,13 @@
   cursor: default;
   font-size: 1.375rem;
   margin-bottom: 0.5rem;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -1,0 +1,44 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-inline: auto;
+  max-width: 740px;
+}
+
+.loader {
+  width: 5rem;
+  aspect-ratio: 1;
+  color: var(--gray);
+  position: relative;
+  background: conic-gradient(from 135deg at top, currentColor 90deg, #0000 0)
+      top,
+    conic-gradient(from -45deg at bottom, currentColor 90deg, #0000 0) bottom;
+  background-size: 100% 50%;
+  background-repeat: no-repeat;
+}
+.loader:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  --g: currentColor 1.8125rem, #0000 0 calc(100% - 1.8125rem), currentColor 0;
+  background: linear-gradient(45deg, var(--g)),
+    linear-gradient(-45deg, var(--g));
+  animation: l7 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+}
+@keyframes l7 {
+  33% {
+    inset: -1.25rem;
+    transform: rotate(0deg);
+  }
+  66% {
+    inset: -1.25rem;
+    transform: rotate(90deg);
+  }
+  100% {
+    inset: 0;
+    transform: rotate(90deg);
+  }
+}

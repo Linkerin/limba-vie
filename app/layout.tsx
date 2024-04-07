@@ -1,11 +1,15 @@
 import type { Metadata } from 'next';
-import { Alata } from 'next/font/google';
+import { Alata, Kalam } from 'next/font/google';
 
 import Header from './_components/Header/Header';
 
 import './globals.css';
 
 const alata = Alata({ subsets: ['latin'], weight: '400' });
+const kalam = Kalam({
+  subsets: ['latin-ext'],
+  weight: ['400']
+});
 
 export const metadata: Metadata = {
   title: 'Limba App',

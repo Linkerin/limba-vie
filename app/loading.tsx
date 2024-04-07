@@ -1,4 +1,4 @@
-import Loader from '@/app/_components/Loader/Loader';
+import Loader from './_components/Loader/Loader';
 
 function Loading() {
   return <Loader />;
