@@ -26,7 +26,7 @@
   --g: currentColor 1.8125rem, #0000 0 calc(100% - 1.8125rem), currentColor 0;
   background: linear-gradient(45deg, var(--g)),
     linear-gradient(-45deg, var(--g));
-  animation: l7 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+  animation: l7 2s infinite cubic-bezier(0.3, 1, 0, 1);
 }
 @keyframes l7 {
   33% {

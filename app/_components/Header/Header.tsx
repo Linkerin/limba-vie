@@ -1,8 +1,11 @@
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 import FlagMd from '../FlagMd/FlagMd';
 
 import styles from './Header.module.css';
+
+const TrainBtn = dynamic(() => import('./TrainBtn/TrainBtn'), { ssr: false });
 
 function Header() {
   return (
@@ -11,7 +14,10 @@ function Header() {
         <span id={styles.limba}>Limba</span>
         <span>Vie</span>
       </Link>
-      <FlagMd />
+      <div className={styles['right-container']}>
+        <TrainBtn />
+        <FlagMd />
+      </div>
     </header>
   );
 }

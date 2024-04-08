@@ -24,4 +24,4 @@ async function Home() {
 
 export default Home;
 
-export const revalidate = 3600;
+export const revalidate = Number(process.env.REVALIDATE_PERIOD_MS);

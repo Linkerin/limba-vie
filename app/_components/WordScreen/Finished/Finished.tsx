@@ -24,14 +24,12 @@ function saveSetCompletion(setId: number) {
 }
 
 interface FinishedProps {
-  set: {
-    id: number;
-    set: string;
-  };
+  setId?: number;
+  setName: string;
 }
 
-function Finished({ set }: FinishedProps) {
-  saveSetCompletion(set.id);
+function Finished({ setId, setName }: FinishedProps) {
+  if (setId) saveSetCompletion(setId);
 
   return (
     <>
@@ -43,7 +41,7 @@ function Finished({ set }: FinishedProps) {
           priority
         />
         <p className={styles.msg}>
-          You have finished the <span>{capitalizeWord(set.set)}</span> set!
+          You have finished the <span>{capitalizeWord(setName)}</span> set!
         </p>
       </div>
       <Link className={styles.btn} aria-label="To homepage" href="/">

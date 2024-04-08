@@ -55,8 +55,6 @@ function WordImg({
               //          ${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${imgName} 480w,
               //          ${CLOUDINARY_IMG_URL}/f_auto,q_75,w_960/v1/limba/${imgName} 960w,
               //          ${CLOUDINARY_IMG_URL}/f_auto,q_75,w_1024/v1/limba/${imgName} 1024w`}
-              height={size}
-              width={size}
               fetchPriority="high"
               loading="eager"
             />

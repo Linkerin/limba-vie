@@ -44,7 +44,7 @@ function SetItem({ set }: SetItemProps) {
       <span className={styles.emoji}>{set.emoji}</span>
       <Link
         aria-label={`To ${capitalizedSet} words set`}
-        href={`/set/${set.set}`}
+        href={`/set/${encodeURIComponent(set.set)}`}
         target="_self"
       >
         {capitalizedSet}

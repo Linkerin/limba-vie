@@ -34,3 +34,10 @@
   color: var(--primary);
   border-bottom: 2px solid hsl(35, 75%, 55%);
 }
+
+.right-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}

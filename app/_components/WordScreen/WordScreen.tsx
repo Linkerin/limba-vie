@@ -10,7 +10,12 @@ import WordImg from './WordImg/WordImg';
 
 import styles from './WordScreen.module.css';
 
-function WordScreen({ words }: { words: any[] }) {
+interface WordScreenProps {
+  words: any[];
+  setName?: string;
+}
+
+function WordScreen({ words, setName }: WordScreenProps) {
   const [currWord, setCurrWord] = useState(0);
   const [isImgFlipped, setIsImgFlipped] = useState(false);
 
@@ -47,7 +52,10 @@ function WordScreen({ words }: { words: any[] }) {
           <Actions setCurrWord={nextWord} wordId={words[currWord].id} />
         </>
       ) : (
-        <Finished set={words[0]['set_id']} />
+        <Finished
+          setId={words[0]['set_id']?.id}
+          setName={setName ? setName : words[0]['set_id'].set}
+        />
       )}
     </section>
   );

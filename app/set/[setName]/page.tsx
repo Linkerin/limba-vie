@@ -28,7 +28,8 @@ const getWords = cache(async (setName: string) => {
 });
 
 async function SetPage({ params }: { params: { setName: string } }) {
-  const words = await getWords(params.setName);
+  const setName = decodeURIComponent(params.setName);
+  const words = await getWords(setName);
   const shuffledWords = shuffleArr(words);
 
   return <WordScreen words={shuffledWords} />;
@@ -46,4 +47,4 @@ export async function generateStaticParams() {
 }
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600;
+export const revalidate = Number(process.env.REVALIDATE_PERIOD_MS);
