@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: 'Learn Romanian words with flashcards',
   authors: [{ name: 'Alexei', url: 'https://github.com/Linkerin' }],
   creator: 'Linkerin',
-  manifest: '/manifest.json',
+  manifest: `${process.env.NEXT_PUBLIC_BASE_URL}/manifest.json`,
   icons: {
     icon: [
       {
@@ -41,6 +41,24 @@ export const metadata: Metadata = {
         url: '/favicons/safari-pinned-tab.svg'
       }
     ]
+  },
+  openGraph: {
+    title: 'Limba Vie - learn Romanian words',
+    description: 'Learn and practice Romanian words with colorful flashcards',
+    siteName: 'Limba Vie',
+    type: 'website',
+    url: process.env.NEXT_PUBLIC_BASE_URL,
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-image`
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Limba Vie - learn Romanian words',
+    description: 'Learn and practice Romanian words with colorful flashcards',
+    images: `${process.env.NEXT_PUBLIC_BASE_URL}/og-image`
   },
   other: {
     'msapplication-TileColor': '#b23444',
