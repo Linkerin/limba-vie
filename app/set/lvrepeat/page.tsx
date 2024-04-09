@@ -17,11 +17,12 @@ const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
   let words: any[] = [];
 
   try {
+    const ids = Array.isArray(r) ? r : [r];
     if (r && r.length > 0) {
       const { data, error } = await supabase
         .from('words')
         .select(fields)
-        .in('id', r as any);
+        .in('id', ids);
       if (error) throw error;
 
       words = data;
