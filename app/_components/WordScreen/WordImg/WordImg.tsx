@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import { IconRepeat } from '@tabler/icons-react';
 
-import { SUPABASE_STORAGE_URL, CLOUDINARY_IMG_URL } from '@/app/_lib/constants';
+import { CLOUDINARY_IMG_URL } from '@/app/_lib/constants';
 
 import styles from './WordImg.module.css';
 
@@ -15,8 +15,6 @@ interface WordImgProps {
   isFlipped?: boolean;
   size?: '480' | '960';
 }
-
-// https://res.cloudinary.com/dgqxrmnjx/image/upload/f_auto,q_75,w_480/v1/limba/${imgName}
 
 function WordImg({
   wordEn,
