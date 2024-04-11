@@ -66,7 +66,7 @@ function NavBar() {
   const url = new URL('/set/lvrepeat', process.env.NEXT_PUBLIC_BASE_URL);
   url.search = params.toString();
 
-  return pathname === '/' && show ? (
+  return !pathname.match(/\/set\/?.*/) && show ? (
     <footer className={styles.footer}>
       <nav>
         <ol>
