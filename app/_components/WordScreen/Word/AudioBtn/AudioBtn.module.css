@@ -1,0 +1,13 @@
+.btn {
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 0.625em;
+  padding: 0.25rem;
+}
+
+.btn:active {
+  background-color: var(--primary-bg-dark);
+}

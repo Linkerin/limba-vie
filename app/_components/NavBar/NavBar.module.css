@@ -1,0 +1,65 @@
+.footer {
+  background-color: var(--primary-bg);
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  height: 3.75rem;
+  border-top: 0.125rem solid var(--primary);
+  width: 100%;
+}
+
+.footer > nav {
+  height: 100%;
+}
+
+.footer > nav > ol {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
+  height: 100%;
+  padding: 0;
+}
+
+.footer > nav > ol > li {
+  height: 100%;
+  width: 50%;
+}
+
+.footer > nav > ol > li:first-of-type {
+  border-inline-end: 0.125rem solid var(--primary);
+}
+
+.footer > nav > ol > li > a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  height: 100%;
+  width: 100%;
+}
+
+.footer > nav > ol > li > a,
+.footer > nav > ol > li > a:visited {
+  color: var(--primary);
+}
+
+.footer > nav > ol > li > a,
+.footer > nav > ol > li > a:hover,
+.footer > nav > ol > li > a:focus,
+.footer > nav > ol > li > a:active {
+  text-decoration: none;
+}
+
+.footer > nav > ol > li > a:hover {
+  background-color: var(--primary-bg-med);
+}
+
+.footer > nav > ol > li > a:active {
+  background-color: var(--primary-bg-dark);
+}
+
+.footer > nav > ol > li > a > svg {
+  font-size: 1.25rem;
+}

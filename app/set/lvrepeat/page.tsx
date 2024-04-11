@@ -70,7 +70,7 @@ interface RepeatPageProps {
 
 async function RepeatPage({ searchParams }: RepeatPageProps) {
   const words = await getWords(searchParams);
-  return <WordScreen words={shuffleArr(words)} setName="repetition" />;
+  return <WordScreen words={shuffleArr(words)} setName="practice" />;
 }
 
 export default RepeatPage;

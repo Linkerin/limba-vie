@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
 import { Alata } from 'next/font/google';
+import dynamic from 'next/dynamic';
 
 import Header from './_components/Header/Header';
 
 import './globals.css';
+
+const NavBar = dynamic(() => import('./_components/NavBar/NavBar'), {
+  ssr: false
+});
 
 const alata = Alata({ subsets: ['latin'], weight: '400' });
 
@@ -76,6 +81,7 @@ export default function RootLayout({
       <body className={alata.className}>
         <Header />
         <main>{children}</main>
+        <NavBar />
       </body>
     </html>
   );

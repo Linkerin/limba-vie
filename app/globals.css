@@ -44,6 +44,8 @@
 }
 
 body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   background-color: var(--primary-bg);
   color: var(--black);
   font: inherit;
@@ -54,13 +56,13 @@ body {
   max-height: 100dvh;
   max-width: 100dvw;
   overflow-x: hidden;
+  overflow-y: scroll;
   -webkit-tap-highlight-color: transparent;
 }
 
 main {
-  height: calc(100dvh - 3.75rem);
-  overflow-y: scroll;
   padding: 1rem;
+  z-index: 0;
 }
 
 img,

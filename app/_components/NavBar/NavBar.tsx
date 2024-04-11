@@ -1,12 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { IconBarbell } from '@tabler/icons-react';
+import { usePathname } from 'next/navigation';
+import { IconBarbell, IconListDetails } from '@tabler/icons-react';
 
 import { shuffleArr } from '@/app/_lib/utils';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 
-import styles from './TrainBtn.module.css';
+import styles from './NavBar.module.css';
 
 function showTrainButton() {
   const result = {
@@ -50,7 +51,8 @@ function showTrainButton() {
   return result;
 }
 
-function TrainBtn() {
+function NavBar() {
+  const pathname = usePathname();
   const { show, completedSets, wordsForRepeat } = showTrainButton();
 
   const setParamArr = shuffleArr(completedSets)
@@ -64,11 +66,25 @@ function TrainBtn() {
   const url = new URL('/set/lvrepeat', process.env.NEXT_PUBLIC_BASE_URL);
   url.search = params.toString();
 
-  return show ? (
-    <Link className={styles.btn} aria-label="To training set" href={url.href}>
-      <IconBarbell />
-    </Link>
+  return pathname === '/' && show ? (
+    <footer className={styles.footer}>
+      <nav>
+        <ol>
+          <li>
+            <Link aria-label="To main page with units list" href="/">
+              <IconListDetails /> Units
+            </Link>
+          </li>
+          <li>
+            <Link aria-label="To practice set" href={url.href}>
+              <IconBarbell />
+              Practice
+            </Link>
+          </li>
+        </ol>
+      </nav>
+    </footer>
   ) : null;
 }
 
-export default TrainBtn;
+export default NavBar;
