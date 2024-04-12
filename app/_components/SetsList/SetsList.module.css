@@ -1,3 +1,16 @@
+.h2 {
+  color: var(--primary-dark);
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-block-end: 0.75rem;
+  margin-inline-start: 0.75rem;
+  width: fit-content;
+}
+
+.h2:not(:first-of-type) {
+  margin-block-start: 1.5rem;
+}
+
 .list {
   display: flex;
   flex-direction: column;
