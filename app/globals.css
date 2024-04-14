@@ -61,7 +61,10 @@ body {
 }
 
 main {
+  margin-inline: auto;
+  max-width: 740px;
   padding: 1rem;
+  width: 100%;
   z-index: 0;
 }
 

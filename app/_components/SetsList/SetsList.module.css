@@ -1,14 +1,18 @@
-.h2 {
+.article {
+  animation: fadein ease-in 0.3s;
+}
+
+.article:not(:first-of-type) {
+  margin-block-start: 1.5rem;
+}
+
+.article > h2 {
   color: var(--primary-dark);
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: bold;
   margin-block-end: 0.75rem;
   margin-inline-start: 0.75rem;
   width: fit-content;
-}
-
-.h2:not(:first-of-type) {
-  margin-block-start: 1.5rem;
 }
 
 .list {
@@ -17,8 +21,14 @@
   justify-content: flex-start;
   gap: 0.875rem;
   list-style: none;
-  width: 100%;
-  margin-inline: auto;
-  max-width: 740px;
   padding: 0;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
