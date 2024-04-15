@@ -7,7 +7,7 @@ const getSets = cache(async () => {
   try {
     const { data, error } = await supabase
       .from('sets')
-      .select('id, set, emoji, head, next_set_id, words(count)');
+      .select('id, set, emoji, head, next_set_id, unit, words(count)');
     if (error) throw error;
 
     const sortedSets: any[] = [];

@@ -4,8 +4,6 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin-inline: auto;
-  max-width: 740px;
 }
 
 .loader {
