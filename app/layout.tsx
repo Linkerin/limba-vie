@@ -11,10 +11,13 @@ const NavBar = dynamic(() => import('./_components/NavBar/NavBar'), {
 });
 
 const alata = Alata({ subsets: ['latin'], weight: '400' });
+const description =
+  'Learn and practice Romanian words with colorful flashcards';
+const isPreview = process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW';
 
 export const metadata: Metadata = {
-  title: 'Limba Vie',
-  description: 'Learn Romanian words with flashcards',
+  title: `Limba Vie${isPreview ? ' Preview' : ''}`,
+  description: description,
   authors: [{ name: 'Alexei', url: 'https://github.com/Linkerin' }],
   creator: 'Linkerin',
   manifest: `${process.env.NEXT_PUBLIC_BASE_URL}/manifest.json`,
@@ -48,8 +51,8 @@ export const metadata: Metadata = {
     ]
   },
   openGraph: {
-    title: 'Limba Vie - learn Romanian words',
-    description: 'Learn and practice Romanian words with colorful flashcards',
+    title: 'Limba Vie - Learn Romanian words',
+    description: description,
     siteName: 'Limba Vie',
     type: 'website',
     url: process.env.NEXT_PUBLIC_BASE_URL,
@@ -61,8 +64,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Limba Vie - learn Romanian words',
-    description: 'Learn and practice Romanian words with colorful flashcards',
+    title: 'Limba Vie - Learn Romanian words',
+    description: description,
     images: `${process.env.NEXT_PUBLIC_BASE_URL}/og-image`
   },
   other: {

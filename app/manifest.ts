@@ -1,15 +1,17 @@
 import { MetadataRoute } from 'next';
 
+const isPreview = process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW';
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Limba Vie',
-    short_name: 'Limba Vie',
+    name: `Limba Vie${isPreview ? ' Preview' : ''}`,
+    short_name: `Limba Vie${isPreview ? ' Preview' : ''}`,
     description: 'Learn Romanian words with flashcards',
     start_url: '/',
     scope: '/',
     display: 'standalone',
     orientation: 'portrait',
-    background_color: '#b23444',
+    background_color: isPreview ? '#887779' : '#b23444',
     theme_color: '#f0eef7',
     categories: ['education'],
     icons: [
