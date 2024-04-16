@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+'use client';
 
+import { useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { IconRepeat } from '@tabler/icons-react';
 
@@ -24,6 +26,12 @@ function WordImg({
   isFlipped = false,
   size = '480'
 }: WordImgProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const onLoadHandler = useCallback(() => {
+    setIsLoaded(true);
+  }, []);
+
   return (
     <>
       <button
@@ -41,7 +49,9 @@ function WordImg({
           )}
         >
           <IconRepeat className={styles['flip-icon']} />
-          <div className={styles.front}>
+          <div
+            className={classNames(styles.front, { [styles.loaded]: isLoaded })}
+          >
             <img
               alt={`${wordEn} picture`}
               src={`${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${imgName}`}
@@ -55,6 +65,7 @@ function WordImg({
               //          ${CLOUDINARY_IMG_URL}/f_auto,q_75,w_1024/v1/limba/${imgName} 1024w`}
               fetchPriority="high"
               loading="eager"
+              onLoad={onLoadHandler}
             />
           </div>
           <div className={styles.back}>

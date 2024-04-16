@@ -37,6 +37,21 @@
   width: auto;
 }
 
+.front > img {
+  opacity: 0;
+}
+
+.front.loaded > img {
+  opacity: 1;
+  animation: fadein ease-in 0.5s;
+}
+
+@media (prefers-reduced-motion) {
+  .loaded {
+    animation-duration: 1.2s;
+  }
+}
+
 .back {
   transform: rotateY(180deg);
 }
@@ -77,4 +92,13 @@
 
 .n {
   background-color: var(--neutral-color);
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
