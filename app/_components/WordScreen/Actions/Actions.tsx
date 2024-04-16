@@ -36,7 +36,7 @@ function Actions({ setCurrWord, wordId }: ActionsProps) {
     [setCurrWord, wordId]
   );
 
-  const learnedclickHandler: React.MouseEventHandler = useCallback(
+  const learnedСlickHandler: React.MouseEventHandler = useCallback(
     e => {
       setCurrWord();
       const repeatWordsStr = ssrLocalStorage.getItem(key);
@@ -71,7 +71,7 @@ function Actions({ setCurrWord, wordId }: ActionsProps) {
   return (
     <div className={styles.actions}>
       <ActionBtn variant="repeat" onClick={repeatClickHandler} />
-      <ActionBtn variant="learned" onClick={learnedclickHandler} />
+      <ActionBtn variant="learned" onClick={learnedСlickHandler} />
     </div>
   );
 }
