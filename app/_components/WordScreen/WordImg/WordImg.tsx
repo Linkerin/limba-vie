@@ -43,9 +43,7 @@ function WordImg({
           className={classNames(
             styles.card,
             { [styles[gender]]: !!gender },
-            {
-              [styles.flip]: isFlipped
-            }
+            { [styles.flip]: isFlipped }
           )}
         >
           <IconRepeat className={styles['flip-icon']} />
