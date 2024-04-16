@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Alata } from 'next/font/google';
 import dynamic from 'next/dynamic';
+import { Analytics } from '@vercel/analytics/react';
 
 import Header from './_components/Header/Header';
 
@@ -85,6 +86,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <NavBar />
+        <Analytics />
       </body>
     </html>
   );
