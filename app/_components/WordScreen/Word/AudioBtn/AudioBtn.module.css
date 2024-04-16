@@ -12,10 +12,6 @@
   background-color: var(--primary-bg-dark);
 }
 
-.playing path:last-of-type {
-  animation: 1.2s tremble infinite;
-}
-
 .playing path:nth-of-type(2) {
   animation: 1.2s shrink ease-in-out 0.25s infinite;
 }
@@ -36,23 +32,5 @@
   100% {
     transform: translateX(0) translateY(0) scale(1);
     opacity: 1;
-  }
-}
-
-@keyframes tremble {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(1px);
-  }
-  50% {
-    transform: translateX(-1px);
-  }
-  75% {
-    transform: translateX(1px);
-  }
-  100% {
-    transform: translateX(0);
   }
 }

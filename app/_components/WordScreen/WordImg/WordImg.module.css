@@ -37,12 +37,7 @@
   width: auto;
 }
 
-.front > img {
-  /* opacity: 0; */
-}
-
 .front.loaded > img {
-  opacity: 1;
   animation: fadein ease-in 0.5s;
 }
 
