@@ -13,16 +13,20 @@ const kalam = Kalam({
 
 interface WordProps {
   word: string;
+  plural: boolean;
   audioName?: string;
   gender?: Gender;
 }
 
-function Word({ word, audioName, gender }: WordProps) {
+function Word({ word, plural, audioName, gender }: WordProps) {
   return (
     <>
       <div className={styles.container}>
         <p className={kalam.className}>
-          {gender && gender.length > 0 ? getArticle(gender) : null} {word}
+          {!plural && gender && gender.length > 0
+            ? getArticle(gender) + ' '
+            : null}
+          {word}
         </p>
         {audioName && audioName?.length > 0 && (
           <AudioBtn audioName={audioName} word={word} />

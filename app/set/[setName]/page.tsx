@@ -14,6 +14,7 @@ const getWords = cache(async (setName: string) => {
          en_alternatives,
          ro,
          gender_ro,
+         plural,
          img_name,
          audio_name,
          set_id!inner (id, set)`

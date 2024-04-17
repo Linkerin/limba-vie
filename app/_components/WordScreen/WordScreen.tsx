@@ -46,6 +46,7 @@ function WordScreen({ words, setName }: WordScreenProps) {
           />
           <Word
             word={words[currWord].ro}
+            plural={words[currWord].plural}
             gender={words[currWord].gender_ro}
             audioName={words[currWord].audio_name}
           />

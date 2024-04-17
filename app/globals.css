@@ -52,8 +52,7 @@ body {
   font-size: 100%;
   font-family: 'Alata', 'Segoe UI', Segoe, Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1;
-  height: 100dvh;
-  max-height: 100dvh;
+  min-height: 100dvh;
   max-width: 100dvw;
   overflow-x: hidden;
   overflow-y: scroll;
