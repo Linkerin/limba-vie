@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Alata } from 'next/font/google';
 import dynamic from 'next/dynamic';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import Header from './_components/Header/Header';
 
@@ -87,6 +88,7 @@ export default function RootLayout({
         <main>{children}</main>
         <NavBar />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -12,6 +12,7 @@
     "@supabase/supabase-js": "^2.41.1",
     "@tabler/icons-react": "^3.1.0",
     "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "appwrite": "^14.0.0",
     "classnames": "^2.5.1",
     "next": "14.1.4",
