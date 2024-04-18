@@ -24,24 +24,31 @@ function AudioBtn({ audioName, word }: AudioBtnProps) {
     e.preventDefault();
     if (!audioRef.current) return;
 
-    setIsPlaying(true);
     audioRef.current.play();
   }, []);
 
-  const onEndedHandler = useCallback(() => {
-    setIsPlaying(false);
-  }, []);
+  const onPlayingHandler: React.ReactEventHandler<HTMLAudioElement> =
+    useCallback(e => {
+      setIsPlaying(true);
+    }, []);
+
+  const onEndedHandler: React.ReactEventHandler<HTMLAudioElement> = useCallback(
+    e => {
+      setIsPlaying(false);
+    },
+    []
+  );
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     setIsPlaying(false);
-    const noAutoplay = ssrLocalStorage.getItem('lvAudioAutoplay') === 'false';
-    if (noAutoplay) return;
-
     if (audioRef.current) {
-      setIsPlaying(true);
-      audioRef.current.play();
+      if (ssrLocalStorage.getItem('lvAudioAutoplay') === 'false') {
+        audioRef.current.autoplay = false;
+      } else {
+        audioRef.current.autoplay = true;
+      }
     }
   }, [word]);
 
@@ -57,7 +64,10 @@ function AudioBtn({ audioName, word }: AudioBtnProps) {
       <audio
         ref={audioRef}
         src={`${SUPABASE_STORAGE_URL}/audio/ro/${audioName}.mp3`}
+        onPlaying={onPlayingHandler}
         onEnded={onEndedHandler}
+        preload="auto"
+        autoPlay
       />
     </>
   );

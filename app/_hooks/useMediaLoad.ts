@@ -9,15 +9,14 @@ function useMediaLoad(current: number, words: WordScreenProps['words']) {
     if (current >= words.length - 2) return;
 
     const load = (i: number) => {
+      new Audio(`${SUPABASE_STORAGE_URL}/audio/ro/${words[i].audio_name}.mp3`);
       const img = new Image();
       img.src = `${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${words[i].img_name}`;
-      new Audio(`${SUPABASE_STORAGE_URL}/audio/ro/${words[i].audio_name}.mp3`);
 
       return;
     };
 
     if (current === 0) {
-      load(current);
       load(current + 1);
       const img = new Image();
       img.src = '/taur.svg';
