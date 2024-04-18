@@ -1,16 +1,17 @@
 'use client';
 
 import { useCallback, useRef, useState } from 'react';
+import classNames from 'classnames';
 import { IconVolume } from '@tabler/icons-react';
 
 import { SUPABASE_STORAGE_URL } from '@/app/_lib/constants';
+import type { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './AudioBtn.module.css';
-import classNames from 'classnames';
 
 interface AudioBtnProps {
-  audioName: string;
-  word: string;
+  audioName: Tables<'words'>['audio_name'];
+  word: Tables<'words'>['ro'];
 }
 
 function AudioBtn({ audioName, word }: AudioBtnProps) {

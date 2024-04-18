@@ -1,16 +1,17 @@
 'use client';
 
 import { useCallback } from 'react';
+
 import ActionBtn from '../../ActionBtn/ActionBtn';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
+import type { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './Actions.module.css';
-import React from 'react';
 
 const key = 'lvRepeatWords';
 
 interface ActionsProps {
-  wordId: number;
+  wordId: Tables<'words'>['id'];
   setCurrWord: () => void;
 }
 

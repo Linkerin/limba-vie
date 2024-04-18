@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 
 import { CLOUDINARY_IMG_URL, SUPABASE_STORAGE_URL } from '../_lib/constants';
+import type { WordScreenProps } from '../_components/WordScreen/WordScreen';
 
-function useMediaLoad(current: number, words: any[]) {
+function useMediaLoad(current: number, words: WordScreenProps['words']) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     if (current >= words.length - 2) return;

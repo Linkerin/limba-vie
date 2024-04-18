@@ -2,19 +2,28 @@ import { cache } from 'react';
 
 import { shuffleArr } from '@/app/_lib/utils';
 import supabase from '@/app/_lib/supabase';
+import { Tables } from '@/app/_lib/supabase.types';
 import WordScreen from '@/app/_components/WordScreen/WordScreen';
+
+interface RepeatPageProps {
+  searchParams: {
+    set: string | string[] | undefined;
+    r: string | string[] | undefined;
+  };
+}
 
 const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
   const fields = `id,
-         en,
-         en_alternatives,
-         ro,
-         gender_ro,
-         img_name,
-         audio_name,
-         set_id`;
+                  en,
+                  en_alternatives,
+                  ro,
+                  gender_ro,
+                  plural,
+                  img_name,
+                  audio_name`;
 
-  let words: any[] = [];
+  let words: Omit<Tables<'words'>, 'set_id' | 'created_at' | 'updated_at'>[] =
+    [];
 
   try {
     const ids = Array.isArray(r) ? r : [r];
@@ -61,15 +70,9 @@ const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
   }
 });
 
-interface RepeatPageProps {
-  searchParams: {
-    set: string | string[] | undefined;
-    r: string | string[] | undefined;
-  };
-}
-
 async function RepeatPage({ searchParams }: RepeatPageProps) {
   const words = await getWords(searchParams);
+
   return <WordScreen words={shuffleArr(words)} setName="practice" />;
 }
 

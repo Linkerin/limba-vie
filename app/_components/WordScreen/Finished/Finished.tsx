@@ -3,6 +3,7 @@ import Link from 'next/link';
 import taurImg from '@/public/taur.svg';
 
 import { capitalizeWord } from '@/app/_lib/utils';
+import type { Tables } from '@/app/_lib/supabase.types';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 
 import styles from './Finished.module.css';
@@ -24,8 +25,8 @@ function saveSetCompletion(setId: number) {
 }
 
 interface FinishedProps {
-  setId?: number;
-  setName: string;
+  setId?: Tables<'sets'>['id'];
+  setName?: Tables<'sets'>['set'];
 }
 
 function Finished({ setId, setName }: FinishedProps) {
@@ -41,7 +42,8 @@ function Finished({ setId, setName }: FinishedProps) {
           priority
         />
         <p className={styles.msg}>
-          You have finished the <span>{capitalizeWord(setName)}</span> set!
+          You have finished the{' '}
+          {setName ? <span>{capitalizeWord(setName)}</span> : null} set!
         </p>
       </div>
       <Link className={styles.btn} aria-label="To homepage" href="/">
