@@ -56,7 +56,7 @@ function AudioBtn({ audioName, word }: AudioBtnProps) {
       </button>
       <audio
         ref={audioRef}
-        src={`${SUPABASE_STORAGE_URL}/audio_ro/ro/${audioName}.mp3`}
+        src={`${SUPABASE_STORAGE_URL}/audio/ro/${audioName}.mp3`}
         onEnded={onEndedHandler}
       />
     </>

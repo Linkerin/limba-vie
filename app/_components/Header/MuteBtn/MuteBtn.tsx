@@ -4,7 +4,6 @@ import { useCallback, useMemo, useState } from 'react';
 import { IconVolume, IconVolumeOff } from '@tabler/icons-react';
 
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
-import { SUPABASE_STORAGE_URL } from '@/app/_lib/constants';
 
 import styles from './MuteBtn.module.css';
 
@@ -15,44 +14,23 @@ function MuteBtn() {
     !(ssrLocalStorage.getItem(autoplayKey) === 'false')
   );
 
-  const doneSound = useMemo(() => {
-    if (typeof Audio === 'undefined') return;
+  const clickHandler: React.MouseEventHandler = useCallback(e => {
+    e.preventDefault();
+    try {
+      setAutoplay(prevState => {
+        const autoplayPrefSet = ssrLocalStorage.setItem(
+          autoplayKey,
+          JSON.stringify(!prevState)
+        );
 
-    const audio = new Audio(
-      `${SUPABASE_STORAGE_URL}/audio_ro/lv_button_sound.mp3`
-    );
-    return audio;
+        if (!autoplayPrefSet) return prevState;
+
+        return !prevState;
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
-
-  const clickHandler: React.MouseEventHandler = useCallback(
-    e => {
-      e.preventDefault();
-      try {
-        setAutoplay(prevState => {
-          const autoplayPrefSet = ssrLocalStorage.setItem(
-            autoplayKey,
-            JSON.stringify(!prevState)
-          );
-
-          if (!autoplayPrefSet) return prevState;
-
-          if (doneSound) {
-            if (prevState === false) {
-              doneSound.play();
-            } else {
-              doneSound.pause();
-              doneSound.currentTime = 0;
-            }
-          }
-
-          return !prevState;
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    [doneSound]
-  );
 
   return (
     <button
