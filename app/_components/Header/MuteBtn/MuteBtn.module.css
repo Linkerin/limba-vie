@@ -1,4 +1,5 @@
 .btn {
+  animation: fadein ease-in 0.5s;
   background: none;
   border: solid var(--primary-dark);
   border-radius: var(--radius-md, 0.25rem);
@@ -32,4 +33,13 @@
 
 .btn > svg {
   margin: auto;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
