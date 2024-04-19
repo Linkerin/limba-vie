@@ -16,7 +16,8 @@ export interface WordsCount {
   }[];
 }
 
-type Set = Omit<Tables<'sets'>, 'created_at' | 'updated_at'> & WordsCount;
+export type Set = Omit<Tables<'sets'>, 'created_at' | 'updated_at'> &
+  WordsCount;
 
 interface SetsListProps {
   sets: Set[];
