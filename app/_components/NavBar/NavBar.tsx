@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { IconBarbell, IconHome } from '@tabler/icons-react';
 
+import { REPEAT_WORDS_CTY } from '@/app/_lib/constants';
 import { shuffleArr } from '@/app/_lib/utils';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 
@@ -60,11 +61,11 @@ function NavBar() {
     .slice(0, 5)
     .map(val => ['set', `${val}`]);
   const repeatParamArr = shuffleArr(wordsForRepeat)
-    .slice(0, 20)
+    .slice(0, REPEAT_WORDS_CTY)
     .map(val => ['r', `${val}`]);
 
   const params = new URLSearchParams(
-    [...repeatParamArr, ...setParamArr].slice(0, 20)
+    [...repeatParamArr, ...setParamArr].slice(0, REPEAT_WORDS_CTY)
   );
   const url = new URL('/set/lvrepeat', process.env.NEXT_PUBLIC_BASE_URL);
   url.search = params.toString();
