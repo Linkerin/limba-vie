@@ -1,0 +1,45 @@
+.btn {
+  animation: fadein ease-in 0.5s;
+  background: none;
+  border: solid var(--primary-dark);
+  border-radius: var(--radius-md, 0.25rem);
+  border-width: 0.125rem;
+  box-shadow: 0.0625rem 0.0625rem var(--primary-dark);
+  font-size: 1.25rem;
+  height: 1.875rem;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  position: relative;
+  text-align: center;
+}
+
+.btn,
+.btn:hover,
+.btn:visited {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn:active {
+  background-color: var(--primary-bg-dark);
+  border-width: 0.125rem;
+  box-shadow: none;
+  top: 0.25rem;
+}
+
+.btn > svg {
+  margin: auto;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

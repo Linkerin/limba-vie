@@ -68,8 +68,12 @@
 }
 
 .completed {
-  --completed-primary: hsl(138, 30%, 25%);
-  background-color: var(--primary-bg-darsk, hsl(138, 45%, 87%));
+  /* --completed-primary: hsl(138, 30%, 25%); */
+  --completed-primary: var(--secondary-dark);
+
+  /* background-color: var(--primary-bg-dark, hsl(138, 45%, 87%)); */
+  background-color: var(--secondary-container-low, hsl(125, 22%, 95%));
+
   border-color: var(--completed-primary);
   box-shadow: 0.125rem 0.125rem var(--completed-primary);
 }

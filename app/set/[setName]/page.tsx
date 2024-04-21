@@ -17,9 +17,9 @@ const getWords = cache(async (setName: string) => {
          plural,
          img_name,
          audio_name,
-         set_id!inner (id, set)`
+         sets!inner(id, set)`
       )
-      .eq('set_id.set', setName);
+      .eq('sets.set', setName);
     if (error) throw error;
 
     return data;

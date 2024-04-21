@@ -6,16 +6,17 @@ import classNames from 'classnames';
 import { IconRepeat } from '@tabler/icons-react';
 
 import { CLOUDINARY_IMG_URL } from '@/app/_lib/constants';
+import type { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './WordImg.module.css';
 
 interface WordImgProps {
-  wordEn: string;
   flipHandler?: React.MouseEventHandler;
-  gender: string;
-  imgName?: string;
+  gender: Tables<'words'>['gender_ro'];
+  imgName?: Tables<'words'>['img_name'];
   isFlipped?: boolean;
   size?: '480' | '960';
+  wordEn: Tables<'words'>['en'];
 }
 
 function WordImg({
@@ -42,7 +43,7 @@ function WordImg({
         <div
           className={classNames(
             styles.card,
-            { [styles[gender]]: !!gender },
+            { [styles[`${gender}`]]: !!gender },
             { [styles.flip]: isFlipped }
           )}
         >
