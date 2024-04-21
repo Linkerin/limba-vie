@@ -44,7 +44,8 @@ const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
       const { data, error } = await supabase
         .from('words')
         .select(fields)
-        .eq('set_id', set);
+        .eq('set_id', set)
+        .not('id', 'in', `(${ids.join(',')})`);
       if (error) throw error;
 
       words = [...words, ...data];
@@ -58,7 +59,8 @@ const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
       const { data, error } = await supabase
         .from('words')
         .select(fields)
-        .eq('set_id', setId);
+        .eq('set_id', setId)
+        .not('id', 'in', `(${ids.join(',')})`);
       if (error) throw error;
 
       words = [...words, ...data];

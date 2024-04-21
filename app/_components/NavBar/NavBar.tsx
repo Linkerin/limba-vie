@@ -63,7 +63,9 @@ function NavBar() {
     .slice(0, 20)
     .map(val => ['r', `${val}`]);
 
-  const params = new URLSearchParams([...setParamArr, ...repeatParamArr]);
+  const params = new URLSearchParams(
+    [...repeatParamArr, ...setParamArr].slice(0, 20)
+  );
   const url = new URL('/set/lvrepeat', process.env.NEXT_PUBLIC_BASE_URL);
   url.search = params.toString();
 
