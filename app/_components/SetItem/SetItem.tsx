@@ -50,7 +50,7 @@ function SetItem({ set }: SetItemProps) {
         {wordsNum} word{wordsNum !== 1 ? 's' : null}
       </span>
       {isCompleted && (
-        <span className={styles.done}>
+        <span className={styles['completed-icon']}>
           <IconCheck />
         </span>
       )}

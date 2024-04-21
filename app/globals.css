@@ -1,33 +1,37 @@
 :root {
-  --background: hsl(140, 27%, 97%);
+  --background: hsl(255, 50%, 97%);
   --text: hsl(0, 0%, 15%);
 
-  --primary: hsl(243, 36%, 50%);
-  --primary-dark: hsl(243, 36%, 40%);
-  --primary-container-dark: hsl(243, 36%, 80%);
-  --primary-container: hsl(243, 36%, 90%);
-  --primary-container-low: hsl(243, 36%, 95%);
-  --on-primary: hsl(243, 36%, 99%);
-  --on-primary-container: hsl(243, 36%, 25%);
+  --primary: hsl(255, 50%, 50%);
+  --primary-darker: hsl(255, 50%, 40%);
+  --primary-dark: hsl(255, 50%, 30%);
+  --primary-container-dark: hsl(255, 50%, 80%);
+  --primary-container: hsl(255, 50%, 90%);
+  --primary-container-low: hsl(255, 50%, 95%);
+  --on-primary: hsl(255, 50%, 99%);
+  --on-primary-container: hsl(255, 50%, 25%);
 
-  --secondary: hsl(125, 22%, 50%);
-  --secondary-dark: hsl(125, 22%, 40%);
-  --secondary-container-dark: hsl(125, 22%, 85%);
-  --secondary-container: hsl(125, 22%, 90%);
-  --secondary-container-low: hsl(125, 22%, 95%);
-  --on-secondary: hsl(125, 22%, 99%);
-  --on-secondary-container: hsl(125, 22%, 25%);
+  --secondary: hsl(138, 30%, 50%);
+  --secondary-darker: hsl(138, 30%, 40%);
+  --secondary-dark: hsl(138, 30%, 30%);
+  --secondary-container-dark: hsl(138, 30%, 85%);
+  --secondary-container: hsl(138, 30%, 90%);
+  --secondary-container-low: hsl(138, 30%, 95%);
+  --on-secondary: hsl(138, 30%, 99%);
+  --on-secondary-container: hsl(138, 30%, 25%);
 
-  --tertiary: hsl(13, 63%, 50%);
-  --tertiary-dark: hsl(13, 63%, 40%);
-  --tertiary-container-dark: hsl(13, 63%, 85%);
-  --tertiary-container: hsl(13, 63%, 90%);
-  --tertiary-container-low: hsl(13, 63%, 95%);
-  --on-tertiary: hsl(13, 63%, 99%);
-  --on-tertiary-container: hsl(13, 63%, 25%);
+  --tertiary: hsl(24, 70%, 50%);
+  --tertiary-darker: hsl(24, 70%, 40%);
+  --tertiary-dark: hsl(24, 70%, 30%);
+  --tertiary-container-dark: hsl(24, 70%, 85%);
+  --tertiary-container: hsl(24, 70%, 90%);
+  --tertiary-container-low: hsl(24, 70%, 95%);
+  --on-tertiary: hsl(24, 70%, 99%);
+  --on-tertiary-container: hsl(24, 70%, 25%);
 
   --neutral: hsl(243, 14%, 50%);
-  --neutral-dark: hsl(243, 14%, 40%);
+  --neutral-darker: hsl(243, 14%, 40%);
+  --neutral-dark: hsl(243, 14%, 30%);
   --neutral-container-dark: hsl(243, 14%, 85%);
   --neutral-container: hsl(243, 14%, 90%);
   --neutral-container-low: hsl(243, 14%, 95%);

@@ -1,6 +1,7 @@
 .btn {
   background: none;
   border: none;
+  box-shadow: none;
   border-radius: 0.5rem;
   color: var(--primary);
   cursor: pointer;
@@ -9,7 +10,7 @@
 }
 
 .btn:active {
-  background-color: var(--primary-bg-dark);
+  background-color: var(--primary-container);
 }
 
 .playing path:nth-of-type(2) {
