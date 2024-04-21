@@ -1,5 +1,5 @@
 .header {
-  background-color: var(--primary-bg);
+  background-color: var(--background);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,7 +33,7 @@
 }
 
 #limba {
-  color: var(--primary);
+  color: var(--primary-dark);
   border-bottom: 2px solid hsl(35, 75%, 55%);
 }
 

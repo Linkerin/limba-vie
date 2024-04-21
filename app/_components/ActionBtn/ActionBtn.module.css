@@ -20,13 +20,13 @@
 }
 
 .btn.repeat {
-  color: var(--orange);
-  border-color: var(--orange);
-  box-shadow: 0.125rem 0.125rem var(--orange);
+  color: var(--tertiary);
+  border-color: var(--tertiary);
+  box-shadow: 0.125rem 0.125rem var(--tertiary);
 }
 
 .btn.repeat:active {
-  background-color: var(--orange-bg);
+  background-color: var(--tertiary-container-low);
 }
 
 .btn.learned {
@@ -36,7 +36,7 @@
 }
 
 .btn.learned:active {
-  background-color: var(--primary-bg-dark);
+  background-color: var(--primary-container-low);
 }
 
 .btn:active {

@@ -1,19 +1,67 @@
 :root {
-  --primary: hsl(255, 50%, 40%);
+  --background: hsl(140, 27%, 97%);
+  --text: hsl(0, 0%, 15%);
+
+  --primary: hsl(243, 36%, 50%);
+  --primary-dark: hsl(243, 36%, 40%);
+  --primary-container-dark: hsl(243, 36%, 80%);
+  --primary-container: hsl(243, 36%, 90%);
+  --primary-container-low: hsl(243, 36%, 95%);
+  --on-primary: hsl(243, 36%, 99%);
+  --on-primary-container: hsl(243, 36%, 25%);
+
+  --secondary: hsl(125, 22%, 50%);
+  --secondary-dark: hsl(125, 22%, 40%);
+  --secondary-container-dark: hsl(125, 22%, 85%);
+  --secondary-container: hsl(125, 22%, 90%);
+  --secondary-container-low: hsl(125, 22%, 95%);
+  --on-secondary: hsl(125, 22%, 99%);
+  --on-secondary-container: hsl(125, 22%, 25%);
+
+  --tertiary: hsl(13, 63%, 50%);
+  --tertiary-dark: hsl(13, 63%, 40%);
+  --tertiary-container-dark: hsl(13, 63%, 85%);
+  --tertiary-container: hsl(13, 63%, 90%);
+  --tertiary-container-low: hsl(13, 63%, 95%);
+  --on-tertiary: hsl(13, 63%, 99%);
+  --on-tertiary-container: hsl(13, 63%, 25%);
+
+  --neutral: hsl(243, 14%, 50%);
+  --neutral-dark: hsl(243, 14%, 40%);
+  --neutral-container-dark: hsl(243, 14%, 85%);
+  --neutral-container: hsl(243, 14%, 90%);
+  --neutral-container-low: hsl(243, 14%, 95%);
+  --on-neutral: hsl(243, 14%, 99%);
+  --on-neutral-container: hsl(243, 14%, 25%);
+
+  --masculine-color: hsl(255, 58%, 40%);
+  --neutral-color: hsl(43, 100%, 44%);
+  --feminine-color: hsl(352, 60%, 47%);
+
+  /* --primary-bg: hsl(140, 27%, 97%);
+  --primary-bg-med: hsl(140, 27%, 94%);
+  --primary-bg-dark: hsl(140, 27%, 87%); */
+  /* --secondary: hsl(125, 22%, 45%);
+  --secondary-container: hsl(125, 22%, 93%);
+  --secondary-container-dark: hsl(125, 22%, 60%); */
+  /* --orange: hsl(13, 50%, 50%);
+  --orange-bg: hsl(13, 50%, 94%); */
+  /* --accent: var(--orange, hsl(13, 50%, 50%));
+  --green: var(--secondary);
+  --green-bg: var(--secondary-container); */
+
+  /* --primary: hsl(255, 50%, 40%);
   --primary-dark: hsl(255, 50%, 33%);
   --primary-bg: hsl(255, 35%, 95%);
   --primary-bg-med: hsl(255, 35%, 91%);
-  --primary-bg-dark: hsl(255, 35%, 85%);
-  --black: hsl(45, 26%, 15%);
-  --green: hsl(119, 58%, 40%);
-  --green-bg: hsl(137, 38%, 91%);
-  --orange: hsl(24, 70%, 48%);
-  --orange-bg: hsl(24, 80%, 96%);
-  --gray: hsl(255, 23%, 85%);
-  --white: hsl(60, 100%, 98%);
-  --masculine-color: var(--primary, hsl(255, 58%, 40%));
-  --neutral-color: hsl(43, 100%, 44%);
-  --feminine-color: hsl(352, 60%, 47%);
+  --primary-bg-dark: hsl(255, 35%, 85%); */
+  /* --black: hsl(45, 26%, 15%); */
+  /* --green: hsl(119, 58%, 40%);
+  --green-bg: hsl(137, 38%, 91%); */
+  /* --orange: hsl(24, 70%, 48%);
+  --orange-bg: hsl(24, 80%, 96%); */
+  /* --gray: hsl(255, 23%, 85%); */
+  /* --white: hsl(60, 100%, 98%); */
 
   --elevation-1: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
     0px 1px 2px 0px rgba(0, 0, 0, 0.3);
@@ -46,8 +94,8 @@
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background-color: var(--primary-bg);
-  color: var(--black);
+  background-color: var(--background);
+  color: var(--text);
   font: inherit;
   font-size: 100%;
   font-family: 'Alata', 'Segoe UI', Segoe, Tahoma, Geneva, Verdana, sans-serif;
