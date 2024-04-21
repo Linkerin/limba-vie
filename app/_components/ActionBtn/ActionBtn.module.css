@@ -8,7 +8,7 @@
   font-weight: bolder;
   padding: 0.5rem;
   white-space: wrap;
-  width: 35dvw;
+  width: min(35dvw, 12rem);
 }
 
 .btn svg {

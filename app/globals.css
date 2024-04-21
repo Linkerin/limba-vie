@@ -42,31 +42,6 @@
   --neutral-color: hsl(43, 100%, 44%);
   --feminine-color: hsl(352, 60%, 47%);
 
-  /* --primary-bg: hsl(140, 27%, 97%);
-  --primary-bg-med: hsl(140, 27%, 94%);
-  --primary-bg-dark: hsl(140, 27%, 87%); */
-  /* --secondary: hsl(125, 22%, 45%);
-  --secondary-container: hsl(125, 22%, 93%);
-  --secondary-container-dark: hsl(125, 22%, 60%); */
-  /* --orange: hsl(13, 50%, 50%);
-  --orange-bg: hsl(13, 50%, 94%); */
-  /* --accent: var(--orange, hsl(13, 50%, 50%));
-  --green: var(--secondary);
-  --green-bg: var(--secondary-container); */
-
-  /* --primary: hsl(255, 50%, 40%);
-  --primary-dark: hsl(255, 50%, 33%);
-  --primary-bg: hsl(255, 35%, 95%);
-  --primary-bg-med: hsl(255, 35%, 91%);
-  --primary-bg-dark: hsl(255, 35%, 85%); */
-  /* --black: hsl(45, 26%, 15%); */
-  /* --green: hsl(119, 58%, 40%);
-  --green-bg: hsl(137, 38%, 91%); */
-  /* --orange: hsl(24, 70%, 48%);
-  --orange-bg: hsl(24, 80%, 96%); */
-  /* --gray: hsl(255, 23%, 85%); */
-  /* --white: hsl(60, 100%, 98%); */
-
   --elevation-1: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
     0px 1px 2px 0px rgba(0, 0, 0, 0.3);
 
