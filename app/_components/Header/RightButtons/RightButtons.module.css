@@ -1,8 +1,9 @@
 .btn {
-  padding: 3px;
+  max-height: 1.875rem;
   min-width: 1.875rem;
+  padding: 3px;
 }
 
 .info {
-  font-weight: bold;
+  font-size: 1.5rem;
 }

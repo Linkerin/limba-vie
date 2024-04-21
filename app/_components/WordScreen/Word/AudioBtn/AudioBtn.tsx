@@ -1,12 +1,12 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { IconVolume } from '@tabler/icons-react';
 
-import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import { SUPABASE_STORAGE_URL } from '@/app/_lib/constants';
 import type { Tables } from '@/app/_lib/supabase.types';
+import { useIsSoundAllowed } from '@/app/_hooks/useSoundMode';
 
 import styles from './AudioBtn.module.css';
 
@@ -20,7 +20,9 @@ function AudioBtn({ audioName, word }: AudioBtnProps) {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const audioClickHandler = useCallback((e: React.MouseEvent) => {
+  const isSoundAllowed = useIsSoundAllowed();
+
+  const audioClickHandler: React.MouseEventHandler = useCallback(e => {
     e.preventDefault();
     if (!audioRef.current) return;
 
@@ -28,29 +30,14 @@ function AudioBtn({ audioName, word }: AudioBtnProps) {
   }, []);
 
   const onPlayingHandler: React.ReactEventHandler<HTMLAudioElement> =
-    useCallback(e => {
+    useCallback(_ => {
       setIsPlaying(true);
     }, []);
 
-  const onEndedHandler: React.ReactEventHandler<HTMLAudioElement> = useCallback(
-    e => {
+  const onAbortEndedHandler: React.ReactEventHandler<HTMLAudioElement> =
+    useCallback(_ => {
       setIsPlaying(false);
-    },
-    []
-  );
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    setIsPlaying(false);
-    if (audioRef.current) {
-      if (ssrLocalStorage.getItem('lvAudioAutoplay') === 'false') {
-        audioRef.current.autoplay = false;
-      } else {
-        audioRef.current.autoplay = true;
-      }
-    }
-  }, [word]);
+    }, []);
 
   return (
     <>
@@ -64,10 +51,11 @@ function AudioBtn({ audioName, word }: AudioBtnProps) {
       <audio
         ref={audioRef}
         src={`${SUPABASE_STORAGE_URL}/audio/ro/${audioName}.mp3`}
+        autoPlay={isSoundAllowed}
+        onAbort={onAbortEndedHandler}
+        onEnded={onAbortEndedHandler}
         onPlaying={onPlayingHandler}
-        onEnded={onEndedHandler}
         preload="auto"
-        autoPlay
       />
     </>
   );

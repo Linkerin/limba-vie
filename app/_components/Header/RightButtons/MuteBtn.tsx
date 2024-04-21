@@ -1,47 +1,33 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { IconVolume, IconVolumeOff } from '@tabler/icons-react';
 
 import Button from '../../Button/Button';
-import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
+import useSoundMode from '@/app/_hooks/useSoundMode';
 
 import styles from './RightButtons.module.css';
 
-const autoplayKey = 'lvAudioAutoplay';
-
 function MuteBtn() {
-  const [autoplay, setAutoplay] = useState(
-    !(ssrLocalStorage.getItem(autoplayKey) === 'false')
+  const { isSoundAllowed, toggleSound } = useSoundMode();
+
+  const clickHandler: React.MouseEventHandler = useCallback(
+    e => {
+      e.preventDefault();
+      toggleSound();
+    },
+    [toggleSound]
   );
-
-  const clickHandler: React.MouseEventHandler = useCallback(e => {
-    e.preventDefault();
-    try {
-      setAutoplay(prevState => {
-        const autoplayPrefSet = ssrLocalStorage.setItem(
-          autoplayKey,
-          JSON.stringify(!prevState)
-        );
-
-        if (!autoplayPrefSet) return prevState;
-
-        return !prevState;
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
 
   return (
     <Button
-      aria-label={`Turn ${autoplay ? 'off' : 'on'} word sounds autoplay`}
+      aria-label={`Turn ${isSoundAllowed ? 'off' : 'on'} word sounds autoplay`}
       className={styles.btn}
       onClick={clickHandler}
-      title={`Turn ${autoplay ? 'off' : 'on'} word sounds autoplay`}
+      title={`Turn ${isSoundAllowed ? 'off' : 'on'} word sounds autoplay`}
       fadeAnimation
     >
-      {autoplay ? <IconVolume /> : <IconVolumeOff />}
+      {isSoundAllowed ? <IconVolume /> : <IconVolumeOff />}
     </Button>
   );
 }

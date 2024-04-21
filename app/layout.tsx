@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import Header from './_components/Header/Header';
+import SoundProvider from './_contexts/SoundProvider';
 
 import './globals.css';
 
@@ -84,11 +85,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={alata.className}>
-        <Header />
-        <main>{children}</main>
-        <NavBar />
-        <Analytics />
-        <SpeedInsights />
+        <SoundProvider>
+          <Header />
+          <main>{children}</main>
+          <NavBar />
+          <Analytics />
+          <SpeedInsights />
+        </SoundProvider>
       </body>
     </html>
   );
