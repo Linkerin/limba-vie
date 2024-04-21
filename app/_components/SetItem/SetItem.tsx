@@ -34,6 +34,7 @@ function SetItem({ set }: SetItemProps) {
 
   return (
     <li
+      id={`set-${set.id}`}
       className={classNames(styles.section, {
         [styles.completed]: isCompleted
       })}
