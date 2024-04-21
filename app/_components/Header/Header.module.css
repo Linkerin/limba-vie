@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary-darker);
   height: 3.75rem;
   padding-inline: 1rem;
   position: sticky;
@@ -33,7 +33,7 @@
 }
 
 #limba {
-  color: var(--primary-dark);
+  color: var(--primary-darker);
   border-bottom: 2px solid hsl(35, 75%, 55%);
 }
 

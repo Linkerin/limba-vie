@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import taurImg from '@/public/taur.svg';
 
+import ButtonLink from '../../Button/ButtonLink';
 import { capitalizeWord } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
@@ -46,9 +47,9 @@ function Finished({ setId, setName }: FinishedProps) {
           {setName ? <span>{capitalizeWord(setName)}</span> : null} set!
         </p>
       </div>
-      <Link className={styles.btn} aria-label="To homepage" href="/">
+      <ButtonLink className={styles.btn} aria-label="To homepage" href="/">
         Continue
-      </Link>
+      </ButtonLink>
     </>
   );
 }

@@ -8,7 +8,7 @@ import Header from './_components/Header/Header';
 
 import './globals.css';
 
-const NavBar = dynamic(() => import('./_components/NavBarNew/NavBar'), {
+const NavBar = dynamic(() => import('./_components/NavBar/NavBar'), {
   ssr: false
 });
 

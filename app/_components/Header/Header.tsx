@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import About from './About/About';
+import About from './RightButtons/About';
 import FlagMd from './FlagMd/FlagMd';
 
 import styles from './Header.module.css';
 
-const MuteBtn = dynamic(() => import('./MuteBtn/MuteBtn'), { ssr: false });
+const MuteBtn = dynamic(() => import('./RightButtons/MuteBtn'), { ssr: false });
 
 function Header() {
   return (

@@ -17,7 +17,7 @@
 }
 
 .msg > span {
-  background-color: var(--primary-bg-dark);
+  background-color: var(--primary-container);
   border-radius: 0.5em;
   color: var(--primary);
   font-weight: bold;
@@ -26,35 +26,9 @@
 }
 
 .btn {
-  display: block;
-  background-color: var(--primary-bg);
-  border: solid var(--primary-dark);
-  border-radius: var(--radius-md, 0.25rem);
-  border-width: 0.125rem;
-  box-shadow: 0.125rem 0.125rem var(--primary-dark);
   font-size: 1.5rem;
   margin-block: auto 0.5rem;
-  padding: 0.625em 1.75em;
-  position: relative;
   width: 100%;
-}
-
-.btn,
-.btn:hover,
-.btn:visited {
-  color: var(--primary);
-  text-decoration: none;
-}
-
-.btn:hover {
-  opacity: 0.85;
-}
-
-.btn:active {
-  background-color: var(--primary-bg-dark);
-  border-width: 0.125rem;
-  box-shadow: none;
-  top: 0.25rem;
 }
 
 @keyframes fadein {

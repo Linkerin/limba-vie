@@ -1,11 +1,12 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { IconVolume, IconVolumeOff } from '@tabler/icons-react';
 
+import Button from '../../Button/Button';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 
-import styles from './MuteBtn.module.css';
+import styles from './RightButtons.module.css';
 
 const autoplayKey = 'lvAudioAutoplay';
 
@@ -33,14 +34,15 @@ function MuteBtn() {
   }, []);
 
   return (
-    <button
-      className={styles.btn}
+    <Button
       aria-label={`Turn ${autoplay ? 'off' : 'on'} word sounds autoplay`}
+      className={styles.btn}
       onClick={clickHandler}
       title={`Turn ${autoplay ? 'off' : 'on'} word sounds autoplay`}
+      fadeAnimation
     >
       {autoplay ? <IconVolume /> : <IconVolumeOff />}
-    </button>
+    </Button>
   );
 }
 
