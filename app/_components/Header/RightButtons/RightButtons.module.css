@@ -2,3 +2,7 @@
   padding: 3px;
   min-width: 1.875rem;
 }
+
+.info {
+  font-weight: bold;
+}

@@ -1,10 +1,16 @@
+import classNames from 'classnames';
+
 import ButtonLink from '../../Button/ButtonLink';
 
 import styles from './RightButtons.module.css';
 
 function About() {
   return (
-    <ButtonLink aria-label="To about page" href="/about" className={styles.btn}>
+    <ButtonLink
+      aria-label="To about page"
+      href="/about"
+      className={classNames(styles.btn, styles.info)}
+    >
       i
     </ButtonLink>
   );
