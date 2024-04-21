@@ -2,12 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { IconBarbell, IconListDetails } from '@tabler/icons-react';
+import { IconBarbell, IconHome } from '@tabler/icons-react';
 
+import { REPEAT_WORDS_CTY } from '@/app/_lib/constants';
 import { shuffleArr } from '@/app/_lib/utils';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 
 import styles from './NavBar.module.css';
+import classNames from 'classnames';
 
 function showTrainButton() {
   const result = {
@@ -59,10 +61,12 @@ function NavBar() {
     .slice(0, 5)
     .map(val => ['set', `${val}`]);
   const repeatParamArr = shuffleArr(wordsForRepeat)
-    .slice(0, 20)
+    .slice(0, REPEAT_WORDS_CTY)
     .map(val => ['r', `${val}`]);
 
-  const params = new URLSearchParams([...setParamArr, ...repeatParamArr]);
+  const params = new URLSearchParams(
+    [...repeatParamArr, ...setParamArr].slice(0, REPEAT_WORDS_CTY)
+  );
   const url = new URL('/set/lvrepeat', process.env.NEXT_PUBLIC_BASE_URL);
   url.search = params.toString();
 
@@ -70,15 +74,18 @@ function NavBar() {
     <footer className={styles.footer}>
       <nav>
         <ol>
-          <li>
+          <li className={classNames({ [styles.current]: pathname === '/' })}>
             <Link aria-label="To main page with units list" href="/">
-              <IconListDetails /> Units
+              <span>
+                <IconHome />
+              </span>
             </Link>
           </li>
           <li>
             <Link aria-label="To practice set" href={url.href}>
-              <IconBarbell />
-              Practice
+              <span>
+                <IconBarbell />
+              </span>
             </Link>
           </li>
         </ol>

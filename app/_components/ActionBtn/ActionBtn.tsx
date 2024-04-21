@@ -1,15 +1,17 @@
 import { IconCheck, IconRepeat } from '@tabler/icons-react';
 import classNames from 'classnames';
 
+import Button, { ButtonProps } from '../Button/Button';
+
 import styles from './ActionBtn.module.css';
 
-interface ActionBtnProps extends React.ComponentPropsWithRef<'button'> {
+interface ActionBtnProps extends ButtonProps {
   variant: 'repeat' | 'learned';
 }
 
 function ActionBtn({ className, variant, ...props }: ActionBtnProps) {
   return (
-    <button
+    <Button
       className={classNames(styles.btn, styles[variant], className)}
       {...props}
     >
@@ -21,7 +23,7 @@ function ActionBtn({ className, variant, ...props }: ActionBtnProps) {
         )}
       </span>
       {variant === 'repeat' ? 'Once more' : 'Got it!'}
-    </button>
+    </Button>
   );
 }
 

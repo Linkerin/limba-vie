@@ -1,20 +1,40 @@
 import { cache } from 'react';
 
+import { REPEAT_WORDS_CTY } from '@/app/_lib/constants';
 import { shuffleArr } from '@/app/_lib/utils';
 import supabase from '@/app/_lib/supabase';
+import { Tables } from '@/app/_lib/supabase.types';
 import WordScreen from '@/app/_components/WordScreen/WordScreen';
 
-const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
-  const fields = `id,
-         en,
-         en_alternatives,
-         ro,
-         gender_ro,
-         img_name,
-         audio_name,
-         set_id`;
+const fields = `id,
+                  en,
+                  en_alternatives,
+                  ro,
+                  gender_ro,
+                  plural,
+                  img_name,
+                  audio_name`;
 
-  let words: any[] = [];
+type WordsArr = Omit<Tables<'words'>, 'set_id' | 'created_at' | 'updated_at'>[];
+
+interface fetchSetParams {
+  setId: Tables<'words'>['set_id'];
+  ids: (string | undefined)[];
+  words: WordsArr;
+}
+const fetchSet = async ({ setId, ids, words }: fetchSetParams) => {
+  const { data, error } = await supabase
+    .from('words')
+    .select(fields)
+    .eq('set_id', setId)
+    .not('id', 'in', `(${ids.join(',')})`);
+  if (error) throw error;
+
+  return [...words, ...data];
+};
+
+const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
+  let words: WordsArr = [];
 
   try {
     const ids = Array.isArray(r) ? r : [r];
@@ -28,34 +48,24 @@ const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
       words = data;
     }
 
-    if (words.length >= 20) return words;
+    if (words.length >= REPEAT_WORDS_CTY) return words;
     if (!set || set.length <= 0) return words;
 
     if (!Array.isArray(set)) {
-      const { data, error } = await supabase
-        .from('words')
-        .select(fields)
-        .eq('set_id', set);
-      if (error) throw error;
+      words = await fetchSet({ setId: parseInt(set), ids, words });
 
-      words = [...words, ...data];
-
-      return words.slice(0, 20);
+      return words.slice(0, REPEAT_WORDS_CTY);
     }
 
     for (const setId of set) {
-      if (words.length >= 20) return words.slice(0, 20);
+      if (words.length >= REPEAT_WORDS_CTY) {
+        return words.slice(0, REPEAT_WORDS_CTY);
+      }
 
-      const { data, error } = await supabase
-        .from('words')
-        .select(fields)
-        .eq('set_id', setId);
-      if (error) throw error;
-
-      words = [...words, ...data];
+      words = await fetchSet({ setId: parseInt(setId), ids, words });
     }
 
-    return words.slice(0, 20);
+    return words.slice(0, REPEAT_WORDS_CTY);
   } catch (err) {
     throw err;
   }
@@ -70,6 +80,7 @@ interface RepeatPageProps {
 
 async function RepeatPage({ searchParams }: RepeatPageProps) {
   const words = await getWords(searchParams);
+
   return <WordScreen words={shuffleArr(words)} setName="practice" />;
 }
 

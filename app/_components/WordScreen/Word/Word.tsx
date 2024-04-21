@@ -3,6 +3,7 @@ import { Kalam } from 'next/font/google';
 import AudioBtn from './AudioBtn/AudioBtn';
 import { getArticle, getFullGender } from '@/app/_lib/utils';
 import { Gender } from '@/app/_lib/types';
+import type { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './Word.module.css';
 
@@ -12,13 +13,13 @@ const kalam = Kalam({
 });
 
 interface WordProps {
-  word: string;
-  plural: boolean;
-  audioName?: string;
-  gender?: Gender;
+  audioName: Tables<'words'>['audio_name'];
+  gender: Gender;
+  plural: Tables<'words'>['plural'];
+  word: Tables<'words'>['ro'];
 }
 
-function Word({ word, plural, audioName, gender }: WordProps) {
+function Word({ audioName, gender, plural, word }: WordProps) {
   return (
     <>
       <div className={styles.container}>

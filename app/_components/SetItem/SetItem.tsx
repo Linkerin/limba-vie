@@ -6,6 +6,8 @@ import { IconCheck } from '@tabler/icons-react';
 
 import { capitalizeWord } from '@/app/_lib/utils';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
+import type { Tables } from '@/app/_lib/supabase.types';
+import type { WordsCount } from '../SetsList/SetsList';
 
 import styles from './SetItem.module.css';
 
@@ -22,12 +24,7 @@ function isSetCompleted(id: number) {
 }
 
 interface SetItemProps {
-  set: {
-    id: number;
-    set: string;
-    emoji: string;
-    words: { count: number }[];
-  };
+  set: Pick<Tables<'sets'>, 'id' | 'emoji' | 'set'> & WordsCount;
 }
 
 function SetItem({ set }: SetItemProps) {
@@ -53,7 +50,7 @@ function SetItem({ set }: SetItemProps) {
         {wordsNum} word{wordsNum !== 1 ? 's' : null}
       </span>
       {isCompleted && (
-        <span className={styles.done}>
+        <span className={styles['completed-icon']}>
           <IconCheck />
         </span>
       )}

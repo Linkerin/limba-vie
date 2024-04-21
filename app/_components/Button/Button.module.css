@@ -1,0 +1,57 @@
+:where(.btn) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: none;
+  border: solid var(--primary-darker);
+  border-radius: var(--radius-md, 0.25rem);
+  border-width: 0.125rem;
+  box-shadow: 0.0625rem 0.0625rem var(--primary-darker);
+  cursor: pointer;
+  height: fit-content;
+  font-size: 1.25rem;
+  padding-block: 0.5em;
+  padding-inline: 1.5em;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+:where(.btn),
+:where(.btn):hover,
+:where(.btn):visited {
+  color: var(--primary-darker);
+  text-decoration: none;
+}
+
+:where(.btn):hover {
+  opacity: 0.88;
+}
+
+:where(.btn):active {
+  background-color: var(--primary-container);
+  border-width: 0.125rem;
+  box-shadow: none;
+  top: 0.25rem;
+}
+
+:where(.btn) > svg {
+  margin: auto;
+}
+
+:where(.fade) {
+  animation: fadein ease-in 0.5s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

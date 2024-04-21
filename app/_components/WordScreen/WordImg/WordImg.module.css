@@ -9,7 +9,7 @@
   --pd-bottom: 1.375rem;
 
   position: relative;
-  background-color: var(--primary-bg-med);
+  background-color: var(--primary-container-low);
   border-radius: var(--radius-md, 0.25rem);
   box-shadow: var(--elevation-1);
   height: calc(var(--img-size) + calc(var(--pd) + var(--pd-bottom)));
@@ -55,8 +55,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-bg);
-  color: var(--black);
+  background-color: var(--background);
+  color: var(--on-primary-container);
   font-size: 1.75rem;
   font-weight: bold;
 }

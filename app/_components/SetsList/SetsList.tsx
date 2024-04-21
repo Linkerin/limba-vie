@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 
 import SetItemLoading from '../SetItem/SetItemLoading';
+import type { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './SetsList.module.css';
 
@@ -9,7 +10,20 @@ const SetItem = dynamic(() => import('../SetItem/SetItem'), {
   ssr: false
 });
 
-async function SetsList({ sets }: { sets: any[] }) {
+export interface WordsCount {
+  words: {
+    count: number;
+  }[];
+}
+
+export type Set = Omit<Tables<'sets'>, 'created_at' | 'updated_at'> &
+  WordsCount;
+
+interface SetsListProps {
+  sets: Set[];
+}
+
+async function SetsList({ sets }: SetsListProps) {
   const units = Array.from(new Set(sets.map(set => set.unit))).sort(
     (a, b) => a - b
   );

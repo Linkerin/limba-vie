@@ -1,16 +1,28 @@
 import { Gender } from './types';
 
-export function shuffleArr(arr: any[]) {
-  arr.reverse().forEach((_, index) => {
-    const j = Math.floor(Math.random() * (index + 1));
-    [arr[index], arr[j]] = [arr[j], arr[index]];
+/**
+ * Shuffles the elements of an array in a random order.
+ * @param arr - The array to be shuffled.
+ * @returns The shuffled array.
+ */
+export function shuffleArr<T>(arr: T[]): T[] {
+  const shuffledArr = [...arr];
+
+  shuffledArr.reverse().forEach((_, i) => {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArr[i], shuffledArr[j]] = [shuffledArr[j], shuffledArr[i]];
   });
 
-  return arr;
+  return shuffledArr;
 }
 
+/**
+ * Capitalizes the first letter of a word.
+ * @param word - The word to be capitalized.
+ * @returns The capitalized word.
+ */
 export function capitalizeWord(word: string) {
-  if (typeof word === 'undefined' || word.length <= 0) return null;
+  if (!word || word.length === 0) return null;
 
   return word[0].toUpperCase() + word.slice(1);
 }

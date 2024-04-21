@@ -1,18 +1,14 @@
 .btn {
-  background: none;
-  border-radius: var(--radius-md, 0.25rem);
-  border-style: solid;
-  border-width: 0.125rem;
+  aspect-ratio: 1 /1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   font-size: 1.5rem;
   font-weight: bolder;
-  height: 8rem;
   padding: 0.5rem;
-  position: relative;
-  width: 8rem;
+  white-space: wrap;
+  width: min(35dvw, 12rem);
 }
 
 .btn svg {
@@ -20,26 +16,23 @@
 }
 
 .btn.repeat {
-  color: var(--orange);
-  border-color: var(--orange);
-  box-shadow: 0.125rem 0.125rem var(--orange);
+  color: var(--tertiary);
+  border-color: var(--tertiary);
+  box-shadow: 0.125rem 0.125rem var(--tertiary);
 }
 
 .btn.repeat:active {
-  background-color: var(--orange-bg);
+  background-color: var(--tertiary-container-low);
 }
 
 .btn.learned {
-  color: var(--primary);
-  border-color: var(--primary);
-  box-shadow: 0.125rem 0.125rem var(--primary);
+  box-shadow: 0.125rem 0.125rem var(--primary-darker);
 }
 
 .btn.learned:active {
-  background-color: var(--primary-bg-dark);
+  background-color: var(--primary-container-low);
 }
 
 .btn:active {
   box-shadow: none;
-  top: 0.25rem;
 }

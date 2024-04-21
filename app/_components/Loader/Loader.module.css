@@ -9,7 +9,7 @@
 .loader {
   width: 5rem;
   aspect-ratio: 1;
-  color: var(--gray);
+  color: var(--neutral-container-dark);
   position: relative;
   background: conic-gradient(from 135deg at top, currentColor 90deg, #0000 0)
       top,

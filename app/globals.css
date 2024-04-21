@@ -1,17 +1,44 @@
 :root {
-  --primary: hsl(255, 50%, 40%);
-  --primary-dark: hsl(255, 50%, 33%);
-  --primary-bg: hsl(255, 35%, 95%);
-  --primary-bg-med: hsl(255, 35%, 91%);
-  --primary-bg-dark: hsl(255, 35%, 85%);
-  --black: hsl(45, 26%, 15%);
-  --green: hsl(119, 58%, 40%);
-  --green-bg: hsl(137, 38%, 91%);
-  --orange: hsl(24, 70%, 48%);
-  --orange-bg: hsl(24, 80%, 96%);
-  --gray: hsl(255, 23%, 85%);
-  --white: hsl(60, 100%, 98%);
-  --masculine-color: var(--primary, hsl(255, 58%, 40%));
+  --background: hsl(255, 50%, 97%);
+  --text: hsl(0, 0%, 15%);
+
+  --primary: hsl(255, 50%, 50%);
+  --primary-darker: hsl(255, 50%, 40%);
+  --primary-dark: hsl(255, 50%, 30%);
+  --primary-container-dark: hsl(255, 50%, 80%);
+  --primary-container: hsl(255, 50%, 90%);
+  --primary-container-low: hsl(255, 50%, 95%);
+  --on-primary: hsl(255, 50%, 99%);
+  --on-primary-container: hsl(255, 50%, 25%);
+
+  --secondary: hsl(138, 30%, 50%);
+  --secondary-darker: hsl(138, 30%, 40%);
+  --secondary-dark: hsl(138, 30%, 30%);
+  --secondary-container-dark: hsl(138, 30%, 85%);
+  --secondary-container: hsl(138, 30%, 90%);
+  --secondary-container-low: hsl(138, 30%, 95%);
+  --on-secondary: hsl(138, 30%, 99%);
+  --on-secondary-container: hsl(138, 30%, 25%);
+
+  --tertiary: hsl(24, 70%, 50%);
+  --tertiary-darker: hsl(24, 70%, 40%);
+  --tertiary-dark: hsl(24, 70%, 30%);
+  --tertiary-container-dark: hsl(24, 70%, 85%);
+  --tertiary-container: hsl(24, 70%, 90%);
+  --tertiary-container-low: hsl(24, 70%, 95%);
+  --on-tertiary: hsl(24, 70%, 99%);
+  --on-tertiary-container: hsl(24, 70%, 25%);
+
+  --neutral: hsl(243, 14%, 50%);
+  --neutral-darker: hsl(243, 14%, 40%);
+  --neutral-dark: hsl(243, 14%, 30%);
+  --neutral-container-dark: hsl(243, 14%, 85%);
+  --neutral-container: hsl(243, 14%, 90%);
+  --neutral-container-low: hsl(243, 14%, 95%);
+  --on-neutral: hsl(243, 14%, 99%);
+  --on-neutral-container: hsl(243, 14%, 25%);
+
+  --masculine-color: hsl(255, 58%, 40%);
   --neutral-color: hsl(43, 100%, 44%);
   --feminine-color: hsl(352, 60%, 47%);
 
@@ -46,8 +73,8 @@
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background-color: var(--primary-bg);
-  color: var(--black);
+  background-color: var(--background);
+  color: var(--text);
   font: inherit;
   font-size: 100%;
   font-family: 'Alata', 'Segoe UI', Segoe, Tahoma, Geneva, Verdana, sans-serif;

@@ -4,14 +4,22 @@ import { useCallback, useState } from 'react';
 
 import Actions from './Actions/Actions';
 import Finished from './Finished/Finished';
+import type { Tables } from '@/app/_lib/supabase.types';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
 import Word from './Word/Word';
 import WordImg from './WordImg/WordImg';
 
 import styles from './WordScreen.module.css';
 
-interface WordScreenProps {
-  words: any[];
+interface Sets {
+  sets?: Pick<Tables<'sets'>, 'id' | 'set'> | null;
+}
+
+type Word = Omit<Tables<'words'>, 'created_at' | 'updated_at' | 'set_id'> &
+  Sets;
+
+export interface WordScreenProps {
+  words: Word[];
   setName?: string;
 }
 
@@ -19,7 +27,7 @@ function WordScreen({ words, setName }: WordScreenProps) {
   const [currWord, setCurrWord] = useState(0);
   const [isImgFlipped, setIsImgFlipped] = useState(false);
 
-  const flipHandler: React.MouseEventHandler = useCallback(e => {
+  const flipHandler: React.MouseEventHandler = useCallback(_ => {
     setIsImgFlipped(prevState => !prevState);
   }, []);
 
@@ -32,7 +40,7 @@ function WordScreen({ words, setName }: WordScreenProps) {
 
   return (
     <section className={styles.section}>
-      {currWord < words.length ? (
+      {currWord < words.length && words.at(currWord) ? (
         <>
           <p className={styles.counter}>
             {currWord + 1} / {words.length}
@@ -54,8 +62,8 @@ function WordScreen({ words, setName }: WordScreenProps) {
         </>
       ) : (
         <Finished
-          setId={words[0]['set_id']?.id}
-          setName={setName ? setName : words[0]['set_id'].set}
+          setId={words.at(0)?.sets?.id}
+          setName={setName ? setName : words[0].sets?.set}
         />
       )}
     </section>

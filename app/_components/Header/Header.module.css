@@ -1,9 +1,9 @@
 .header {
-  background-color: var(--primary-bg);
+  background-color: var(--background);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary-darker);
   height: 3.75rem;
   padding-inline: 1rem;
   position: sticky;
@@ -33,7 +33,7 @@
 }
 
 #limba {
-  color: var(--primary);
+  color: var(--primary-darker);
   border-bottom: 2px solid hsl(35, 75%, 55%);
 }
 
@@ -41,5 +41,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.875rem;
+  gap: 0.75rem;
 }
