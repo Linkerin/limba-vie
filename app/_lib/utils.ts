@@ -1,4 +1,6 @@
-import { Gender } from './types';
+import { CLOUDINARY_IMG_URL } from './constants';
+import type { Gender } from './types';
+import type { Tables } from './supabase.types';
 
 /**
  * Shuffles the elements of an array in a random order.
@@ -61,4 +63,10 @@ export function getFullGender(genderAbbr: Gender) {
     default:
       return null;
   }
+}
+
+export function getWordsImageUrl(imgName: Tables<'words'>['img_name']) {
+  const url = `${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${imgName}`;
+
+  return url;
 }
