@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 
-import {
-  AUDIO_FILE_FORMAT,
-  CLOUDINARY_IMG_URL,
-  SUPABASE_STORAGE_URL
-} from '../_lib/constants';
+// import { AUDIO_FILE_FORMAT, SUPABASE_STORAGE_URL } from '../_lib/constants';
+import { getWordsAudioUrl, getWordsImageUrl } from '../_lib/utils';
 import type { WordScreenProps } from '../_components/WordScreen/WordScreen';
 
 function useMediaLoad(current: number, words: WordScreenProps['words']) {
@@ -13,11 +10,9 @@ function useMediaLoad(current: number, words: WordScreenProps['words']) {
     if (current >= words.length - 2) return;
 
     const load = (i: number) => {
-      new Audio(
-        `${SUPABASE_STORAGE_URL}/audio/ro/${words[i].audio_name}.${AUDIO_FILE_FORMAT}`
-      );
+      new Audio(getWordsAudioUrl(words[i].audio_name));
       const img = new Image();
-      img.src = `${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${words[i].img_name}`;
+      img.src = getWordsImageUrl(words[i].img_name);
 
       return;
     };

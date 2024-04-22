@@ -5,7 +5,7 @@ import { useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { IconRepeat } from '@tabler/icons-react';
 
-import { CLOUDINARY_IMG_URL } from '@/app/_lib/constants';
+import { getWordsImageUrl } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './WordImg.module.css';
@@ -53,7 +53,7 @@ function WordImg({
           >
             <img
               alt={`${wordEn} picture`}
-              src={`${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${imgName}`}
+              src={getWordsImageUrl(imgName)}
               // sizes={`(max-width: 479px) 256px,
               //         (max-width: 959px) 480px,
               //         (max-width: 1023px) 960px,

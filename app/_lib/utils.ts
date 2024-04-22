@@ -1,4 +1,10 @@
-import { Gender } from './types';
+import {
+  AUDIO_FILE_FORMAT,
+  CLOUDINARY_IMG_URL,
+  SUPABASE_STORAGE_URL
+} from './constants';
+import type { Gender } from './types';
+import type { Tables } from './supabase.types';
 
 /**
  * Shuffles the elements of an array in a random order.
@@ -61,4 +67,16 @@ export function getFullGender(genderAbbr: Gender) {
     default:
       return null;
   }
+}
+
+export function getWordsImageUrl(imgName: Tables<'words'>['img_name']) {
+  const url = `${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${imgName}`;
+
+  return url;
+}
+
+export function getWordsAudioUrl(audioName: Tables<'words'>['audio_name']) {
+  const url = `${SUPABASE_STORAGE_URL}/audio/ro/${audioName}.${AUDIO_FILE_FORMAT}`;
+
+  return url;
 }
