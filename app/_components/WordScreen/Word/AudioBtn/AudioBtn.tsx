@@ -4,7 +4,7 @@ import { useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { IconVolume } from '@tabler/icons-react';
 
-import { SUPABASE_STORAGE_URL } from '@/app/_lib/constants';
+import { AUDIO_FILE_FORMAT, SUPABASE_STORAGE_URL } from '@/app/_lib/constants';
 import type { Tables } from '@/app/_lib/supabase.types';
 import { useIsSoundAllowed } from '@/app/_hooks/useSoundMode';
 
@@ -50,7 +50,7 @@ function AudioBtn({ audioName, word }: AudioBtnProps) {
       </button>
       <audio
         ref={audioRef}
-        src={`${SUPABASE_STORAGE_URL}/audio/ro/${audioName}.mp3`}
+        src={`${SUPABASE_STORAGE_URL}/audio/ro/${audioName}.${AUDIO_FILE_FORMAT}`}
         autoPlay={isSoundAllowed}
         onAbort={onAbortEndedHandler}
         onEnded={onAbortEndedHandler}
