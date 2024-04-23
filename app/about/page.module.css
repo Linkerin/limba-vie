@@ -25,7 +25,6 @@
 
 .address {
   font-style: normal;
-  line-height: 1.25rem;
 }
 
 .address > p:first-of-type {
@@ -33,14 +32,12 @@
 }
 
 .credits > h1 {
-  color: var(--on-primary-container);
   font-size: 1.25rem;
   font-weight: 400;
-  margin-block: 1.75rem 0.5rem;
+  margin-block-start: 1.25rem;
 }
 
 .credits > p {
   font-size: 0.75rem;
-  line-height: 1rem;
   margin-block-end: 0.5rem;
 }

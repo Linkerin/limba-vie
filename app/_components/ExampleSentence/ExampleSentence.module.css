@@ -1,0 +1,39 @@
+.container {
+  margin-block: 0.75rem;
+  width: 100%;
+}
+
+.sentence {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.25rem;
+  background-color: var(--primary-container-low);
+  border: solid var(--primary-darker);
+  border-radius: var(--radius-md, 0.25rem);
+  border-width: 0.125rem;
+  color: var(--on-primary-container);
+  margin-block-end: 0.25rem;
+}
+
+.sentence > p {
+  padding: 0.5rem 1rem;
+}
+
+.translation {
+  font-style: italic;
+  opacity: 0.88;
+  text-align: end;
+}
+
+.audio-btn {
+  aspect-ratio: 1/1;
+  border-radius: 0.125rem;
+  font-size: 1.375em;
+  padding-inline: 0.5rem;
+}
+
+.audio-btn ~ p {
+  padding-inline-start: 0rem;
+}

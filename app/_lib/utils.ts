@@ -75,8 +75,11 @@ export function getWordsImageUrl(imgName: Tables<'words'>['img_name']) {
   return url;
 }
 
-export function getWordsAudioUrl(audioName: Tables<'words'>['audio_name']) {
-  const url = `${SUPABASE_STORAGE_URL}/audio/ro/${audioName}.${AUDIO_FILE_FORMAT}`;
+export function getWordsAudioUrl(
+  audioName: Tables<'words'>['audio_name'],
+  folders: string = 'ro'
+) {
+  const url = `${SUPABASE_STORAGE_URL}/audio/${folders}/${audioName}.${AUDIO_FILE_FORMAT}`;
 
   return url;
 }

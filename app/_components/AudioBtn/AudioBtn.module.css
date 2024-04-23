@@ -1,4 +1,4 @@
-.btn {
+:where(.btn) {
   background: none;
   border: none;
   box-shadow: none;
@@ -9,7 +9,7 @@
   padding: 0.25rem;
 }
 
-.btn:active {
+:where(.btn):active {
   background-color: var(--primary-container);
 }
 

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { IconBarbell, IconHome } from '@tabler/icons-react';
+import { IconBarbell, IconBook2, IconHome } from '@tabler/icons-react';
 
 import { REPEAT_WORDS_CTY } from '@/app/_lib/constants';
 import { shuffleArr } from '@/app/_lib/utils';
@@ -78,6 +78,13 @@ function NavBar() {
             <Link aria-label="To main page with units list" href="/">
               <span>
                 <IconHome />
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link aria-label="To grammar articles" href="/tips/grammar">
+              <span>
+                <IconBook2 />
               </span>
             </Link>
           </li>

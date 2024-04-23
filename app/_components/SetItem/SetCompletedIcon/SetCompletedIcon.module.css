@@ -1,0 +1,12 @@
+.completed-icon {
+  border: solid var(--completed-primary);
+  border-width: 0 0 0.125rem 0.125rem;
+  border-radius: 0 0 0 var(--radius-md, 0.25rem);
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.75rem;
+  padding: 0.125rem;
+  stroke-width: 0.125rem;
+  box-shadow: 0.0625rem 0.0625rem var(--completed-primary);
+}

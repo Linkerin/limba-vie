@@ -1,6 +1,6 @@
 import { Kalam } from 'next/font/google';
 
-import AudioBtn from './AudioBtn/AudioBtn';
+import AudioBtn from '../../AudioBtn/AudioBtn';
 import { getArticle, getFullGender } from '@/app/_lib/utils';
 import { Gender } from '@/app/_lib/types';
 import type { Tables } from '@/app/_lib/supabase.types';
