@@ -70,7 +70,7 @@ function NavBar() {
   const url = new URL('/set/lvrepeat', process.env.NEXT_PUBLIC_BASE_URL);
   url.search = params.toString();
 
-  return !pathname.match(/\/set\/?.*/) && show ? (
+  return !pathname.match(/\/set\/?.*/) ? (
     <footer className={styles.footer}>
       <nav>
         <ol>
@@ -81,20 +81,26 @@ function NavBar() {
               </span>
             </Link>
           </li>
-          <li>
+          <li
+            className={classNames({
+              [styles.current]: pathname.includes('/tips/')
+            })}
+          >
             <Link aria-label="To grammar articles" href="/tips/grammar">
               <span>
                 <IconBook2 />
               </span>
             </Link>
           </li>
-          <li>
-            <Link aria-label="To practice set" href={url.href}>
-              <span>
-                <IconBarbell />
-              </span>
-            </Link>
-          </li>
+          {show && (
+            <li>
+              <Link aria-label="To practice set" href={url.href}>
+                <span>
+                  <IconBarbell />
+                </span>
+              </Link>
+            </li>
+          )}
         </ol>
       </nav>
     </footer>
