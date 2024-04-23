@@ -1,23 +1,23 @@
-.link,
-.link:visited {
+:where(.link),
+:where(.link):where(:visited) {
   color: var(--primary-darker);
   white-space: normal;
   user-select: none;
 }
 
-.link,
-.link:hover,
-.link:focus,
-.link:active {
+:where(.link),
+:where(.link):hover,
+:where(.link):focus,
+:where(.link):active {
   text-decoration: none;
 }
 
 /* Link overlay  */
-.link {
+:where(.link) {
   position: initial;
 }
 
-.link::before {
+:where(.link)::before {
   content: '';
   cursor: inherit;
   display: block;

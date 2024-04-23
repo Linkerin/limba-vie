@@ -25,14 +25,10 @@ export interface WordScreenProps {
 
 function WordScreen({ words, setName }: WordScreenProps) {
   const [currWord, setCurrWord] = useState(0);
-  const [isImgFlipped, setIsImgFlipped] = useState(false);
 
-  const flipHandler: React.MouseEventHandler = useCallback(_ => {
-    setIsImgFlipped(prevState => !prevState);
-  }, []);
+  const flipHandler: React.MouseEventHandler = useCallback(_ => {}, []);
 
   const nextWord = useCallback(() => {
-    setIsImgFlipped(false);
     setCurrWord(prevState => prevState + 1);
   }, []);
 
@@ -46,11 +42,11 @@ function WordScreen({ words, setName }: WordScreenProps) {
             {currWord + 1} / {words.length}
           </p>
           <WordImg
+            key={words[currWord].img_name}
             wordEn={words[currWord].en}
             flipHandler={flipHandler}
             gender={words[currWord].gender_ro}
             imgName={words[currWord].img_name}
-            isFlipped={isImgFlipped}
           />
           <Word
             word={words[currWord].ro}

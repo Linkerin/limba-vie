@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border: 0.125rem solid var(--primary-darker);
+  border-radius: var(--radius-md, 0.25rem);
+  border-width: 0.125rem;
+  list-style-type: none;
+  margin-block-end: 1rem;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container > li {
+  position: relative;
+  text-align: center;
+  width: 50%;
+}
+
+.item {
+  display: block;
+  padding-block: 0.375rem 0.5rem;
+}
+
+.current {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}

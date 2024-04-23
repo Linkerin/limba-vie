@@ -22,15 +22,18 @@ interface WordImgProps {
 function WordImg({
   wordEn,
   gender,
-  flipHandler,
   imgName = wordEn,
-  isFlipped = false,
   size = '480'
 }: WordImgProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const onLoadHandler = useCallback(() => {
     setIsLoaded(true);
+  }, []);
+
+  const flipHandler: React.MouseEventHandler = useCallback(_ => {
+    setIsFlipped(prevState => !prevState);
   }, []);
 
   return (

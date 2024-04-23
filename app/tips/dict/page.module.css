@@ -1,0 +1,37 @@
+.list {
+  list-style-type: none;
+  padding: 0 1rem;
+  font-size: 1.125rem;
+  width: 100%;
+}
+
+.list > li {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding-block: 0.5rem;
+  position: relative;
+  white-space: normal;
+}
+
+.list > li:not(:last-of-type) {
+  margin-block-end: 0.5rem;
+}
+
+.column {
+  width: 50%;
+}
+
+.ro {
+  color: var(--primary);
+  text-decoration: underline dotted;
+  text-underline-position: under;
+}
+
+.info {
+  font-size: 1rem;
+  font-style: italic;
+  opacity: 0.88;
+}
