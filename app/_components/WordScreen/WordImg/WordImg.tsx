@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { IconRepeat } from '@tabler/icons-react';
 
@@ -25,6 +25,8 @@ function WordImg({
   imgName = wordEn,
   size = '480'
 }: WordImgProps) {
+  const imgRef = useRef<HTMLImageElement | null>(null);
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -34,6 +36,12 @@ function WordImg({
 
   const flipHandler: React.MouseEventHandler = useCallback(_ => {
     setIsFlipped(prevState => !prevState);
+  }, []);
+
+  useEffect(() => {
+    if (imgRef?.current?.complete) {
+      setIsLoaded(true);
+    }
   }, []);
 
   return (
@@ -57,6 +65,7 @@ function WordImg({
             })}
           >
             <img
+              ref={imgRef}
               alt={`${wordEn} picture`}
               src={getWordsImageUrl(imgName)}
               // sizes={`(max-width: 479px) 256px,
