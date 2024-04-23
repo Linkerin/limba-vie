@@ -29,9 +29,12 @@
 
 .audio-btn {
   aspect-ratio: 1/1;
-  border-radius: 0.125rem;
   font-size: 1.375em;
   padding-inline: 0.5rem;
+}
+
+.audio-btn:active {
+  background: none;
 }
 
 .audio-btn ~ p {
