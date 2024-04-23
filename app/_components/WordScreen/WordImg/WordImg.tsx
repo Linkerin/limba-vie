@@ -51,7 +51,11 @@ function WordImg({
           )}
         >
           <IconRepeat className={styles['flip-icon']} />
-          <div className={classNames(styles.front)}>
+          <div
+            className={classNames(styles.front, {
+              [styles.loading]: !isLoaded
+            })}
+          >
             <img
               alt={`${wordEn} picture`}
               src={getWordsImageUrl(imgName)}
@@ -66,6 +70,11 @@ function WordImg({
               fetchPriority="high"
               loading="eager"
               onLoad={onLoadHandler}
+            />
+            <div
+              className={classNames(styles.loader, {
+                [styles.loaded]: isLoaded
+              })}
             />
           </div>
           <div className={styles.back}>

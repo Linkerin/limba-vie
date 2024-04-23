@@ -1,4 +1,4 @@
-.section {
+:where(.section) {
   display: flex;
   color: var(--primary);
   cursor: default;
@@ -19,11 +19,11 @@
   animation: fadein ease-in 0.3s;
 }
 
-.section:hover {
+:where(.section):hover {
   opacity: 0.88;
 }
 
-.section:active {
+:where(.section):active {
   background-color: var(--primary-container);
   border-width: 0.125rem;
   box-shadow: none;
