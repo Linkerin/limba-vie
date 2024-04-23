@@ -1,6 +1,8 @@
 .link,
 .link:visited {
   color: var(--primary-darker);
+  white-space: normal;
+  user-select: none;
 }
 
 .link,
