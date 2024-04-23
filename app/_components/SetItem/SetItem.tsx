@@ -1,10 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import classNames from 'classnames';
-import { IconCheck } from '@tabler/icons-react';
 
-import { capitalizeWord } from '@/app/_lib/utils';
+import ListItem from '../ListItem/ListItem';
+import SetCompetedIcon from './SetCompletedIcon/SetCompletedIcon';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import type { Tables } from '@/app/_lib/supabase.types';
 import type { WordsCount } from '../SetsList/SetsList';
@@ -25,37 +24,22 @@ function isSetCompleted(id: number) {
 
 interface SetItemProps {
   set: Pick<Tables<'sets'>, 'id' | 'emoji' | 'set'> & WordsCount;
+  children?: React.ReactNode;
 }
 
-function SetItem({ set }: SetItemProps) {
-  const capitalizedSet = capitalizeWord(set.set);
+function SetItem({ children, set }: SetItemProps) {
   const isCompleted = isSetCompleted(set.id);
-  const wordsNum = set.words[0].count;
 
   return (
-    <li
+    <ListItem
       id={`set-${set.id}`}
-      className={classNames(styles.section, {
+      className={classNames({
         [styles.completed]: isCompleted
       })}
     >
-      <span className={styles.emoji}>{set.emoji}</span>
-      <Link
-        aria-label={`To ${capitalizedSet} words set`}
-        href={`/set/${encodeURIComponent(set.set)}`}
-        target="_self"
-      >
-        {capitalizedSet}
-      </Link>
-      <span className={styles['words-number']}>
-        {wordsNum} word{wordsNum !== 1 ? 's' : null}
-      </span>
-      {isCompleted && (
-        <span className={styles['completed-icon']}>
-          <IconCheck />
-        </span>
-      )}
-    </li>
+      {children}
+      {isCompleted && <SetCompetedIcon />}
+    </ListItem>
   );
 }
 

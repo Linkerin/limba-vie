@@ -1,0 +1,25 @@
+.link,
+.link:visited {
+  color: var(--primary-darker);
+}
+
+.link,
+.link:hover,
+.link:focus,
+.link:active {
+  text-decoration: none;
+}
+
+/* Link overlay  */
+.link {
+  position: initial;
+}
+
+.link::before {
+  content: '';
+  cursor: inherit;
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}

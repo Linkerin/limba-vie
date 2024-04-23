@@ -1,0 +1,47 @@
+ol,
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+strong {
+  font-weight: normal;
+  color: var(--primary);
+}
+
+table {
+  border: solid var(--primary-darker);
+  border-collapse: separate;
+  border-radius: var(--radius-md, 0.25rem);
+  border-width: 0.125rem;
+  box-shadow: 0.125rem 0.125rem var(--primary-darker);
+  font-size: 1.125rem;
+  margin-block: 0.5rem;
+  width: 100%;
+}
+
+thead {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+th,
+td {
+  padding: 0.375rem;
+  text-align: center;
+  word-break: break-word;
+}
+
+thead th,
+tbody > tr:not(:last-of-type) > td {
+  border-block-end: 0.125rem solid var(--primary-darker);
+}
+
+td {
+  line-height: 1.25em;
+}
+
+td > em {
+  display: block;
+  font-size: 0.875em;
+}

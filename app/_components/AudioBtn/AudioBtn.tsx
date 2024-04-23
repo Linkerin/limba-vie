@@ -12,10 +12,21 @@ import styles from './AudioBtn.module.css';
 
 interface AudioBtnProps {
   audioName: Tables<'words'>['audio_name'];
-  word: Tables<'words'>['ro'];
+  ariaLabel?: string;
+  autoplay?: boolean;
+  className?: React.HTMLProps<'button'>['className'];
+  folders?: string;
+  word?: Tables<'words'>['ro'];
 }
 
-function AudioBtn({ audioName, word }: AudioBtnProps) {
+function AudioBtn({
+  audioName,
+  ariaLabel,
+  className,
+  folders,
+  word,
+  autoplay = true
+}: AudioBtnProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -42,16 +53,16 @@ function AudioBtn({ audioName, word }: AudioBtnProps) {
   return (
     <>
       <button
-        className={styles.btn}
-        aria-label={`Play '${word}' word sound`}
+        className={classNames(styles.btn, className)}
+        aria-label={ariaLabel ?? `Play '${word}' word sound`}
         onClick={audioClickHandler}
       >
         <IconVolume className={classNames({ [styles.playing]: isPlaying })} />
       </button>
       <audio
         ref={audioRef}
-        src={getWordsAudioUrl(audioName)}
-        autoPlay={isSoundAllowed}
+        src={getWordsAudioUrl(audioName, folders)}
+        autoPlay={autoplay && isSoundAllowed}
         onAbort={onAbortEndedHandler}
         onEnded={onAbortEndedHandler}
         onPlaying={onPlayingHandler}

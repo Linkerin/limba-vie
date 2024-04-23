@@ -1,6 +1,9 @@
 import dynamic from 'next/dynamic';
 
+import SetItemEmoji from '../SetItem/SetItemEmoji/SetItemEmoji';
+import SetItemLink from '../SetItem/SetItemLink/SetItemLink';
 import SetItemLoading from '../SetItem/SetItemLoading';
+import SetItemWordsNum from '../SetItem/SetItemWordsNum/SetItemWordsNum';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './SetsList.module.css';
@@ -38,7 +41,13 @@ async function SetsList({ sets }: SetsListProps) {
               {sets
                 .filter(set => set.unit === unit)
                 .map(set => {
-                  return <SetItem key={set.id} set={set} />;
+                  return (
+                    <SetItem key={set.id} set={set}>
+                      <SetItemEmoji emoji={set.emoji} />
+                      <SetItemLink set={set.set} />
+                      <SetItemWordsNum wordsNum={set.words[0].count} />
+                    </SetItem>
+                  );
                 })}
             </ul>
           </article>
