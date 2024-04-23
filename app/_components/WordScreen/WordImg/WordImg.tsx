@@ -51,9 +51,7 @@ function WordImg({
           )}
         >
           <IconRepeat className={styles['flip-icon']} />
-          <div
-            className={classNames(styles.front, { [styles.loaded]: isLoaded })}
-          >
+          <div className={classNames(styles.front)}>
             <img
               alt={`${wordEn} picture`}
               src={getWordsImageUrl(imgName)}

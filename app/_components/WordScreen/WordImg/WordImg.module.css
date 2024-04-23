@@ -37,8 +37,8 @@
   width: auto;
 }
 
-.front.loaded > img {
-  animation: fadein ease-in 0.6s;
+.front > img {
+  animation: fadein ease-in 0.5s;
 }
 
 @media (prefers-reduced-motion) {
