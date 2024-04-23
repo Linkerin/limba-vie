@@ -46,38 +46,48 @@ async function DictPage() {
   const words = await getWords();
 
   return (
-    <ol className={styles.list}>
-      {words.map(word => (
-        <li key={word.id}>
-          <div className={styles.column}>
-            <ListItemLink
-              className={styles.ro}
-              aria-label="Romanian word"
-              href={`/words/${encodeURIComponent(word.en)}`}
-            >
-              {word.ro}
-            </ListItemLink>
-            {word.gender_ro && (
-              <span className={styles.info} aria-label="Romanian word gender">
-                {' '}
-                {word.gender_ro}
+    <>
+      <p className={styles.total}>
+        Total words: <span>{words.length}</span>
+      </p>
+      <ol className={styles.list}>
+        {words.map(word => (
+          <li key={word.id}>
+            <div className={styles.column}>
+              <ListItemLink
+                className={styles.ro}
+                aria-label="Romanian word"
+                href={`/words/${encodeURIComponent(word.en)}`}
+              >
+                {word.ro}
+              </ListItemLink>
+              {word.gender_ro && (
+                <span className={styles.info} aria-label="Romanian word gender">
+                  {' '}
+                  {word.gender_ro}
+                </span>
+              )}
+              {word.plural && (
+                <span
+                  className={styles.info}
+                  aria-label={`${word.ro} is plural`}
+                >
+                  {word.gender_ro ? ', ' : null} pl.
+                </span>
+              )}
+            </div>
+            <div className={styles.column}>
+              <span className={styles.en} aria-label="English translation">
+                {word.en}
               </span>
-            )}
-            {word.plural && (
-              <span className={styles.info} aria-label={`${word.ro} is plural`}>
-                {word.gender_ro ? ', ' : null} pl.
-              </span>
-            )}
-          </div>
-          <div className={styles.column}>
-            <span className={styles.en} aria-label="English translation">
-              {word.en}
-            </span>
-          </div>
-        </li>
-      ))}
-    </ol>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </>
   );
 }
+
+export const revalidate = Number(process.env.REVALIDATE_PERIOD_MS);
 
 export default DictPage;

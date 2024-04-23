@@ -12,7 +12,7 @@ function TipsNav() {
   const pathname = usePathname();
 
   return (
-    <nav>
+    <nav className={styles.nav}>
       <ol className={styles.container}>
         <li>
           <ListItemLink

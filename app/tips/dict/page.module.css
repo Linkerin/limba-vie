@@ -1,3 +1,13 @@
+.total {
+  font-size: 0.75rem;
+  text-align: end;
+  width: 100%;
+}
+
+.total > span {
+  color: var(--primary);
+}
+
 .list {
   list-style-type: none;
   padding: 0 1rem;
