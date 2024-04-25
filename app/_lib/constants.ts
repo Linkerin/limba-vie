@@ -17,5 +17,11 @@ export const ARTICLES = Object.freeze({
     description:
       'Grammar explanation of definite and indefinite articles usage in Romanian language',
     link: 'articles'
+  },
+  plurals: {
+    title: 'Plural number of the noun',
+    description:
+      'Grammar explanation of the plural number of the noun formation in Romanian language',
+    link: 'plurals'
   }
 });
