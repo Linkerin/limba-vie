@@ -40,7 +40,7 @@ function getCompletedSets() {
   }
 }
 
-function useShowRepeatBtn() {
+function useRepeatBtn() {
   let show = false;
   const completedSets = getCompletedSets();
   const wordsForRepeat = getWordForRepeat();
@@ -65,4 +65,4 @@ function useShowRepeatBtn() {
   return { show, url };
 }
 
-export default useShowRepeatBtn;
+export default useRepeatBtn;

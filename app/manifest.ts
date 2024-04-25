@@ -25,6 +25,22 @@ export default function manifest(): MetadataRoute.Manifest {
         sizes: '512x512',
         type: 'image/png'
       }
+    ],
+    shortcuts: [
+      {
+        name: 'Repeat set',
+        short_name: 'Repeat',
+        description: 'Open repeat set',
+        url: '/set/lvrepeat/pwa-redirect',
+        icons: [{ src: '/icons/repeat.png', sizes: '192x192' }]
+      },
+      {
+        name: 'About',
+        short_name: 'About',
+        description: 'Limba Vie application description and legal information',
+        url: '/about',
+        icons: [{ src: '/icons/info.png', sizes: '192x192' }]
+      }
     ]
   };
 }

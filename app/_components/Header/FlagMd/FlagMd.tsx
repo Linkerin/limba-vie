@@ -1,5 +1,5 @@
 import styles from './FlagMd.module.css';
-import coatOfArmsMd from '@/public/moldova_coat_of_arms.svg';
+import coatOfArmsMd from '@/public/icons/moldova_coat_of_arms.svg';
 
 function FlagMd() {
   return (

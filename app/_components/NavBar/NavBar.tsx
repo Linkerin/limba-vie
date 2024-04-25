@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { IconBarbell, IconBook2, IconHome } from '@tabler/icons-react';
 
-import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
-import useShowRepeatBtn from '@/app/_hooks/useShowRepeatBtn';
+import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
 
 import styles from './NavBar.module.css';
 import classNames from 'classnames';
@@ -13,7 +12,7 @@ import classNames from 'classnames';
 function NavBar() {
   const pathname = usePathname();
 
-  const { show, url } = useShowRepeatBtn();
+  const { show, url } = useRepeatBtn();
 
   return !pathname.match(/\/set\/?.*/) ? (
     <footer className={styles.footer}>
