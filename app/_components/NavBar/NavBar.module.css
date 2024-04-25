@@ -60,10 +60,10 @@
 
 .current > a > span,
 .current > a:visited > span {
-  color: var(--tertiary);
+  color: var(--on-primary-container);
 }
 
 .current > a > span {
-  background-color: var(--tertiary-container);
+  background-color: var(--primary-container);
   border-radius: 0.375rem;
 }

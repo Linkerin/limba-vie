@@ -9,7 +9,7 @@
   --primary-container: hsl(255, 50%, 90%);
   --primary-container-low: hsl(255, 50%, 95%);
   --on-primary: hsl(255, 50%, 99%);
-  --on-primary-container: hsl(255, 50%, 25%);
+  --on-primary-container: hsl(255, 50%, 30%);
 
   --secondary: hsl(138, 30%, 50%);
   --secondary-darker: hsl(138, 30%, 40%);
@@ -18,7 +18,7 @@
   --secondary-container: hsl(138, 30%, 90%);
   --secondary-container-low: hsl(138, 30%, 95%);
   --on-secondary: hsl(138, 30%, 99%);
-  --on-secondary-container: hsl(138, 30%, 25%);
+  --on-secondary-container: hsl(138, 30%, 30%);
 
   --tertiary: hsl(24, 70%, 50%);
   --tertiary-darker: hsl(24, 70%, 40%);
@@ -27,7 +27,7 @@
   --tertiary-container: hsl(24, 70%, 90%);
   --tertiary-container-low: hsl(24, 70%, 95%);
   --on-tertiary: hsl(24, 70%, 99%);
-  --on-tertiary-container: hsl(24, 70%, 25%);
+  --on-tertiary-container: hsl(24, 70%, 30%);
 
   --neutral: hsl(243, 14%, 50%);
   --neutral-darker: hsl(243, 14%, 40%);
@@ -36,7 +36,7 @@
   --neutral-container: hsl(243, 14%, 90%);
   --neutral-container-low: hsl(243, 14%, 95%);
   --on-neutral: hsl(243, 14%, 99%);
-  --on-neutral-container: hsl(243, 14%, 25%);
+  --on-neutral-container: hsl(243, 14%, 30%);
 
   --masculine-color: hsl(255, 58%, 40%);
   --neutral-color: hsl(43, 100%, 44%);
