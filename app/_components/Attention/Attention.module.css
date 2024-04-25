@@ -1,0 +1,22 @@
+.container {
+  background-color: var(--tertiary-container-low);
+  border-radius: var(--radius-md, 0.25rem);
+  border: 2px solid var(--tertiary);
+  margin-block: 0.75rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  color: var(--tertiary-darker);
+  font-size: 1.125em;
+  margin-block-end: 0.25rem;
+}
+
+.heading > span {
+  font-size: 1.25em;
+}
