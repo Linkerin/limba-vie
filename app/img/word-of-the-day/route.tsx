@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          background: gender ? bgColors[gender] : '#dfd9f2',
+          background: gender ? bgColors[gender] : '#6f6e91',
           width: '100%',
           height: '100%',
           paddingTop: '64px'
