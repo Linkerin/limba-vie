@@ -5,7 +5,7 @@
   justify-content: flex-start;
   height: 100%;
   text-align: center;
-  animation: fadein 0.7s ease;
+  animation: var(--animation-fadein);
 }
 
 .section > .counter {
@@ -14,13 +14,4 @@
   cursor: default;
   font-size: 1.375rem;
   margin-bottom: 0.5rem;
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }

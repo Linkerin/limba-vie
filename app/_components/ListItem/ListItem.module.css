@@ -16,7 +16,7 @@
   white-space: nowrap;
   width: 100%;
   z-index: 0;
-  animation: fadein ease-in 0.3s;
+  animation: var(--animation-fadein);
 }
 
 :where(.section):hover {
@@ -29,13 +29,4 @@
   box-shadow: none;
   opacity: 1;
   top: 0.25rem;
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }

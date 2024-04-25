@@ -1,6 +1,6 @@
 .img-msg-container {
   text-align: center;
-  animation: fadein 0.5s ease;
+  animation: var(--animation-fadein);
 }
 
 .img {
@@ -29,13 +29,4 @@
   font-size: 1.5rem;
   margin-block: auto 0.5rem;
   width: 100%;
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }

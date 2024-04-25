@@ -44,14 +44,5 @@
 }
 
 :where(.fade) {
-  animation: fadein ease-in 0.5s;
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  animation: var(--animation-fadein);
 }

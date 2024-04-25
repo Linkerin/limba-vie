@@ -53,3 +53,7 @@ td > em {
   display: block;
   font-size: 0.875em;
 }
+
+article > * {
+  animation: var(--animation-fadein);
+}
