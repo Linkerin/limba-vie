@@ -4,6 +4,5 @@
   align-items: center;
   justify-content: flex-start;
   height: 100%;
-  text-align: center;
   animation: var(--animation-fadein);
 }

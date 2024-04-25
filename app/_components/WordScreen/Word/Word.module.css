@@ -3,6 +3,7 @@
   align-items: center;
   font-size: min(2.75rem, 5.5vmax);
   gap: 0.5rem;
+  text-align: center;
 }
 
 .m,
