@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     url: process.env.NEXT_PUBLIC_BASE_URL,
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-image`
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/img/og-image`
       }
     ]
   },

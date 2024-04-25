@@ -69,8 +69,11 @@ export function getFullGender(genderAbbr: Gender) {
   }
 }
 
-export function getWordsImageUrl(imgName: Tables<'words'>['img_name']) {
-  const url = `${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${imgName}`;
+export function getWordsImageUrl(
+  imgName: Tables<'words'>['img_name'],
+  width: number = 480
+) {
+  const url = `${CLOUDINARY_IMG_URL}/f_auto,q_75,w_${width}/v1/limba/${imgName}`;
 
   return url;
 }
