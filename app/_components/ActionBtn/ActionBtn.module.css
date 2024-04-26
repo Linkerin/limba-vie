@@ -1,18 +1,9 @@
 .btn {
-  aspect-ratio: 1 /1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  font-size: 1.5rem;
-  font-weight: bolder;
   padding: 0.5rem;
-  white-space: wrap;
-  width: min(35dvw, 12rem);
 }
 
 .btn svg {
-  font-size: 2.25rem;
+  font-size: 2.875rem;
 }
 
 .btn.repeat {
@@ -26,10 +17,20 @@
 }
 
 .btn.learned {
-  box-shadow: 0.125rem 0.125rem var(--primary-darker);
+  color: var(--secondary-darker);
+  border-color: var(--secondary-darker);
+  box-shadow: 0.125rem 0.125rem var(--secondary-darker);
 }
 
 .btn.learned:active {
+  background-color: var(--secondary-container-low);
+}
+
+.btn.example {
+  box-shadow: 0.125rem 0.125rem var(--primary-dark);
+}
+
+.btn.example:active {
   background-color: var(--primary-container-low);
 }
 

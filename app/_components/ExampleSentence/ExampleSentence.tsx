@@ -1,8 +1,10 @@
+import classNames from 'classnames';
+
 import AudioBtn from '../AudioBtn/AudioBtn';
 
 import styles from './ExampleSentence.module.css';
 
-interface ExampleSentenceProps {
+interface ExampleSentenceProps extends React.ComponentPropsWithoutRef<'div'> {
   sentence: string;
   translation: string;
   audioName?: string;
@@ -10,13 +12,15 @@ interface ExampleSentenceProps {
 }
 
 function ExampleSentence({
+  className,
   sentence,
   translation,
   audioName,
-  audioFolder
+  audioFolder,
+  ...props
 }: ExampleSentenceProps) {
   return (
-    <div className={styles.container}>
+    <div className={classNames(styles.container, className)} {...props}>
       <div className={styles.sentence}>
         {audioName && audioFolder && (
           <AudioBtn

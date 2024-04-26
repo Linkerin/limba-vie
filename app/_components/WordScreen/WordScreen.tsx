@@ -54,7 +54,12 @@ function WordScreen({ words, setName }: WordScreenProps) {
             gender={words[currWord].gender_ro}
             audioName={words[currWord].audio_name}
           />
-          <Actions setCurrWord={nextWord} wordId={words[currWord].id} />
+          <Actions
+            key={words[currWord].id}
+            setCurrWord={nextWord}
+            wordId={words[currWord].id}
+            wordRo={words[currWord].ro}
+          />
         </>
       ) : (
         <Finished
