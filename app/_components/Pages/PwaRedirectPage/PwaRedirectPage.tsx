@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
+import Loader from '../../Loader/Loader';
 import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
 
 function PwaRedirectPage() {
@@ -13,7 +14,7 @@ function PwaRedirectPage() {
     router.push(url.href);
   }, [router, url.href]);
 
-  return null;
+  return <Loader />;
 }
 
 export default PwaRedirectPage;
