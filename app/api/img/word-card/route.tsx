@@ -2,8 +2,8 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 
-import { getArticle, getWordsImageUrl } from '../../_lib/utils';
-import supabase from '../../_lib/supabase';
+import { getArticle, getWordsImageUrl } from '../../../_lib/utils';
+import supabase from '../../../_lib/supabase';
 
 export const runtime = 'edge';
 
