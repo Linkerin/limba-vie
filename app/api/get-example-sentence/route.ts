@@ -73,12 +73,8 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    // const userAgent = request.headers.get('user-agent') ?? '';
     const hookSecret = request.headers.get('supabase-hook-secret');
-    if (
-      // !/pg_net/.test(userAgent) ||
-      hookSecret !== process.env.SUPABASE_HOOK_SECRET
-    ) {
+    if (hookSecret !== process.env.SUPABASE_HOOK_SECRET) {
       throw new Error('Invalid client');
     }
 

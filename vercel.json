@@ -1,8 +1,8 @@
 {
   "crons": [
     {
-      "path": "/api/get-example-sentence/temp",
-      "schedule": "* * * * *"
+      "path": "/api/get-example-sentence/check",
+      "schedule": "0 6 * * *"
     }
   ]
 }
