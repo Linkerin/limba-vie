@@ -7,14 +7,14 @@
 }
 
 .container > p:first-of-type {
-  line-height: 1.25em;
+  line-height: 1.125em;
 }
 
 .m,
 .n,
 .f {
   font-size: 1.75rem;
-  line-height: 1.125em;
+  line-height: 1em;
 }
 
 .m {
