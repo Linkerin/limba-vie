@@ -1,8 +1,14 @@
 import type { NextRequest } from 'next/server';
 
-import supabase from '@/app/_lib/supabase';
-
 export const runtime = 'edge';
+
+import { createClient } from '@supabase/supabase-js';
+import { Database } from '@/app/_lib/supabase.types';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
+const supabaseAnonKey = process.env.SUPABASE_SERVICE_KEY ?? '';
+
+const supabaseAdmin = createClient<Database>(supabaseUrl, supabaseAnonKey);
 
 export async function GET(request: NextRequest) {
   try {
@@ -67,12 +73,12 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    console.log(request);
+    console.log(request.headers);
     const data = await request.json();
     console.log(data);
     const record = data.record;
 
-    if (!record.en) {
+    if (!record.ro) {
       const res = new Response(JSON.stringify({ message: 'Invalid payload' }), {
         status: 400
       });
@@ -83,7 +89,7 @@ export async function POST(request: NextRequest) {
       response_mime_type: 'application/json'
     };
     const prompt = `Generate a simple sentence in Romanian language for beginner language learners
-                  with the word \`${record.en}\` and it's translation into English.
+                  with the word \`${record.ro}\` and it's translation into English.
                   JSON response fields: \`ro\` and \`en\``;
 
     const body = {
@@ -112,22 +118,23 @@ export async function POST(request: NextRequest) {
     }
 
     const result = await res.json();
+    const sentences = JSON.parse(
+      result?.candidates[0]?.content?.parts[0]?.text
+    )[0];
 
-    if (result.en?.length > 0 && result.ro?.length > 0) {
-      const { error } = await supabase
+    if (sentences.en?.length > 0 && sentences.ro?.length > 0) {
+      const { error } = await supabaseAdmin
         .from('words')
         .update({
-          example_ro: result.ro,
-          example_en: result.en,
+          example_ro: sentences.ro,
+          example_en: sentences.en,
           updated_at: new Date().toUTCString()
         })
         .eq('id', record.id);
       if (error) throw error;
     }
 
-    return Response.json(
-      JSON.parse(result?.candidates[0]?.content?.parts[0]?.text)[0]
-    );
+    return new Response(null, { status: 201 });
   } catch (err) {
     console.error(err);
     return new Response(
