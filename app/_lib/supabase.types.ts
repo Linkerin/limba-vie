@@ -27,7 +27,7 @@ export type Database = {
           id?: number;
           next_set_id?: number | null;
           set: string;
-          unit?: number;
+          unit: number;
           updated_at?: string;
         };
         Update: {
@@ -48,6 +48,8 @@ export type Database = {
           created_at: string;
           en: string;
           en_alternatives: string[] | null;
+          example_en: string | null;
+          example_ro: string | null;
           gender_ro: Database['public']['Enums']['gender_ro'] | null;
           id: number;
           img_name: string | null;
@@ -61,6 +63,8 @@ export type Database = {
           created_at?: string;
           en: string;
           en_alternatives?: string[] | null;
+          example_en?: string | null;
+          example_ro?: string | null;
           gender_ro?: Database['public']['Enums']['gender_ro'] | null;
           id?: number;
           img_name?: string | null;
@@ -74,6 +78,8 @@ export type Database = {
           created_at?: string;
           en?: string;
           en_alternatives?: string[] | null;
+          example_en?: string | null;
+          example_ro?: string | null;
           gender_ro?: Database['public']['Enums']['gender_ro'] | null;
           id?: number;
           img_name?: string | null;
