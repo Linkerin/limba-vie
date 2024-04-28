@@ -73,9 +73,14 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    console.log(request.headers);
+    console.log(request.headers.get('test'));
+    console.log(request.headers.get('word'));
+    console.log(request.headers.get('secret'));
+
+    const userAgent = request.headers.get('user-agent') ?? '';
+    if (!/pg_net/.test(userAgent)) throw new Error('Invalid client');
+
     const data = await request.json();
-    console.log(data);
     const record = data.record;
 
     if (!record.ro) {
@@ -114,6 +119,8 @@ export async function POST(request: NextRequest) {
 
     if (!res.ok) {
       const data = await res.json();
+      console.log('Google error');
+      console.log(data);
       throw new Error(data.message);
     }
 
