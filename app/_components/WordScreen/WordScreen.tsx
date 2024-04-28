@@ -15,7 +15,10 @@ interface Sets {
   sets?: Pick<Tables<'sets'>, 'id' | 'set'> | null;
 }
 
-type Word = Omit<Tables<'words'>, 'created_at' | 'updated_at' | 'set_id'> &
+type Word = Omit<
+  Tables<'words'>,
+  'created_at' | 'updated_at' | 'set_id' | 'example_ro' | 'example_en'
+> &
   Sets;
 
 export interface WordScreenProps {

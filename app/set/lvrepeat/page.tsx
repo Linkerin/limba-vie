@@ -15,7 +15,10 @@ const fields = `id,
                   img_name,
                   audio_name`;
 
-type WordsArr = Omit<Tables<'words'>, 'set_id' | 'created_at' | 'updated_at'>[];
+type WordsArr = Omit<
+  Tables<'words'>,
+  'set_id' | 'created_at' | 'updated_at' | 'example_ro' | 'example_en'
+>[];
 
 interface fetchSetParams {
   setId: Tables<'words'>['set_id'];
