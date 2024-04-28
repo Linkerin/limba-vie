@@ -1,15 +1,21 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import dynamic from 'next/dynamic';
 
 import Actions from './Actions/Actions';
 import Finished from './Finished/Finished';
+import SentenceLoading from './Sentence/SentenceLoading';
 import type { Tables } from '@/app/_lib/supabase.types';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
 import Word from './Word/Word';
 import WordImg from './WordImg/WordImg';
 
 import styles from './WordScreen.module.css';
+
+const Sentence = dynamic(() => import('./Sentence/Sentence'), {
+  loading: () => <SentenceLoading />
+});
 
 interface Sets {
   sets?: Pick<Tables<'sets'>, 'id' | 'set'> | null;
@@ -28,10 +34,16 @@ export interface WordScreenProps {
 
 function WordScreen({ words, setName }: WordScreenProps) {
   const [currWord, setCurrWord] = useState(0);
+  const [showExample, setShowExample] = useState(false);
 
   const flipHandler: React.MouseEventHandler = useCallback(_ => {}, []);
 
+  const exampleClickHandler = useCallback(() => {
+    setShowExample(prevState => !prevState);
+  }, []);
+
   const nextWord = useCallback(() => {
+    setShowExample(false);
     setCurrWord(prevState => prevState + 1);
   }, []);
 
@@ -57,11 +69,11 @@ function WordScreen({ words, setName }: WordScreenProps) {
             gender={words[currWord].gender_ro}
             audioName={words[currWord].audio_name}
           />
+          {showExample && <Sentence wordId={words[currWord].id} />}
           <Actions
-            key={words[currWord].id}
+            exampleClickHandler={exampleClickHandler}
             setCurrWord={nextWord}
             wordId={words[currWord].id}
-            wordRo={words[currWord].ro}
           />
         </>
       ) : (

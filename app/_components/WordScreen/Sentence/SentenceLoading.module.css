@@ -1,0 +1,8 @@
+.spinner {
+  color: var(--primary);
+  margin-block: auto;
+}
+
+.spinner > span {
+  font-size: 2rem;
+}

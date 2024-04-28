@@ -1,73 +1,17 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
+import { ActionsProps } from './Actions';
 import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
-import type { Tables } from '@/app/_lib/supabase.types';
-
-export interface ActionsProps {
-  wordId: Tables<'words'>['id'];
-  wordRo: Tables<'words'>['ro'];
-  setCurrWord: () => void;
-}
-
-interface ExampleSentences {
-  en: string;
-  ro: string;
-}
-
-type ExamplesState = 'loading' | 'loaded' | 'error' | null;
 
 const key = LOCAL_STORAGE_KEYS.repeatWords;
 
-function useActionHandlers({ setCurrWord, wordId, wordRo }: ActionsProps) {
-  const [examplesState, setExamplesState] = useState<ExamplesState>(null);
-  const [sentences, setSentences] = useState<ExampleSentences>({
-    en: '',
-    ro: ''
-  });
-
-  const exampleClickhandler: React.MouseEventHandler = useCallback(
-    async e => {
-      e.preventDefault();
-
-      if (examplesState === null) {
-        if (sentences.ro.length > 0) {
-          setExamplesState('loaded');
-          return;
-        }
-
-        try {
-          setExamplesState('loading');
-          const res = await fetch(`/api/get-example-sentence?word=${wordRo}`);
-          if (!res.ok) {
-            const data = await res.json();
-            throw new Error(data);
-          }
-
-          const result = await res.json();
-
-          if (result?.en?.length > 0 && result?.ro?.length > 0) {
-            setSentences(result);
-            setExamplesState('loaded');
-          }
-
-          return;
-        } catch (err) {
-          console.error(err);
-          setExamplesState('error');
-
-          return;
-        }
-      }
-
-      setExamplesState(null);
-      return;
-    },
-    [wordRo, examplesState, sentences.ro.length]
-  );
-
+function useActionHandlers({
+  setCurrWord,
+  wordId
+}: Omit<ActionsProps, 'exampleClickHandler'>) {
   const repeatClickHandler: React.MouseEventHandler = useCallback(
     e => {
       setCurrWord();
@@ -122,9 +66,6 @@ function useActionHandlers({ setCurrWord, wordId, wordRo }: ActionsProps) {
   );
 
   return {
-    examplesState,
-    sentences,
-    exampleClickhandler,
     learnedСlickHandler,
     repeatClickHandler
   };

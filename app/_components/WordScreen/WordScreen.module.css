@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  gap: 0.25rem;
   height: 100%;
   animation: var(--animation-fadein);
 }

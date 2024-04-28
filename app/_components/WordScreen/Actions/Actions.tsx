@@ -1,54 +1,28 @@
 'use client';
 
-import classNames from 'classnames';
-
 import ActionBtn from '../../ActionBtn/ActionBtn';
-import RingSpinner from '../../RingSpinner/RingSpinner';
-import useActionHandlers, { ActionsProps } from './useActionHandlers';
+import type { Tables } from '@/app/_lib/supabase.types';
+import useActionHandlers from './useActionHandlers';
 
 import styles from './Actions.module.css';
 
-function Actions({ setCurrWord, wordId, wordRo }: ActionsProps) {
-  const {
-    examplesState,
-    sentences,
-    exampleClickhandler,
-    learnedСlickHandler,
-    repeatClickHandler
-  } = useActionHandlers({ setCurrWord, wordId, wordRo });
+export interface ActionsProps {
+  wordId: Tables<'words'>['id'];
+  setCurrWord: () => void;
+  exampleClickHandler: () => void;
+}
+
+function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
+  const { learnedСlickHandler, repeatClickHandler } = useActionHandlers({
+    setCurrWord,
+    wordId
+  });
 
   return (
-    <div className={styles.actions}>
-      {examplesState !== null && (
-        <div
-          className={classNames(styles['example-container'], styles.test, {
-            [styles.error]: examplesState === 'error'
-          })}
-        >
-          {examplesState === 'loaded' && (
-            <>
-              <p className={styles.ro}>{sentences.ro}</p>
-              <p className={styles.en}>{sentences.en}</p>
-            </>
-          )}
-          {examplesState === 'loading' && (
-            <div className={styles.spinner}>
-              <RingSpinner />
-            </div>
-          )}
-          {examplesState === 'error' && (
-            <>
-              <p>Our AI got tired 😔</p>
-              <p>Please, try again later</p>
-            </>
-          )}
-        </div>
-      )}
-      <div className={styles['action-btns']}>
-        <ActionBtn variant="repeat" onClick={repeatClickHandler} />
-        <ActionBtn variant="example" onClick={exampleClickhandler} />
-        <ActionBtn variant="learned" onClick={learnedСlickHandler} />
-      </div>
+    <div className={styles['action-btns']}>
+      <ActionBtn variant="repeat" onClick={repeatClickHandler} />
+      <ActionBtn variant="example" onClick={exampleClickHandler} />
+      <ActionBtn variant="learned" onClick={learnedСlickHandler} />
     </div>
   );
 }

@@ -1,0 +1,32 @@
+.example-container {
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md, 0.25rem);
+  background-color: var(--primary-container-low);
+  color: var(--on-primary-container);
+  font-size: 0.875rem;
+  margin: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.5s ease-in;
+  margin-block: auto;
+  width: 90%;
+}
+
+.example-container,
+.example-container > p {
+  animation: var(--animation-fadein);
+}
+
+.error {
+  background-color: var(--tertiary-container-low);
+  border: 2px solid var(--tertiary);
+  color: var(--on-tertiary-container);
+}
+
+.ro {
+  font-size: 1.125rem;
+}
+
+.en {
+  color: var(--neutral-darker);
+  font-style: italic;
+}
