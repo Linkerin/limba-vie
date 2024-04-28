@@ -73,10 +73,10 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const userAgent = request.headers.get('user-agent') ?? '';
+    // const userAgent = request.headers.get('user-agent') ?? '';
     const hookSecret = request.headers.get('supabase-hook-secret');
     if (
-      !/pg_net/.test(userAgent) ||
+      // !/pg_net/.test(userAgent) ||
       hookSecret !== process.env.SUPABASE_HOOK_SECRET
     ) {
       throw new Error('Invalid client');
@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     const data = await request.json();
     const record = data.record;
 
-    if (!record.ro) {
+    if (!record.ro || !record.id) {
       const res = new Response(JSON.stringify({ message: 'Invalid payload' }), {
         status: 400
       });
