@@ -1,13 +1,13 @@
 import type { NextRequest } from 'next/server';
 
-export const runtime = 'edge';
-
 import { createClient } from '@supabase/supabase-js';
 import { Database } from '@/app/_lib/supabase.types';
 
+export const runtime = 'edge';
+export const preferredRegion = ['iad1', 'hnd1'];
+
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
 const supabaseAnonKey = process.env.SUPABASE_SERVICE_KEY ?? '';
-
 const supabaseAdmin = createClient<Database>(supabaseUrl, supabaseAnonKey);
 
 export async function GET(request: NextRequest) {
@@ -73,12 +73,14 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    console.log(request.headers.get('test'));
-    console.log(request.headers.get('word'));
-    console.log(request.headers.get('secret'));
-
     const userAgent = request.headers.get('user-agent') ?? '';
-    if (!/pg_net/.test(userAgent)) throw new Error('Invalid client');
+    const hookSecret = request.headers.get('supabase-hook-secret');
+    if (
+      !/pg_net/.test(userAgent) ||
+      hookSecret !== process.env.SUPABASE_HOOK_SECRET
+    ) {
+      throw new Error('Invalid client');
+    }
 
     const data = await request.json();
     const record = data.record;
@@ -119,9 +121,7 @@ export async function POST(request: NextRequest) {
 
     if (!res.ok) {
       const data = await res.json();
-      console.log('Google error');
-      console.log(data);
-      throw new Error(data.message);
+      throw new Error(data.error.message);
     }
 
     const result = await res.json();
