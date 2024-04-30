@@ -32,6 +32,7 @@ interface FinishedProps {
 
 function Finished({ setId, setName }: FinishedProps) {
   if (setId) saveSetCompletion(setId);
+  const homePath = setId ? `/#set-${setId}` : '/';
 
   return (
     <>
@@ -48,7 +49,12 @@ function Finished({ setId, setName }: FinishedProps) {
         </p>
       </div>
       <FinishedSound />
-      <ButtonLink className={styles.btn} aria-label="To homepage" href="/">
+      <ButtonLink
+        className={styles.btn}
+        aria-label="To homepage"
+        href={homePath}
+        prefetch
+      >
         Continue
       </ButtonLink>
     </>

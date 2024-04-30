@@ -37,7 +37,11 @@ function NavBar() {
               [styles.current]: pathname.includes('/tips/')
             })}
           >
-            <Link aria-label="To grammar articles" href="/tips/grammar">
+            <Link
+              aria-label="To grammar articles"
+              href="/tips/grammar"
+              prefetch
+            >
               <span>
                 <IconBook2 />
               </span>
@@ -45,7 +49,7 @@ function NavBar() {
           </li>
           {show && (
             <li>
-              <Link aria-label="To practice set" href={url.href}>
+              <Link aria-label="To practice set" href={url.href} prefetch>
                 <span>
                   <IconBarbell />
                 </span>
