@@ -44,6 +44,8 @@
 
   --animation-fadein: fadein ease-in 0.4s;
 
+  --apple-pwa-pd: 1.25rem;
+
   --elevation-1: 0px 2px 6px 2px rgba(0, 0, 0, 0.15),
     0px 1px 2px 0px rgba(0, 0, 0, 0.3);
 

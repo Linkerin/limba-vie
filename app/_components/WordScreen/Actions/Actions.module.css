@@ -8,3 +8,7 @@
   bottom: 1.5rem;
   width: 100%;
 }
+
+.apple-pwa {
+  padding-block-end: var(--apple-pwa-pd, 1.25rem);
+}

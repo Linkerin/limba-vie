@@ -1,6 +1,10 @@
 'use client';
 
+import { useContext } from 'react';
+import classNames from 'classnames';
+
 import ActionBtn from '../../ActionBtn/ActionBtn';
+import { DeviceContext } from '@/app/_contexts/DeviceProvider';
 import type { Tables } from '@/app/_lib/supabase.types';
 import useActionHandlers from './useActionHandlers';
 
@@ -18,8 +22,14 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
     wordId
   });
 
+  const { isApplePwa } = useContext(DeviceContext);
+
   return (
-    <div className={styles['action-btns']}>
+    <div
+      className={classNames(styles['action-btns'], {
+        [styles['apple-pwa']]: isApplePwa
+      })}
+    >
       <ActionBtn variant="repeat" onClick={repeatClickHandler} />
       <ActionBtn variant="example" onClick={exampleClickHandler} />
       <ActionBtn variant="learned" onClick={learnedСlickHandler} />

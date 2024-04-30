@@ -3,7 +3,7 @@
   position: sticky;
   bottom: 0;
   left: 0;
-  height: 3.5rem;
+
   border-top: 0.125rem solid var(--primary-darker);
   width: 100%;
   font-size: 2rem;
@@ -11,6 +11,11 @@
 
 .footer > nav {
   height: 100%;
+  padding-block: 0.25rem;
+}
+
+.apple-pwa {
+  padding-block-end: var(--apple-pwa-pd, 1.25rem);
 }
 
 .footer > nav > ol {

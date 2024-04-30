@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import { Alata } from 'next/font/google';
 import dynamic from 'next/dynamic';
+import { headers } from 'next/headers';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import Header from './_components/Header/Header';
+import DeviceProvider from './_contexts/DeviceProvider';
 import SoundProvider from './_contexts/SoundProvider';
 
 import './globals.css';
@@ -82,16 +84,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = headers();
+  const device = {
+    type: headersList.get('x-device-type'),
+    model: headersList.get('x-device-model')
+  };
+
   return (
     <html lang="en">
       <body className={alata.className}>
-        <SoundProvider>
-          <Header />
-          <main>{children}</main>
-          <NavBar />
-          <Analytics />
-          <SpeedInsights />
-        </SoundProvider>
+        <DeviceProvider device={device}>
+          <SoundProvider>
+            <Header />
+            <main>{children}</main>
+            <NavBar />
+            <Analytics />
+            <SpeedInsights />
+          </SoundProvider>
+        </DeviceProvider>
       </body>
     </html>
   );

@@ -1,21 +1,28 @@
 'use client';
 
+import { useContext } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import classNames from 'classnames';
 import { IconBarbell, IconBook2, IconHome } from '@tabler/icons-react';
 
+import { DeviceContext } from '@/app/_contexts/DeviceProvider';
 import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
 
 import styles from './NavBar.module.css';
-import classNames from 'classnames';
 
 function NavBar() {
   const pathname = usePathname();
 
+  const { isApplePwa } = useContext(DeviceContext);
   const { show, url } = useRepeatBtn();
 
   return !pathname.match(/\/set\/?.*/) ? (
-    <footer className={styles.footer}>
+    <footer
+      className={classNames(styles.footer, {
+        [styles['apple-pwa']]: isApplePwa
+      })}
+    >
       <nav>
         <ol>
           <li className={classNames({ [styles.current]: pathname === '/' })}>
