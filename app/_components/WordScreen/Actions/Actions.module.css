@@ -2,10 +2,10 @@
   background-color: var(--background);
   display: flex;
   justify-content: space-around;
-  margin-block: auto 0.5rem;
-  padding-block-start: 1rem;
+  margin-block-start: auto;
+  padding-block: 1rem;
   position: sticky;
-  bottom: 1.5rem;
+  bottom: 1rem;
   width: 100%;
 }
 
