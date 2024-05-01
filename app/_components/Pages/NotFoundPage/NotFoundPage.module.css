@@ -1,0 +1,17 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+  text-align: center;
+}
+
+.section > p {
+  font-size: 1.5rem;
+}
+
+.not-found > p {
+  color: var(--tertiary);
+  font-size: 7rem;
+}

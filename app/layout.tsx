@@ -15,7 +15,12 @@ const NavBar = dynamic(() => import('./_components/NavBar/NavBar'), {
   ssr: false
 });
 
-const alata = Alata({ subsets: ['latin'], weight: '400' });
+const alata = Alata({
+  subsets: ['latin'],
+  weight: '400',
+  preload: true,
+  variable: '--font-alata'
+});
 const description =
   'Learn and practice Romanian words with colorful flashcards';
 const isPreview = process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW';

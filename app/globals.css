@@ -90,6 +90,10 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+button {
+  font-family: var(--font-alata);
+}
+
 main {
   margin-inline: auto;
   max-width: 740px;
