@@ -21,6 +21,7 @@ function TipsNav() {
             })}
             aria-label="To grammar articles"
             href="/tips/grammar"
+            prefetch
           >
             Grammar
           </ListItemLink>
@@ -32,6 +33,7 @@ function TipsNav() {
             })}
             aria-label="To Romanian dictonary list"
             href="/tips/dict"
+            prefetch
           >
             Dictionary
           </ListItemLink>
