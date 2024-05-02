@@ -13,23 +13,19 @@ const SetItem = dynamic(() => import('../SetItem/SetItem'), {
   ssr: false
 });
 
-export interface WordsCount {
-  words: {
-    count: number;
-  }[];
-}
-
-export type Set = Omit<Tables<'sets'>, 'created_at' | 'updated_at'> &
-  WordsCount;
-
 interface SetsListProps {
-  sets: Set[];
+  sets: Pick<
+    Tables<'sorted_sets'>,
+    'id' | 'set' | 'emoji' | 'unit' | 'words_count'
+  >[];
 }
 
 async function SetsList({ sets }: SetsListProps) {
-  const units = Array.from(new Set(sets.map(set => set.unit))).sort(
-    (a, b) => a - b
-  );
+  const units = Array.from(new Set(sets.map(set => set.unit))).sort((a, b) => {
+    if (a === null || b === null) return 0;
+
+    return a - b;
+  });
 
   return (
     <>
@@ -42,10 +38,10 @@ async function SetsList({ sets }: SetsListProps) {
                 .filter(set => set.unit === unit)
                 .map(set => {
                   return (
-                    <SetItem key={set.id} set={set}>
+                    <SetItem key={set.id} setId={set.id}>
                       <SetItemEmoji emoji={set.emoji} />
-                      <SetItemLink set={set.set} />
-                      <SetItemWordsNum wordsNum={set.words[0].count} />
+                      {set.set !== null && <SetItemLink set={set.set} />}
+                      <SetItemWordsNum wordsNum={set.words_count} />
                     </SetItem>
                   );
                 })}

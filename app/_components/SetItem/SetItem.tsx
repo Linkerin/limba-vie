@@ -6,12 +6,12 @@ import ListItem from '../ListItem/ListItem';
 import SetCompetedIcon from './SetCompletedIcon/SetCompletedIcon';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import type { Tables } from '@/app/_lib/supabase.types';
-import type { WordsCount } from '../SetsList/SetsList';
 
 import styles from './SetItem.module.css';
 
-function isSetCompleted(id: number) {
+function isSetCompleted(id: number | null) {
   if (typeof window === 'undefined') return;
+  if (id === null) return false;
 
   const completedSets = ssrLocalStorage.getItem('lvCompletedSets');
   if (!completedSets) return false;
@@ -23,16 +23,16 @@ function isSetCompleted(id: number) {
 }
 
 interface SetItemProps {
-  set: Pick<Tables<'sets'>, 'id' | 'emoji' | 'set'> & WordsCount;
+  setId: Tables<'sorted_sets'>['id'];
   children?: React.ReactNode;
 }
 
-function SetItem({ children, set }: SetItemProps) {
-  const isCompleted = isSetCompleted(set.id);
+function SetItem({ children, setId }: SetItemProps) {
+  const isCompleted = isSetCompleted(setId);
 
   return (
     <ListItem
-      id={`set-${set.id}`}
+      id={`set-${setId}`}
       className={classNames({
         [styles.completed]: isCompleted
       })}
