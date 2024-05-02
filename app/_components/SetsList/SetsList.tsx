@@ -20,7 +20,7 @@ interface SetsListProps {
   >[];
 }
 
-async function SetsList({ sets }: SetsListProps) {
+function SetsList({ sets }: SetsListProps) {
   const units = Array.from(new Set(sets.map(set => set.unit))).sort((a, b) => {
     if (a === null || b === null) return 0;
 
