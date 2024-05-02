@@ -3,17 +3,18 @@
 import { useCallback, useState } from 'react';
 import dynamic from 'next/dynamic';
 
-import Actions from './Actions/Actions';
-import Finished from './Finished/Finished';
-import SentenceLoading from './Sentence/SentenceLoading';
+import Actions from '../../WordScreen/Actions/Actions';
+import Finished from '../../WordScreen/Finished/Finished';
+import SentenceLoading from '../../WordScreen/Sentence/SentenceLoading';
 import type { Tables } from '@/app/_lib/supabase.types';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
-import Word from './Word/Word';
-import WordImg from './WordImg/WordImg';
+import Word from '../../WordScreen/Word/Word';
+import WordCounter from '../../WordScreen/WordCounter/WordCounter';
+import WordImg from '../../WordScreen/WordImg/WordImg';
 
-import styles from './WordScreen.module.css';
+import styles from './SetPage.module.css';
 
-const Sentence = dynamic(() => import('./Sentence/Sentence'), {
+const Sentence = dynamic(() => import('../../WordScreen/Sentence/Sentence'), {
   loading: () => <SentenceLoading />
 });
 
@@ -27,16 +28,14 @@ type Word = Omit<
 > &
   Sets;
 
-export interface WordScreenProps {
+export interface SetPageProps {
   words: Word[];
   setName?: string;
 }
 
-function WordScreen({ words, setName }: WordScreenProps) {
+function SetPage({ words, setName }: SetPageProps) {
   const [currWord, setCurrWord] = useState(0);
   const [showExample, setShowExample] = useState(false);
-
-  const flipHandler: React.MouseEventHandler = useCallback(_ => {}, []);
 
   const exampleClickHandler = useCallback(() => {
     setShowExample(prevState => !prevState);
@@ -51,15 +50,12 @@ function WordScreen({ words, setName }: WordScreenProps) {
 
   return (
     <section className={styles.section}>
-      {currWord < words.length && words.at(currWord) ? (
+      {currWord < words.length && words.at(currWord) && (
         <>
-          <p className={styles.counter}>
-            {currWord + 1} / {words.length}
-          </p>
+          <WordCounter current={currWord + 1} total={words.length} />
           <WordImg
             key={words[currWord].img_name}
             wordEn={words[currWord].en}
-            flipHandler={flipHandler}
             gender={words[currWord].gender_ro}
             imgName={words[currWord].img_name}
           />
@@ -76,14 +72,15 @@ function WordScreen({ words, setName }: WordScreenProps) {
             wordId={words[currWord].id}
           />
         </>
-      ) : (
+      )}
+      {currWord >= words.length && (
         <Finished
           setId={words.at(0)?.sets?.id}
-          setName={setName ? setName : words[0].sets?.set}
+          setName={setName ?? words[0].sets?.set}
         />
       )}
     </section>
   );
 }
 
-export default WordScreen;
+export default SetPage;

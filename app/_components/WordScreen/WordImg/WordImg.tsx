@@ -11,20 +11,12 @@ import type { Tables } from '@/app/_lib/supabase.types';
 import styles from './WordImg.module.css';
 
 interface WordImgProps {
-  flipHandler?: React.MouseEventHandler;
   gender: Tables<'words'>['gender_ro'];
-  imgName?: Tables<'words'>['img_name'];
-  isFlipped?: boolean;
-  size?: '480' | '960';
   wordEn: Tables<'words'>['en'];
+  imgName?: Tables<'words'>['img_name'];
 }
 
-function WordImg({
-  wordEn,
-  gender,
-  imgName = wordEn,
-  size = '480'
-}: WordImgProps) {
+function WordImg({ gender, wordEn, imgName = wordEn }: WordImgProps) {
   const imgRef = useRef<HTMLImageElement | null>(null);
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -68,14 +60,6 @@ function WordImg({
               ref={imgRef}
               alt={`${wordEn} picture`}
               src={getWordsImageUrl(imgName)}
-              // sizes={`(max-width: 479px) 256px,
-              //         (max-width: 959px) 480px,
-              //         (max-width: 1023px) 960px,
-              //         1024px`}
-              // srcSet={`${CLOUDINARY_IMG_URL}/f_auto,q_75,w_256/v1/limba/${imgName} 256w,
-              //          ${CLOUDINARY_IMG_URL}/f_auto,q_75,w_480/v1/limba/${imgName} 480w,
-              //          ${CLOUDINARY_IMG_URL}/f_auto,q_75,w_960/v1/limba/${imgName} 960w,
-              //          ${CLOUDINARY_IMG_URL}/f_auto,q_75,w_1024/v1/limba/${imgName} 1024w`}
               fetchPriority="high"
               loading="eager"
               onLoad={onLoadHandler}

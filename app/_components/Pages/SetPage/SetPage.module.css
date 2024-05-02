@@ -8,10 +8,6 @@
   animation: var(--animation-fadein);
 }
 
-.section > .counter {
+.section > p:first-of-type {
   align-self: flex-end;
-  color: var(--primary);
-  cursor: default;
-  font-size: 1.375rem;
-  margin-bottom: 0.5rem;
 }

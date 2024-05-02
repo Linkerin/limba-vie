@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 
-// import { AUDIO_FILE_FORMAT, SUPABASE_STORAGE_URL } from '../_lib/constants';
 import { getWordsAudioUrl, getWordsImageUrl } from '../_lib/utils';
-import type { WordScreenProps } from '../_components/WordScreen/WordScreen';
+import type { SetPageProps } from '../_components/Pages/SetPage/SetPage';
 
-function useMediaLoad(current: number, words: WordScreenProps['words']) {
+function useMediaLoad(current: number, words: SetPageProps['words']) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     if (current >= words.length - 2) return;

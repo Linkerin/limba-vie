@@ -1,10 +1,10 @@
 import { cache } from 'react';
 
 import { REPEAT_WORDS_CTY } from '@/app/_lib/constants';
+import SetPage from '@/app/_components/Pages/SetPage/SetPage';
 import { shuffleArr } from '@/app/_lib/utils';
 import supabase from '@/app/_lib/supabase';
 import { Tables } from '@/app/_lib/supabase.types';
-import WordScreen from '@/app/_components/WordScreen/WordScreen';
 
 const fields = `id,
                   en,
@@ -84,7 +84,7 @@ interface RepeatPageProps {
 async function RepeatPage({ searchParams }: RepeatPageProps) {
   const words = await getWords(searchParams);
 
-  return <WordScreen words={shuffleArr(words)} setName="practice" />;
+  return <SetPage words={shuffleArr(words)} setName="practice" />;
 }
 
 export default RepeatPage;

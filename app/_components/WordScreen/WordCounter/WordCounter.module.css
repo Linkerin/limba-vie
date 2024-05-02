@@ -1,0 +1,6 @@
+.counter {
+  color: var(--primary);
+  cursor: default;
+  font-size: 1.375rem;
+  margin-bottom: 0.5rem;
+}

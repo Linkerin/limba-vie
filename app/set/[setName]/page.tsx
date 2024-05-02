@@ -1,8 +1,8 @@
 import { cache } from 'react';
 
+import SetPage from '@/app/_components/Pages/SetPage/SetPage';
 import { shuffleArr } from '@/app/_lib/utils';
 import supabase from '@/app/_lib/supabase';
-import WordScreen from '@/app/_components/WordScreen/WordScreen';
 
 const getWords = cache(async (setName: string) => {
   try {
@@ -28,15 +28,15 @@ const getWords = cache(async (setName: string) => {
   }
 });
 
-async function SetPage({ params }: { params: { setName: string } }) {
+async function Set({ params }: { params: { setName: string } }) {
   const setName = decodeURIComponent(params.setName);
   const words = await getWords(setName);
   const shuffledWords = shuffleArr(words);
 
-  return <WordScreen words={shuffledWords} />;
+  return <SetPage words={shuffledWords} />;
 }
 
-export default SetPage;
+export default Set;
 
 export async function generateStaticParams() {
   const { data, error } = await supabase.from('sets').select('set');
