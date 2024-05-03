@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-block: auto;
+  margin-block: 1rem auto;
   padding-block: 1rem;
   width: 100%;
 }

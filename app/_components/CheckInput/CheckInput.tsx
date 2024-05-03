@@ -99,7 +99,7 @@ function CheckInput({ wordRo, gender, setCurrWord, plural }: CheckInputProps) {
           disabled={!!resultStatus}
           required
         />
-        <Button disabled={input.length === 0}>Check</Button>
+        <Button disabled={input.length === 0 || !!resultStatus}>Check</Button>
       </form>
       {resultStatus && (
         <CheckInputModal
