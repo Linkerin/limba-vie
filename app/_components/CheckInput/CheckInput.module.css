@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-block-start: auto;
+  margin-block: auto;
   padding-block: 1rem;
   width: 100%;
 }
@@ -27,6 +27,12 @@
 .input:focus-visible {
   border-color: var(--secondary);
   outline: 2px solid var(--secondary);
+}
+
+.input:disabled {
+  border-color: var(--neutral);
+  color: var(--neutral);
+  opacity: 0.7;
 }
 
 .apple-pwa {

@@ -96,6 +96,7 @@ function CheckInput({ wordRo, gender, setCurrWord, plural }: CheckInputProps) {
           value={input}
           minLength={1}
           onChange={onChangeHandler}
+          disabled={!!resultStatus}
           required
         />
         <Button disabled={input.length === 0}>Check</Button>
