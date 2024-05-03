@@ -84,7 +84,7 @@ interface RepeatPageProps {
 async function RepeatPage({ searchParams }: RepeatPageProps) {
   const words = await getWords(searchParams);
 
-  return <SetPage words={shuffleArr(words)} setName="practice" />;
+  return <SetPage words={shuffleArr(words)} setName="practice" checkPage />;
 }
 
 export default RepeatPage;

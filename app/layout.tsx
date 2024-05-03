@@ -103,10 +103,11 @@ export default function RootLayout({
             <Header />
             <main>{children}</main>
             <NavBar />
-            <Analytics />
-            <SpeedInsights />
+            <div id="modal" />
           </SoundProvider>
         </DeviceProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

@@ -11,3 +11,12 @@
 .section > p:first-of-type {
   align-self: flex-end;
 }
+
+.section > div,
+.section > form {
+  animation: var(--animation-fadein);
+}
+
+.check-audio-btn {
+  font-size: 2.25rem;
+}

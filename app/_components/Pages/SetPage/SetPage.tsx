@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react';
 import dynamic from 'next/dynamic';
 
-import Actions from '../../WordScreen/Actions/Actions';
+import AudioBtn from '../../AudioBtn/AudioBtn';
 import Finished from '../../WordScreen/Finished/Finished';
 import SentenceLoading from '../../WordScreen/Sentence/SentenceLoading';
 import type { Tables } from '@/app/_lib/supabase.types';
@@ -14,6 +14,8 @@ import WordImg from '../../WordScreen/WordImg/WordImg';
 
 import styles from './SetPage.module.css';
 
+const Actions = dynamic(() => import('../../WordScreen/Actions/Actions'));
+const CheckInput = dynamic(() => import('../../CheckInput/CheckInput'));
 const Sentence = dynamic(() => import('../../WordScreen/Sentence/Sentence'), {
   loading: () => <SentenceLoading />
 });
@@ -31,9 +33,10 @@ type Word = Omit<
 export interface SetPageProps {
   words: Word[];
   setName?: string;
+  checkPage?: boolean;
 }
 
-function SetPage({ words, setName }: SetPageProps) {
+function SetPage({ words, setName, checkPage }: SetPageProps) {
   const [currWord, setCurrWord] = useState(0);
   const [showExample, setShowExample] = useState(false);
 
@@ -59,18 +62,47 @@ function SetPage({ words, setName }: SetPageProps) {
             gender={words[currWord].gender_ro}
             imgName={words[currWord].img_name}
           />
-          <Word
-            word={words[currWord].ro}
-            plural={words[currWord].plural}
-            gender={words[currWord].gender_ro}
-            audioName={words[currWord].audio_name}
-          />
+          {checkPage ? (
+            <>
+              {words[currWord].audio_name?.length && (
+                <AudioBtn
+                  className={styles['check-audio-btn']}
+                  audioName={words[currWord].audio_name}
+                  word={words[currWord].ro}
+                  autoplay={false}
+                />
+              )}
+            </>
+          ) : (
+            <Word
+              word={words[currWord].ro}
+              plural={words[currWord].plural}
+              gender={words[currWord].gender_ro}
+            >
+              {words[currWord].audio_name?.length && (
+                <AudioBtn
+                  audioName={words[currWord].audio_name}
+                  word={words[currWord].ro}
+                />
+              )}
+            </Word>
+          )}
           {showExample && <Sentence wordId={words[currWord].id} />}
-          <Actions
-            exampleClickHandler={exampleClickHandler}
-            setCurrWord={nextWord}
-            wordId={words[currWord].id}
-          />
+          {checkPage ? (
+            <CheckInput
+              key={words[currWord].id}
+              gender={words[currWord].gender_ro}
+              plural={words[currWord].plural}
+              setCurrWord={nextWord}
+              wordRo={words[currWord].ro}
+            />
+          ) : (
+            <Actions
+              exampleClickHandler={exampleClickHandler}
+              setCurrWord={nextWord}
+              wordId={words[currWord].id}
+            />
+          )}
         </>
       )}
       {currWord >= words.length && (

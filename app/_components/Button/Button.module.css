@@ -28,15 +28,23 @@
   text-decoration: none;
 }
 
-:where(.btn):hover {
+:where(.btn):hover:not(:disabled) {
   opacity: 0.88;
 }
 
-:where(.btn):active {
+:where(.btn):active:not(:disabled) {
   background-color: var(--primary-container);
   border-width: 0.125rem;
   box-shadow: none;
   top: 0.25rem;
+}
+
+:where(.btn):disabled {
+  border-color: var(--neutral);
+  box-shadow: 0.0625rem 0.0625rem var(--neutral);
+  color: var(--neutral);
+  opacity: 0.7;
+  background-color: none;
 }
 
 :where(.btn) > svg {

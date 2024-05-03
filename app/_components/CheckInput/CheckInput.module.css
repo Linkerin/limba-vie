@@ -1,0 +1,34 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-block-start: auto;
+  padding-block: 1rem;
+  width: 100%;
+}
+
+.form button {
+  width: 90%;
+}
+
+.input {
+  background-color: var(--background);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  color: var(--on-primary-container);
+  font-size: 1.25rem;
+  min-height: 3rem;
+  padding-inline: 0.5rem;
+  width: 90%;
+}
+
+.input:focus-visible {
+  border-color: var(--secondary);
+  outline: 2px solid var(--secondary);
+}
+
+.apple-pwa {
+  padding-block-end: var(--apple-pwa-pd, 1.25rem);
+}

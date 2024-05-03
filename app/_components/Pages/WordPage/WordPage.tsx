@@ -1,3 +1,4 @@
+import AudioBtn from '../../AudioBtn/AudioBtn';
 import type { Tables } from '@/app/_lib/supabase.types';
 import Word from '../../WordScreen/Word/Word';
 import WordImg from '../../WordScreen/WordImg/WordImg';
@@ -24,12 +25,15 @@ function WordPage({ word, wordParam }: WordPageProps) {
             gender={word.gender_ro}
             imgName={word.img_name}
           />
-          <Word
-            word={word.ro}
-            plural={word.plural}
-            gender={word.gender_ro}
-            audioName={word.audio_name}
-          />
+          <Word word={word.ro} plural={word.plural} gender={word.gender_ro}>
+            {word.audio_name?.length && (
+              <AudioBtn
+                audioName={word.audio_name}
+                word={word.ro}
+                autoplay={false}
+              />
+            )}
+          </Word>
         </>
       ) : (
         <p>

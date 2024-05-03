@@ -1,6 +1,5 @@
 import { Kalam } from 'next/font/google';
 
-import AudioBtn from '../../AudioBtn/AudioBtn';
 import { getArticle, getFullGender } from '@/app/_lib/utils';
 import { Gender } from '@/app/_lib/types';
 import type { Tables } from '@/app/_lib/supabase.types';
@@ -13,13 +12,13 @@ const kalam = Kalam({
 });
 
 interface WordProps {
-  audioName: Tables<'words'>['audio_name'];
   gender: Gender;
   plural: Tables<'words'>['plural'];
   word: Tables<'words'>['ro'];
+  children?: React.ReactNode;
 }
 
-function Word({ audioName, gender, plural, word }: WordProps) {
+function Word({ children, gender, plural, word }: WordProps) {
   return (
     <>
       <div className={styles.container}>
@@ -29,9 +28,7 @@ function Word({ audioName, gender, plural, word }: WordProps) {
             : null}
           {word}
         </p>
-        {audioName && audioName?.length > 0 && (
-          <AudioBtn audioName={audioName} word={word} />
-        )}
+        {children}
       </div>
       {gender && gender?.length > 0 && (
         <p className={styles[gender]}>{getFullGender(gender)}</p>
