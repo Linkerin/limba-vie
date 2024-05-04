@@ -5,35 +5,3 @@
 .btn svg {
   font-size: 2.875rem;
 }
-
-.btn.repeat {
-  color: var(--tertiary);
-  border-color: var(--tertiary);
-  box-shadow: 0.125rem 0.125rem var(--tertiary);
-}
-
-.btn.repeat:active {
-  background-color: var(--tertiary-container-low);
-}
-
-.btn.learned {
-  color: var(--secondary-darker);
-  border-color: var(--secondary-darker);
-  box-shadow: 0.125rem 0.125rem var(--secondary-darker);
-}
-
-.btn.learned:active {
-  background-color: var(--secondary-container-low);
-}
-
-.btn.example {
-  box-shadow: 0.125rem 0.125rem var(--primary-dark);
-}
-
-.btn.example:active {
-  background-color: var(--primary-container-low);
-}
-
-.btn:active {
-  box-shadow: none;
-}

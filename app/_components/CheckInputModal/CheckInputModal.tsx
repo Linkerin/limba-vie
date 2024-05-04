@@ -22,7 +22,12 @@ function CheckInputModal({
     <Portal>
       <div className={classNames(styles.modal, styles[status])}>
         <p>{message}</p>
-        <Button onClick={onBtnClick}>{buttonText}</Button>
+        <Button
+          onClick={onBtnClick}
+          variant={status === 'success' ? 'secondary' : 'tertiary'}
+        >
+          {buttonText}
+        </Button>
       </div>
     </Portal>
   );

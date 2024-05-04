@@ -25,8 +25,8 @@
 }
 
 .input:focus-visible {
-  border-color: var(--secondary);
-  outline: 2px solid var(--secondary);
+  border-color: var(--secondary-darker);
+  outline: 2px solid var(--secondary-darker);
 }
 
 .input:disabled {

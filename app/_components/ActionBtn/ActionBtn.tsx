@@ -12,21 +12,21 @@ const ariaLabes = {
 };
 
 interface ActionBtnProps extends ButtonProps {
-  variant: 'repeat' | 'learned' | 'example';
+  action: 'repeat' | 'learned' | 'example';
 }
 
-function ActionBtn({ className, variant, ...props }: ActionBtnProps) {
+function ActionBtn({ className, action, ...props }: ActionBtnProps) {
   return (
     <Button
-      className={classNames(styles.btn, styles[variant], className)}
-      aria-label={ariaLabes[variant]}
-      title={ariaLabes[variant]}
+      className={classNames(styles.btn, className)}
+      aria-label={ariaLabes[action]}
+      title={ariaLabes[action]}
       {...props}
     >
       <span>
-        {variant === 'repeat' && <IconRepeat stroke={2} />}
-        {variant === 'learned' && <IconCheck stroke={2} />}
-        {variant === 'example' && <IconMessage2 stroke={2} />}
+        {action === 'repeat' && <IconRepeat stroke={2} />}
+        {action === 'learned' && <IconCheck stroke={2} />}
+        {action === 'example' && <IconMessage2 stroke={2} />}
       </span>
     </Button>
   );

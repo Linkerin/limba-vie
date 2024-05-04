@@ -15,12 +15,12 @@
 }
 
 .success {
-  background-color: var(--secondary-container-dark);
+  background-color: var(--secondary-container);
   color: var(--on-secondary-container);
 }
 
 .error {
-  background-color: var(--tertiary-container-dark);
+  background-color: var(--tertiary-container);
   color: var(--on-tertiary-container);
 }
 

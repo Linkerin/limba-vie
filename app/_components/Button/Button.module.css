@@ -5,10 +5,9 @@
   justify-content: center;
   gap: 0.5rem;
   background: none;
-  border: solid var(--primary-darker);
+
   border-radius: var(--radius-md, 0.25rem);
   border-width: 0.125rem;
-  box-shadow: 0.0625rem 0.0625rem var(--primary-darker);
   cursor: pointer;
   height: fit-content;
   font-size: 1.25rem;
@@ -24,7 +23,6 @@
 :where(.btn),
 :where(.btn):hover,
 :where(.btn):visited {
-  color: var(--primary-darker);
   text-decoration: none;
 }
 
@@ -33,7 +31,6 @@
 }
 
 :where(.btn):active:not(:disabled) {
-  background-color: var(--primary-container);
   border-width: 0.125rem;
   box-shadow: none;
   top: 0.25rem;
@@ -49,6 +46,51 @@
 
 :where(.btn) > svg {
   margin: auto;
+}
+
+:where(.primary) {
+  border: solid var(--primary-darker);
+  box-shadow: 0.0625rem 0.0625rem var(--primary-darker);
+}
+
+:where(.primary),
+:where(.primary):hover,
+:where(.primary):visited {
+  color: var(--primary-darker);
+}
+
+:where(.primary):active:not(:disabled) {
+  background-color: var(--primary-container);
+}
+
+:where(.secondary) {
+  border: solid var(--secondary-darker);
+  box-shadow: 0.0625rem 0.0625rem var(--secondary-darker);
+}
+
+:where(.secondary),
+:where(.secondary):hover,
+:where(.secondary):visited {
+  color: var(--secondary-darker);
+}
+
+:where(.secondary):active:not(:disabled) {
+  background-color: var(--secondary-container-low);
+}
+
+:where(.tertiary) {
+  border: solid var(--tertiary);
+  box-shadow: 0.0625rem 0.0625rem var(--tertiary);
+}
+
+:where(.tertiary),
+:where(.tertiary):hover,
+:where(.tertiary):visited {
+  color: var(--tertiary);
+}
+
+:where(.tertiary):active:not(:disabled) {
+  background-color: var(--tertiary-container-low);
 }
 
 :where(.fade) {

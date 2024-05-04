@@ -6,6 +6,7 @@ import buttonStyles from '../Button/Button.module.css';
 export interface ButtonLinkProps
   extends React.ComponentPropsWithRef<typeof Link> {
   fadeAnimation?: boolean;
+  variant?: 'primary' | 'secondary' | 'tertiary';
 }
 
 function ButtonLink({
@@ -13,12 +14,14 @@ function ButtonLink({
   className,
   href,
   fadeAnimation = false,
+  variant = 'primary',
   ...props
 }: ButtonLinkProps) {
   return (
     <Link
       className={classNames(
         buttonStyles.btn,
+        buttonStyles[variant],
         { [buttonStyles.fade]: fadeAnimation },
         className
       )}

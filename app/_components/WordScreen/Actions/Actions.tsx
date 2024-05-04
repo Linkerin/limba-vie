@@ -46,9 +46,21 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
         [styles['apple-pwa']]: isApplePwa
       })}
     >
-      <ActionBtn variant="repeat" onClick={repeatClickHandler} />
-      <ActionBtn variant="example" onClick={exampleClickHandler} />
-      <ActionBtn variant="learned" onClick={learnedClickHandler} />
+      <ActionBtn
+        action="repeat"
+        onClick={repeatClickHandler}
+        variant="tertiary"
+      />
+      <ActionBtn
+        action="example"
+        onClick={exampleClickHandler}
+        variant="primary"
+      />
+      <ActionBtn
+        action="learned"
+        onClick={learnedClickHandler}
+        variant="secondary"
+      />
     </div>
   );
 }
