@@ -2,41 +2,47 @@
 
 import { useCallback, useContext, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
+import classNames from 'classnames';
 
+import Button from '../Button/Button';
 import { DeviceContext } from '@/app/_contexts/DeviceProvider';
 import { getArticle } from '@/app/_lib/utils';
+import { normalizeWord } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
-import Button from '../Button/Button';
+import useWordHandlers from '@/app/_hooks/useWordHandlers';
 
 import styles from './CheckInput.module.css';
-import classNames from 'classnames';
 
 const CheckInputModal = dynamic(
   () => import('../CheckInputModal/CheckInputModal'),
   { ssr: false }
 );
 
-const normalizeWord = (word: string) => {
-  return word
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
-};
-
 interface CheckInputProps {
   gender: Tables<'words'>['gender_ro'];
   plural: Tables<'words'>['plural'];
   setCurrWord: () => void;
+  wordId: Tables<'words'>['id'];
   wordRo: Tables<'words'>['ro'];
 }
 
-function CheckInput({ wordRo, gender, setCurrWord, plural }: CheckInputProps) {
+function CheckInput({
+  gender,
+  plural,
+  setCurrWord,
+  wordId,
+  wordRo
+}: CheckInputProps) {
   const [input, setInput] = useState('');
   const [resultStatus, setResultStatus] = useState<null | 'error' | 'success'>(
     null
   );
 
   const { isApplePwa } = useContext(DeviceContext);
+
+  const { learnedHandler, repeatHandler } = useWordHandlers({
+    wordId
+  });
 
   const resultMsgs = useMemo(() => {
     return {
@@ -64,18 +70,26 @@ function CheckInput({ wordRo, gender, setCurrWord, plural }: CheckInputProps) {
 
   const onSubmitHandler: React.FormEventHandler<HTMLFormElement> = useCallback(
     e => {
-      e.preventDefault();
+      try {
+        e.preventDefault();
 
-      const normalizedInput = normalizeWord(input);
+        const normalizedInput = normalizeWord(input);
 
-      if (answer.includes(normalizedInput)) {
-        setResultStatus('success');
+        if (answer.includes(normalizedInput)) {
+          setResultStatus('success');
+          learnedHandler();
+          return;
+        }
+
+        setResultStatus('error');
+        repeatHandler();
+
         return;
+      } catch (err) {
+        console.error(err);
       }
-
-      setResultStatus('error');
     },
-    [answer, input]
+    [answer, input, learnedHandler, repeatHandler]
   );
 
   return (

@@ -1,26 +1,17 @@
 .modal {
   position: fixed;
   bottom: 0;
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  border-radius: 0.5rem 0.5rem 0 0;
   font-size: 1.25rem;
-  padding: 1rem 1rem 1.5rem;
+  padding: 1.5rem 1rem 2rem;
   width: 100%;
   z-index: 10;
   animation: move-in 0.5s linear;
 }
 
 .modal > button {
-  margin-block-start: 0.75rem;
+  margin-block-start: 1.5rem;
   width: 100%;
-}
-
-@keyframes move-in {
-  from {
-    bottom: -300px;
-  }
-  to {
-    bottom: 0;
-  }
 }
 
 .success {
@@ -31,4 +22,13 @@
 .error {
   background-color: var(--tertiary-container-dark);
   color: var(--on-tertiary-container);
+}
+
+@keyframes move-in {
+  from {
+    bottom: -300px;
+  }
+  to {
+    bottom: 0;
+  }
 }

@@ -86,3 +86,17 @@ export function getWordsAudioUrl(
 
   return url;
 }
+
+/**
+ * Normalizes a word by removing diacritics and converting it to lowercase.
+ *
+ * @param word - The word to be normalized.
+ * @returns The normalized word.
+ */
+export function normalizeWord(word: string) {
+  return word
+    .trim()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}

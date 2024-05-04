@@ -19,4 +19,17 @@
 
 .check-audio-btn {
   font-size: 2.25rem;
+  animation: appearance 7s ease-in;
+}
+
+@keyframes appearance {
+  0% {
+    opacity: 0;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

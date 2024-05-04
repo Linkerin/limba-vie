@@ -50,7 +50,7 @@ function AudioBtn({
       setIsPlaying(false);
     }, []);
 
-  return (
+  return !!audioName?.length ? (
     <>
       <button
         className={classNames(styles.btn, className)}
@@ -69,7 +69,7 @@ function AudioBtn({
         preload="auto"
       />
     </>
-  );
+  ) : null;
 }
 
 export default AudioBtn;

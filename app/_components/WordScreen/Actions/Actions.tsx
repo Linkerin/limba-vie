@@ -1,12 +1,12 @@
 'use client';
 
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import classNames from 'classnames';
 
 import ActionBtn from '../../ActionBtn/ActionBtn';
 import { DeviceContext } from '@/app/_contexts/DeviceProvider';
 import type { Tables } from '@/app/_lib/supabase.types';
-import useActionHandlers from './useActionHandlers';
+import useWordHandlers from '../../../_hooks/useWordHandlers';
 
 import styles from './Actions.module.css';
 
@@ -17,12 +17,28 @@ export interface ActionsProps {
 }
 
 function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
-  const { learnedСlickHandler, repeatClickHandler } = useActionHandlers({
-    setCurrWord,
+  const { isApplePwa } = useContext(DeviceContext);
+  const { learnedHandler, repeatHandler } = useWordHandlers({
     wordId
   });
 
-  const { isApplePwa } = useContext(DeviceContext);
+  const learnedClickHandler: React.MouseEventHandler<HTMLButtonElement> =
+    useCallback(
+      e => {
+        setCurrWord();
+        learnedHandler();
+      },
+      [learnedHandler, setCurrWord]
+    );
+
+  const repeatClickHandler: React.MouseEventHandler<HTMLButtonElement> =
+    useCallback(
+      e => {
+        setCurrWord();
+        repeatHandler();
+      },
+      [repeatHandler, setCurrWord]
+    );
 
   return (
     <div
@@ -32,7 +48,7 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
     >
       <ActionBtn variant="repeat" onClick={repeatClickHandler} />
       <ActionBtn variant="example" onClick={exampleClickHandler} />
-      <ActionBtn variant="learned" onClick={learnedСlickHandler} />
+      <ActionBtn variant="learned" onClick={learnedClickHandler} />
     </div>
   );
 }

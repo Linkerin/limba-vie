@@ -63,28 +63,23 @@ function SetPage({ words, setName, checkPage }: SetPageProps) {
             imgName={words[currWord].img_name}
           />
           {checkPage ? (
-            <>
-              {words[currWord].audio_name?.length && (
-                <AudioBtn
-                  className={styles['check-audio-btn']}
-                  audioName={words[currWord].audio_name}
-                  word={words[currWord].ro}
-                  autoplay={false}
-                />
-              )}
-            </>
+            <AudioBtn
+              key={words[currWord].ro}
+              className={styles['check-audio-btn']}
+              audioName={words[currWord].audio_name}
+              word={words[currWord].ro}
+              autoplay={false}
+            />
           ) : (
             <Word
               word={words[currWord].ro}
               plural={words[currWord].plural}
               gender={words[currWord].gender_ro}
             >
-              {words[currWord].audio_name?.length && (
-                <AudioBtn
-                  audioName={words[currWord].audio_name}
-                  word={words[currWord].ro}
-                />
-              )}
+              <AudioBtn
+                audioName={words[currWord].audio_name}
+                word={words[currWord].ro}
+              />
             </Word>
           )}
           {showExample && <Sentence wordId={words[currWord].id} />}
@@ -94,6 +89,7 @@ function SetPage({ words, setName, checkPage }: SetPageProps) {
               gender={words[currWord].gender_ro}
               plural={words[currWord].plural}
               setCurrWord={nextWord}
+              wordId={words[currWord].id}
               wordRo={words[currWord].ro}
             />
           ) : (
