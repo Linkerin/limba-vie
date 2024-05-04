@@ -5,7 +5,7 @@
   justify-content: center;
   gap: 0.5rem;
   background: none;
-
+  border-style: solid;
   border-radius: var(--radius-md, 0.25rem);
   border-width: 0.125rem;
   cursor: pointer;
@@ -49,7 +49,7 @@
 }
 
 :where(.primary) {
-  border: solid var(--primary-darker);
+  border-color: var(--primary-darker);
   box-shadow: 0.0625rem 0.0625rem var(--primary-darker);
 }
 
@@ -64,7 +64,7 @@
 }
 
 :where(.secondary) {
-  border: solid var(--secondary-darker);
+  border-color: var(--secondary-darker);
   box-shadow: 0.0625rem 0.0625rem var(--secondary-darker);
 }
 
@@ -79,7 +79,7 @@
 }
 
 :where(.tertiary) {
-  border: solid var(--tertiary);
+  border-color: var(--tertiary);
   box-shadow: 0.0625rem 0.0625rem var(--tertiary);
 }
 
