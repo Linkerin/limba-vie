@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 
 import Button from '../Button/Button';
+import CheckSound from './CheckSound';
 import Portal from '../Portal/Portal';
 
 import styles from './CheckInputModal.module.css';
@@ -9,7 +10,7 @@ interface CheckInputModalProps {
   message: string;
   onBtnClick: React.MouseEventHandler<HTMLButtonElement>;
   buttonText?: string;
-  status?: 'success' | 'info' | 'error';
+  status?: 'success' | 'error';
 }
 
 function CheckInputModal({
@@ -28,6 +29,7 @@ function CheckInputModal({
         >
           {buttonText}
         </Button>
+        <CheckSound status={status} />
       </div>
     </Portal>
   );
