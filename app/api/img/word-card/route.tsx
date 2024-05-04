@@ -14,6 +14,7 @@ const bgColors = {
 };
 
 const size = 1440;
+const imgSizePx = 928;
 
 export async function GET(request: NextRequest) {
   const alata = fetch(new URL('@/public/Alata.ttf', import.meta.url)).then(
@@ -58,10 +59,10 @@ export async function GET(request: NextRequest) {
         }}
       >
         <img
-          src={getWordsImageUrl(wordObj.img_name, 1024)}
+          src={getWordsImageUrl(wordObj.img_name, imgSizePx)}
           alt={`${wordObj.en} image`}
-          height="928px"
-          width="928px"
+          height={`${imgSizePx}px`}
+          width={`${imgSizePx}px`}
           style={{
             borderRadius: '64px',
             marginBottom: '32px'
