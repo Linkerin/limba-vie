@@ -13,6 +13,8 @@ const bgColors = {
   n: '#e0a100'
 };
 
+const size = 1440;
+
 export async function GET(request: NextRequest) {
   const alata = fetch(new URL('@/public/Alata.ttf', import.meta.url)).then(
     res => res.arrayBuffer()
@@ -58,8 +60,8 @@ export async function GET(request: NextRequest) {
         <img
           src={getWordsImageUrl(wordObj.img_name, 1024)}
           alt={`${wordObj.en} image`}
-          height="1024px"
-          width="1024px"
+          height="928px"
+          width="928px"
           style={{
             borderRadius: '64px',
             marginBottom: '32px'
@@ -72,7 +74,7 @@ export async function GET(request: NextRequest) {
             alignItems: 'center',
             justifyContent: 'center',
             color: '#fcfcfd',
-            fontSize: '70px',
+            fontSize: '64px',
             lineHeight: '1em',
             textAlign: 'center'
           }}
@@ -102,9 +104,9 @@ export async function GET(request: NextRequest) {
             right: '50px',
             backgroundColor: '#dfd9f2',
             borderRadius: '16px',
-            fontSize: '32px',
+            fontSize: '30px',
             lineHeight: '1.125em',
-            padding: '16px'
+            padding: '14px'
           }}
         >
           <p
@@ -121,8 +123,8 @@ export async function GET(request: NextRequest) {
       </div>
     ),
     {
-      width: 1536,
-      height: 1536,
+      width: size,
+      height: size,
       fonts: [
         {
           name: 'Alata',
