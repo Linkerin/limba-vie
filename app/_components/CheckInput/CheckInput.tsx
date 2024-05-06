@@ -53,10 +53,19 @@ function CheckInput({
   });
 
   const answer = useMemo(() => {
-    const article = getArticle(gender, plural);
     const normalizedWord = normalizeWord(wordRo);
+    const article = getArticle(gender, plural);
 
-    const result = article ? `${article} ${normalizedWord}` : normalizedWord;
+    const normalizedWithArticle = article
+      ? `${article} ${normalizedWord}`
+      : null;
+    const originalWithArticle = article ? `${article} ${wordRo}` : wordRo;
+
+    const result = {
+      word: normalizedWord,
+      withArticle: normalizedWithArticle,
+      original: originalWithArticle
+    };
 
     return result;
   }, [wordRo, gender, plural]);
@@ -75,7 +84,10 @@ function CheckInput({
 
         const normalizedInput = normalizeWord(input);
 
-        if (answer.includes(normalizedInput)) {
+        if (
+          normalizedInput === answer.word ||
+          normalizedInput === answer.withArticle
+        ) {
           setResultStatus('success');
           learnedHandler();
           return;
@@ -121,7 +133,7 @@ function CheckInput({
           <p>
             {getRandomValueFromArr(phrases[resultStatus])}{' '}
             {resultStatus === 'success' ? 'I' : 'i'}
-            t&apos;s <span className={styles.answer}>{answer}</span>.
+            t&apos;s <span className={styles.answer}>{answer.original}</span>.
           </p>
         </CheckInputModal>
       )}
