@@ -21,6 +21,12 @@ function WordImg({ gender, wordEn, imgName = wordEn }: WordImgProps) {
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [currentImage, setCurrentImage] = useState(imgName);
+
+  if (imgName !== currentImage) {
+    setIsFlipped(false);
+    setCurrentImage(imgName);
+  }
 
   const onLoadHandler = useCallback(() => {
     setIsLoaded(true);
