@@ -57,7 +57,7 @@ function SetPage({ words, setName, checkPage }: SetPageProps) {
         <>
           <WordCounter current={currWord + 1} total={words.length} />
           <WordImg
-            key={words[currWord].img_name}
+            key={words[currWord].id}
             wordEn={words[currWord].en}
             gender={words[currWord].gender_ro}
             imgName={words[currWord].img_name}
