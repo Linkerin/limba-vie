@@ -106,11 +106,12 @@ function CheckInput({
           name="word-check"
           type="text"
           autoComplete="off"
-          title="Type the word in Romanian"
-          value={input}
+          disabled={!!resultStatus}
+          lang="ro-RO"
           minLength={1}
           onChange={onChangeHandler}
-          disabled={!!resultStatus}
+          title="Type the word in Romanian"
+          value={input}
           required
         />
         <Button disabled={input.length === 0 || !!resultStatus}>Check</Button>
