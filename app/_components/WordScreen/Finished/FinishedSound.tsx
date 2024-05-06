@@ -13,8 +13,13 @@ function FinishedSound() {
       navigator.vibrate(300);
     }, 300);
 
+    const timeoutIdSecond = setTimeout(() => {
+      navigator.vibrate(500);
+    }, 800);
+
     return () => {
       clearTimeout(timeoutId);
+      clearTimeout(timeoutIdSecond);
     };
   }, []);
 
