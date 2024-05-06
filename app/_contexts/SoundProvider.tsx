@@ -7,6 +7,16 @@ import ssrLocalStorage from '../_services/SsrLocalStorage';
 
 const autoplayKey = LOCAL_STORAGE_KEYS.sound;
 
+type CurrentPlaying = HTMLAudioElement | null;
+interface CurrPlayingContextValue {
+  currentPlaying: CurrentPlaying;
+  setCurrentPlaying: React.Dispatch<React.SetStateAction<CurrentPlaying>>;
+}
+
+export const CurrPlayingContext = createContext<CurrPlayingContextValue>({
+  currentPlaying: null,
+  setCurrentPlaying: () => {}
+});
 export const SoundContext = createContext(
   !(ssrLocalStorage.getItem(autoplayKey) === 'false')
 );
@@ -20,6 +30,8 @@ export default function SoundProvider({
   const [autoplay, setAutoplay] = useState(
     !(ssrLocalStorage.getItem(autoplayKey) === 'false')
   );
+
+  const [currentPlaying, setCurrentPlaying] = useState<CurrentPlaying>(null);
 
   const toogleSoundMode = useCallback(() => {
     try {
@@ -41,7 +53,11 @@ export default function SoundProvider({
   return (
     <SoundContext.Provider value={autoplay}>
       <SoundToggleContext.Provider value={toogleSoundMode}>
-        {children}
+        <CurrPlayingContext.Provider
+          value={{ currentPlaying, setCurrentPlaying }}
+        >
+          {children}
+        </CurrPlayingContext.Provider>
       </SoundToggleContext.Provider>
     </SoundContext.Provider>
   );

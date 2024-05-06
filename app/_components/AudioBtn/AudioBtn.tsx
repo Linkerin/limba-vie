@@ -1,12 +1,15 @@
 'use client';
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState, useId } from 'react';
 import classNames from 'classnames';
 import { IconVolume } from '@tabler/icons-react';
 
 import { getWordsAudioUrl } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
-import { useIsSoundAllowed } from '@/app/_hooks/useSoundMode';
+import {
+  useCurrentPlaying,
+  useIsSoundAllowed
+} from '@/app/_hooks/useSoundMode';
 
 import styles from './AudioBtn.module.css';
 
@@ -29,8 +32,10 @@ function AudioBtn({
 }: AudioBtnProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const audioId = useId();
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  const { currentPlaying, setCurrentPlaying } = useCurrentPlaying();
   const isSoundAllowed = useIsSoundAllowed();
 
   const audioClickHandler: React.MouseEventHandler = useCallback(e => {
@@ -41,9 +46,19 @@ function AudioBtn({
   }, []);
 
   const onPlayingHandler: React.ReactEventHandler<HTMLAudioElement> =
-    useCallback(_ => {
-      setIsPlaying(true);
-    }, []);
+    useCallback(
+      e => {
+        if (currentPlaying && currentPlaying?.id !== e.currentTarget.id) {
+          currentPlaying.dispatchEvent(new Event('ended'));
+          currentPlaying.pause();
+          currentPlaying.currentTime = 0;
+        }
+
+        setIsPlaying(true);
+        setCurrentPlaying(e.currentTarget);
+      },
+      [currentPlaying, setCurrentPlaying]
+    );
 
   const onAbortEndedHandler: React.ReactEventHandler<HTMLAudioElement> =
     useCallback(_ => {
@@ -61,6 +76,7 @@ function AudioBtn({
       </button>
       <audio
         ref={audioRef}
+        id={audioId}
         src={getWordsAudioUrl(audioName, folders)}
         autoPlay={autoplay && isSoundAllowed}
         onAbort={onAbortEndedHandler}

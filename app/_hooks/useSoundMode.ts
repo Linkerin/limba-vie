@@ -2,7 +2,17 @@
 
 import { useContext } from 'react';
 
-import { SoundContext, SoundToggleContext } from '../_contexts/SoundProvider';
+import {
+  CurrPlayingContext,
+  SoundContext,
+  SoundToggleContext
+} from '../_contexts/SoundProvider';
+
+export function useCurrentPlaying() {
+  const current = useContext(CurrPlayingContext);
+
+  return current;
+}
 
 export function useSoundToggle() {
   const toggleSound = useContext(SoundToggleContext);
