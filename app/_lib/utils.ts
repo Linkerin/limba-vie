@@ -33,8 +33,8 @@ export function capitalizeWord(word: string) {
   return word[0].toUpperCase() + word.slice(1);
 }
 
-export function getArticle(gender: Gender) {
-  if (!gender) return null;
+export function getArticle(gender: Gender, plural: Tables<'words'>['plural']) {
+  if (!gender || plural) return null;
 
   switch (gender) {
     case 'm':
@@ -99,4 +99,10 @@ export function normalizeWord(word: string) {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase();
+}
+
+export function getRandomValueFromArr(arr: any[]) {
+  const index = Math.floor(Math.random() * arr.length);
+
+  return arr[index];
 }

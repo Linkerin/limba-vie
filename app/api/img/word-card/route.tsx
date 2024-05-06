@@ -43,6 +43,7 @@ export async function GET(request: NextRequest) {
   }
 
   const gender = wordObj.gender_ro;
+  const article = getArticle(gender, wordObj.plural);
 
   return new ImageResponse(
     (
@@ -87,9 +88,7 @@ export async function GET(request: NextRequest) {
               maxWidth: '92%'
             }}
           >
-            {!wordObj.plural && gender && gender.length > 0
-              ? getArticle(gender) + ' '
-              : null}
+            {article ? article + ' ' : null}
             {wordObj.ro}
           </p>
           <p style={{ margin: 0 }}>{wordObj.en}</p>

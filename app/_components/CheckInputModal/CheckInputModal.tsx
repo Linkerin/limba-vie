@@ -7,14 +7,14 @@ import Portal from '../Portal/Portal';
 import styles from './CheckInputModal.module.css';
 
 interface CheckInputModalProps {
-  message: string;
+  children: React.ReactNode;
   onBtnClick: React.MouseEventHandler<HTMLButtonElement>;
   buttonText?: string;
   status?: 'success' | 'error';
 }
 
 function CheckInputModal({
-  message,
+  children,
   onBtnClick,
   buttonText = 'Continue',
   status = 'success'
@@ -22,7 +22,7 @@ function CheckInputModal({
   return (
     <Portal>
       <div className={classNames(styles.modal, styles[status])}>
-        <p>{message}</p>
+        {children}
         <Button
           onClick={onBtnClick}
           variant={status === 'success' ? 'secondary' : 'tertiary'}

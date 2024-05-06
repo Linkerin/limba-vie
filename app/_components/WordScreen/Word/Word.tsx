@@ -19,13 +19,13 @@ interface WordProps {
 }
 
 function Word({ children, gender, plural, word }: WordProps) {
+  const article = getArticle(gender, plural);
+
   return (
     <>
       <div className={styles.container}>
         <p className={kalam.className}>
-          {!plural && gender && gender.length > 0
-            ? getArticle(gender) + ' '
-            : null}
+          {article ? article + ' ' : null}
           {word}
         </p>
         {children}

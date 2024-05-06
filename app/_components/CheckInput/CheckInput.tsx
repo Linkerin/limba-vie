@@ -6,8 +6,11 @@ import classNames from 'classnames';
 
 import Button from '../Button/Button';
 import { DeviceContext } from '@/app/_contexts/DeviceProvider';
-import { getArticle } from '@/app/_lib/utils';
-import { normalizeWord } from '@/app/_lib/utils';
+import {
+  getArticle,
+  getRandomValueFromArr,
+  normalizeWord
+} from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 import useWordHandlers from '@/app/_hooks/useWordHandlers';
 
@@ -17,6 +20,11 @@ const CheckInputModal = dynamic(
   () => import('../CheckInputModal/CheckInputModal'),
   { ssr: false }
 );
+
+const phrases = {
+  success: ['Perfect!', 'Correct!', 'Great!', 'Nice job!'],
+  error: ['Oh no,', 'Whoops,', 'Oh well,', 'Awww,']
+};
 
 interface CheckInputProps {
   gender: Tables<'words'>['gender_ro'];
@@ -44,19 +52,11 @@ function CheckInput({
     wordId
   });
 
-  const resultMsgs = useMemo(() => {
-    return {
-      success: `Correct! It's "${wordRo}"`,
-      error: `Oh no, it was "${wordRo}"`
-    };
-  }, [wordRo]);
-
   const answer = useMemo(() => {
-    const article =
-      !plural && gender && gender.length > 0 ? getArticle(gender) + ' ' : null;
+    const article = getArticle(gender, plural);
     const normalizedWord = normalizeWord(wordRo);
 
-    const result = article ? article + normalizedWord : normalizedWord;
+    const result = article ? `${article} ${normalizedWord}` : normalizedWord;
 
     return result;
   }, [wordRo, gender, plural]);
@@ -117,11 +117,13 @@ function CheckInput({
         <Button disabled={input.length === 0 || !!resultStatus}>Check</Button>
       </form>
       {resultStatus && (
-        <CheckInputModal
-          onBtnClick={setCurrWord}
-          message={resultMsgs[resultStatus]}
-          status={resultStatus}
-        />
+        <CheckInputModal onBtnClick={setCurrWord} status={resultStatus}>
+          <p>
+            {getRandomValueFromArr(phrases[resultStatus])}{' '}
+            {resultStatus === 'success' ? 'I' : 'i'}
+            t&apos;s <span className={styles.answer}>{answer}</span>.
+          </p>
+        </CheckInputModal>
       )}
     </>
   );
