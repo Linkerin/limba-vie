@@ -34,20 +34,16 @@ export default function SoundProvider({
   const [currentPlaying, setCurrentPlaying] = useState<CurrentPlaying>(null);
 
   const toogleSoundMode = useCallback(() => {
-    try {
-      setAutoplay(prevState => {
-        const autoplayPrefSet = ssrLocalStorage.setItem(
-          autoplayKey,
-          JSON.stringify(!prevState)
-        );
+    setAutoplay(prevState => {
+      const autoplayPrefSet = ssrLocalStorage.setItem(
+        autoplayKey,
+        JSON.stringify(!prevState)
+      );
 
-        if (!autoplayPrefSet) return prevState;
+      if (!autoplayPrefSet) return prevState;
 
-        return !prevState;
-      });
-    } catch (err) {
-      console.log(err);
-    }
+      return !prevState;
+    });
   }, []);
 
   return (

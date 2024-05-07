@@ -1,5 +1,7 @@
 'use client';
 
+import { captureException } from '@sentry/nextjs';
+
 import { REPEAT_WORDS_CTY } from '@/app/_lib/constants';
 import { shuffleArr } from '../_lib/utils';
 import ssrLocalStorage from '../_services/SsrLocalStorage';
@@ -19,7 +21,9 @@ function getWordForRepeat() {
 
     return [];
   } catch (err) {
-    console.error(err);
+    if (process.env.NODE_ENV === 'development') console.error(err);
+    captureException(err, { level: 'warning' });
+
     return [];
   }
 }
@@ -35,7 +39,9 @@ function getCompletedSets() {
 
     return [];
   } catch (err) {
-    console.error(err);
+    if (process.env.NODE_ENV === 'development') console.error(err);
+    captureException(err, { level: 'warning' });
+
     return [];
   }
 }

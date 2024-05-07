@@ -1,4 +1,5 @@
 import type { NextRequest } from 'next/server';
+import { captureException } from '@sentry/nextjs';
 
 import { createClient } from '@supabase/supabase-js';
 import { Database } from '@/app/_lib/supabase.types';
@@ -79,6 +80,8 @@ export async function POST(request: NextRequest) {
     return new Response(null, { status: 201 });
   } catch (err) {
     console.error(err);
+    captureException(err);
+
     return new Response(
       JSON.stringify({ message: 'Error occured while fetching Google AI' }),
       { status: 500 }

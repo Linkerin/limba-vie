@@ -4,24 +4,20 @@ import WordPage from '@/app/_components/Pages/WordPage/WordPage';
 import supabase from '@/app/_lib/supabase';
 
 const getWords = cache(async (word: string) => {
-  try {
-    const { data, error } = await supabase
-      .from('words')
-      .select(
-        `en,
+  const { data, error } = await supabase
+    .from('words')
+    .select(
+      `en,
          ro,
          gender_ro,
          plural,
          img_name,
          audio_name`
-      )
-      .eq('en', word);
-    if (error) throw error;
+    )
+    .eq('en', word);
+  if (error) throw error;
 
-    return data;
-  } catch (err) {
-    throw err;
-  }
+  return data;
 });
 
 async function Word({ params }: { params: { word: string } }) {

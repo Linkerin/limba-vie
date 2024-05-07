@@ -5,11 +5,10 @@ import supabase from '@/app/_lib/supabase';
 import SetPage from '@/app/_components/Pages/SetPage/SetPage';
 
 const getWords = cache(async (setName: string) => {
-  try {
-    const { data, error } = await supabase
-      .from('words')
-      .select(
-        `id,
+  const { data, error } = await supabase
+    .from('words')
+    .select(
+      `id,
          en,
          en_alternatives,
          ro,
@@ -18,14 +17,11 @@ const getWords = cache(async (setName: string) => {
          img_name,
          audio_name,
          sets!inner(id, set)`
-      )
-      .eq('sets.set', setName);
-    if (error) throw error;
+    )
+    .eq('sets.set', setName);
+  if (error) throw error;
 
-    return data;
-  } catch (err) {
-    throw err;
-  }
+  return data;
 });
 
 async function Check({ params }: { params: { setName: string } }) {

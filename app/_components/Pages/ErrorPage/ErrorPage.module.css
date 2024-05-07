@@ -1,0 +1,12 @@
+:where(.section) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+  text-align: center;
+}
+
+:where(.section) > p {
+  font-size: 1.5rem;
+}

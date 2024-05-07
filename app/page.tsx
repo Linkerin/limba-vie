@@ -4,16 +4,12 @@ import SetsList from './_components/SetsList/SetsList';
 import supabase from '@/app/_lib/supabase';
 
 const getSets = cache(async () => {
-  try {
-    const { data, error } = await supabase
-      .from('sorted_sets')
-      .select('id, set, emoji, words_count, unit');
-    if (error) throw error;
+  const { data, error } = await supabase
+    .from('sorted_sets')
+    .select('id, set, emoji, words_count, unit');
+  if (error) throw error;
 
-    return data;
-  } catch (err) {
-    throw err;
-  }
+  return data;
 });
 
 async function Home() {

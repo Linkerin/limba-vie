@@ -17,7 +17,7 @@ function NavBar() {
   const { isApplePwa } = useContext(DeviceContext);
   const { show, url } = useRepeatBtn();
 
-  return !pathname.match(/\/set\/?.*/) ? (
+  return !pathname?.match(/\/set\/?.*/) ? (
     <footer
       className={classNames(styles.footer, {
         [styles['apple-pwa']]: isApplePwa
@@ -34,7 +34,7 @@ function NavBar() {
           </li>
           <li
             className={classNames({
-              [styles.current]: pathname.includes('/tips/')
+              [styles.current]: pathname?.includes('/tips/')
             })}
           >
             <Link

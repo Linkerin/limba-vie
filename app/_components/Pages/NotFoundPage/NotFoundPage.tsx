@@ -1,17 +1,17 @@
-import NotFoundFooter from '../../NotFoundFooter/NotFoundFooter';
+import ErrorPage from '../ErrorPage/ErrorPage';
+import ErrorPageFooter from '../../ErrorPageFooter/ErrorPageFooter';
 
 import styles from './NotFoundPage.module.css';
 
 function NotFoundPage() {
   return (
-    <section className={styles.section}>
-      <div className={styles['not-found']}>
-        <p>404</p>
-        <h1>Not Found</h1>
-      </div>
-      <p>Seems like we don&apos;t have this page yet</p>
-      <NotFoundFooter />
-    </section>
+    <ErrorPage
+      heading="Not Found"
+      text="Seems like we don't have this page yet"
+      precedingElement={<p className={styles['not-found']}>404</p>}
+    >
+      <ErrorPageFooter />
+    </ErrorPage>
   );
 }
 

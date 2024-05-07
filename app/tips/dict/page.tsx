@@ -1,4 +1,5 @@
 import { cache } from 'react';
+import { captureException } from '@sentry/nextjs';
 
 import DictPage from '@/app/_components/Pages/DictPage/DictPage';
 import supabase from '@/app/_lib/supabase';
@@ -36,6 +37,8 @@ const getWords = cache(async () => {
     return sortedList;
   } catch (err) {
     console.error(err);
+    captureException(err, { level: 'warning' });
+
     return [];
   }
 });

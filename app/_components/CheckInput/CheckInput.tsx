@@ -79,27 +79,23 @@ function CheckInput({
 
   const onSubmitHandler: React.FormEventHandler<HTMLFormElement> = useCallback(
     e => {
-      try {
-        e.preventDefault();
+      e.preventDefault();
 
-        const normalizedInput = normalizeWord(input);
+      const normalizedInput = normalizeWord(input);
 
-        if (
-          normalizedInput === answer.word ||
-          normalizedInput === answer.withArticle
-        ) {
-          setResultStatus('success');
-          learnedHandler();
-          return;
-        }
-
-        setResultStatus('error');
-        repeatHandler();
-
+      if (
+        normalizedInput === answer.word ||
+        normalizedInput === answer.withArticle
+      ) {
+        setResultStatus('success');
+        learnedHandler();
         return;
-      } catch (err) {
-        console.error(err);
       }
+
+      setResultStatus('error');
+      repeatHandler();
+
+      return;
     },
     [answer, input, learnedHandler, repeatHandler]
   );

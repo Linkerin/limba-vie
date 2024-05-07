@@ -1,4 +1,6 @@
 import type { NextRequest } from 'next/server';
+import { captureException } from '@sentry/nextjs';
+
 import supabase from '@/app/_lib/supabase';
 
 export const runtime = 'edge';
@@ -61,6 +63,8 @@ export async function GET(req: NextRequest) {
     });
   } catch (err) {
     console.error(err);
+    captureException(err);
+
     return new Response(
       JSON.stringify({ message: 'Failed to update the record', res: 'FAILED' }),
       { status: 500 }

@@ -39,39 +39,35 @@ const fetchSet = async ({ setId, ids, words }: fetchSetParams) => {
 const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
   let words: WordsArr = [];
 
-  try {
-    const ids = Array.isArray(r) ? r : [r];
-    if (r && r.length > 0) {
-      const { data, error } = await supabase
-        .from('words')
-        .select(fields)
-        .in('id', ids);
-      if (error) throw error;
+  const ids = Array.isArray(r) ? r : [r];
+  if (r && r.length > 0) {
+    const { data, error } = await supabase
+      .from('words')
+      .select(fields)
+      .in('id', ids);
+    if (error) throw error;
 
-      words = data;
-    }
+    words = data;
+  }
 
-    if (words.length >= REPEAT_WORDS_CTY) return words;
-    if (!set || set.length <= 0) return words;
+  if (words.length >= REPEAT_WORDS_CTY) return words;
+  if (!set || set.length <= 0) return words;
 
-    if (!Array.isArray(set)) {
-      words = await fetchSet({ setId: parseInt(set), ids, words });
+  if (!Array.isArray(set)) {
+    words = await fetchSet({ setId: parseInt(set), ids, words });
 
+    return words.slice(0, REPEAT_WORDS_CTY);
+  }
+
+  for (const setId of set) {
+    if (words.length >= REPEAT_WORDS_CTY) {
       return words.slice(0, REPEAT_WORDS_CTY);
     }
 
-    for (const setId of set) {
-      if (words.length >= REPEAT_WORDS_CTY) {
-        return words.slice(0, REPEAT_WORDS_CTY);
-      }
-
-      words = await fetchSet({ setId: parseInt(setId), ids, words });
-    }
-
-    return words.slice(0, REPEAT_WORDS_CTY);
-  } catch (err) {
-    throw err;
+    words = await fetchSet({ setId: parseInt(setId), ids, words });
   }
+
+  return words.slice(0, REPEAT_WORDS_CTY);
 });
 
 interface RepeatPageProps {
