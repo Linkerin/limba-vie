@@ -19,16 +19,23 @@ const getSentences = cache(async (id: WordId) => {
   return data[0];
 });
 
-async function Sentence({ wordId }: { wordId: WordId }) {
+interface SentenceProps {
+  className?: string;
+  wordId: WordId;
+}
+
+async function Sentence({ className, wordId }: SentenceProps) {
   const sentences = await getSentences(wordId);
 
   const noData = !sentences || !sentences.example_ro;
 
   return (
     <div
-      className={classNames(styles['example-container'], {
-        [styles.error]: noData
-      })}
+      className={classNames(
+        styles['example-container'],
+        { [styles.error]: noData },
+        className
+      )}
     >
       {noData ? (
         <p>Oh, the AI hasn&apos;t generated anything yet 🙀</p>

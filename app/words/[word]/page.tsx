@@ -7,23 +7,26 @@ const getWords = cache(async (word: string) => {
   const { data, error } = await supabase
     .from('words')
     .select(
-      `en,
-         ro,
-         gender_ro,
-         plural,
-         img_name,
-         audio_name`
+      `id,
+       en,
+       ro,
+       gender_ro,
+       plural,
+       img_name,
+       audio_name`
     )
-    .eq('en', word);
+    .eq('en', word)
+    .limit(1);
   if (error) throw error;
 
-  return data;
+  return data[0];
 });
+
+export type WordType = Awaited<ReturnType<typeof getWords>>;
 
 async function Word({ params }: { params: { word: string } }) {
   const wordParam = decodeURIComponent(params.word);
-  const wordArr = await getWords(wordParam);
-  const word = wordArr.at(0);
+  const word = await getWords(wordParam);
 
   return <WordPage word={word} wordParam={wordParam} />;
 }

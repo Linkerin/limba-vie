@@ -1,4 +1,4 @@
-.example-container {
+:where(.example-container) {
   border: 2px solid var(--primary);
   border-radius: var(--radius-md, 0.25rem);
   background-color: var(--primary-container-low);
@@ -11,8 +11,8 @@
   width: 90%;
 }
 
-.example-container,
-.example-container > p {
+:where(.example-container),
+:where(.example-container) > p {
   animation: var(--animation-fadein);
 }
 

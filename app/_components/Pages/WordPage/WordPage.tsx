@@ -1,17 +1,13 @@
 import AudioBtn from '../../AudioBtn/AudioBtn';
-import type { Tables } from '@/app/_lib/supabase.types';
+import Sentence from '../../WordScreen/Sentence/Sentence';
 import Word from '../../WordScreen/Word/Word';
 import WordImg from '../../WordScreen/WordImg/WordImg';
+import type { WordType } from '@/app/words/[word]/page';
 
 import styles from './WordPage.module.css';
 
 interface WordPageProps {
-  word:
-    | Pick<
-        Tables<'words'>,
-        'en' | 'ro' | 'gender_ro' | 'plural' | 'img_name' | 'audio_name'
-      >
-    | undefined;
+  word: WordType;
   wordParam: string;
 }
 
@@ -34,6 +30,7 @@ function WordPage({ word, wordParam }: WordPageProps) {
               />
             )}
           </Word>
+          <Sentence className={styles.sentence} wordId={word.id} />
         </>
       ) : (
         <p>

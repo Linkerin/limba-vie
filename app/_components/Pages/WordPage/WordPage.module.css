@@ -6,3 +6,7 @@
   height: 100%;
   animation: var(--animation-fadein);
 }
+
+.sentence {
+  margin-block: 2rem auto;
+}
