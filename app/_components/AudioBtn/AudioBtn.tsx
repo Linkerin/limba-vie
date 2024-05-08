@@ -42,7 +42,14 @@ function AudioBtn({
     e.preventDefault();
     if (!audioRef.current) return;
 
-    audioRef.current.play();
+    try {
+      audioRef.current.play();
+    } catch (err) {
+      console.error(
+        `The audio ${audioRef?.current?.id} play request was interrupted`,
+        err
+      );
+    }
   }, []);
 
   const onPlayingHandler: React.ReactEventHandler<HTMLAudioElement> =
