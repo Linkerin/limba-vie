@@ -108,20 +108,23 @@ function CheckInput({
         })}
         onSubmit={onSubmitHandler}
       >
-        <input
-          className={styles.input}
-          id="word-check"
-          name="word-check"
-          type="text"
-          autoComplete="off"
-          disabled={!!resultStatus}
-          lang="ro-RO"
-          minLength={1}
-          onChange={onChangeHandler}
-          title="Type the word in Romanian"
-          value={input}
-          required
-        />
+        <label htmlFor="word-check">
+          Translate into Romanian:
+          <input
+            className={styles.input}
+            id="word-check"
+            name="word-check"
+            type="text"
+            autoComplete="off"
+            disabled={!!resultStatus}
+            lang="ro-RO"
+            minLength={1}
+            onChange={onChangeHandler}
+            title="Type the word in Romanian"
+            value={input}
+            required
+          />
+        </label>
         <Button disabled={input.length === 0 || !!resultStatus}>Check</Button>
       </form>
       {resultStatus && (

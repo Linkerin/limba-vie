@@ -6,11 +6,17 @@
   gap: 1.5rem;
   margin-block: auto 0;
   padding-block: 1rem;
-  width: 100%;
+  width: 90%;
+}
+
+.form > label {
+  color: var(--on-primary-container);
+  font-size: 0.75rem;
+  font-style: italic;
 }
 
 .form button {
-  width: 90%;
+  width: 100%;
 }
 
 .input {
@@ -19,9 +25,10 @@
   border-radius: var(--radius-md);
   color: var(--on-primary-container);
   font-size: 1.25rem;
+  margin-block-start: 0.5rem;
   min-height: 3.25rem;
   padding-inline: 0.5rem;
-  width: 90%;
+  width: 100%;
 }
 
 .input:focus-visible {

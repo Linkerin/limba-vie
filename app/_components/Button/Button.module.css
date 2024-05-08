@@ -96,3 +96,9 @@
 :where(.fade) {
   animation: var(--animation-fadein);
 }
+
+:where(.btn):focus-visible {
+  border-color: inherit;
+  outline-offset: 4px;
+  outline: 4px solid var(--primary-container-dark);
+}

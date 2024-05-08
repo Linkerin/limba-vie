@@ -14,6 +14,10 @@
   width: 100%;
 }
 
+.modal > button:focus-visible {
+  outline: none;
+}
+
 .success {
   background-color: var(--secondary-container);
   color: var(--on-secondary-container);
