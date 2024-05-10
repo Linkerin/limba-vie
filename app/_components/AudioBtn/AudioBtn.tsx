@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback, useRef, useState, useId } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { IconVolume } from '@tabler/icons-react';
 
-import { getWordsAudioUrl } from '@/app/_lib/utils';
+import { getAudioUrl } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 import {
   useCurrentPlaying,
@@ -19,6 +19,7 @@ interface AudioBtnProps {
   autoplay?: boolean;
   className?: React.HTMLProps<'button'>['className'];
   folders?: string;
+  withMp3?: boolean;
   word?: Tables<'words'>['ro'];
 }
 
@@ -28,11 +29,11 @@ function AudioBtn({
   className,
   folders,
   word,
-  autoplay = true
+  autoplay = true,
+  withMp3 = true
 }: AudioBtnProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const audioId = useId();
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const { currentPlaying, setCurrentPlaying } = useCurrentPlaying();
@@ -82,15 +83,23 @@ function AudioBtn({
         <IconVolume className={classNames({ [styles.playing]: isPlaying })} />
       </button>
       <audio
+        key={audioName}
         ref={audioRef}
-        id={audioId}
-        src={getWordsAudioUrl(audioName, folders)}
+        id={`audio-${audioName}`}
         autoPlay={autoplay && isSoundAllowed}
         onAbort={onAbortEndedHandler}
         onEnded={onAbortEndedHandler}
         onPlaying={onPlayingHandler}
         preload="auto"
-      />
+      >
+        <source src={getAudioUrl({ audioName, folders })} type="audio/mp4" />
+        {withMp3 && (
+          <source
+            src={getAudioUrl({ audioName, folders, format: 'mp3' })}
+            type="audio/mpeg"
+          />
+        )}
+      </audio>
     </>
   ) : null;
 }

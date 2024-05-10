@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { getWordsAudioUrl, getWordsImageUrl } from '../_lib/utils';
+import { getAudioUrl, getWordsImageUrl } from '../_lib/utils';
 import type { SetPageProps } from '../_components/Pages/SetPage/SetPage';
 
 function useMediaLoad(current: number, words: SetPageProps['words']) {
@@ -9,7 +9,7 @@ function useMediaLoad(current: number, words: SetPageProps['words']) {
     if (current >= words.length - 2) return;
 
     const load = (i: number) => {
-      new Audio(getWordsAudioUrl(words[i].audio_name));
+      new Audio(getAudioUrl({ audioName: words[i].audio_name }));
       const img = new Image();
       img.src = getWordsImageUrl(words[i].img_name);
 

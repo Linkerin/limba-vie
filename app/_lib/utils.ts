@@ -78,11 +78,19 @@ export function getWordsImageUrl(
   return url;
 }
 
-export function getWordsAudioUrl(
-  audioName: Tables<'words'>['audio_name'],
-  folders: string = 'ro'
-) {
-  const url = `${SUPABASE_STORAGE_URL}/audio/${folders}/${audioName}.${AUDIO_FILE_FORMAT}`;
+interface GetAudioUrlParams {
+  audioName: Tables<'words'>['audio_name'];
+  folders?: string;
+  format?: 'aac' | 'mp3';
+}
+
+export function getAudioUrl({
+  audioName,
+  folders = 'ro',
+  format = AUDIO_FILE_FORMAT
+}: GetAudioUrlParams) {
+  const route = format === 'mp3' ? 'mp3/' + folders : folders;
+  const url = `${SUPABASE_STORAGE_URL}/audio/${route}/${audioName}.${format}`;
 
   return url;
 }

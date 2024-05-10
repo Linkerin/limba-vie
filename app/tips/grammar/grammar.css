@@ -54,6 +54,10 @@ td > em {
   font-size: 0.875em;
 }
 
+article {
+  height: 100%;
+}
+
 article > * {
   animation: var(--animation-fadein);
 }
