@@ -1,17 +1,17 @@
 'use client';
 
-import { useCallback, useContext, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import classNames from 'classnames';
 
 import Button from '../Button/Button';
-import { DeviceContext } from '@/app/_contexts/DeviceProvider';
 import {
   getArticle,
   getRandomValueFromArr,
   normalizeWord
 } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
+import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useWordHandlers from '@/app/_hooks/useWordHandlers';
 
 import styles from './CheckInput.module.css';
@@ -46,7 +46,7 @@ function CheckInput({
     null
   );
 
-  const { isApplePwa } = useContext(DeviceContext);
+  const isApplePwa = useIsApplePwa();
 
   const { learnedHandler, repeatHandler } = useWordHandlers({
     wordId

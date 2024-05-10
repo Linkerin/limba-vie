@@ -1,11 +1,11 @@
 'use client';
 
-import { useCallback, useContext } from 'react';
+import { useCallback } from 'react';
 import classNames from 'classnames';
 
 import ActionBtn from '../../ActionBtn/ActionBtn';
-import { DeviceContext } from '@/app/_contexts/DeviceProvider';
 import type { Tables } from '@/app/_lib/supabase.types';
+import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useWordHandlers from '../../../_hooks/useWordHandlers';
 
 import styles from './Actions.module.css';
@@ -17,7 +17,7 @@ export interface ActionsProps {
 }
 
 function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
-  const { isApplePwa } = useContext(DeviceContext);
+  const isApplePwa = useIsApplePwa();
   const { learnedHandler, repeatHandler } = useWordHandlers({
     wordId
   });

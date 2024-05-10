@@ -5,5 +5,5 @@ export default function GrammarLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <article>{children}</article>;
+  return <article className="grammar-container">{children}</article>;
 }

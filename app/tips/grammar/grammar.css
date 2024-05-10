@@ -54,10 +54,10 @@ td > em {
   font-size: 0.875em;
 }
 
-article {
+.grammar-container {
   height: 100%;
 }
 
-article > * {
+.grammar-container > * {
   animation: var(--animation-fadein);
 }

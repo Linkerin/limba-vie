@@ -1,13 +1,17 @@
 import type { Metadata } from 'next';
 import { Alata } from 'next/font/google';
+import dynamic from 'next/dynamic';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-import Contexts from './_contexts/Contexts';
 import Header from './_components/Header/Header';
-import NavBar from './_components/NavBar/NavBar';
+import SoundProvider from './_contexts/SoundProvider';
 
 import './globals.css';
+
+const NavBar = dynamic(() => import('./_components/NavBar/NavBar'), {
+  ssr: false
+});
 
 const alata = Alata({
   subsets: ['latin'],
@@ -84,12 +88,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={alata.className}>
-        <Contexts>
+        <SoundProvider>
           <Header />
           <main>{children}</main>
           <NavBar />
           <div id="modal" />
-        </Contexts>
+        </SoundProvider>
         {isProd && <SpeedInsights />}
         {isProd && <Analytics />}
       </body>

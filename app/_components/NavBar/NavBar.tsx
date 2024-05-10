@@ -1,25 +1,20 @@
 'use client';
 
-import { useContext } from 'react';
-import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import classNames from 'classnames';
-import { IconBook2, IconHome } from '@tabler/icons-react';
+import { IconBarbell, IconBook2, IconHome } from '@tabler/icons-react';
 
-import { DeviceContext } from '@/app/_contexts/DeviceProvider';
 import NavItem from './NavItem/NavItem';
+import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
+import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
 
 import styles from './NavBar.module.css';
-
-const NavPracticeBtn = dynamic(
-  () => import('./NavPracticeBtn/NavPracticeBtn'),
-  { ssr: false }
-);
 
 function NavBar() {
   const pathname = usePathname();
 
-  const { isApplePwa } = useContext(DeviceContext);
+  const isApplePwa = useIsApplePwa();
+  const { show, url } = useRepeatBtn();
 
   return !pathname?.match(/\/set\/?.*/) ? (
     <footer
@@ -44,7 +39,11 @@ function NavBar() {
           >
             <IconBook2 />
           </NavItem>
-          <NavPracticeBtn />
+          {show && (
+            <NavItem ariaLabel="To practice set" href={url.href} prefetch>
+              <IconBarbell />
+            </NavItem>
+          )}
         </ol>
       </nav>
     </footer>
