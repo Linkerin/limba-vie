@@ -38,12 +38,12 @@ function AudioBtn({
   const { currentPlaying, setCurrentPlaying } = useCurrentPlaying();
   const isSoundAllowed = useIsSoundAllowed();
 
-  const audioClickHandler: React.MouseEventHandler = useCallback(e => {
+  const audioClickHandler: React.MouseEventHandler = useCallback(async e => {
     e.preventDefault();
     if (!audioRef.current) return;
 
     try {
-      audioRef.current.play();
+      await audioRef.current.play();
     } catch (err) {
       console.error(
         `The audio ${audioRef?.current?.id} play request was interrupted`,

@@ -83,7 +83,10 @@ export async function POST(request: NextRequest) {
     captureException(err);
 
     return new Response(
-      JSON.stringify({ message: 'Error occured while fetching Google AI' }),
+      JSON.stringify({
+        message: 'Error occured while fetching Google AI',
+        error: err
+      }),
       { status: 500 }
     );
   }

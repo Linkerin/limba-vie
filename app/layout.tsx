@@ -94,6 +94,7 @@ export default function RootLayout({
     type: headersList.get('x-device-type'),
     model: headersList.get('x-device-model')
   };
+  const isProd = process.env.NEXT_PUBLIC_ENVIRONMENT === 'PROD';
 
   return (
     <html lang="en">
@@ -106,8 +107,8 @@ export default function RootLayout({
             <div id="modal" />
           </SoundProvider>
         </DeviceProvider>
-        <SpeedInsights />
-        <Analytics />
+        {isProd && <SpeedInsights />}
+        {isProd && <Analytics />}
       </body>
     </html>
   );
