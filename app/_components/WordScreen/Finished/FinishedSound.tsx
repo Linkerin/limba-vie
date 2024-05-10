@@ -11,11 +11,11 @@ function FinishedSound() {
 
     const timeoutId = setTimeout(() => {
       navigator.vibrate(300);
-    }, 300);
+    }, 400);
 
     const timeoutIdSecond = setTimeout(() => {
       navigator.vibrate(500);
-    }, 800);
+    }, 900);
 
     return () => {
       clearTimeout(timeoutId);
