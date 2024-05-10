@@ -14,10 +14,6 @@
   padding-block: 0.25rem;
 }
 
-.apple-pwa {
-  padding-block-end: var(--apple-pwa-pd, 1.25rem);
-}
-
 .footer > nav > ol {
   display: flex;
   align-items: center;
@@ -27,48 +23,6 @@
   padding: 0;
 }
 
-.footer > nav > ol > li {
-  height: 100%;
-  width: 50%;
-}
-
-.footer > nav > ol > li > a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-  height: 100%;
-  width: 100%;
-}
-
-.footer > nav > ol > li > a,
-.footer > nav > ol > li > a:visited {
-  color: var(--primary-darker);
-}
-
-.footer > nav > ol > li > a,
-.footer > nav > ol > li > a:hover,
-.footer > nav > ol > li > a:focus,
-.footer > nav > ol > li > a:active {
-  text-decoration: none;
-}
-
-.footer > nav > ol > li:not(.current) > a:active {
-  background-color: var(--primary-container);
-  color: var(--primary-dark);
-}
-
-.footer > nav > ol > li > a > span {
-  padding: 0.375rem;
-}
-
-.current > a > span,
-.current > a:visited > span {
-  color: var(--on-primary-container);
-}
-
-.current > a > span {
-  background-color: var(--primary-container);
-  border-radius: 0.375rem;
+.apple-pwa {
+  padding-block-end: var(--apple-pwa-pd, 1.25rem);
 }

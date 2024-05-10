@@ -1,21 +1,25 @@
 'use client';
 
 import { useContext } from 'react';
-import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import classNames from 'classnames';
-import { IconBarbell, IconBook2, IconHome } from '@tabler/icons-react';
+import { IconBook2, IconHome } from '@tabler/icons-react';
 
 import { DeviceContext } from '@/app/_contexts/DeviceProvider';
-import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
+import NavItem from './NavItem/NavItem';
 
 import styles from './NavBar.module.css';
+
+const NavPracticeBtn = dynamic(
+  () => import('./NavPracticeBtn/NavPracticeBtn'),
+  { ssr: false }
+);
 
 function NavBar() {
   const pathname = usePathname();
 
   const { isApplePwa } = useContext(DeviceContext);
-  const { show, url } = useRepeatBtn();
 
   return !pathname?.match(/\/set\/?.*/) ? (
     <footer
@@ -25,37 +29,22 @@ function NavBar() {
     >
       <nav>
         <ol>
-          <li className={classNames({ [styles.current]: pathname === '/' })}>
-            <Link aria-label="To main page with units list" href="/">
-              <span>
-                <IconHome />
-              </span>
-            </Link>
-          </li>
-          <li
-            className={classNames({
-              [styles.current]: pathname?.includes('/tips/')
-            })}
+          <NavItem
+            ariaLabel="To main page with units list"
+            href="/"
+            isCurrent={pathname === '/'}
           >
-            <Link
-              aria-label="To grammar articles"
-              href="/tips/grammar"
-              prefetch
-            >
-              <span>
-                <IconBook2 />
-              </span>
-            </Link>
-          </li>
-          {show && (
-            <li>
-              <Link aria-label="To practice set" href={url.href} prefetch>
-                <span>
-                  <IconBarbell />
-                </span>
-              </Link>
-            </li>
-          )}
+            <IconHome />
+          </NavItem>
+          <NavItem
+            ariaLabel="To grammar articles"
+            href="/tips/grammar"
+            isCurrent={pathname?.includes('/tips/')}
+            prefetch
+          >
+            <IconBook2 />
+          </NavItem>
+          <NavPracticeBtn />
         </ol>
       </nav>
     </footer>

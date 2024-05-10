@@ -1,19 +1,13 @@
 import type { Metadata } from 'next';
 import { Alata } from 'next/font/google';
-import dynamic from 'next/dynamic';
-import { headers } from 'next/headers';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
+import Contexts from './_contexts/Contexts';
 import Header from './_components/Header/Header';
-import DeviceProvider from './_contexts/DeviceProvider';
-import SoundProvider from './_contexts/SoundProvider';
+import NavBar from './_components/NavBar/NavBar';
 
 import './globals.css';
-
-const NavBar = dynamic(() => import('./_components/NavBar/NavBar'), {
-  ssr: false
-});
 
 const alata = Alata({
   subsets: ['latin'],
@@ -66,11 +60,7 @@ export const metadata: Metadata = {
     siteName: 'Limba Vie',
     type: 'website',
     url: process.env.NEXT_PUBLIC_BASE_URL,
-    images: [
-      {
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/img/og-image`
-      }
-    ]
+    images: [{ url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/img/og-image` }]
   },
   twitter: {
     card: 'summary_large_image',
@@ -89,24 +79,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headersList = headers();
-  const device = {
-    type: headersList.get('x-device-type'),
-    model: headersList.get('x-device-model')
-  };
   const isProd = process.env.NEXT_PUBLIC_ENVIRONMENT === 'PROD';
 
   return (
     <html lang="en">
       <body className={alata.className}>
-        <DeviceProvider device={device}>
-          <SoundProvider>
-            <Header />
-            <main>{children}</main>
-            <NavBar />
-            <div id="modal" />
-          </SoundProvider>
-        </DeviceProvider>
+        <Contexts>
+          <Header />
+          <main>{children}</main>
+          <NavBar />
+          <div id="modal" />
+        </Contexts>
         {isProd && <SpeedInsights />}
         {isProd && <Analytics />}
       </body>
