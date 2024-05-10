@@ -1,8 +1,5 @@
-import { cache } from 'react';
-
 import { REPEAT_WORDS_CTY } from '@/app/_lib/constants';
 import SetPage from '@/app/_components/Pages/SetPage/SetPage';
-import { shuffleArr } from '@/app/_lib/utils';
 import supabase from '@/app/_lib/supabase';
 import { Tables } from '@/app/_lib/supabase.types';
 
@@ -36,7 +33,7 @@ const fetchSet = async ({ setId, ids, words }: fetchSetParams) => {
   return [...words, ...data];
 };
 
-const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
+const getWords = async ({ set, r }: RepeatPageProps['searchParams']) => {
   let words: WordsArr = [];
 
   const ids = Array.isArray(r) ? r : [r];
@@ -68,7 +65,7 @@ const getWords = cache(async ({ set, r }: RepeatPageProps['searchParams']) => {
   }
 
   return words.slice(0, REPEAT_WORDS_CTY);
-});
+};
 
 interface RepeatPageProps {
   searchParams: {
@@ -80,10 +77,7 @@ interface RepeatPageProps {
 async function RepeatPage({ searchParams }: RepeatPageProps) {
   const words = await getWords(searchParams);
 
-  return <SetPage words={shuffleArr(words)} setName="practice" checkPage />;
+  return <SetPage words={words} setName="practice" checkPage />;
 }
 
 export default RepeatPage;
-
-export const dynamic = 'force-dynamic';
-export const revalidate = Number(process.env.REVALIDATE_PERIOD_MS);

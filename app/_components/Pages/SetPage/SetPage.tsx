@@ -1,11 +1,12 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 
 import AudioBtn from '../../AudioBtn/AudioBtn';
 import Finished from '../../WordScreen/Finished/Finished';
 import SentenceLoading from '../../WordScreen/Sentence/SentenceLoading';
+import { shuffleArr } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
 import Word from '../../WordScreen/Word/Word';
@@ -40,6 +41,8 @@ function SetPage({ words, setName, checkPage }: SetPageProps) {
   const [currWord, setCurrWord] = useState(0);
   const [showExample, setShowExample] = useState(false);
 
+  const shuffled = useMemo(() => shuffleArr(words), [words]);
+
   const exampleClickHandler = useCallback(() => {
     setShowExample(prevState => !prevState);
   }, []);
@@ -49,61 +52,61 @@ function SetPage({ words, setName, checkPage }: SetPageProps) {
     setCurrWord(prevState => prevState + 1);
   }, []);
 
-  useMediaLoad(currWord, words);
+  useMediaLoad(currWord, shuffled);
 
   return (
     <section className={styles.section}>
-      {currWord < words.length && words.at(currWord) && (
+      {currWord < shuffled.length && shuffled.at(currWord) && (
         <>
-          <WordCounter current={currWord + 1} total={words.length} />
+          <WordCounter current={currWord + 1} total={shuffled.length} />
           <WordImg
-            wordEn={words[currWord].en}
-            gender={words[currWord].gender_ro}
-            imgName={words[currWord].img_name}
+            wordEn={shuffled[currWord].en}
+            gender={shuffled[currWord].gender_ro}
+            imgName={shuffled[currWord].img_name}
           />
           {checkPage ? (
             <AudioBtn
-              key={words[currWord].ro}
+              key={shuffled[currWord].ro}
               className={styles['check-audio-btn']}
-              audioName={words[currWord].audio_name}
-              word={words[currWord].ro}
+              audioName={shuffled[currWord].audio_name}
+              word={shuffled[currWord].ro}
               autoplay={false}
             />
           ) : (
             <Word
-              word={words[currWord].ro}
-              plural={words[currWord].plural}
-              gender={words[currWord].gender_ro}
+              word={shuffled[currWord].ro}
+              plural={shuffled[currWord].plural}
+              gender={shuffled[currWord].gender_ro}
             >
               <AudioBtn
-                audioName={words[currWord].audio_name}
-                word={words[currWord].ro}
+                audioName={shuffled[currWord].audio_name}
+                word={shuffled[currWord].ro}
               />
             </Word>
           )}
-          {showExample && <Sentence wordId={words[currWord].id} />}
+          {showExample && <Sentence wordId={shuffled[currWord].id} />}
           {checkPage ? (
             <CheckInput
-              key={words[currWord].id}
-              gender={words[currWord].gender_ro}
-              plural={words[currWord].plural}
+              key={shuffled[currWord].id}
+              gender={shuffled[currWord].gender_ro}
+              plural={shuffled[currWord].plural}
               setCurrWord={nextWord}
-              wordId={words[currWord].id}
-              wordRo={words[currWord].ro}
+              wordId={shuffled[currWord].id}
+              wordRo={shuffled[currWord].ro}
             />
           ) : (
             <Actions
               exampleClickHandler={exampleClickHandler}
               setCurrWord={nextWord}
-              wordId={words[currWord].id}
+              wordId={shuffled[currWord].id}
             />
           )}
         </>
       )}
-      {currWord >= words.length && (
+      {currWord >= shuffled.length && (
         <Finished
-          setId={words.at(0)?.sets?.id}
-          setName={setName ?? words[0].sets?.set}
+          setId={shuffled.at(0)?.sets?.id}
+          setName={setName ?? shuffled[0].sets?.set}
         />
       )}
     </section>

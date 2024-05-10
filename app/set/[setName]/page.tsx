@@ -1,7 +1,6 @@
 import { cache } from 'react';
 
 import SetPage from '@/app/_components/Pages/SetPage/SetPage';
-import { shuffleArr } from '@/app/_lib/utils';
 import supabase from '@/app/_lib/supabase';
 
 const getWords = cache(async (setName: string) => {
@@ -27,9 +26,8 @@ const getWords = cache(async (setName: string) => {
 async function Set({ params }: { params: { setName: string } }) {
   const setName = decodeURIComponent(params.setName);
   const words = await getWords(setName);
-  const shuffledWords = shuffleArr(words);
 
-  return <SetPage words={shuffledWords} />;
+  return <SetPage words={words} />;
 }
 
 export default Set;
@@ -43,5 +41,4 @@ export async function generateStaticParams() {
   }));
 }
 
-export const dynamic = 'force-dynamic';
 export const revalidate = Number(process.env.REVALIDATE_PERIOD_MS);
