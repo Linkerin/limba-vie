@@ -11,18 +11,17 @@
   "dependencies": {
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
-    "@next/mdx": "^14.2.2",
+    "@next/mdx": "^14.2.3",
     "@sentry/nextjs": "^7.113.0",
     "@supabase/supabase-js": "^2.42.4",
     "@tabler/icons-react": "^3.1.0",
     "@types/mdx": "^2.0.13",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
-    "appwrite": "^14.0.0",
     "classnames": "^2.5.1",
-    "next": "14.1.4",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "14.2.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "remark-gfm": "^4.0.0",
     "sharp": "^0.33.3"
   },
@@ -31,7 +30,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.1.4",
+    "eslint-config-next": "^14.2.3",
     "typescript": "^5"
   }
 }
