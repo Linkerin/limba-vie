@@ -14,7 +14,8 @@ const SetItem = dynamic(() => import('../SetItem/SetItem'), {
 });
 
 function SetsList({ sets }: { sets: Sets }) {
-  const units = Array.from(new Set(sets.map(set => set.unit))).sort((a, b) => {
+  const unitsSet = new Set(sets.map(set => set.unit));
+  const units = Array.from(unitsSet).sort((a, b) => {
     if (a === null || b === null) return 0;
 
     return a - b;

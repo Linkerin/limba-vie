@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import classNames from 'classnames';
 
 import ListItem from '../ListItem/ListItem';
@@ -28,7 +29,7 @@ interface SetItemProps {
 }
 
 function SetItem({ children, setId }: SetItemProps) {
-  const isCompleted = isSetCompleted(setId);
+  const isCompleted = useMemo(() => isSetCompleted(setId), [setId]);
 
   return (
     <ListItem

@@ -93,6 +93,17 @@ export const getRepeatWords = async ({ set, r }: RepeatPageSearchParams) => {
 
 export type RepeatWords = Awaited<ReturnType<typeof getRepeatWords>>;
 
+export const getSentence = cache(async (id: Tables<'words'>['id']) => {
+  const { data, error } = await supabase
+    .from('words')
+    .select('example_ro, example_en')
+    .eq('id', id);
+  if (error) throw error;
+  if (!data) return null;
+
+  return data[0];
+});
+
 export const getSetInfo = cache(async (setName: string) => {
   const { data, error } = await supabase
     .from('sorted_sets')

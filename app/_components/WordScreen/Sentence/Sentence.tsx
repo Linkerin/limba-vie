@@ -1,31 +1,17 @@
-import { cache } from 'react';
 import classNames from 'classnames';
 
-import supabase from '@/app/_lib/supabase';
+import { getSentence } from '@/app/_services/dbFetchers';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './Sentence.module.css';
 
-type WordId = Tables<'words'>['id'];
-
-const getSentences = cache(async (id: WordId) => {
-  const { data, error } = await supabase
-    .from('words')
-    .select('example_ro, example_en')
-    .eq('id', id);
-  if (error) throw error;
-  if (!data) return null;
-
-  return data[0];
-});
-
 interface SentenceProps {
   className?: string;
-  wordId: WordId;
+  wordId: Tables<'words'>['id'];
 }
 
 async function Sentence({ className, wordId }: SentenceProps) {
-  const sentences = await getSentences(wordId);
+  const sentences = await getSentence(wordId);
 
   const noData = !sentences || !sentences.example_ro;
 
