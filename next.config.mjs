@@ -1,6 +1,7 @@
-import { withSentryConfig } from '@sentry/nextjs';
 import createMDX from '@next/mdx';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 import remarkGfm from 'remark-gfm';
+import { withSentryConfig } from '@sentry/nextjs';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -29,7 +30,7 @@ const withMDX = createMDX({
   }
 });
 
-export default withSentryConfig(
+const sentryConfig = withSentryConfig(
   withMDX(nextConfig),
   {
     // For all available options, see:
@@ -69,3 +70,7 @@ export default withSentryConfig(
     automaticVercelMonitors: true
   }
 );
+
+export default process.env.ANALYZE === 'true'
+  ? withBundleAnalyzer(sentryConfig)
+  : sentryConfig;
