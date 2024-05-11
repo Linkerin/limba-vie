@@ -6,6 +6,7 @@ import { capitalizeWord } from '@/app/_lib/utils';
 import FinishedSound from './FinishedSound';
 import type { Tables } from '@/app/_lib/supabase.types';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
+import type { SetInfo } from '@/app/_services/dbFetchers';
 
 import styles from './Finished.module.css';
 
@@ -26,13 +27,15 @@ function saveSetCompletion(setId: number) {
 }
 
 interface FinishedProps {
-  setId?: Tables<'sets'>['id'];
+  setInfo?: SetInfo;
   setName?: Tables<'sets'>['set'];
 }
 
-function Finished({ setId, setName }: FinishedProps) {
-  if (setId) saveSetCompletion(setId);
-  const homePath = setId ? `/#set-${setId}` : '/';
+function Finished({ setInfo, setName }: FinishedProps) {
+  if (setInfo?.id) saveSetCompletion(setInfo.id);
+
+  const homePath = setInfo?.prev_set_id ? `/#set-${setInfo.prev_set_id}` : '/';
+  const set = setName ?? setInfo?.set ?? '';
 
   return (
     <>
@@ -44,8 +47,7 @@ function Finished({ setId, setName }: FinishedProps) {
           priority
         />
         <p className={styles.msg}>
-          You have finished the{' '}
-          {setName ? <span>{capitalizeWord(setName)}</span> : null} set!
+          You have finished the <span>{capitalizeWord(set)}</span> set!
         </p>
       </div>
       <FinishedSound />

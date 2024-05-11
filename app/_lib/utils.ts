@@ -114,3 +114,15 @@ export function getRandomValueFromArr(arr: any[]) {
 
   return arr[index];
 }
+
+export const trimVerb = (
+  word: Tables<'words'>['ro'],
+  gender: Tables<'words'>['gender_ro']
+) => {
+  let result = word;
+  if (!gender && word.slice(0, 2) === 'a ') {
+    result = word.slice(2);
+  }
+
+  return result;
+};

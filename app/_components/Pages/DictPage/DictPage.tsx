@@ -1,14 +1,9 @@
 import ListItemLink from '@/app/_components/ListItemLink/ListItemLink';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Dict } from '@/app/_services/dbFetchers';
 
 import styles from './DictPage.module.css';
 
-type WordType = Pick<
-  Tables<'words'>,
-  'id' | 'en' | 'ro' | 'gender_ro' | 'plural'
->;
-
-function DictPage({ words }: { words: WordType[] }) {
+function DictPage({ words }: { words: Dict }) {
   return (
     <>
       <p className={styles.total}>

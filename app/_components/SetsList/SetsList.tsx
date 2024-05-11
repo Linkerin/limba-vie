@@ -4,7 +4,7 @@ import SetItemEmoji from '../SetItem/SetItemEmoji/SetItemEmoji';
 import SetItemLink from '../SetItem/SetItemLink/SetItemLink';
 import SetItemLoading from '../SetItem/SetItemLoading';
 import SetItemWordsNum from '../SetItem/SetItemWordsNum/SetItemWordsNum';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Sets } from '@/app/_services/dbFetchers';
 
 import styles from './SetsList.module.css';
 
@@ -13,14 +13,7 @@ const SetItem = dynamic(() => import('../SetItem/SetItem'), {
   ssr: false
 });
 
-interface SetsListProps {
-  sets: Pick<
-    Tables<'sorted_sets'>,
-    'id' | 'set' | 'emoji' | 'unit' | 'words_count'
-  >[];
-}
-
-function SetsList({ sets }: SetsListProps) {
+function SetsList({ sets }: { sets: Sets }) {
   const units = Array.from(new Set(sets.map(set => set.unit))).sort((a, b) => {
     if (a === null || b === null) return 0;
 

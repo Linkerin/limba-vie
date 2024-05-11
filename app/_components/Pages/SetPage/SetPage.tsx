@@ -7,11 +7,11 @@ import AudioBtn from '../../AudioBtn/AudioBtn';
 import Finished from '../../WordScreen/Finished/Finished';
 import SentenceLoading from '../../WordScreen/Sentence/SentenceLoading';
 import { shuffleArr } from '@/app/_lib/utils';
-import type { Tables } from '@/app/_lib/supabase.types';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
 import Word from '../../WordScreen/Word/Word';
 import WordCounter from '../../WordScreen/WordCounter/WordCounter';
 import WordImg from '../../WordScreen/WordImg/WordImg';
+import type { RepeatWords, SetInfo, Words } from '@/app/_services/dbFetchers';
 
 import styles from './SetPage.module.css';
 
@@ -21,23 +21,14 @@ const Sentence = dynamic(() => import('../../WordScreen/Sentence/Sentence'), {
   loading: () => <SentenceLoading />
 });
 
-interface Sets {
-  sets?: Pick<Tables<'sets'>, 'id' | 'set'> | null;
-}
-
-type Word = Omit<
-  Tables<'words'>,
-  'created_at' | 'updated_at' | 'set_id' | 'example_ro' | 'example_en'
-> &
-  Sets;
-
 export interface SetPageProps {
-  words: Word[];
-  setName?: string;
+  words: Words | RepeatWords;
   checkPage?: boolean;
+  setInfo?: SetInfo;
+  setName?: string;
 }
 
-function SetPage({ words, setName, checkPage }: SetPageProps) {
+function SetPage({ words, checkPage, setInfo, setName }: SetPageProps) {
   const [currWord, setCurrWord] = useState(0);
   const [showExample, setShowExample] = useState(false);
 
@@ -104,10 +95,7 @@ function SetPage({ words, setName, checkPage }: SetPageProps) {
         </>
       )}
       {currWord >= shuffled.length && (
-        <Finished
-          setId={shuffled.at(0)?.sets?.id}
-          setName={setName ?? shuffled[0].sets?.set}
-        />
+        <Finished setInfo={setInfo} setName={setName} />
       )}
     </section>
   );

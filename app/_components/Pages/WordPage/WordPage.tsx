@@ -2,7 +2,7 @@ import AudioBtn from '../../AudioBtn/AudioBtn';
 import Sentence from '../../WordScreen/Sentence/Sentence';
 import Word from '../../WordScreen/Word/Word';
 import WordImg from '../../WordScreen/WordImg/WordImg';
-import type { WordType } from '@/app/words/[word]/page';
+import type { WordType } from '@/app/_services/dbFetchers';
 
 import styles from './WordPage.module.css';
 

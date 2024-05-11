@@ -1,33 +1,23 @@
 import { cache } from 'react';
 
+import { getSetInfo, getWords } from '@/app/_services/dbFetchers';
 import SetPage from '@/app/_components/Pages/SetPage/SetPage';
 import supabase from '@/app/_lib/supabase';
 
-const getWords = cache(async (setName: string) => {
-  const { data, error } = await supabase
-    .from('words')
-    .select(
-      `id,
-         en,
-         en_alternatives,
-         ro,
-         gender_ro,
-         plural,
-         img_name,
-         audio_name,
-         sets!inner(id, set)`
-    )
-    .eq('sets.set', setName);
-  if (error) throw error;
+const getData = cache(async (setName: string) => {
+  const wordsPromise = getWords(setName);
+  const setInfoPromise = getSetInfo(setName);
 
-  return data;
+  const [words, setInfo] = await Promise.all([wordsPromise, setInfoPromise]);
+
+  return { words, setInfo };
 });
 
 async function Set({ params }: { params: { setName: string } }) {
   const setName = decodeURIComponent(params.setName);
-  const words = await getWords(setName);
+  const { words, setInfo } = await getData(setName);
 
-  return <SetPage words={words} />;
+  return <SetPage words={words} setInfo={setInfo} />;
 }
 
 export default Set;

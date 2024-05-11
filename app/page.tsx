@@ -1,16 +1,6 @@
-import { cache } from 'react';
-
 import SetsList from './_components/SetsList/SetsList';
-import supabase from '@/app/_lib/supabase';
 
-const getSets = cache(async () => {
-  const { data, error } = await supabase
-    .from('sorted_sets')
-    .select('id, set, emoji, words_count, unit');
-  if (error) throw error;
-
-  return data;
-});
+import { getSets } from './_services/dbFetchers';
 
 async function Home() {
   const sets = await getSets();
