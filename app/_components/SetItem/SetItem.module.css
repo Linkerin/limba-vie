@@ -8,6 +8,7 @@
 
 .completed:active {
   background-color: var(--secondary-container);
+  box-shadow: none;
 }
 
 .completed > a,
