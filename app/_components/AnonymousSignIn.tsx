@@ -2,10 +2,21 @@
 
 import { useEffect } from 'react';
 
-import { setUserCookie } from '../_services/actions';
+import { LOCAL_STORAGE_KEYS } from '../_lib/constants';
 import ssrLocalStorage from '../_services/SsrLocalStorage';
 
-const key = 'lvUserId';
+const key = LOCAL_STORAGE_KEYS.userId;
+
+const setUserCookies = async (userId: string) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/set-user-cookies?user-id=${userId}`
+  );
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw error;
+  }
+};
 
 function AnonymousSignIn() {
   useEffect(() => {
@@ -20,8 +31,7 @@ function AnonymousSignIn() {
           const { error } = await supabase.auth.refreshSession();
           if (error) throw error;
 
-          setUserCookie(id);
-          console.log('Awaited');
+          await setUserCookies(id);
 
           return;
         }
@@ -33,9 +43,12 @@ function AnonymousSignIn() {
 
         if (data.user?.id) {
           ssrLocalStorage.setItem(key, data.user.id);
-          setUserCookie(data.user?.id);
+          await setUserCookies(data.user.id);
         }
+
+        return;
       } catch (err) {
+        ssrLocalStorage.removeItem(key);
         console.error('Sign In error');
         throw err;
       }

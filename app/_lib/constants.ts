@@ -5,7 +5,8 @@ export const CLOUDINARY_IMG_URL = `${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/ima
 export const LOCAL_STORAGE_KEYS = Object.freeze({
   completedSets: 'lvCompletedSets',
   repeatWords: 'lvRepeatWords',
-  sound: 'lvAudioAutoplay'
+  sound: 'lvAudioAutoplay',
+  userId: 'lvUserId'
 });
 export const REPEAT_WORDS_CTY = 20;
 
