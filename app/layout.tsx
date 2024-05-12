@@ -9,6 +9,9 @@ import SoundProvider from './_contexts/SoundProvider';
 
 import './globals.css';
 
+const AnonymousSignIn = dynamic(() => import('./_components/AnonymousSignIn'), {
+  ssr: false
+});
 const NavBar = dynamic(() => import('./_components/NavBar/NavBar'), {
   ssr: false
 });
@@ -94,6 +97,7 @@ export default function RootLayout({
           <NavBar />
           <div id="modal" />
         </SoundProvider>
+        <AnonymousSignIn />
         {isProd && <SpeedInsights />}
         {isProd && <Analytics />}
       </body>
