@@ -25,7 +25,7 @@ function SetsList({ sets }: { sets: Sets }) {
     <>
       {units.map(unit => {
         return (
-          <article key={unit} className={styles.article}>
+          <section key={unit} className={styles.section}>
             <h2>Unit {unit}</h2>
             <ul className={styles.list} role="list">
               {sets
@@ -40,7 +40,7 @@ function SetsList({ sets }: { sets: Sets }) {
                   );
                 })}
             </ul>
-          </article>
+          </section>
         );
       })}
     </>

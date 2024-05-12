@@ -50,32 +50,34 @@ function SetPage({ words, checkPage, setInfo, setName }: SetPageProps) {
       {currWord < shuffled.length && shuffled.at(currWord) && (
         <>
           <WordCounter current={currWord + 1} total={shuffled.length} />
-          <WordImg
-            wordEn={shuffled[currWord].en}
-            gender={shuffled[currWord].gender_ro}
-            imgName={shuffled[currWord].img_name}
-          />
-          {checkPage ? (
-            <AudioBtn
-              key={shuffled[currWord].ro}
-              className={styles['check-audio-btn']}
-              audioName={shuffled[currWord].audio_name}
-              word={shuffled[currWord].ro}
-              autoplay={false}
-            />
-          ) : (
-            <Word
-              word={shuffled[currWord].ro}
-              plural={shuffled[currWord].plural}
+          <div className={styles['word-container']}>
+            <WordImg
+              wordEn={shuffled[currWord].en}
               gender={shuffled[currWord].gender_ro}
-            >
+              imgName={shuffled[currWord].img_name}
+            />
+            {checkPage ? (
               <AudioBtn
+                key={shuffled[currWord].ro}
+                className={styles['check-audio-btn']}
                 audioName={shuffled[currWord].audio_name}
                 word={shuffled[currWord].ro}
+                autoplay={false}
               />
-            </Word>
-          )}
-          {showExample && <Sentence wordId={shuffled[currWord].id} />}
+            ) : (
+              <Word
+                word={shuffled[currWord].ro}
+                plural={shuffled[currWord].plural}
+                gender={shuffled[currWord].gender_ro}
+              >
+                <AudioBtn
+                  audioName={shuffled[currWord].audio_name}
+                  word={shuffled[currWord].ro}
+                />
+              </Word>
+            )}
+            {showExample && <Sentence wordId={shuffled[currWord].id} />}
+          </div>
           {checkPage ? (
             <CheckInput
               key={shuffled[currWord].id}

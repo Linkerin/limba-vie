@@ -17,6 +17,18 @@
   animation: var(--animation-fadein);
 }
 
+.word-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  gap: 0.25rem;
+  height: 100%;
+  padding-block: 0.5rem;
+  width: 100%;
+}
+
 .check-audio-btn {
   font-size: 2.25rem;
   animation: appearance 7s ease-in;

@@ -83,10 +83,10 @@ body {
   font-size: 100%;
   font-family: 'Alata', 'Segoe UI', Segoe, Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1;
+  max-height: 100dvh;
   min-height: 100dvh;
   max-width: 100dvw;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -100,6 +100,7 @@ main {
   padding: 1rem;
   width: 100%;
   z-index: 0;
+  overflow-y: scroll;
 }
 
 img,

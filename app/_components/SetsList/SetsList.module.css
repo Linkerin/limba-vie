@@ -1,12 +1,12 @@
-.article {
+.section {
   animation: var(--animation-fadein);
 }
 
-.article:not(:first-of-type) {
+.section:not(:first-of-type) {
   margin-block-start: 1rem;
 }
 
-.article > h2 {
+.section > h2 {
   color: var(--primary);
   font-size: 1.25rem;
   font-weight: bold;
