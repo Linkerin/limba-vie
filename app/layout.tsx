@@ -6,6 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import Header from './_components/Header/Header';
 import SoundProvider from './_contexts/SoundProvider';
+import WebVitals from './_components/WebVitals';
 
 import './globals.css';
 
@@ -98,6 +99,7 @@ export default function RootLayout({
           <div id="modal" />
         </SoundProvider>
         <AnonymousSignIn />
+        <WebVitals />
         {isProd && <SpeedInsights />}
         {isProd && <Analytics />}
       </body>
