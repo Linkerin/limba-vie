@@ -2,17 +2,10 @@ import { NextResponse, userAgent } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const requestHeaders = new Headers(request.headers);
-  const { device } = userAgent(request);
+  const data = userAgent(request);
+  const userId = request.cookies.get('x-user-id');
 
-  requestHeaders.set('x-device-type', device?.type ?? '');
-  requestHeaders.set('x-device-model', device?.model ?? '');
-
-  const response = NextResponse.next({
-    request: {
-      headers: requestHeaders
-    }
-  });
+  const response = NextResponse.next();
 
   return response;
 }
