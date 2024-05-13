@@ -6,7 +6,9 @@ export function middleware(request: NextRequest) {
   const response = NextResponse.next();
   const pathname = request.nextUrl.pathname;
 
-  if (!pathname || !apiUrl) return response;
+  if (process.env.NEXT_PUBLIC_ENVIRONMENT !== 'PROD' || !pathname || !apiUrl) {
+    return response;
+  }
 
   const userId = request.cookies.get('x-user-id')?.value;
   const { browser, device, engine, os, isBot } = userAgent(request);
@@ -29,7 +31,7 @@ export function middleware(request: NextRequest) {
     isBot
   };
 
-  fetch(`${process.env.NEXT_PUBLIC_LIMBA_API_URL}/analytics`, {
+  fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/analytics/fetches`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -42,5 +44,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher:
-    '/((?!_next)(?!manifest.webmanifest)(?!taur.svg)(?!favicon.ico)(?!sw.js)(?!favicons/)(?!sounds/).*)'
+    '/((?!_next)(?!api)(?!manifest.webmanifest)(?!taur.svg)(?!favicon.ico)(?!sw.js)(?!favicons/)(?!sounds/).*)'
 };
