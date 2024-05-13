@@ -9,7 +9,14 @@ const key = LOCAL_STORAGE_KEYS.userId;
 
 const setUserCookies = async (userId: string) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/set-user-cookies?user-id=${userId}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/set-user-cookies`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userId })
+    }
   );
 
   if (!res.ok) {

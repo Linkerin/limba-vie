@@ -11,7 +11,7 @@ const MuteBtn = dynamic(() => import('./RightButtons/MuteBtn'), { ssr: false });
 function Header() {
   return (
     <header className={styles.header}>
-      <Link aria-label="To homepage. LimbaVie logo" href="/" prefetch>
+      <Link aria-label="To homepage. LimbaVie logo" href="/" prefetch={false}>
         <span id={styles.limba}>Limba</span>
         <span>Vie</span>
       </Link>

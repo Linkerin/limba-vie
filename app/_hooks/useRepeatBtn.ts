@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { captureException } from '@sentry/nextjs';
 
 import { REPEAT_WORDS_CTY } from '@/app/_lib/constants';
@@ -47,13 +48,16 @@ function getCompletedSets() {
 }
 
 function useRepeatBtn() {
-  let show = false;
   const completedSets = getCompletedSets();
   const wordsForRepeat = getWordForRepeat();
 
-  if (completedSets.length > 0 || wordsForRepeat.length > 0) {
-    show = true;
-  }
+  const show = useMemo(() => {
+    if (completedSets.length > 0 || wordsForRepeat.length > 0) {
+      return true;
+    }
+
+    return false;
+  }, [completedSets.length, wordsForRepeat.length]);
 
   const setParamArr = shuffleArr(completedSets)
     .slice(0, 5)

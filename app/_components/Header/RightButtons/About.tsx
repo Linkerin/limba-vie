@@ -10,6 +10,7 @@ function About() {
       aria-label="To about page"
       href="/about"
       className={classNames(styles.btn, styles.info)}
+      prefetch={false}
     >
       i
     </ButtonLink>

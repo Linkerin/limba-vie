@@ -1,14 +1,14 @@
 import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   if (request.nextUrl.origin !== process.env.NEXT_PUBLIC_BASE_URL) {
     const res = new Response(null, { status: 400 });
     return res;
   }
 
-  const searchParams = request.nextUrl.searchParams;
-  const userId = searchParams.get('user-id');
+  const data = await request.json();
+  const userId = data.userId;
 
   if (!userId) {
     const res = new Response('Invalid query', { status: 400 });

@@ -42,5 +42,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher:
-    '/((?!_next)(?!manifest.webmanifest)(?!taur.svg)(?!favicon.ico)(?!sw.js)(?!favicons/).*)'
+    '/((?!_next)(?!manifest.webmanifest)(?!taur.svg)(?!favicon.ico)(?!sw.js)(?!favicons/)(?!sounds/).*)'
 };

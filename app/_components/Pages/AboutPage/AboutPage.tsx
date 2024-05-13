@@ -35,6 +35,7 @@ function AboutPage() {
             href="https://freesound.org/people/LittleRobotSoundFactory/sounds/270404/"
             rel="noopener external"
             target="_blank"
+            prefetch={false}
           >
             Jingle_Achievement_00.wav
             <IconExternalLink />
@@ -44,6 +45,7 @@ function AboutPage() {
             href="https://freesound.org/people/LittleRobotSoundFactory/"
             rel="noopener external"
             target="_blank"
+            prefetch={false}
           >
             LittleRobotSoundFactory <IconExternalLink />
           </Link>{' '}
@@ -52,6 +54,7 @@ function AboutPage() {
             href="https://creativecommons.org/licenses/by/4.0/"
             rel="noopener external"
             target="_blank"
+            prefetch={false}
           >
             Attribution 4.0 <IconExternalLink />
           </Link>
@@ -61,6 +64,7 @@ function AboutPage() {
             href="https://www.freepik.com/free-vector/cute-bull-thumbs-up-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-flat_35868793.html"
             rel="noopener external"
             target="_blank"
+            prefetch={false}
           >
             Image by catalyststuff <IconExternalLink />
           </Link>{' '}
