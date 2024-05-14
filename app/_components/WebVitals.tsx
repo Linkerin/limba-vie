@@ -6,7 +6,7 @@ function WebVitals() {
   useReportWebVitals(metric => {
     if (process.env.NEXT_PUBLIC_ENVIRONMENT !== 'PROD') return null;
 
-    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/analytics/web-vitals`;
+    const url = `${process.env.NEXT_PUBLIC_LIMBA_API}/web-vitals`;
     const body = JSON.stringify({
       metricId: metric.id,
       metricName: metric.name,

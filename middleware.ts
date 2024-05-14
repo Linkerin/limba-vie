@@ -2,7 +2,7 @@ import { NextResponse, userAgent } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const apiUrl = process.env.NEXT_PUBLIC_LIMBA_API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_LIMBA_API;
   const response = NextResponse.next();
   const pathname = request.nextUrl.pathname;
 
@@ -26,12 +26,12 @@ export function middleware(request: NextRequest) {
     country: request.geo?.country,
     city: request.geo?.city,
     ip: request.ip,
+    bot: isBot,
     pathname,
-    userId,
-    isBot
+    userId
   };
 
-  fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/analytics/fetches`, {
+  fetch(`${process.env.NEXT_PUBLIC_LIMBA_API}/analytics`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
