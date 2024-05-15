@@ -15,10 +15,11 @@ function WebVitals() {
       navigationType: metric.navigationType,
       rating: metric.rating,
       value: metric.value,
+      city,
+      country,
       ip,
       userAgent,
-      userId,
-      location: [city, country]
+      userId
     });
 
     if (navigator.sendBeacon) {
