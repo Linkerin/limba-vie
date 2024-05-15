@@ -7,7 +7,7 @@ function WebVitals() {
   useReportWebVitals(async metric => {
     if (process.env.NEXT_PUBLIC_ENVIRONMENT !== 'PROD') return null;
 
-    const { ip, userAgent, userId } = await getUserInfoFromReq();
+    const { city, country, ip, userAgent, userId } = await getUserInfoFromReq();
     const url = `${process.env.NEXT_PUBLIC_LIMBA_API}/web-vitals`;
     const body = JSON.stringify({
       metricId: metric.id,
@@ -17,7 +17,8 @@ function WebVitals() {
       value: metric.value,
       ip,
       userAgent,
-      userId
+      userId,
+      location: [city, country]
     });
 
     if (navigator.sendBeacon) {

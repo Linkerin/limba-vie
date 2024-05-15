@@ -10,5 +10,8 @@ export async function getUserInfoFromReq() {
   const userAgent = headersList.get('user-agent');
   const userId = cookiesStore.get('x-user-id')?.value;
 
-  return { ip, userAgent, userId };
+  const city = headersList.get('x-vercel-ip-city');
+  const country = headersList.get('x-vercel-ip-country');
+
+  return { country, city, ip, userAgent, userId };
 }

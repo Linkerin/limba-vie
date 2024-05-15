@@ -12,6 +12,7 @@ export function middleware(request: NextRequest) {
 
   const userId = request.cookies.get('x-user-id')?.value;
   const { browser, device, engine, os, isBot } = userAgent(request);
+  const referer = request.headers.get('referer');
 
   const body = {
     os: os.name,
@@ -28,6 +29,7 @@ export function middleware(request: NextRequest) {
     ip: request.ip,
     bot: isBot,
     pathname,
+    referer,
     userId
   };
 
