@@ -1,18 +1,23 @@
 'use client';
 
 import { useReportWebVitals } from 'next/web-vitals';
+import { getUserInfoFromReq } from '../_services/actions';
 
 function WebVitals() {
-  useReportWebVitals(metric => {
+  useReportWebVitals(async metric => {
     if (process.env.NEXT_PUBLIC_ENVIRONMENT !== 'PROD') return null;
 
+    const { ip, userAgent, userId } = await getUserInfoFromReq();
     const url = `${process.env.NEXT_PUBLIC_LIMBA_API}/web-vitals`;
     const body = JSON.stringify({
       metricId: metric.id,
       metricName: metric.name,
       navigationType: metric.navigationType,
       rating: metric.rating,
-      value: metric.value
+      value: metric.value,
+      ip,
+      userAgent,
+      userId
     });
 
     if (navigator.sendBeacon) {
