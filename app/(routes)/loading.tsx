@@ -1,0 +1,7 @@
+import Loader from '../_components/_ui/Loader/Loader';
+
+function Loading() {
+  return <Loader />;
+}
+
+export default Loading;

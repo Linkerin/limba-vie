@@ -3,9 +3,9 @@
 import { useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 
-import AudioBtn from '../../AudioBtn/AudioBtn';
+import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
 import Finished from '../../WordScreen/Finished/Finished';
-import SentenceLoading from '../../WordScreen/Sentence/SentenceLoading';
+import SentenceLoading from '../../WordScreen/Sentence/SentenceLoading/SentenceLoading';
 import { shuffleArr } from '@/app/_lib/utils';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
 import Word from '../../WordScreen/Word/Word';

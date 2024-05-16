@@ -1,10 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import classNames from 'classnames';
 
-import ListItemLink from '../ListItemLink/ListItemLink';
+import ListItemLink from '../_ui/ListItemLink/ListItemLink';
 
 import styles from './TipsNav.module.css';
 

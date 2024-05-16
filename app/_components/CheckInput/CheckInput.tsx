@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import classNames from 'classnames';
 
-import Button from '../Button/Button';
+import Button from '../_ui/Button/Button';
 import {
   getArticle,
   getRandomValueFromArr,

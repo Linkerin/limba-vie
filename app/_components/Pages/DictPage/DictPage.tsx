@@ -1,4 +1,4 @@
-import ListItemLink from '@/app/_components/ListItemLink/ListItemLink';
+import ListItemLink from '../../_ui/ListItemLink/ListItemLink';
 import type { Dict } from '@/app/_services/dbFetchers';
 
 import styles from './DictPage.module.css';

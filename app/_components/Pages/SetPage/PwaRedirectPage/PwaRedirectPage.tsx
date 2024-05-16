@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-import Loader from '../../_ui/Loader/Loader';
+import Loader from '../../../_ui/Loader/Loader';
 import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
 
 function PwaRedirectPage() {

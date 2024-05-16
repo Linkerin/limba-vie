@@ -1,0 +1,54 @@
+.completed {
+  --completed-primary: var(--secondary-dark);
+
+  background-color: var(--secondary-container-low);
+  border-color: var(--completed-primary);
+  box-shadow: 0.125rem 0.125rem var(--completed-primary);
+  color: var(--completed-primary);
+}
+
+.completed:active {
+  background-color: var(--secondary-container);
+  box-shadow: none;
+}
+
+.content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.completed-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  user-select: none;
+  white-space: normal;
+}
+
+.completed-btn::before {
+  content: '';
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.completed-icon {
+  border: solid var(--completed-primary);
+  border-width: 0 0 0.125rem 0.125rem;
+  border-radius: 0 0 0 var(--radius-md, 0.25rem);
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.75rem;
+  padding: 0.125rem;
+  stroke-width: 0.125rem;
+  box-shadow: 0.0625rem 0.0625rem var(--completed-primary);
+}

@@ -3,7 +3,7 @@
 import { useCallback } from 'react';
 import { IconVolume, IconVolumeOff } from '@tabler/icons-react';
 
-import Button from '../../Button/Button';
+import Button from '../../_ui/Button/Button';
 import useSoundMode from '@/app/_hooks/useSoundMode';
 
 import styles from './RightButtons.module.css';

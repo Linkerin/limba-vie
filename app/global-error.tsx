@@ -3,8 +3,8 @@
 import { useEffect } from 'react';
 import * as Sentry from '@sentry/nextjs';
 
-import Button from './_components/Button/Button';
-import ButtonLink from './_components/Button/ButtonLink';
+import Button from './_components/_ui/Button/Button';
+import ButtonLink from './_components/_ui/Button/ButtonLink/ButtonLink';
 import Header from './_components/Header/Header';
 import NavBar from './_components/NavBar/NavBar';
 

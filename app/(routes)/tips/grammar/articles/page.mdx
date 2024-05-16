@@ -1,0 +1,173 @@
+import { ARTICLES } from '@/app/_lib/constants';
+import Attention from '@/app/_components/_ui/Attention/Attention';
+import ExampleSentence from '@/app/_components/ExampleSentence/ExampleSentence';
+
+export const metadata = {
+  title: ARTICLES.articles.title,
+  description: ARTICLES.articles.description
+};
+
+export const audioFolder = 'grammar/articles';
+export const examples = {
+  m: [
+    {
+      id: 1,
+      sentence: 'Am văzut un băiat pe stradă.',
+      translation: 'I saw a boy on the street.'
+    },
+    {
+      id: 2,
+      sentence: 'Băiatul aleargă în parc.',
+      translation: 'The boy is running in the park.'
+    },
+    {
+      id: 3,
+      sentence: 'Am cumpărat niște băieți de ciocolată.',
+      translation: 'I bought some chocolate boys.'
+    }
+  ],
+  f: [
+    {
+      id: 1,
+      sentence: 'Ea citește o carte interesantă.',
+      translation: 'She is reading an interesting book.'
+    },
+    {
+      id: 2,
+      sentence: 'Cartea este pe masă.',
+      translation: 'The book is on the table.'
+    },
+    {
+      id: 3,
+      sentence: 'Am primit niște cărți de la bibliotecă.',
+      translation: 'I received some books from the library.'
+    }
+  ],
+  n: [
+    {
+      id: 1,
+      sentence: 'Copilul are un ou în mână.',
+      translation: 'The child has an egg in hand.'
+    },
+    {
+      id: 2,
+      sentence: 'Oul este pe masă.',
+      translation: 'The egg is on the table.'
+    },
+    {
+      id: 3,
+      sentence: 'Am găsit niște ouă în magazie.',
+      translation: 'I found some eggs in the shed.'
+    }
+  ]
+};
+
+# {metadata.title}
+
+_Definite_ articles are attached to the noun as suffixes, whereas _indefinite_
+articles stand as separate words.  
+The form of the definite article also depends on whether the noun is
+**singular** or **plural**.
+
+## Masculin:
+
+### Indefinite articles
+
+| Singular                 | Plural                            |
+| ------------------------ | --------------------------------- |
+| **un** copil _(a child)_ | niște copi**i** _(some children)_ |
+| **un** băiat _(a boy)_   | niște băieț**i** _(some boys)_    |
+| **un** câine _(a dog)_   | niște câin**i** _(some dogs)_     |
+
+### Definite articles
+
+| Singular                  | Plural                      |
+| ------------------------- | --------------------------- |
+| copil**ul** _(the child)_ | copii**i** _(the children)_ |
+| băiat**ul** _(the boy)_   | băieți**i** _(the boys)_    |
+| câine**le** _(the dog)_   | câini**i** _(the dogs)_     |
+
+## Feminin:
+
+### Indefinite articles
+
+| Singular               | Plural                         |
+| ---------------------- | ------------------------------ |
+| **o** fată _(a girl)_  | niște fet**e** _(some girls)_  |
+| **o** carte _(a book)_ | niște cărț**i** _(some books)_ |
+| **o** masă _(a table)_ | niște mes**e** _(some tables)_ |
+
+### Definite articles
+
+| Singular                | Plural                    |
+| ----------------------- | ------------------------- |
+| fat**a** _(the girl)_   | fete**le** _(the girls)_  |
+| cart**ea** _(the book)_ | cărți**le** _(the books)_ |
+| mas**a** _(the table)_  | mese**le** _(the tables)_ |
+
+## Neutru:
+
+### Indefinite articles
+
+| Singular                   | Plural                              |
+| -------------------------- | ----------------------------------- |
+| **un** ou _(an egg)_       | niște ou**ă** _(some eggs)_         |
+| **un** cântec _(a song)_   | niște cântec**e** _(some songs)_    |
+| **un** telefon _(a phone)_ | niște telefoan**e** _(some phones)_ |
+| **un** telefon _(a phone)_ | niște telefoan**e** _(some phones)_ |
+| **un** grai _(a dialect)_  | niște grai**uri** _(some dialects)_ |
+
+### Definite articles
+
+| Singular                    | Plural                         |
+| --------------------------- | ------------------------------ |
+| ou**l** _(the egg)_         | ouă**le** _(the eggs)_         |
+| cântec**ul** _(the song)_   | cântece**le** _(the songs)_    |
+| telefon**ul** _(the phone)_ | telefoane**le** _(the phones)_ |
+| telefon**ul** _(the phone)_ | telefoane**le** _(the phones)_ |
+| grai**ul** _(the dialect)_  | graiuri**le** _(the dialects)_ |
+
+<Attention heading="Note:">
+  _Neuter_ nouns in Romanian act like **masculine** ones when **singular**, and
+  like **feminine** ones when **plural**.
+</Attention>
+
+<section>
+## Examples:
+
+### Masculine:
+
+{examples.m.map(elem =>
+
+<ExampleSentence
+  key={elem.sentence}
+  sentence={elem.sentence}
+  translation={elem.translation}
+  audioName={`articles-ex-m-${elem.id}`}
+  audioFolder={audioFolder}
+/> )}
+
+### Feminine:
+
+{examples.f.map(elem =>
+
+<ExampleSentence
+  key={elem.sentence}
+  sentence={elem.sentence}
+  translation={elem.translation}
+  audioName={`articles-ex-f-${elem.id}`}
+  audioFolder={audioFolder}
+/> )}
+
+### Neuter:
+
+{examples.n.map(elem =>
+
+  <ExampleSentence
+    key={elem.sentence}
+    sentence={elem.sentence}
+    translation={elem.translation}
+    audioName={`articles-ex-n-${elem.id}`}
+    audioFolder={audioFolder}
+  /> )}
+</section>

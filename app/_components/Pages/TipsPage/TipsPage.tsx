@@ -1,6 +1,6 @@
 import { ARTICLES } from '@/app/_lib/constants';
-import ListItem from '@/app/_components/ListItem/ListItem';
-import ListItemLink from '@/app/_components/ListItemLink/ListItemLink';
+import ListItem from '../../_ui/ListItem/ListItem';
+import ListItemLink from '../../_ui/ListItemLink/ListItemLink';
 
 import styles from './TipsPage.module.css';
 

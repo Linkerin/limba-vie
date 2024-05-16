@@ -1,6 +1,5 @@
 import ErrorPage from '../ErrorPage/ErrorPage';
-import ErrorPageFooter from '../../ErrorPageFooter/ErrorPageFooter';
-
+import ErrorPageFooter from '../ErrorPage/ErrorPageFooter/ErrorPageFooter';
 import styles from './NotFoundPage.module.css';
 
 function NotFoundPage() {

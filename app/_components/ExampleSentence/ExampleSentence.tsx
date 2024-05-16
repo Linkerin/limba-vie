@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import AudioBtn from '../AudioBtn/AudioBtn';
+import AudioBtn from '../_ui/AudioBtn/AudioBtn';
 
 import styles from './ExampleSentence.module.css';
 

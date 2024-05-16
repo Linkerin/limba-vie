@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import ButtonLink from '../../Button/ButtonLink';
+import ButtonLink from '../../_ui/Button/ButtonLink/ButtonLink';
 
 import styles from './RightButtons.module.css';
 

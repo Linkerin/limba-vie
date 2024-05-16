@@ -1,4 +1,4 @@
-import AudioBtn from '../../AudioBtn/AudioBtn';
+import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
 import Sentence from '../../WordScreen/Sentence/Sentence';
 import Word from '../../WordScreen/Word/Word';
 import WordImg from '../../WordScreen/WordImg/WordImg';
