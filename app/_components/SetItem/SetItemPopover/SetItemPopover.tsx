@@ -46,6 +46,7 @@ function SetItemPopover({ closeHandler, set }: SetItemPopoverProps) {
           <ButtonLink
             aria-label={`To ${capitalizeWord(set)} words set`}
             href={`/set/${encodeURIComponent(set)}`}
+            prefetch
           >
             Repeat
           </ButtonLink>
@@ -53,6 +54,7 @@ function SetItemPopover({ closeHandler, set }: SetItemPopoverProps) {
             aria-label={`To ${capitalizeWord(set)} words set practice`}
             href={`/set/check/${encodeURIComponent(set)}`}
             variant="secondary"
+            prefetch
           >
             Practice
           </ButtonLink>

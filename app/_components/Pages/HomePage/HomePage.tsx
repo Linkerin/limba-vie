@@ -1,14 +1,14 @@
 import dynamic from 'next/dynamic';
 
-import SetItemLoading from '../../SetsList/SetItem/SetItemLoading/SetItemLoading';
-import SetItemWordsNum from '../../SetsList/SetItem/SetItemWordsNum/SetItemWordsNum';
+import SetItemLoading from '../../SetItem/SetItemLoading/SetItemLoading';
+import SetItemWordsNum from '../../SetItem/SetItemWordsNum/SetItemWordsNum';
 import type { Sets } from '@/app/_services/dbFetchers';
 
 import styles from './HomePage.module.css';
-import SetItemEmoji from '../../SetsList/SetItem/SetItemEmoji/SetItemEmoji';
+import SetItemEmoji from '../../SetItem/SetItemEmoji/SetItemEmoji';
 import { capitalizeWord } from '@/app/_lib/utils';
 
-const SetItem = dynamic(() => import('../../SetsList/SetItem/SetItem'), {
+const SetItem = dynamic(() => import('../../SetItem/SetItem'), {
   loading: () => <SetItemLoading />,
   ssr: false
 });

@@ -5,17 +5,15 @@ import classNames from 'classnames';
 import { IconCheck } from '@tabler/icons-react';
 
 import { capitalizeWord } from '@/app/_lib/utils';
-import ListItem from '../../_ui/ListItem/ListItem';
-import SetItemCompletedButton from './SetItemCompletedButton/SetItemCompletedItem';
-import SetItemLink from './SetItemLink/SetItemLink';
+import ListItem from '../_ui/ListItem/ListItem';
 import SetItemPopover from './SetItemPopover/SetItemPopover';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './SetItem.module.css';
-import ListItemLink from '../../_ui/ListItemLink/ListItemLink';
+import ListItemLink from '../_ui/ListItemLink/ListItemLink';
 
-import Portal from '../../_ui/Portal/Portal';
+import Portal from '../_ui/Portal/Portal';
 
 function isSetCompleted(id: number | null) {
   if (typeof window === 'undefined') return;

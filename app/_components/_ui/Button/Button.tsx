@@ -14,6 +14,7 @@ function Button({
   className,
   fadeAnimation = false,
   variant = 'primary',
+  onClick,
   ...props
 }: ButtonProps) {
   return (
@@ -24,6 +25,10 @@ function Button({
         { [styles.fade]: fadeAnimation },
         className
       )}
+      onClick={e => {
+        navigator.vibrate(100);
+        onClick && onClick(e);
+      }}
       {...props}
     >
       {children}
