@@ -12,10 +12,11 @@ import React from 'react';
 
 interface SetItemPopoverProps {
   closeHandler: () => void;
+  emoji: Tables<'sorted_sets'>['emoji'];
   set: Tables<'sets'>['set'];
 }
 
-function SetItemPopover({ closeHandler, set }: SetItemPopoverProps) {
+function SetItemPopover({ closeHandler, emoji, set }: SetItemPopoverProps) {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -41,7 +42,9 @@ function SetItemPopover({ closeHandler, set }: SetItemPopoverProps) {
         <button aria-label="Close modal" onClick={closeHandler}>
           <IconX />
         </button>
-        <p>{capitalizeWord(set)}</p>
+        <p>
+          {emoji} {capitalizeWord(set)}
+        </p>
         <div className={styles.buttons}>
           <ButtonLink
             aria-label={`To ${capitalizeWord(set)} words set`}

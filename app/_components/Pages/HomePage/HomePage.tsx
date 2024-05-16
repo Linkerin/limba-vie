@@ -32,7 +32,12 @@ function HomePage({ sets }: { sets: Sets }) {
                 .filter(set => set.unit === unit)
                 .map(set => {
                   return (
-                    <SetItem key={set.id} set={set.set} setId={set.id}>
+                    <SetItem
+                      key={set.id}
+                      emoji={set.emoji}
+                      set={set.set}
+                      setId={set.id}
+                    >
                       <SetItemEmoji emoji={set.emoji} />
                       {set.set && capitalizeWord(set.set)}
                       <SetItemWordsNum wordsNum={set.words_count} />

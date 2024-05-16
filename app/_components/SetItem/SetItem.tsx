@@ -30,11 +30,12 @@ function isSetCompleted(id: number | null) {
 
 interface SetItemProps {
   children?: React.ReactNode;
+  emoji: Tables<'sorted_sets'>['emoji'];
   set: Tables<'sorted_sets'>['set'];
   setId: Tables<'sorted_sets'>['id'];
 }
 
-function SetItem({ children, set, setId }: SetItemProps) {
+function SetItem({ children, emoji, set, setId }: SetItemProps) {
   const [showModal, setShowModal] = useState(false);
 
   const isCompleted = useMemo(() => isSetCompleted(setId), [setId]);
@@ -75,7 +76,11 @@ function SetItem({ children, set, setId }: SetItemProps) {
         )}
         {showModal && (
           <Portal>
-            <SetItemPopover closeHandler={toggleModalState} set={set} />
+            <SetItemPopover
+              closeHandler={toggleModalState}
+              emoji={emoji}
+              set={set}
+            />
           </Portal>
         )}
       </ListItem>
