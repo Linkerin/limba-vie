@@ -10,16 +10,11 @@ function FinishedSound() {
     if (typeof navigator === 'undefined') return;
 
     const timeoutId = setTimeout(() => {
-      navigator.vibrate(300);
+      navigator.vibrate([300, 200, 500]);
     }, 400);
-
-    const timeoutIdSecond = setTimeout(() => {
-      navigator.vibrate(500);
-    }, 900);
 
     return () => {
       clearTimeout(timeoutId);
-      clearTimeout(timeoutIdSecond);
     };
   }, []);
 

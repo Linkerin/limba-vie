@@ -26,7 +26,9 @@ function Button({
         className
       )}
       onClick={e => {
-        navigator.vibrate(100);
+        if (typeof navigator !== 'undefined') {
+          navigator.vibrate(50);
+        }
         onClick && onClick(e);
       }}
       {...props}
