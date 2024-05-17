@@ -3,7 +3,7 @@
 import { useCallback } from 'react';
 import classNames from 'classnames';
 
-import ActionBtn from '../../ActionBtn/ActionBtn';
+import ActionBtn from '../../_ui/ActionBtn/ActionBtn';
 import type { Tables } from '@/app/_lib/supabase.types';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useWordHandlers from '../../../_hooks/useWordHandlers';

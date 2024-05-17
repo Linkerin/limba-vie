@@ -1,7 +1,7 @@
 import { IconCheck, IconMessage2, IconRepeat } from '@tabler/icons-react';
 import classNames from 'classnames';
 
-import Button, { ButtonProps } from '../_ui/Button/Button';
+import Button, { ButtonProps } from '../Button/Button';
 
 import styles from './ActionBtn.module.css';
 

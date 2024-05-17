@@ -1,20 +1,16 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 import classNames from 'classnames';
 
-import Button from '../_ui/Button/Button';
-import {
-  getArticle,
-  getRandomValueFromArr,
-  normalizeWord
-} from '@/app/_lib/utils';
+import Button from '../../_ui/Button/Button';
+import { getRandomValueFromArr } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useWordHandlers from '@/app/_hooks/useWordHandlers';
 
 import styles from './CheckInput.module.css';
+import useFormHandlers from './useFormHandlers';
 
 const CheckInputModal = dynamic(
   () => import('../CheckInputModal/CheckInputModal'),
@@ -41,64 +37,25 @@ function CheckInput({
   wordId,
   wordRo
 }: CheckInputProps) {
-  const [input, setInput] = useState('');
-  const [resultStatus, setResultStatus] = useState<null | 'error' | 'success'>(
-    null
-  );
-
   const isApplePwa = useIsApplePwa();
 
   const { learnedHandler, repeatHandler } = useWordHandlers({
     wordId
   });
 
-  const answer = useMemo(() => {
-    const normalizedWord = normalizeWord(wordRo);
-    const article = getArticle(gender, plural);
-
-    const normalizedWithArticle = article
-      ? `${article} ${normalizedWord}`
-      : null;
-    const originalWithArticle = article ? `${article} ${wordRo}` : wordRo;
-
-    const result = {
-      word: normalizedWord,
-      withArticle: normalizedWithArticle,
-      original: originalWithArticle
-    };
-
-    return result;
-  }, [wordRo, gender, plural]);
-
-  const onChangeHandler: React.ChangeEventHandler<HTMLInputElement> =
-    useCallback(e => {
-      const { value } = e.currentTarget;
-
-      setInput(value);
-    }, []);
-
-  const onSubmitHandler: React.FormEventHandler<HTMLFormElement> = useCallback(
-    e => {
-      e.preventDefault();
-
-      const normalizedInput = normalizeWord(input);
-
-      if (
-        normalizedInput === answer.word ||
-        normalizedInput === answer.withArticle
-      ) {
-        setResultStatus('success');
-        learnedHandler();
-        return;
-      }
-
-      setResultStatus('error');
-      repeatHandler();
-
-      return;
-    },
-    [answer, input, learnedHandler, repeatHandler]
-  );
+  const {
+    input,
+    originalWord,
+    resultStatus,
+    onChangeHandler,
+    onSubmitHandler
+  } = useFormHandlers({
+    gender,
+    plural,
+    wordRo,
+    repeatHandler,
+    learnedHandler
+  });
 
   return (
     <>
@@ -132,8 +89,13 @@ function CheckInput({
           <p>
             {getRandomValueFromArr(phrases[resultStatus])}{' '}
             {resultStatus === 'success' ? 'I' : 'i'}
-            t&apos;s <span className={styles.answer}>{answer.original}</span>.
+            t&apos;s <span className={styles.answer}>{originalWord}</span>.
           </p>
+          {resultStatus === 'error' && (
+            <p className={styles['wrong-input']}>
+              Your answer: <span>{input}</span>
+            </p>
+          )}
         </CheckInputModal>
       )}
     </>

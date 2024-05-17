@@ -133,6 +133,11 @@ table {
   border-spacing: 0;
 }
 
+ol,
+ul {
+  padding: 0;
+}
+
 h1,
 h2,
 h3,

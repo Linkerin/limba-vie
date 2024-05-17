@@ -6,7 +6,7 @@ async function Word({ params }: { params: { word: string } }) {
   const wordParam = decodeURIComponent(params.word);
   const word = await getWord(wordParam);
 
-  return <WordPage word={word} wordParam={wordParam} />;
+  return <WordPage word={word} />;
 }
 
 export default Word;

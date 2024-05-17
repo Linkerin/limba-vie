@@ -5,19 +5,21 @@ import dynamic from 'next/dynamic';
 
 import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
 import Finished from '../../WordScreen/Finished/Finished';
-import SentenceLoading from '../../WordScreen/Sentence/SentenceLoading/SentenceLoading';
+import SentenceLoading from '../../Word/Sentence/SentenceLoading/SentenceLoading';
 import { shuffleArr } from '@/app/_lib/utils';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
-import Word from '../../WordScreen/Word/Word';
+import Word from '../../Word/Word/Word';
 import WordCounter from '../../WordScreen/WordCounter/WordCounter';
-import WordImg from '../../WordScreen/WordImg/WordImg';
+import WordImg from '../../Word/WordImg/WordImg';
 import type { RepeatWords, SetInfo, Words } from '@/app/_services/dbFetchers';
 
 import styles from './SetPage.module.css';
 
 const Actions = dynamic(() => import('../../WordScreen/Actions/Actions'));
-const CheckInput = dynamic(() => import('../../CheckInput/CheckInput'));
-const Sentence = dynamic(() => import('../../WordScreen/Sentence/Sentence'), {
+const CheckInput = dynamic(
+  () => import('../../WordScreen/CheckInput/CheckInput')
+);
+const Sentence = dynamic(() => import('../../Word/Sentence/Sentence'), {
   loading: () => <SentenceLoading />
 });
 

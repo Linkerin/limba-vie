@@ -104,6 +104,8 @@ export const getSentence = cache(async (id: Tables<'words'>['id']) => {
   return data[0];
 });
 
+export type SentenceType = Awaited<ReturnType<typeof getSentence>>;
+
 export const getSetInfo = cache(async (setName: string) => {
   const { data, error } = await supabase
     .from('sorted_sets')

@@ -1,6 +1,10 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
-import { getSentence } from '@/app/_services/dbFetchers';
+import { getSentence, SentenceType } from '@/app/_services/dbFetchers';
+import SentenceLoading from './SentenceLoading/SentenceLoading';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './Sentence.module.css';
@@ -10,9 +14,18 @@ interface SentenceProps {
   wordId: Tables<'words'>['id'];
 }
 
-async function Sentence({ className, wordId }: SentenceProps) {
-  const sentences = await getSentence(wordId);
+function Sentence({ className, wordId }: SentenceProps) {
+  const [sentences, setSentences] = useState<SentenceType | 'idle'>('idle');
+  useEffect(() => {
+    const loadSentences = async () => {
+      const sentences = await getSentence(wordId);
+      setSentences(sentences);
+    };
 
+    loadSentences();
+  }, [wordId]);
+
+  if (sentences === 'idle') return <SentenceLoading />;
   const noData = !sentences || !sentences.example_ro;
 
   return (

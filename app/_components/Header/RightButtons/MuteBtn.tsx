@@ -12,11 +12,13 @@ function MuteBtn() {
   const { isSoundAllowed, toggleSound } = useSoundMode();
 
   const clickHandler: React.MouseEventHandler = useCallback(
-    e => {
+    async e => {
       e.preventDefault();
+      const popSound = new Audio('/sounds/pop.aac');
       toggleSound();
+      !isSoundAllowed && (await popSound.play());
     },
-    [toggleSound]
+    [toggleSound, isSoundAllowed]
   );
 
   return (

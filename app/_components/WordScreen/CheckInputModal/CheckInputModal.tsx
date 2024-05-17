@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 
-import Button from '../_ui/Button/Button';
+import Button from '../../_ui/Button/Button';
 import CheckSound from './CheckSound/CheckSound';
-import Portal from '../_ui/Portal/Portal';
+import Portal from '../../_ui/Portal/Portal';
 
 import styles from './CheckInputModal.module.css';
 
