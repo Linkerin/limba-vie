@@ -26,6 +26,7 @@ function MuteBtn() {
       onClick={clickHandler}
       title={`Turn ${isSoundAllowed ? 'off' : 'on'} word sounds autoplay`}
       fadeAnimation
+      vibrate={isSoundAllowed ? false : true}
     >
       {isSoundAllowed ? <IconVolume /> : <IconVolumeOff />}
     </Button>

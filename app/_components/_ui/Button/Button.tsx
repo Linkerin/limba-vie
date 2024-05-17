@@ -7,6 +7,7 @@ import styles from './Button.module.css';
 export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
   fadeAnimation?: boolean;
   variant?: 'primary' | 'secondary' | 'tertiary';
+  vibrate?: boolean;
 }
 
 function Button({
@@ -14,6 +15,7 @@ function Button({
   className,
   fadeAnimation = false,
   variant = 'primary',
+  vibrate = true,
   onClick,
   ...props
 }: ButtonProps) {
@@ -26,8 +28,8 @@ function Button({
         className
       )}
       onClick={e => {
-        if (typeof navigator !== 'undefined') {
-          navigator.vibrate(50);
+        if (typeof navigator !== 'undefined' && vibrate) {
+          navigator.vibrate(40);
         }
         onClick && onClick(e);
       }}
