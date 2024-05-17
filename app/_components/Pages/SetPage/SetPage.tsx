@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 
 import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
 import Finished from '../../WordScreen/Finished/Finished';
-import SentenceLoading from '../../Word/Sentence/SentenceLoading/SentenceLoading';
+import Sentence from '../../Word/Sentence/Sentence';
 import { shuffleArr } from '@/app/_lib/utils';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
 import Word from '../../Word/Word/Word';
@@ -19,9 +19,6 @@ const Actions = dynamic(() => import('../../WordScreen/Actions/Actions'));
 const CheckInput = dynamic(
   () => import('../../WordScreen/CheckInput/CheckInput')
 );
-const Sentence = dynamic(() => import('../../Word/Sentence/Sentence'), {
-  loading: () => <SentenceLoading />
-});
 
 export interface SetPageProps {
   words: Words | RepeatWords;
