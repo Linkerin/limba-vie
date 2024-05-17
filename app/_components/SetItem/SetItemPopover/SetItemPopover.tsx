@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { IconX } from '@tabler/icons-react';
 
+import Button from '../../_ui/Button/Button';
 import ButtonLink from '@/app/_components/_ui/Button/ButtonLink/ButtonLink';
 import { capitalizeWord } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
@@ -39,9 +40,9 @@ function SetItemPopover({ closeHandler, emoji, set }: SetItemPopoverProps) {
   return (
     <div className={styles.container}>
       <div ref={modalRef} className={styles.card}>
-        <button aria-label="Close modal" onClick={closeHandler}>
+        <Button aria-label="Close modal" onClick={closeHandler}>
           <IconX />
-        </button>
+        </Button>
         <p>
           {emoji} {capitalizeWord(set)}
         </p>

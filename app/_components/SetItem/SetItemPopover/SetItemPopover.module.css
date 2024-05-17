@@ -17,31 +17,31 @@
   justify-content: center;
   gap: 0.75rem;
   background-color: var(--primary-container-low);
-  padding: 0.75rem 0.75rem 2.25rem;
   border: 2px solid var(--primary-darker);
   border-radius: var(--radius-md, 0.25rem);
+  min-width: 80%;
+  padding: 1rem 1rem 1.5rem;
 }
 
 .card p {
+  border-bottom: 2px solid var(--primary);
   color: var(--secondary-darker);
   font-size: 2rem;
-  margin-block-end: 1.25rem;
-  padding-inline: 0.5rem;
+  margin-block-end: 1rem;
+  padding: 0.5rem;
+  text-align: center;
 }
 
 .card > button {
   align-self: flex-end;
   aspect-ratio: 1 / 1;
-  background: none;
-  border: 2px solid var(--neutral);
-  border-radius: var(--radius-md, 0.25rem);
-  color: var(--neutral);
   font-size: 1.25rem;
   padding: 0;
 }
 
 .buttons {
   margin-inline: 1rem;
+  width: 100%;
 }
 
 .buttons > a {
