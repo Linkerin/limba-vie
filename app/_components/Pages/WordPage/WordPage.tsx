@@ -32,7 +32,11 @@ function WordPage({ word }: WordPageProps) {
             />
           )}
         </Word>
-        <Sentence className={styles.sentence} wordId={word.id} />
+        <Sentence
+          className={styles.sentence}
+          ro={word.example_ro}
+          en={word.example_en}
+        />
       </>
     </section>
   );

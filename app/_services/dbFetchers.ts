@@ -140,7 +140,9 @@ export const getWord = cache(async (word: string) => {
        gender_ro,
        plural,
        img_name,
-       audio_name`
+       audio_name,
+       example_ro,
+       example_en`
     )
     .eq('en', word)
     .limit(1);
