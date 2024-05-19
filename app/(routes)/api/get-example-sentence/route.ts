@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     const result = await res.json();
     const sentences = JSON.parse(
       result?.candidates[0]?.content?.parts[0]?.text
-    )[0];
+    );
 
     if (sentences.en?.length > 0 && sentences.ro?.length > 0) {
       const { error } = await supabaseAdmin
