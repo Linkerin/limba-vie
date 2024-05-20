@@ -8,6 +8,6 @@ async function Home() {
   return <HomePage sets={sets} />;
 }
 
-export default Home;
+export const revalidate = Number(process.env.REVALIDATE_PERIOD_SEC);
 
-export const revalidate = Number(process.env.REVALIDATE_PERIOD_MS);
+export default Home;

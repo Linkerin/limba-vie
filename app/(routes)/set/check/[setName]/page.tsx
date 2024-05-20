@@ -31,4 +31,4 @@ export async function generateStaticParams() {
   }));
 }
 
-export const revalidate = Number(process.env.REVALIDATE_PERIOD_MS);
+export const revalidate = Number(process.env.REVALIDATE_PERIOD_SEC);
