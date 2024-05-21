@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo } from 'react';
+import { useCallback, useRef } from 'react';
 import { IconVolume, IconVolumeOff } from '@tabler/icons-react';
 
 import Button from '../../_ui/Button/Button';
@@ -11,21 +11,23 @@ import styles from './RightButtons.module.css';
 function MuteBtn() {
   const { isSoundAllowed, toggleSound } = useSoundMode();
 
-  const popSound = useMemo(() => new Audio('/sounds/pop.aac'), []);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const clickHandler: React.MouseEventHandler = useCallback(
     e => {
       e.preventDefault();
-      if (!isSoundAllowed) {
-        popSound.currentTime = 0;
-        popSound.play();
-      } else {
-        popSound.pause();
-      }
-
       toggleSound();
+
+      if (!audioRef.current) return;
+
+      if (!isSoundAllowed) {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
     },
-    [toggleSound, isSoundAllowed, popSound]
+    [toggleSound, isSoundAllowed]
   );
 
   return (
@@ -42,6 +44,10 @@ function MuteBtn() {
       >
         {isSoundAllowed ? <IconVolume /> : <IconVolumeOff />}
       </Button>
+      <audio ref={audioRef} preload="auto">
+        <source src="/sounds/pop.aac" type="audio/mp4" />
+        <source src="/sounds/pop.mp3" type="audio/mpeg" />
+      </audio>
     </>
   );
 }

@@ -28,7 +28,7 @@ function Button({
         className
       )}
       onClick={e => {
-        if (typeof navigator !== 'undefined' && vibrate) {
+        if (typeof navigator?.vibrate === 'function' && vibrate) {
           navigator.vibrate(40);
         }
         onClick && onClick(e);

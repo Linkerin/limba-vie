@@ -7,7 +7,7 @@ import { useIsSoundAllowed } from '@/app/_hooks/useSoundMode';
 function FinishedSound() {
   const isAllowed = useIsSoundAllowed();
   useEffect(() => {
-    if (typeof navigator === 'undefined') return;
+    if (typeof navigator?.vibrate !== 'function') return;
 
     const timeoutId = setTimeout(() => {
       navigator.vibrate([300, 200, 500]);
