@@ -8,7 +8,7 @@ function TipsPage() {
   return (
     <ol className={styles.list}>
       {Object.values(ARTICLES).map(val => (
-        <ListItem key={val.link}>
+        <ListItem key={val.link} animation={false}>
           <ListItemLink
             aria-label={`To ${val.title} grammar article`}
             href={`/tips/grammar/${val.link}`}
