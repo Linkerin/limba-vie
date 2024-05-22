@@ -9,7 +9,7 @@ import { trimVerb } from '../_lib/utils';
 export const getDict = cache(async () => {
   const { data, error } = await supabase
     .from('words')
-    .select('id, en, ro, gender_ro, plural')
+    .select('id, en, ro, gender_ro, plural, set_id')
     .order('ro');
   if (error) throw error;
 

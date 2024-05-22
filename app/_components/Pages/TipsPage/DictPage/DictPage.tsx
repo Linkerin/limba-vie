@@ -1,3 +1,4 @@
+import LearnedWordWrapper from './LearnedWordWrapper/LearnedWordWrapper';
 import ListItemLink from '@/app/_components/_ui/ListItemLink/ListItemLink';
 import type { Dict } from '@/app/_services/dbFetchers';
 
@@ -18,7 +19,9 @@ function DictPage({ words }: { words: Dict }) {
                 aria-label="Romanian word"
                 href={`/words/${encodeURIComponent(word.en)}`}
               >
-                {word.ro}
+                <LearnedWordWrapper setId={word.set_id}>
+                  {word.ro}
+                </LearnedWordWrapper>
               </ListItemLink>
               {word.gender_ro && (
                 <span className={styles.info} aria-label="Romanian word gender">
