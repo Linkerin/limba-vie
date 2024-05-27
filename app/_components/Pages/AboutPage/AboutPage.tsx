@@ -29,17 +29,22 @@ function AboutPage() {
 
       <section id="contacts" className={styles.contacts}>
         <h2>Contacts</h2>
-        <Link
-          href="https://instagram.com/limba_vie"
-          rel="noopener external"
-          target="_blank"
-          prefetch={false}
-        >
-          <IconBrandInstagram />
-        </Link>
+        <p>
+          Follow us on Instagram:
+          <Link
+            aria-label="External link to Limba Vie Instagram page"
+            href="https://instagram.com/limba_vie"
+            rel="noopener external"
+            target="_blank"
+            prefetch={false}
+          >
+            <IconBrandInstagram />
+            limba_vie
+          </Link>
+        </p>
         <address>
           <p>
-            Have questions, suggestions, or need assistance?
+            Have any questions, suggestions, or need assistance?
             <br />
             Reach out to us at{' '}
             <Link
