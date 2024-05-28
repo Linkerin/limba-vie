@@ -5,7 +5,8 @@
 [About us](#about)  
 [Key features](#features)  
 [Technologies used](#technologies)  
-[Contacts](#contacts) [Contacts](#license)
+[Contacts](#contacts)  
+[License](#license)
 
 ## About us 👨‍💻 <a id="about"></a>
 
@@ -51,5 +52,5 @@ If you want to get in touch, we will be glad to receive your e-mail 😉:
 ## License 🪪 <a id="license"></a>
 
 Limba Vie is licensed under the MIT License. See the
-[LICENSE](https://github.com/Linkerin/limba-vie-analytics-api/blob/main/LICENSE)
-file for details.
+[LICENSE](https://github.com/Linkerin/limba-vie/blob/main/LICENSE) file for
+details.
