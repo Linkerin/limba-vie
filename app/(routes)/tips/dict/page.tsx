@@ -4,7 +4,9 @@ import DictPage from '@/app/_components/Pages/TipsPage/DictPage/DictPage';
 import { getDict } from '@/app/_services/dbFetchers';
 
 export const metadata: Metadata = {
-  title: 'Dictionary'
+  title: 'Dictionary',
+  description:
+    'Access a comprehensive dictionary of Romanian words available in the Limba Vie app. Explore definitions, pronunciations, and examples to expand your vocabulary.'
 };
 
 async function Dict() {

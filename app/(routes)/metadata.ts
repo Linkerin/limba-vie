@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
-const description =
-  'Learn and practice Romanian words with colorful flashcards';
+const description = `Master Romanian vocabulary with Limba Vie! Our fun and colorful flashcard app makes learning Romanian words easy. Perfect for anyone who learns Romanian language.`;
 const isPreview = process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW';
 const title = `Limba Vie${isPreview ? ' Preview' : ''}`;
 
@@ -11,6 +10,18 @@ export const metadata: Metadata = {
     default: title
   },
   description: description,
+  keywords: [
+    'Limba Vie',
+    'flashcards',
+    'Romanian',
+    'learn Romanian',
+    'vocabulary',
+    'language learning',
+    'language app',
+    'mobile app',
+    'learning app',
+    'Moldavian'
+  ],
   authors: [{ name: 'Alexei', url: 'https://github.com/Linkerin' }],
   creator: 'Linkerin',
   manifest: `${process.env.NEXT_PUBLIC_BASE_URL}/manifest.json`,

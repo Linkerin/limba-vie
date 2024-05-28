@@ -9,9 +9,21 @@ interface WordPageParams {
   params: { word: string };
 }
 
-export function generateMetadata({ params }: WordPageParams): Metadata {
+export async function generateMetadata({
+  params
+}: WordPageParams): Promise<Metadata> {
+  const { data, error } = await supabase
+    .from('words')
+    .select('ro')
+    .eq('en', params.word);
+  if (error) throw error;
+
+  const wordRo = data.at(0)?.ro ?? '';
+  const wordEn = params.word;
+
   return {
-    title: capitalizeWord(params.word)
+    title: `${capitalizeWord(wordRo)} (${capitalizeWord(wordEn)})`,
+    description: `Learn about the Romanian word '${wordRo}' ('${wordEn}'). Find its definition, pronunciation, and usage examples to enhance your vocabulary with Limba Vie.`
   };
 }
 
