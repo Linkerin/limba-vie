@@ -3,16 +3,18 @@ import type { Metadata } from 'next';
 const description =
   'Learn and practice Romanian words with colorful flashcards';
 const isPreview = process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW';
+const title = `Limba Vie${isPreview ? ' Preview' : ''}`;
 
 export const metadata: Metadata = {
   title: {
-    template: `%s · Limba Vie${isPreview ? ' Preview' : ''}`,
-    default: `Limba Vie${isPreview ? ' Preview' : ''}`
+    template: `%s · ${title}`,
+    default: title
   },
   description: description,
   authors: [{ name: 'Alexei', url: 'https://github.com/Linkerin' }],
   creator: 'Linkerin',
   manifest: `${process.env.NEXT_PUBLIC_BASE_URL}/manifest.json`,
+  category: 'education',
   icons: {
     icon: [
       {
@@ -42,10 +44,66 @@ export const metadata: Metadata = {
       }
     ]
   },
+  appleWebApp: {
+    title: title,
+    startupImage: [
+      '/splashscreens/iphone6_splash.png',
+      {
+        url: '/splashscreens/iphone5_splash.png',
+        media:
+          '(device-width: 320px) and (device-height: 1568px) and (-webkit-device-pixel-ratio: 2)'
+      },
+      {
+        url: '/splashscreens/iphone6_splash.png',
+        media:
+          '(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)'
+      },
+      {
+        url: '/splashscreens/iphoneplus_splash.png',
+        media:
+          '(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)'
+      },
+      {
+        url: '/splashscreens/iphonex_splash.png',
+        media:
+          '(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)'
+      },
+      {
+        url: '/splashscreens/iphonexr_splash.png',
+        media:
+          '(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)'
+      },
+      {
+        url: '/splashscreens/iphonexsmax_splash.png',
+        media:
+          '(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)'
+      },
+      {
+        url: '/splashscreens/ipad_splash.png',
+        media:
+          '(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)'
+      },
+      {
+        url: 'splashscreens/ipadpro1_splash.png',
+        media:
+          '(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)'
+      },
+      {
+        url: 'splashscreens/ipadpro3_splash.png',
+        media:
+          '(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)'
+      },
+      {
+        url: 'splashscreens/ipadpro2_splash.png',
+        media:
+          '(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)'
+      }
+    ]
+  },
   openGraph: {
     title: 'Limba Vie - Learn Romanian words',
     description: description,
-    siteName: 'Limba Vie',
+    siteName: title,
     type: 'website',
     url: process.env.NEXT_PUBLIC_BASE_URL,
     images: [{ url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/img/og-image` }]
