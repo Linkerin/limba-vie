@@ -1,8 +1,21 @@
+import type { Metadata } from 'next';
+
+import { capitalizeWord } from '@/app/_lib/utils';
 import { getWord } from '@/app/_services/dbFetchers';
 import WordPage from '@/app/_components/Pages/WordPage/WordPage';
 import supabase from '@/app/_lib/supabase';
 
-async function Word({ params }: { params: { word: string } }) {
+interface WordPageParams {
+  params: { word: string };
+}
+
+export function generateMetadata({ params }: WordPageParams): Metadata {
+  return {
+    title: capitalizeWord(params.word)
+  };
+}
+
+async function Word({ params }: WordPageParams) {
   const wordParam = decodeURIComponent(params.word);
   const word = await getWord(wordParam);
 

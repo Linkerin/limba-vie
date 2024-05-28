@@ -1,8 +1,21 @@
 import { cache } from 'react';
+import type { Metadata } from 'next';
 
+import { capitalizeWord } from '@/app/_lib/utils';
 import { getSetInfo, getWords } from '@/app/_services/dbFetchers';
 import supabase from '@/app/_lib/supabase';
 import SetPage from '@/app/_components/Pages/SetPage/SetPage';
+
+interface SetPageParams {
+  params: { setName: string };
+}
+
+export function generateMetadata({ params }: SetPageParams): Metadata {
+  const set = capitalizeWord(params.setName);
+  return {
+    title: `${set} Set: pratice`
+  };
+}
 
 const getData = cache(async (setName: string) => {
   const wordsPromise = getWords(setName);
@@ -13,7 +26,7 @@ const getData = cache(async (setName: string) => {
   return { words, setInfo };
 });
 
-async function Check({ params }: { params: { setName: string } }) {
+async function Check({ params }: SetPageParams) {
   const setName = decodeURIComponent(params.setName);
   const { words, setInfo } = await getData(setName);
 
