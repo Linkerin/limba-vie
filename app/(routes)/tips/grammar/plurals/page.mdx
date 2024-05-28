@@ -1,9 +1,23 @@
 import { ARTICLES } from '@/app/_lib/constants';
 import Attention from '@/app/_components/_ui/Attention/Attention';
 
+export const description = ARTICLES.plurals.description;
+export const title = ARTICLES.plurals.title;
+export const ogImgUrl = `${
+  process.env.NEXT_PUBLIC_BASE_URL
+}/api/img/og-image/text?text=${encodeURIComponent(title)}`;
+
 export const metadata = {
-  title: ARTICLES.plurals.title,
-  description: ARTICLES.plurals.description
+  title,
+  description,
+  openGraph: {
+    images: ogImgUrl,
+    description
+  },
+  twitter: {
+    images: ogImgUrl,
+    description
+  }
 };
 
 # {metadata.title}
