@@ -123,7 +123,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Limba Vie - Learn Romanian words',
     description: description,
-    images: `${process.env.NEXT_PUBLIC_BASE_URL}/og-image`
+    images: `${process.env.NEXT_PUBLIC_BASE_URL}/api/img/og-image`
   },
   other: {
     'msapplication-TileColor': '#b23444',
