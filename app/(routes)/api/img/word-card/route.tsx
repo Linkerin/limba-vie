@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
   const word = searchParams.get('word');
 
   if (!word) {
-    const res = new Response(null, { status: 400 });
+    const res = new Response('Invalid query parameters', { status: 400 });
     return res;
   }
 

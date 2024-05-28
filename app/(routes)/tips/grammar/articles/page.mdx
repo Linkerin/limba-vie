@@ -2,9 +2,23 @@ import { ARTICLES } from '@/app/_lib/constants';
 import Attention from '@/app/_components/_ui/Attention/Attention';
 import ExampleSentence from '@/app/_components/ExampleSentence/ExampleSentence';
 
+export const description = ARTICLES.articles.description;
+export const title = ARTICLES.articles.title;
+export const ogImgUrl = `${
+  process.env.NEXT_PUBLIC_BASE_URL
+}/api/img/og-image/text?text=${encodeURIComponent(title)}`;
+
 export const metadata = {
-  title: ARTICLES.articles.title,
-  description: ARTICLES.articles.description
+  title,
+  description,
+  openGraph: {
+    images: ogImgUrl,
+    description
+  },
+  twitter: {
+    images: ogImgUrl,
+    description
+  }
 };
 
 export const audioFolder = 'grammar/articles';
