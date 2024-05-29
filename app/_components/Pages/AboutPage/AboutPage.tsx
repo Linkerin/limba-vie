@@ -117,6 +117,26 @@ function AboutPage() {
           </li>
         </ul>
       </section>
+
+      <section id="legal">
+        <h2>Legal</h2>
+        <p>
+          By using <b>Limba Vie</b> (the &quot;Application&quot;), you
+          acknowledge that you have <em>read</em>, <em>understood</em>, and
+          <em> agree</em> to be bound by our{' '}
+          <Link aria-label="Terms of Use page" href="/about/legal/terms-of-use">
+            Terms of Use
+          </Link>{' '}
+          and{' '}
+          <Link
+            aria-label="Privacy Policy page"
+            href="/about/legal/privacy-policy"
+          >
+            Privacy Policy
+          </Link>
+          .
+        </p>
+      </section>
     </div>
   );
 }

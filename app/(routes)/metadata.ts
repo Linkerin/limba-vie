@@ -127,6 +127,7 @@ export const metadata: Metadata = {
   },
   other: {
     'msapplication-TileColor': '#b23444',
-    'msapplication-config': '/favicons/browserconfig.xml'
+    'msapplication-config': '/favicons/browserconfig.xml',
+    'google-site-verification': 'r8nxIG5r_BDLpt_uni8VoJX78l1oWwq3MbL8HBZ1T_I'
   }
 };
