@@ -42,7 +42,7 @@ function CookieConsent() {
       containerClassName={styles.container}
       cardClassName={styles.card}
     >
-      <p>Our application uses stricly necessary cookies 🍪.</p>
+      <p>Our application uses strictly necessary cookies 🍪.</p>
       <p>
         Before continuing, you agree and accept our{' '}
         <Link
@@ -50,6 +50,13 @@ function CookieConsent() {
           href="/about/legal/privacy-policy"
         >
           Privacy Policy
+        </Link>{' '}
+        and{' '}
+        <Link
+          aria-label="To Terms of Use page"
+          href="/about/legal/terms-of-use"
+        >
+          Terms of Use
         </Link>
         .
       </p>

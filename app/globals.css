@@ -179,7 +179,6 @@ p {
 }
 
 :where(a) {
-  display: inline-block;
   -webkit-tap-highlight-color: transparent;
 }
 
