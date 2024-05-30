@@ -4,7 +4,8 @@ import TermsOfUsePage from '@/app/_components/Pages/AboutPage/Legal/TermsOfUse/T
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
-  description: 'See our Terms of Use and how they relate to you.'
+  description: 'See our Terms of Use and how they relate to you.',
+  keywords: 'legal, information, terms, service, use'
 };
 
 function TermsOfUse() {

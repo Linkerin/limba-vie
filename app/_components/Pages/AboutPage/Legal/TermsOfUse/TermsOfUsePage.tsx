@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import styles from './TermsOfUsePage.module.css';
+import styles from '../LegalPages.module.css';
 
 function TermsOfUsePage() {
   return (
@@ -11,10 +11,11 @@ function TermsOfUsePage() {
       <p>
         Welcome to <strong>Limba Vie</strong>! These Terms of Use
         (&quot;Terms&quot;) govern your access to and use of the Limba Vie
-        mobile web application (the &quot;Application&quot;). By accessing or
-        using the Application, you agree to comply with and be bound by these
-        Terms, all applicable laws, and regulations. If you do not agree with
-        any part of these Terms, please do not use the Application.
+        mobile web application (the &quot;Application&quot;, &quot;we&quot;,
+        &quot;us&quot;, or &quot;our&quot;). By accessing or using the
+        Application, you agree to comply with and be bound by these Terms, all
+        applicable laws, and regulations. If you do not agree with any part of
+        these Terms, please do not use the Application.
       </p>
       <ol>
         <li>
@@ -118,7 +119,9 @@ function TermsOfUsePage() {
           you. These modifications shall be effective immediately upon posting
           of the modified Terms on the Application. Your continued use of the
           Application following the posting of any changes constitutes
-          acceptance of those changes.
+          acceptance of those changes. You acknowledge and agree that it is your
+          responsibility to review these Terms periodically and become aware of
+          modifications.
         </li>
         <li>
           <span>Termination.</span> These Terms and your access to the
@@ -156,7 +159,7 @@ function TermsOfUsePage() {
         and protect your information.
       </p>
       <p>
-        This document was last updated on <strong>May 29th, 2024</strong>.
+        This document was last updated on <strong>May 30th, 2024</strong>.
       </p>
     </article>
   );
