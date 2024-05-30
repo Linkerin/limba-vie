@@ -77,6 +77,16 @@ function AboutPage() {
         <ul>
           <li>
             <Link
+              href="https://tabler.io/icons"
+              rel="noopener external"
+              target="_blank"
+              prefetch={false}
+            >
+              Tabler Icons
+            </Link>
+          </li>
+          <li>
+            <Link
               href="https://freesound.org/people/LittleRobotSoundFactory/sounds/270404/"
               rel="noopener external"
               target="_blank"

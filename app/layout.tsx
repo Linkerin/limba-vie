@@ -13,6 +13,10 @@ export { metadata } from './metadata';
 const AnonymousSignIn = dynamic(() => import('./_components/AnonymousSignIn'), {
   ssr: false
 });
+const CookieConsent = dynamic(
+  () => import('./_components/CookieConsent/CookieConsent'),
+  { ssr: false }
+);
 const NavBar = dynamic(() => import('./_components/NavBar/NavBar'), {
   ssr: false
 });
@@ -40,6 +44,7 @@ export default function RootLayout({
           <NavBar />
           <div id="modal" />
         </SoundProvider>
+        <CookieConsent />
         {isProd && <AnonymousSignIn />}
         {isProd && <WebVitals />}
         {isProd && <SpeedInsights />}

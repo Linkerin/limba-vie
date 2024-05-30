@@ -6,7 +6,8 @@ export const LOCAL_STORAGE_KEYS = Object.freeze({
   completedSets: 'lvCompletedSets',
   repeatWords: 'lvRepeatWords',
   sound: 'lvAudioAutoplay',
-  userId: 'lvUserId'
+  userId: 'lvUserId',
+  cookiesConsent: 'lvCookies'
 });
 export const REPEAT_WORDS_CTY = 20;
 

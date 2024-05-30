@@ -178,6 +178,23 @@ p {
   line-height: 1.375em;
 }
 
+:where(a) {
+  display: inline-block;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(a),
+:where(a):visited {
+  color: var(--primary);
+}
+
+:where(a),
+:where(a):hover,
+:where(a):focus,
+:where(a):active {
+  text-decoration: none;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
