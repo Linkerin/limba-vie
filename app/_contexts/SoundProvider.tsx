@@ -17,9 +17,7 @@ export const CurrPlayingContext = createContext<CurrPlayingContextValue>({
   currentPlaying: null,
   setCurrentPlaying: () => {}
 });
-export const SoundContext = createContext(
-  !(ssrLocalStorage.getItem(autoplayKey) === 'false')
-);
+export const SoundContext = createContext(true);
 export const SoundToggleContext = createContext(() => {});
 
 export default function SoundProvider({

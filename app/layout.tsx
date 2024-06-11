@@ -1,6 +1,5 @@
 import { Alata } from 'next/font/google';
 import dynamic from 'next/dynamic';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import Header from './_components/Header/Header';
 import SoundProvider from './_contexts/SoundProvider';
@@ -47,7 +46,6 @@ export default function RootLayout({
         <CookieConsent />
         {isProd && <AnonymousSignIn />}
         {isProd && <WebVitals />}
-        {isProd && <SpeedInsights />}
       </body>
     </html>
   );
