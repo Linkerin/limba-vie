@@ -16,7 +16,7 @@
 
 .nav-item > a,
 .nav-item > a:visited {
-  color: var(--primary-darker);
+  color: var(--black);
 }
 
 .nav-item > a,
@@ -26,21 +26,21 @@
   text-decoration: none;
 }
 
-.nav-item:not(.current) > a:active {
-  background-color: var(--primary-container);
-  color: var(--primary-dark);
+.nav-item:not(.current) > a:active > span {
+  background-color: var(--background-dark);
+  color: var(--black-dark);
 }
 
 .nav-item > a > span {
+  border-radius: 0.375rem;
   padding: 0.375rem;
 }
 
 .current > a > span,
 .current > a:visited > span {
-  color: var(--on-primary-container);
+  color: var(--black-dark);
 }
 
 .current > a > span {
-  background-color: var(--primary-container);
-  border-radius: 0.375rem;
+  background-color: var(--background-dark);
 }

@@ -1,0 +1,18 @@
+.heading {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md, 1rem);
+  margin-block-end: var(--space-md, 1rem);
+  width: 100%;
+}
+
+.heading > h2 {
+  margin: 0;
+}
+
+.heading > img {
+  height: min(18dvw, 128px);
+  width: auto;
+}

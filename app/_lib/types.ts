@@ -6,3 +6,5 @@ export interface RepeatPageSearchParams {
   set: string | string[] | undefined;
   r: string | string[] | undefined;
 }
+
+export type SetIdsArr = (number | null)[];

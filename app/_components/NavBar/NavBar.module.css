@@ -1,10 +1,10 @@
 .footer {
-  background-color: var(--primary-container-low);
+  background-color: var(--background-darker);
   position: sticky;
   bottom: 0;
   left: 0;
 
-  border-top: 0.125rem solid var(--primary-darker);
+  border-top: 0.125rem solid var(--black);
   width: 100%;
   font-size: 2rem;
 }

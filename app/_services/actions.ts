@@ -1,6 +1,8 @@
 'use server';
 
 import { headers, cookies } from 'next/headers';
+import supabase from '../_lib/supabase';
+import { Tables } from '../_lib/supabase.types';
 
 export async function getUserInfoFromReq() {
   const cookiesStore = cookies();
@@ -14,3 +16,18 @@ export async function getUserInfoFromReq() {
 
   return { country, city, ip, userAgent, userId };
 }
+
+export async function getUnitSets(unitId: Tables<'units_view'>['id']) {
+  if (!unitId) throw new Error('Unit id was not provided to fetch sets');
+
+  const { data, error } = await supabase
+    .from('sets_view')
+    .select('id, set, emoji, order, words_count')
+    .eq('unit_id', unitId)
+    .order('order');
+  if (error) throw error;
+
+  return data;
+}
+
+export type UnitSets = Awaited<ReturnType<typeof getUnitSets>>;

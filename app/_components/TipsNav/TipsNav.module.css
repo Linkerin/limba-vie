@@ -7,9 +7,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  border: 0.125rem solid var(--primary-darker);
+  border: 0.125rem solid var(--primary-dark);
   border-radius: var(--radius-md, 0.25rem);
   border-width: 0.125rem;
+  color: var(--on-primary);
   list-style-type: none;
   padding: 0;
   width: 100%;
@@ -28,6 +29,6 @@
 }
 
 .current {
-  background-color: var(--primary);
+  background-color: var(--primary-darker);
   color: var(--on-primary);
 }

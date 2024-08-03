@@ -39,6 +39,71 @@ export type Database = {
         };
         Relationships: [];
       };
+      sets_new: {
+        Row: {
+          created_at: string;
+          emoji: string | null;
+          id: number;
+          order: number | null;
+          set: string;
+          unit_id: number | null;
+          updated_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          emoji?: string | null;
+          id?: number;
+          order?: number | null;
+          set: string;
+          unit_id?: number | null;
+          updated_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          emoji?: string | null;
+          id?: number;
+          order?: number | null;
+          set?: string;
+          unit_id?: number | null;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'sets_new_unit_id_fkey';
+            columns: ['unit_id'];
+            isOneToOne: false;
+            referencedRelation: 'units';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
+      units: {
+        Row: {
+          created_at: string;
+          id: number;
+          image: string | null;
+          name: string;
+          prev_unit: number | null;
+          updated_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: number;
+          image?: string | null;
+          name?: string;
+          prev_unit?: number | null;
+          updated_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          image?: string | null;
+          name?: string;
+          prev_unit?: number | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       words: {
         Row: {
           audio_name: string | null;
@@ -50,6 +115,7 @@ export type Database = {
           gender_ro: Database['public']['Enums']['gender_ro'] | null;
           id: number;
           img_name: string | null;
+          instagram: boolean;
           plural: boolean;
           ro: string;
           set_id: number;
@@ -65,6 +131,7 @@ export type Database = {
           gender_ro?: Database['public']['Enums']['gender_ro'] | null;
           id?: number;
           img_name?: string | null;
+          instagram?: boolean;
           plural?: boolean;
           ro: string;
           set_id: number;
@@ -80,6 +147,7 @@ export type Database = {
           gender_ro?: Database['public']['Enums']['gender_ro'] | null;
           id?: number;
           img_name?: string | null;
+          instagram?: boolean;
           plural?: boolean;
           ro?: string;
           set_id?: number;
@@ -97,6 +165,27 @@ export type Database = {
       };
     };
     Views: {
+      sets_view: {
+        Row: {
+          created_at: string | null;
+          emoji: string | null;
+          id: number | null;
+          order: number | null;
+          set: string | null;
+          unit_id: number | null;
+          updated_at: string | null;
+          words_count: number | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'sets_new_unit_id_fkey';
+            columns: ['unit_id'];
+            isOneToOne: false;
+            referencedRelation: 'units';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
       sorted_sets: {
         Row: {
           created_at: string | null;
@@ -108,6 +197,19 @@ export type Database = {
           unit: number | null;
           updated_at: string | null;
           words_count: number | null;
+        };
+        Relationships: [];
+      };
+      units_view: {
+        Row: {
+          created_at: string | null;
+          id: number | null;
+          image: string | null;
+          name: string | null;
+          position: number | null;
+          prev_unit: number | null;
+          sets_count: number | null;
+          updated_at: string | null;
         };
         Relationships: [];
       };

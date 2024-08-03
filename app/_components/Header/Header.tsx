@@ -18,7 +18,7 @@ function Header() {
       <div className={styles['right-container']}>
         <MuteBtn />
         <About />
-        <FlagMd />
+        {/* <FlagMd /> */}
       </div>
     </header>
   );

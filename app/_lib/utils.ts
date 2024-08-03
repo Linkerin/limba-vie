@@ -1,9 +1,11 @@
 import {
   AUDIO_FILE_FORMAT,
   CLOUDINARY_IMG_URL,
+  LOCAL_STORAGE_KEYS,
   SUPABASE_STORAGE_URL
 } from './constants';
-import type { Gender } from './types';
+import type { Gender, SetIdsArr } from './types';
+import ssrLocalStorage from '../_services/SsrLocalStorage';
 import type { Tables } from './supabase.types';
 
 /**
@@ -71,9 +73,37 @@ export function getFullGender(genderAbbr: Gender) {
 
 export function getWordsImageUrl(
   imgName: Tables<'words'>['img_name'],
-  width: number = 480
+  width: number = 480,
+  folder: string = 'limba'
 ) {
-  const url = `${CLOUDINARY_IMG_URL}/f_auto,q_75,w_${width}/v1/limba/${imgName}`;
+  const url = `${CLOUDINARY_IMG_URL}/f_auto,q_75,w_${width}/v1/${folder}/${imgName}`;
+
+  return url;
+}
+
+interface GetImgUrlOptions {
+  folder?: string;
+  format?: 'auto' | 'png' | 'svg' | 'webp';
+  q?: number | 'auto';
+  sanitize?: boolean;
+}
+
+export function getImageUrl(
+  imgName: Tables<'words'>['img_name'],
+  width: number = 480,
+  options: GetImgUrlOptions = {}
+) {
+  const opt: GetImgUrlOptions = {
+    folder: 'limba',
+    format: 'auto',
+    q: 75,
+    sanitize: false,
+    ...options
+  };
+
+  const url = `${CLOUDINARY_IMG_URL}/f_${opt.format},q_${opt.q},w_${width}${
+    opt.sanitize ? ',fl_sanitize' : ''
+  }/v1/${opt.folder}/${imgName}`;
 
   return url;
 }
@@ -126,3 +156,16 @@ export const trimVerb = (
 
   return result;
 };
+
+export function getCompletedSetsNum(ids: SetIdsArr) {
+  if (typeof window === 'undefined') return;
+
+  const setsStr = ssrLocalStorage.getItem(LOCAL_STORAGE_KEYS.completedSets);
+
+  if (!setsStr) return 0;
+
+  const allCompletedSets = JSON.parse(setsStr);
+  const unitCompletedSets = ids.filter(id => allCompletedSets.includes(id));
+
+  return unitCompletedSets.length;
+}

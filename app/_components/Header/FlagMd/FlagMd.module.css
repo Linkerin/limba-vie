@@ -12,6 +12,7 @@
   width: fit-content;
   border-radius: var(--radius-md, 0.25rem);
   overflow: hidden;
+  filter: contrast(65%);
 }
 
 .md-blue,

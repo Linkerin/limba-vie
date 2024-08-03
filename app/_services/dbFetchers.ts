@@ -38,7 +38,12 @@ const fields = `id,
 
 type WordsArr = Omit<
   Tables<'words'>,
-  'set_id' | 'created_at' | 'updated_at' | 'example_ro' | 'example_en'
+  | 'set_id'
+  | 'created_at'
+  | 'updated_at'
+  | 'example_ro'
+  | 'example_en'
+  | 'instagram'
 >[];
 
 interface getRepeatSetsParams {
@@ -129,6 +134,17 @@ export const getSets = cache(async () => {
 });
 
 export type Sets = Awaited<ReturnType<typeof getSets>>;
+
+export const getUnits = cache(async () => {
+  const { data, error } = await supabase
+    .from('units_view')
+    .select('id, name, image');
+  if (error) throw error;
+
+  return data;
+});
+
+export type Units = Awaited<ReturnType<typeof getUnits>>;
 
 export const getWord = cache(async (word: string) => {
   const { data, error } = await supabase

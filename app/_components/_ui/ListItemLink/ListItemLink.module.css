@@ -1,6 +1,6 @@
 :where(.link),
 :where(.link):where(:visited) {
-  color: var(--primary-darker);
+  color: var(--black);
   white-space: normal;
   user-select: none;
 }

@@ -1,0 +1,59 @@
+.set {
+  --set-item-size: 5.5rem;
+
+  border: 1px solid var(--black);
+  border-radius: var(--radius-md, 6px);
+  position: relative;
+  width: fit-content;
+}
+
+.set:hover:not(.completed) {
+  background-color: var(--background-darker);
+}
+
+.set:active:not(.completed) {
+  background-color: var(--background-dark);
+}
+
+.set > a {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  color: var(--text);
+  height: var(--set-item-size);
+}
+
+.set > a > span {
+  font-size: 1.5rem;
+}
+
+.completed {
+  background-color: var(--primary-container-low);
+  border-color: var(--primary-dark);
+}
+
+.completed:hover {
+  background-color: var(--primary-container);
+}
+
+.completed:active {
+  background-color: var(--primary-container-dark);
+}
+
+.completed > a {
+  color: var(--primary-dark);
+}
+
+.completed-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--primary-container);
+  border: solid var(--primary-dark);
+  border-width: 0 0 1px 1px;
+  border-radius: 0 var(--radius-md, 6px) 0 var(--radius-md, 6px);
+  padding: var(--space-xs);
+}

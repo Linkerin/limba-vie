@@ -49,14 +49,14 @@
 }
 
 :where(.primary) {
-  border-color: var(--primary-darker);
-  box-shadow: 0.0625rem 0.0625rem var(--primary-darker);
+  border-color: var(--black);
+  box-shadow: 0.0625rem 0.0625rem var(--black);
 }
 
 :where(.primary),
 :where(.primary):hover,
 :where(.primary):visited {
-  color: var(--primary-darker);
+  color: var(--black);
 }
 
 :where(.primary):active:not(:disabled) {
