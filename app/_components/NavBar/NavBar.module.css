@@ -1,26 +1,25 @@
 .footer {
-  background-color: var(--background-darker);
   position: sticky;
   bottom: 0;
   left: 0;
-
+  background-color: var(--background-darker);
   border-top: 0.125rem solid var(--black);
-  width: 100%;
   font-size: 2rem;
-}
+  width: 100%;
 
-.footer > nav {
-  height: 100%;
-  padding-block: 0.25rem;
-}
+  & > nav {
+    height: 100%;
+    padding-block: 0.25rem;
 
-.footer > nav > ol {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  list-style: none;
-  height: 100%;
-  padding: 0;
+    & > ol {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      list-style: none;
+      height: 100%;
+      padding: 0;
+    }
+  }
 }
 
 .apple-pwa {

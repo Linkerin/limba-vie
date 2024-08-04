@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
 import { capitalizeWord, getImageUrl } from '@/app/_lib/utils';
+import { Tables } from '@/app/_lib/supabase.types';
 
 import styles from './UnitHeading.module.css';
-import { Tables } from '@/app/_lib/supabase.types';
 
 interface UnitHeadingProps {
   image: Tables<'units_view'>['image'];
