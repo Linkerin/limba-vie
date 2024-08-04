@@ -25,7 +25,7 @@ function CheckInputModal({
         {children}
         <Button
           onClick={onBtnClick}
-          variant={status === 'success' ? 'secondary' : 'tertiary'}
+          variant={status === 'success' ? 'green' : 'secondary'}
           autoFocus
         >
           {buttonText}
