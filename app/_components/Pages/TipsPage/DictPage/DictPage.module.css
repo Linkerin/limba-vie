@@ -6,7 +6,7 @@
 }
 
 .total > span {
-  color: var(--primary);
+  color: var(--primary-darker);
 }
 
 .list {
@@ -37,7 +37,7 @@
 }
 
 .ro {
-  color: var(--primary);
+  color: var(--primary-darker);
   text-decoration: underline dotted;
   text-underline-position: under;
 }

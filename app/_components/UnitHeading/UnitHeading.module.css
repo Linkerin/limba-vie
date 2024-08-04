@@ -3,11 +3,12 @@
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--space-md, 1rem);
-  margin-block-end: var(--space-md, 1rem);
+  gap: var(--space-lg, 1rem);
+  margin-block-end: var(--space-lg, 1rem);
   width: 100%;
 
   & > h2 {
+    color: var(--text);
     margin: 0;
   }
 

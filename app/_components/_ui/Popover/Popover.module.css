@@ -1,19 +1,19 @@
 .popover {
   --popover-position-x: 0px;
-  --popover-position-y: calc(100% + var(--space-md));
-  --arrow-position-x: calc(var(--set-item-size) / 2 - var(--space-md) / 2);
-  --arrow-position-y: calc(1px - var(--space-md));
+  --popover-position-y: calc(100% + var(--space-lg));
+  --arrow-position-x: calc(var(--set-item-size) / 2 - var(--space-lg) / 2);
+  --arrow-position-y: calc(1px - var(--space-lg));
 
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-md);
+  gap: var(--space-lg);
   background-color: var(--background-darker);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   box-shadow: var(--elevation-1);
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-lg) var(--space-lg);
   width: min(60dvw, 300px);
   z-index: 1;
 }
@@ -23,9 +23,9 @@
   display: block;
   width: 0;
   height: 0;
-  border-left: calc(var(--space-md) / 1.5) solid transparent;
-  border-right: calc(var(--space-md) / 1.5) solid transparent;
-  border-bottom: var(--space-md) solid var(--background-darker);
+  border-left: calc(var(--space-lg) / 1.5) solid transparent;
+  border-right: calc(var(--space-lg) / 1.5) solid transparent;
+  border-bottom: var(--space-lg) solid var(--background-darker);
   position: absolute;
 }
 

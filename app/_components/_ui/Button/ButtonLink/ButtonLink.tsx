@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import classNames from 'classnames';
 
+import type { ButtonBaseProps } from '../Button';
+
 import buttonStyles from '../Button.module.css';
 
-export interface ButtonLinkProps
-  extends React.ComponentPropsWithRef<typeof Link> {
-  fadeAnimation?: boolean;
-  variant?: 'primary' | 'secondary' | 'tertiary';
-}
+export type ButtonLinkProps = React.ComponentPropsWithRef<typeof Link> &
+  Omit<ButtonBaseProps, 'vibrate'>;
 
 function ButtonLink({
   children,

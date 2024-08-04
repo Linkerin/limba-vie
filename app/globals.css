@@ -2,49 +2,60 @@
   --background: hsl(12, 33%, 97%);
   --background-darker: hsl(12, 20%, 93%);
   --background-dark: hsl(12, 19%, 85%);
+
+  --primary: hsl(237, 40%, 50%);
+  --primary-darker: hsl(237, 40%, 40%);
+  --primary-dark: hsl(237, 40%, 30%);
+  --primary-container-dark: hsl(237, 40%, 85%);
+  --primary-container: hsl(237, 40%, 90%);
+  --primary-container-low: hsl(237, 40%, 95%);
+  --on-primary: hsl(237, 40%, 99%);
+  --on-primary-container: hsl(237, 40%, 30%);
+
+  --secondary: hsl(10, 50%, 50%);
+  --secondary-darker: hsl(24, 70%, 40%);
+  --secondary-dark: hsl(24, 70%, 30%);
+  --secondary-container-dark: hsl(24, 70%, 85%);
+  --secondary-container: hsl(24, 70%, 90%);
+  --secondary-container-low: hsl(24, 70%, 95%);
+  --on-secondary: hsl(24, 70%, 99%);
+  --on-secondary-container: hsl(24, 70%, 30%);
+
+  --neutral: hsl(237, 14%, 50%);
+  --neutral-darker: hsl(237, 14%, 40%);
+  --neutral-dark: hsl(237, 14%, 30%);
+  --neutral-container-dark: hsl(237, 14%, 85%);
+  --neutral-container: hsl(237, 14%, 90%);
+  --neutral-container-low: hsl(237, 14%, 95%);
+  --on-neutral: hsl(237, 14%, 99%);
+  --on-neutral-container: hsl(237, 14%, 30%);
+
+  --green: hsl(147, 25%, 50%);
+  --green-darker: hsl(147, 25%, 40%);
+  --green-dark: hsl(147, 25%, 30%);
+  --green-container-dark: hsl(147, 25%, 80%);
+  --green-container: hsl(146, 25%, 90%);
+  --green-container-low: hsl(147, 25%, 95%);
+  --on-green: hsl(147, 25%, 99%);
+  --on-green-container: hsl(147, 25%, 30%);
+
   --black: hsl(0, 0%, 25%);
   --black-dark: hsl(0, 0%, 18%);
   --text: var(--black);
-
-  --primary: hsl(156, 30%, 50%);
-  --primary-darker: hsl(156, 30%, 40%);
-  --primary-dark: hsl(156, 30%, 30%);
-  --primary-container-dark: hsl(156, 30%, 80%);
-  --primary-container: hsl(156, 30%, 90%);
-  --primary-container-low: hsl(156, 30%, 95%);
-  --on-primary: hsl(156, 30%, 99%);
-  --on-primary-container: hsl(156, 30%, 30%);
-
-  --secondary: hsl(237, 40%, 55%);
-  --secondary-darker: hsl(237, 40%, 40%);
-  --secondary-dark: hsl(237, 40%, 30%);
-  --secondary-container-dark: hsl(237, 40%, 85%);
-  --secondary-container: hsl(237, 40%, 90%);
-  --secondary-container-low: hsl(237, 40%, 95%);
-  --on-secondary: hsl(237, 40%, 99%);
-  --on-secondary-container: hsl(237, 40%, 30%);
-
-  --tertiary: hsl(10, 50%, 50%);
-  --tertiary-darker: hsl(24, 70%, 40%);
-  --tertiary-dark: hsl(24, 70%, 30%);
-  --tertiary-container-dark: hsl(24, 70%, 85%);
-  --tertiary-container: hsl(24, 70%, 90%);
-  --tertiary-container-low: hsl(24, 70%, 95%);
-  --on-tertiary: hsl(24, 70%, 99%);
-  --on-tertiary-container: hsl(24, 70%, 30%);
-
-  --neutral: hsl(243, 14%, 50%);
-  --neutral-darker: hsl(243, 14%, 40%);
-  --neutral-dark: hsl(243, 14%, 30%);
-  --neutral-container-dark: hsl(243, 14%, 85%);
-  --neutral-container: hsl(243, 14%, 90%);
-  --neutral-container-low: hsl(243, 14%, 95%);
-  --on-neutral: hsl(243, 14%, 99%);
-  --on-neutral-container: hsl(243, 14%, 30%);
-
   --masculine-color: hsl(255, 58%, 40%);
   --neutral-color: hsl(43, 100%, 44%);
   --feminine-color: hsl(352, 60%, 47%);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  --space-xs: 0.125rem;
+  --space-sm: 0.25rem;
+  --space-md: 0.5rem;
+  --space-lg: 1rem;
+  --space-xl: 2rem;
 
   --animation-fadein: fadein ease-in 0.4s;
 
@@ -54,14 +65,6 @@
     0px 1px 2px 0px rgba(0, 0, 0, 0.3);
 
   --img-size: min(60dvw, 480px);
-
-  --radius-md: 0.25rem;
-  --radius-lg: 0.5rem;
-
-  --space-xs: 0.125rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 2rem;
 }
 
 @media (prefers-color-scheme: light) {
@@ -107,7 +110,7 @@ button {
 main {
   margin-inline: auto;
   max-width: 740px;
-  padding: 1rem;
+  padding: var(--space-lg, 1rem);
   width: 100%;
   z-index: 0;
   overflow-y: scroll;
@@ -152,7 +155,7 @@ h1,
 h2,
 h3,
 h4 {
-  color: var(--text);
+  color: var(--primary-darker);
   margin-block-end: 0.375em;
   letter-spacing: 0.025rem;
   font-weight: 400;
@@ -194,7 +197,7 @@ p {
 
 :where(a),
 :where(a):visited {
-  color: var(--primary);
+  color: var(--primary-darker);
 }
 
 :where(a),

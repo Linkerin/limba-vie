@@ -49,7 +49,7 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
       <ActionBtn
         action="repeat"
         onClick={repeatClickHandler}
-        variant="tertiary"
+        variant="secondary"
       />
       <ActionBtn
         action="example"
@@ -59,7 +59,7 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
       <ActionBtn
         action="learned"
         onClick={learnedClickHandler}
-        variant="secondary"
+        variant="green"
       />
     </div>
   );

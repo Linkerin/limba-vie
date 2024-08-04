@@ -4,11 +4,13 @@ import classNames from 'classnames';
 
 import styles from './Button.module.css';
 
-export interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
+export interface ButtonBaseProps {
   fadeAnimation?: boolean;
-  variant?: 'primary' | 'secondary' | 'tertiary';
+  variant?: 'primary' | 'secondary' | 'green' | 'base';
   vibrate?: boolean;
 }
+export type ButtonProps = React.ComponentPropsWithRef<'button'> &
+  ButtonBaseProps;
 
 function Button({
   children,

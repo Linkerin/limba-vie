@@ -1,6 +1,6 @@
 .example-container {
   border: 2px solid var(--primary);
-  border-radius: var(--radius-md, 0.25rem);
+  border-radius: var(--radius-sm, 0.25rem);
   background-color: var(--primary-container-low);
   color: var(--on-primary-container);
   font-size: 0.875rem;
@@ -16,9 +16,9 @@
 }
 
 .error {
-  background-color: var(--tertiary-container-low);
-  border: 2px solid var(--tertiary);
-  color: var(--on-tertiary-container);
+  background-color: var(--secondary-container-low);
+  border: 2px solid var(--secondary);
+  color: var(--on-secondary-container);
 }
 
 .ro {

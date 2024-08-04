@@ -27,6 +27,7 @@ function MuteBtn() {
       title={`Turn ${isSoundAllowed ? 'off' : 'on'} word sounds autoplay`}
       fadeAnimation
       vibrate={isSoundAllowed ? false : true}
+      variant='base'
     >
       {isSoundAllowed ? <IconVolume /> : <IconVolumeOff />}
     </Button>

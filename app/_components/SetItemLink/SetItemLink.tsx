@@ -129,7 +129,7 @@ function SetItemLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
           <ButtonLink
             aria-label={`${setAriaLabel} practice`}
             href={set ? `/set/check/${encodeURIComponent(set)}` : '#'}
-            variant="secondary"
+            variant="green"
           >
             Practice
           </ButtonLink>
