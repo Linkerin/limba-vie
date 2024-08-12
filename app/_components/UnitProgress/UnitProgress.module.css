@@ -1,4 +1,4 @@
-.progress {
+/* .progress {
   --progress-rad: 2px;
   --progress-bw: 1px;
 
@@ -25,4 +25,4 @@
 
 .completed::-webkit-progress-value {
   background-color: var(--green);
-}
+} */

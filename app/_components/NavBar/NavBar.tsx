@@ -1,14 +1,16 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import classNames from 'classnames';
 import { IconBarbell, IconBook2, IconHome } from '@tabler/icons-react';
 
+import {
+  footerStyles,
+  navContainerStyles,
+  navListStyles
+} from './NavBar.styles';
 import NavItem from './NavItem/NavItem';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
-
-import styles from './NavBar.module.css';
 
 function NavBar() {
   const pathname = usePathname();
@@ -17,13 +19,9 @@ function NavBar() {
   const { show, url } = useRepeatBtn();
 
   return !pathname?.match(/\/set\/?.*/) ? (
-    <footer
-      className={classNames(styles.footer, {
-        [styles['apple-pwa']]: isApplePwa
-      })}
-    >
-      <nav>
-        <ol>
+    <footer className={footerStyles} data-apple-pwa={isApplePwa}>
+      <nav className={navContainerStyles}>
+        <ol className={navListStyles}>
           <NavItem
             ariaLabel="To main page with units list"
             href="/"

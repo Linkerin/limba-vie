@@ -2,6 +2,7 @@ import { NextResponse, userAgent } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
+  return;
   const apiUrl = process.env.NEXT_PUBLIC_LIMBA_API;
   const response = NextResponse.next();
   const pathname = request.nextUrl.pathname;

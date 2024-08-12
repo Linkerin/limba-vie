@@ -1,9 +1,28 @@
 import Image from 'next/image';
+import { css } from '@/styled-system/css';
 
 import { capitalizeWord, getImageUrl } from '@/app/_lib/utils';
 import { Tables } from '@/app/_lib/supabase.types';
 
-import styles from './UnitHeading.module.css';
+const containerStyles = css({
+  display: 'flex',
+  flexWrap: 'nowrap',
+  alignItems: 'flex-start',
+  justifyContent: 'space-between',
+  gap: 'token(spacing.4, 1rem)',
+  marginBlockEnd: 'token(spacing.4, 1rem)',
+  width: '100%',
+
+  '& > img': {
+    height: 'min(18dvw, 128px)',
+    width: 'auto'
+  }
+});
+
+const headingStyles = css({
+  color: 'main',
+  margin: '0rem'
+});
 
 interface UnitHeadingProps {
   image: Tables<'units_view'>['image'];
@@ -12,8 +31,8 @@ interface UnitHeadingProps {
 
 function UnitHeading({ image, name }: UnitHeadingProps) {
   return (
-    <div className={styles.heading}>
-      {name && <h2>{capitalizeWord(name)}</h2>}
+    <div className={containerStyles}>
+      {name && <h2 className={headingStyles}>{capitalizeWord(name)}</h2>}
       <Image
         alt={`Decorative image of a ${image}`}
         src={getImageUrl(image, 256, {

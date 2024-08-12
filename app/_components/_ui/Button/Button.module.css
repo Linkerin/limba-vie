@@ -37,11 +37,11 @@
 }
 
 :where(.btn):disabled {
+  background-color: none;
   border-color: var(--neutral);
   box-shadow: 0.0625rem 0.0625rem var(--neutral);
   color: var(--neutral);
   opacity: 0.7;
-  background-color: none;
 }
 
 :where(.btn) > svg {
@@ -110,6 +110,6 @@
 
 :where(.btn):focus-visible {
   border-color: inherit;
-  outline-offset: 4px;
   outline: 4px solid var(--primary-container-dark);
+  outline-offset: 4px;
 }

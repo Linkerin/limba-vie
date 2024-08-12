@@ -1,4 +1,4 @@
-.sets-list {
+/* .sets-list {
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
@@ -30,4 +30,4 @@
   margin-inline-start: var(--space-lg);
   position: relative;
   transition: transform 0.4s linear;
-}
+} */

@@ -38,3 +38,7 @@ next-env.d.ts
 
 # Sentry Config File
 .sentryclirc
+
+## Panda
+styled-system
+styled-system-studio

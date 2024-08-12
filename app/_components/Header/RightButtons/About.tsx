@@ -1,16 +1,15 @@
 import { IconMessage2Question } from '@tabler/icons-react';
 
-import ButtonLink from '../../_ui/Button/ButtonLink/ButtonLink';
-
-import styles from './RightButtons.module.css';
+import ButtonLink from '../../_ui/Button/ButtonLink';
+import styles from './RightButtons.styles';
 
 function About() {
   return (
     <ButtonLink
       aria-label="To about page"
       href="/about"
-      className={styles.btn}
       variant="base"
+      css={styles}
     >
       <IconMessage2Question />
     </ButtonLink>

@@ -1,5 +1,6 @@
+@layer reset, base, tokens, recipes, utilities;
+
 :root {
-  --background: hsl(12, 33%, 97%);
   --background-darker: hsl(12, 20%, 93%);
   --background-dark: hsl(12, 19%, 85%);
 
@@ -67,151 +68,152 @@
   --img-size: min(60dvw, 480px);
 }
 
-@media (prefers-color-scheme: light) {
-  html {
-    color-scheme: light;
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    vertical-align: baseline;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  blockquote,
+  q {
+    quotes: none;
+  }
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: '';
+    content: none;
+  }
+
+  table {
+    border-spacing: 0;
+  }
+
+  ol,
+  ul {
+    padding: 0;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@layer base {
+  @media (prefers-color-scheme: light) {
+    html {
+      color-scheme: light;
+    }
   }
-}
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  vertical-align: baseline;
-}
-
-body {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  background-color: var(--background);
-  color: var(--text);
-  font: inherit;
-  font-size: 100%;
-  font-family: 'Alata', 'Segoe UI', Segoe, Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1;
-  max-height: 100dvh;
-  min-height: 100dvh;
-  max-width: 100dvw;
-  overflow: hidden;
-  -webkit-tap-highlight-color: transparent;
-}
-
-button {
-  font-family: var(--font-alata);
-}
-
-main {
-  margin-inline: auto;
-  max-width: 740px;
-  padding: var(--space-lg, 1rem);
-  width: 100%;
-  z-index: 0;
-  overflow-y: scroll;
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-svg {
-  height: 1em;
-  width: auto;
-}
-
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-ol,
-ul {
-  padding: 0;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  color: var(--primary-darker);
-  margin-block-end: 0.375em;
-  letter-spacing: 0.025rem;
-  font-weight: 400;
-}
-
-h2,
-h3,
-h4 {
-  margin-block-start: 0.5em;
-}
-
-h1 {
-  font-size: 2.25rem;
-  line-height: 2.75rem;
-}
-
-h2 {
-  font-size: 2rem;
-  line-height: 2.375rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-  line-height: 1.875rem;
-}
-
-h4 {
-  font-size: 1.25rem;
-  line-height: 1.5rem;
-}
-
-p {
-  line-height: 1.375em;
-}
-
-:where(a) {
-  -webkit-tap-highlight-color: transparent;
-}
-
-:where(a),
-:where(a):visited {
-  color: var(--primary-darker);
-}
-
-:where(a),
-:where(a):hover,
-:where(a):focus,
-:where(a):active {
-  text-decoration: none;
-}
-
-@keyframes fadein {
-  from {
-    opacity: 0;
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
   }
-  to {
-    opacity: 1;
+
+  body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background-color: var(--colors-background);
+    color: var(--colors-main);
+    font: inherit;
+    font-size: 100%;
+    font-family: 'Alata', 'Segoe UI', Segoe, Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1;
+    max-height: 100dvh;
+    min-height: 100dvh;
+    max-width: 100dvw;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button {
+    font-family: var(--font-alata);
+  }
+
+  main {
+    margin-inline: auto;
+    max-width: var(--sizes-3xl, 48rem);
+    padding: var(--spacing-4, 1rem);
+    width: 100%;
+    z-index: 0;
+    overflow-y: scroll;
+  }
+
+  svg {
+    height: 1em;
+    width: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--colors-main);
+    margin-block-end: 0.375em;
+    letter-spacing: 0.025rem;
+    font-weight: 400;
+  }
+
+  h2,
+  h3,
+  h4 {
+    margin-block-start: 0.5em;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    line-height: 2.375rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
+  p {
+    line-height: 1.375em;
+  }
+
+  :where(a) {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :where(a),
+  :where(a):visited {
+    color: var(--colors-primary-darker);
+  }
+
+  :where(a),
+  :where(a):hover,
+  :where(a):focus,
+  :where(a):active {
+    text-decoration: none;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }

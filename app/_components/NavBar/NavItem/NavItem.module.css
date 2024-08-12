@@ -1,7 +1,7 @@
-.nav-item {
+/* .nav-item {
   height: 100%;
   width: 50%;
-  animation: var(--animation-fadein);
+  animation: var(--animations-fade-in);
 }
 
 .nav-item > a {
@@ -43,4 +43,4 @@
 
 .current > a > span {
   background-color: var(--background-dark);
-}
+} */

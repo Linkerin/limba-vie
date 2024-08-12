@@ -3,16 +3,20 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import classNames from 'classnames';
+import { IconCheck } from '@tabler/icons-react';
 
 import ButtonLink from '../_ui/Button/ButtonLink/ButtonLink';
 import { capitalizeWord } from '@/app/_lib/utils';
-import { IconCheck } from '@tabler/icons-react';
+import {
+  completedIconStyles,
+  contentStyles,
+  emojiStyles,
+  popoverHeadingStyles,
+  setStyles
+} from './SetItemLink.styles';
 import type { PopoverProps } from '../_ui/Popover/Popover';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
-import { Tables } from '@/app/_lib/supabase.types';
-
-import styles from './SetItemLink.module.css';
+import type { Tables } from '@/app/_lib/supabase.types';
 
 const Popover = dynamic(() => import('../_ui/Popover/Popover'));
 
@@ -93,22 +97,24 @@ function SetItemLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
   }, [isPopoverOpened]);
 
   return (
-    <li
-      ref={liRef}
-      className={classNames(styles.set, { [styles.completed]: isCompleted })}
-    >
+    <li ref={liRef} className={setStyles} data-completed={isCompleted}>
       {isCompleted ? (
-        <button onClick={handleClick}>
-          <span>{emoji}</span>
+        <button className={contentStyles} onClick={handleClick}>
+          <span className={emojiStyles}>{emoji}</span>
           {contentText}
-          <span className={styles['completed-icon']}>
+          <span className={completedIconStyles}>
             <IconCheck />
           </span>
         </button>
       ) : (
         <>
-          <Link aria-label={setAriaLabel} href={setLink} target="_self">
-            <span>{emoji}</span>
+          <Link
+            className={contentStyles}
+            aria-label={setAriaLabel}
+            href={setLink}
+            target="_self"
+          >
+            <span className={emojiStyles}>{emoji}</span>
             {contentText}
           </Link>
         </>
@@ -116,7 +122,7 @@ function SetItemLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
       {isPopoverOpened && (
         <Popover positionX={popoverX} positionY={popoverY}>
           {set && (
-            <h3 className={styles['popover-heading']}>{capitalizeWord(set)}</h3>
+            <h3 className={popoverHeadingStyles}>{capitalizeWord(set)}</h3>
           )}
           <ButtonLink
             aria-label={setAriaLabel}

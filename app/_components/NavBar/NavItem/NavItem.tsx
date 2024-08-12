@@ -1,7 +1,10 @@
 import Link, { LinkProps } from 'next/link';
-import classNames from 'classnames';
 
-import styles from './NavItem.module.css';
+import {
+  contentContainerStyles,
+  itemStyles,
+  linkStyles
+} from './NavItem.styles';
 
 interface NavItemProps {
   children: React.ReactNode;
@@ -19,13 +22,16 @@ function NavItem({
   prefetch
 }: NavItemProps) {
   return (
-    <li
-      className={classNames(styles['nav-item'], {
-        [styles.current]: isCurrent
-      })}
-    >
-      <Link aria-label={ariaLabel} href={href} prefetch={prefetch}>
-        <span>{children}</span>
+    <li className={itemStyles}>
+      <Link
+        className={linkStyles}
+        aria-label={ariaLabel}
+        href={href}
+        prefetch={prefetch}
+      >
+        <span className={contentContainerStyles} data-current={isCurrent}>
+          {children}
+        </span>
       </Link>
     </li>
   );

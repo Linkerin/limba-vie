@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import classNames from 'classnames';
 
+import { detailsStyles, unitContentStyles } from './UnitSummary.styles';
 import { getCompletedSetsNum } from '@/app/_lib/utils';
-import { Tables } from '@/app/_lib/supabase.types';
-
-import styles from './UnitSummary.module.css';
+import type { Tables } from '@/app/_lib/supabase.types';
 
 interface UnitSummaryProps {
   children: React.ReactNode;
@@ -30,15 +28,11 @@ function UnitSummary({ children, setIds, unitId }: UnitSummaryProps) {
   }, [setIds]);
 
   return (
-    <details
-      className={styles.details}
-      open={openUnitId === unitId?.toString()}
-    >
+    <details className={detailsStyles} open={openUnitId === unitId?.toString()}>
       <summary
-        className={classNames(styles.unit, {
-          [styles.completed]: completedSetsNum === setIds.length
-        })}
+        className={unitContentStyles}
         aria-label="Click to open a list of unit sets"
+        data-completed={completedSetsNum === setIds.length}
       >
         {children}
       </summary>
