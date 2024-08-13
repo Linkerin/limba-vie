@@ -1,6 +1,4 @@
-import classNames from 'classnames';
-
-import styles from './Popover.module.css';
+import { styles } from './Popover.styles';
 
 export interface PopoverProps {
   children: React.ReactNode;
@@ -10,13 +8,7 @@ export interface PopoverProps {
 
 function Popover({ children, positionX, positionY }: PopoverProps) {
   return (
-    <div
-      className={classNames(
-        styles.popover,
-        styles[positionX],
-        styles[positionY]
-      )}
-    >
+    <div className={styles} data-x={positionX} data-y={positionY}>
       {children}
     </div>
   );

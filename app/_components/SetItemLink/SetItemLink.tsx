@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { IconCheck } from '@tabler/icons-react';
 
-import ButtonLink from '../_ui/Button/ButtonLink/ButtonLink';
+import ButtonLink from '../_ui/Button/ButtonLink';
 import { capitalizeWord } from '@/app/_lib/utils';
 import {
   completedIconStyles,
@@ -135,7 +135,7 @@ function SetItemLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
           <ButtonLink
             aria-label={`${setAriaLabel} practice`}
             href={set ? `/set/check/${encodeURIComponent(set)}` : '#'}
-            variant="green"
+            variant="success"
           >
             Practice
           </ButtonLink>

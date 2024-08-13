@@ -1,11 +1,14 @@
 import { css } from '@/styled-system/css';
 
 export const setStyles = css({
+  '--elem-width-for-popover': '5.5rem',
+
+  aspectRatio: 'square',
   border: '1px solid token(colors.main)',
   borderRadius: 'sm',
   color: 'main',
   position: 'relative',
-  width: 'fit-content',
+  width: 'var(--elem-width-for-popover, 5.5rem)',
 
   _hover: {
     backgroundColor: 'background-darker'
@@ -31,7 +34,6 @@ export const setStyles = css({
 });
 
 export const contentStyles = css({
-  aspectRatio: 'square',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -40,8 +42,9 @@ export const contentStyles = css({
   borderRadius: 'inherit',
   color: 'inherit',
   cursor: 'pointer',
-  height: '5.5rem',
-  fontSize: 'md'
+  fontSize: 'md',
+  height: '100%',
+  width: '100%'
 });
 
 export const emojiStyles = css({

@@ -45,7 +45,7 @@ function Modal({
 
   return (
     <Portal>
-      <div className={classNames(styles.container, containerClassName)}>
+      <dialog className={classNames(styles.container, containerClassName)}>
         <div ref={modalRef} className={classNames(styles.card, cardClassName)}>
           {showCloseBtn && (
             <Button
@@ -58,7 +58,7 @@ function Modal({
           )}
           {children}
         </div>
-      </div>
+      </dialog>
     </Portal>
   );
 }

@@ -1,4 +1,4 @@
-.popover {
+/* .popover {
   --popover-position-x: 0px;
   --popover-position-y: calc(100% + var(--space-lg));
   --arrow-position-x: calc(var(--set-item-size) / 2 - var(--space-lg) / 2);
@@ -60,4 +60,4 @@
   &.popover::before {
     right: var(--arrow-position-x);
   }
-}
+} */
