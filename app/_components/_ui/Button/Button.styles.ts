@@ -69,8 +69,8 @@ export const buttonStyles = cva({
     position: 'relative',
     textAlign: 'center',
     userSelect: 'none',
+    textDecoration: 'none',
     whiteSpace: 'nowrap',
-    textDecoration: 'underline',
     width: 'fit-content',
 
     '&, &:hover, &:active': {

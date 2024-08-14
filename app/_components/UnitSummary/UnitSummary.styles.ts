@@ -2,6 +2,7 @@ import { css } from '@/styled-system/css';
 
 export const detailsStyles = css({
   position: 'relative',
+  listStyle: 'none',
 
   _open: {
     '& > summary': {
@@ -25,50 +26,24 @@ export const detailsStyles = css({
   }
 });
 
-const shadowSize = 'token(sizes.0.5, 0.125rem)';
-
 export const unitContentStyles = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
   justifyContent: 'flex-start',
   flexWrap: 'wrap',
-  border: `${shadowSize} solid token(colors.main)`,
-  borderRadius: 'sm',
-  boxShadow: `${shadowSize} ${shadowSize} token(colors.main)`,
   color: 'main',
   cursor: 'pointer',
   padding:
     'token(spacing.6, 1.5rem) token(spacing.3.5, 0.875rem) token(spacing.6, 1.5rem) token(spacing.6, 1.5rem)',
-  position: 'relative',
   width: '100%',
   zIndex: 0,
-
-  _hover: {
-    backgroundColor: 'background-darker'
-  },
-
-  _active: {
-    backgroundColor: 'background-dark'
-  },
 
   '&:hover img, &:active img': {
     opacity: 0.85
   },
 
   '&[data-completed=true]': {
-    backgroundColor: 'success.container-low',
-    borderColor: 'success.dark',
-    boxShadow: `${shadowSize} ${shadowSize} token(colors.success.dark)`,
-
-    _hover: {
-      backgroundColor: 'success.container'
-    },
-
-    _active: {
-      backgroundColor: 'success.container-dark'
-    },
-
     '&, & h2': {
       color: 'on-success-container'
     },

@@ -1,9 +1,14 @@
 import { IconCheck, IconMessage2, IconRepeat } from '@tabler/icons-react';
-import classNames from 'classnames';
+import { css } from '@/styled-system/css';
 
-import Button, { ButtonProps } from '../Button/Button';
+import Btn, { ButtonProps } from '../Button/Btn';
 
-import styles from './ActionBtn.module.css';
+const styles = css.raw({
+  padding: 'token(spacing.2, 0.5rem)',
+  '& svg': {
+    fontSize: '2.875rem'
+  }
+});
 
 const ariaLabes = {
   repeat: 'Add the word for repetition',
@@ -15,10 +20,10 @@ interface ActionBtnProps extends ButtonProps {
   action: 'repeat' | 'learned' | 'example';
 }
 
-function ActionBtn({ className, action, ...props }: ActionBtnProps) {
+function ActionBtn({ action, ...props }: ActionBtnProps) {
   return (
-    <Button
-      className={classNames(styles.btn, className)}
+    <Btn
+      css={styles}
       aria-label={ariaLabes[action]}
       title={ariaLabes[action]}
       {...props}
@@ -28,7 +33,7 @@ function ActionBtn({ className, action, ...props }: ActionBtnProps) {
         {action === 'learned' && <IconCheck stroke={2} />}
         {action === 'example' && <IconMessage2 stroke={2} />}
       </span>
-    </Button>
+    </Btn>
   );
 }
 

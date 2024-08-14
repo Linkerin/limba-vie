@@ -1,9 +1,9 @@
-import {
-  defineConfig,
-  defineSemanticTokens,
-  defineTokens
-} from '@pandacss/dev';
+import { defineConfig, defineTokens } from '@pandacss/dev';
 import Spectrum, { createPalette } from '@snipshot/spectrum';
+
+import { cardRecipe } from './theme/recipes';
+import { keyframes } from './theme/keyframes';
+import { semanticTokens } from './theme/semanticTokens';
 
 const primaryColor = new Spectrum('hex', '#4d52b3');
 const secondaryColor = new Spectrum('hex', '#bf5540');
@@ -37,49 +37,19 @@ export default defineConfig({
   // Useful for theme customization
   theme: {
     extend: {
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 }
-        }
-      },
+      keyframes,
+      recipes: { card: cardRecipe },
       tokens: defineTokens({
         colors: {
-          background: { value: 'hsl(12, 33%, 97%)' },
-          'background-darker': { value: 'hsl(12, 33%, 93%)' },
-          'background-dark': { value: 'hsl(12, 33%, 85%)' },
+          background: { value: 'hsl(28, 33%, 97%)' },
+          'background-darker': { value: 'hsl(28, 33%, 93%)' },
+          'background-dark': { value: 'hsl(28, 33%, 86%)' },
           ...generateTokens('primary', primaryColor),
           ...generateTokens('secondary', secondaryColor),
           ...generateTokens('success', successColor)
         }
       }),
-      semanticTokens: defineSemanticTokens({
-        animations: { fadeIn: { value: 'fadeIn {easings.in} 0.4s' } },
-        colors: {
-          main: {
-            DEFAULT: { value: '{colors.stone.700}' },
-            dark: { value: '{colors.stone.900}' },
-            'container.darker': { value: '{colors.stone.300}' }
-          },
-          primary: {
-            DEFAULT: { value: '{colors.primary.500}' },
-            darker: { value: '{colors.primary.400}' },
-            dark: { value: '{colors.primary.300}' }
-          },
-          success: {
-            DEFAULT: { value: '{colors.success.500}' },
-            darker: { value: '{colors.success.400}' },
-            dark: { value: '{colors.success.300}' },
-            'container-dark': { value: '{colors.success.800}' },
-            container: { value: '{colors.success.900}' },
-            'container-low': { value: '{colors.success.950}' }
-          },
-          'on-success-container': { value: '{colors.success.300}' }
-        },
-        spacing: {
-          'apple-pwa-pd': { value: '{spacing.5}' }
-        }
-      })
+      semanticTokens
     }
   },
 

@@ -12,13 +12,17 @@ import {
   contentStyles,
   emojiStyles,
   popoverHeadingStyles,
+  popoverSpinnerStyles,
   setStyles
 } from './SetItemLink.styles';
 import type { PopoverProps } from '../_ui/Popover/Popover';
+import RingSpinner from '../_ui/RingSpinner/RingSpinner';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import type { Tables } from '@/app/_lib/supabase.types';
 
-const Popover = dynamic(() => import('../_ui/Popover/Popover'));
+const Popover = dynamic(() => import('../_ui/Popover/Popover'), {
+  loading: () => <RingSpinner css={popoverSpinnerStyles} />
+});
 
 function isSetCompleted(id: number | null) {
   if (typeof window === 'undefined') return;

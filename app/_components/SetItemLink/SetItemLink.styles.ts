@@ -1,5 +1,16 @@
 import { css } from '@/styled-system/css';
 
+export const popoverSpinnerStyles = css.raw({
+  position: 'absolute',
+  left: 'calc(calc(var(--elem-width-for-popover, 100%) / 2) - calc(token(fontSizes.4xl) / 2))',
+  bottom: '-50%',
+  backgroundColor: 'background-darker',
+  borderRadius: 'sm',
+  color: 'main.container.darker',
+  fontSize: '4xl',
+  zIndex: 1
+});
+
 export const setStyles = css({
   '--elem-width-for-popover': '5.5rem',
 
@@ -44,7 +55,8 @@ export const contentStyles = css({
   cursor: 'pointer',
   fontSize: 'md',
   height: '100%',
-  width: '100%'
+  width: '100%',
+  textDecoration: 'none'
 });
 
 export const emojiStyles = css({

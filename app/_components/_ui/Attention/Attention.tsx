@@ -1,7 +1,6 @@
-import classNames from 'classnames';
 import { IconAlertTriangle } from '@tabler/icons-react';
 
-import styles from './Attention.module.css';
+import { containerStyles, headingStyles } from './Attention.styles';
 
 interface AttentionProps extends React.ComponentPropsWithRef<'div'> {
   heading?: string;
@@ -9,9 +8,9 @@ interface AttentionProps extends React.ComponentPropsWithRef<'div'> {
 
 function Attention({ className, heading, children, ...props }: AttentionProps) {
   return (
-    <div className={classNames(styles.container, className)} {...props}>
+    <div className={containerStyles} {...props}>
       {heading?.length && heading?.length > 0 && (
-        <div className={styles.heading}>
+        <div className={headingStyles}>
           <span>
             <IconAlertTriangle />
           </span>

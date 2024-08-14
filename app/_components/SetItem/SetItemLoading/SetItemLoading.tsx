@@ -1,4 +1,4 @@
-import Skeleton from '@/app/_components/_ui/Skeleton/Skeleton';
+import Skeleton from '@/app/_components/_ui/Skeleton/SkeletonOld';
 
 import styles from './SetItemLoading.module.css';
 

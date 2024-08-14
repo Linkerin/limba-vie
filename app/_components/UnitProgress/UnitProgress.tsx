@@ -46,7 +46,11 @@ function UnitProgress({ setIds }: { setIds: SetIdsArr }) {
   }, [setIds]);
 
   return (
-    <Skeleton isLoaded={completedSetsNum !== null} width="100%" fitContent>
+    <Skeleton
+      isLoaded={completedSetsNum !== null}
+      style={{ width: '100%' }}
+      fitContent
+    >
       <p id="progress" aria-label="Unit completion progress">
         {completedSetsNum ?? 0} / {setIds.length} sets
       </p>

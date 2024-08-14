@@ -3,13 +3,24 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { css } from '@/styled-system/css';
 
-import Button from '../_ui/Button/Button';
+import Btn from '../_ui/Button/Btn';
 import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
 import Modal from '../_ui/Modal/Modal';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 
-import styles from './CookieConsent.module.css';
+const containerStyles = css.raw({
+  backgroundColor: 'rgb(0, 0, 0, 0.5)'
+});
+
+const cardStyles = css.raw({
+  animation: 'flipIn 0.5s ease-in'
+});
+
+const btnStyles = css.raw({
+  marginBlockStart: 'token(spacing.2, 0.5rem)'
+});
 
 function CookieConsent() {
   const [show, setShow] = useState(false);
@@ -34,13 +45,16 @@ function CookieConsent() {
   const handleClose: React.MouseEventHandler = _ => {
     ssrLocalStorage.setItem(LOCAL_STORAGE_KEYS.cookiesConsent, 'true');
     setShow(false);
+
+    const mainElement: HTMLElement | null = document.querySelector('#main');
+    mainElement?.focus();
   };
 
   return show ? (
     <Modal
       showCloseBtn={false}
-      containerClassName={styles.container}
-      cardClassName={styles.card}
+      cardCss={cardStyles}
+      containerCss={containerStyles}
     >
       <p>Our application uses strictly necessary cookies 🍪.</p>
       <p>
@@ -60,9 +74,9 @@ function CookieConsent() {
         </Link>
         .
       </p>
-      <Button className={styles.btn} onClick={handleClose}>
+      <Btn css={btnStyles} onClick={handleClose} variant="primary" autoFocus>
         Accept
-      </Button>
+      </Btn>
     </Modal>
   ) : null;
 }

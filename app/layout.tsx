@@ -39,7 +39,7 @@ export default function RootLayout({
       <body className={alata.className}>
         <SoundProvider>
           <Header />
-          <main>{children}</main>
+          <main id="main">{children}</main>
           <NavBar />
           <div id="modal" />
         </SoundProvider>

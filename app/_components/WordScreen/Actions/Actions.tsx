@@ -59,7 +59,7 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
       <ActionBtn
         action="learned"
         onClick={learnedClickHandler}
-        variant="green"
+        variant="success"
       />
     </div>
   );

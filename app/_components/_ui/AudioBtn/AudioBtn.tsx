@@ -1,9 +1,11 @@
 'use client';
 
 import { useCallback, useRef, useState } from 'react';
-import classNames from 'classnames';
+import { css } from '@/styled-system/css';
 import { IconVolume } from '@tabler/icons-react';
+import type { SystemStyleObject } from '@/styled-system/types';
 
+import { buttonStyles, iconStyles } from './AudioBtn.styles';
 import { getAudioUrl } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 import {
@@ -11,13 +13,11 @@ import {
   useIsSoundAllowed
 } from '@/app/_hooks/useSoundMode';
 
-import styles from './AudioBtn.module.css';
-
 interface AudioBtnProps {
   audioName: Tables<'words'>['audio_name'];
   ariaLabel?: string;
   autoplay?: boolean;
-  className?: React.HTMLProps<'button'>['className'];
+  css?: SystemStyleObject;
   folders?: string;
   withMp3?: boolean;
   word?: Tables<'words'>['ro'];
@@ -26,10 +26,10 @@ interface AudioBtnProps {
 function AudioBtn({
   audioName,
   ariaLabel,
-  className,
   folders,
   word,
   autoplay = true,
+  css: cssProp = {},
   withMp3 = true
 }: AudioBtnProps) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -76,11 +76,11 @@ function AudioBtn({
   return !!audioName?.length ? (
     <>
       <button
-        className={classNames(styles.btn, className)}
+        className={css(buttonStyles, cssProp)}
         aria-label={ariaLabel ?? `Play '${word}' word sound`}
         onClick={audioClickHandler}
       >
-        <IconVolume className={classNames({ [styles.playing]: isPlaying })} />
+        <IconVolume className={iconStyles} data-playing={isPlaying} />
       </button>
       <audio
         key={audioName}

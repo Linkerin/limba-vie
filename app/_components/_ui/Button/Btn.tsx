@@ -6,7 +6,8 @@ import { css } from '@/styled-system/css';
 import type { ButtonBaseProps } from './Button.types';
 import { buttonStyles } from './Button.styles';
 
-type ButtonProps = ButtonBaseProps & React.ComponentPropsWithRef<'button'>;
+export type ButtonProps = ButtonBaseProps &
+  React.ComponentPropsWithRef<'button'>;
 
 function Btn({
   children,

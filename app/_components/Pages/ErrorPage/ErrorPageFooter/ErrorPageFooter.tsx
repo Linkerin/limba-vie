@@ -2,11 +2,22 @@
 
 import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { css } from '@/styled-system/css';
 
-import Button from '@/app/_components/_ui/Button/Button';
-import ButtonLink from '@/app/_components/_ui/Button/ButtonLink/ButtonLink';
+import Btn from '@/app/_components/_ui/Button/Btn';
+import ButtonLink from '@/app/_components/_ui/Button/ButtonLink';
 
-import styles from './ErrorPageFooter.module.css';
+const styles = css({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 'token(spacing.4,  1rem)',
+
+  '& > a, & > button': {
+    width: '100%'
+  }
+});
 
 function ErrorPageFooter({ reset }: { reset?: () => void }) {
   const router = useRouter();
@@ -22,16 +33,19 @@ function ErrorPageFooter({ reset }: { reset?: () => void }) {
     );
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles}>
       {reset && typeof reset === 'function' && (
-        <Button onClick={() => reset()}>Try again</Button>
+        <Btn onClick={() => reset()} variant="secondary">
+          Try again
+        </Btn>
       )}
-      <Button
+      <Btn
         aria-label="Navigate to the previous page"
         onClick={backClickHandler}
+        variant="primary"
       >
         Go back
-      </Button>
+      </Btn>
       <ButtonLink href="/">Go to homepage</ButtonLink>
     </footer>
   );

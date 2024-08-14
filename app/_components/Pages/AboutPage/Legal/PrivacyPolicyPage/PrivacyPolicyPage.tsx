@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-import styles from '../LegalPages.module.css';
+import { styles } from '../LegalPages.styles';
 
 function PrivacyPolicyPage() {
   return (
-    <article className={styles.article}>
+    <article className={styles}>
       <h1>
         Privacy Policy for <span>Limba Vie</span>
       </h1>

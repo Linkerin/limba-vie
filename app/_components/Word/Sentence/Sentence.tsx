@@ -1,22 +1,30 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import classNames from 'classnames';
+import { css } from '@/styled-system/css';
 
+import { containerStyles, enStyles, roStyles } from './Sentence.styles';
 import { getSentence, SentenceType } from '@/app/_services/dbFetchers';
 import SentenceLoading from './SentenceLoading/SentenceLoading';
+import type { SystemStyleObject } from '@/styled-system/types';
 import type { Tables } from '@/app/_lib/supabase.types';
 
-import styles from './Sentence.module.css';
+type SentenceProps = {
+  css?: SystemStyleObject;
+} & (
+  | {
+      wordId: Tables<'words'>['id'];
+      en?: undefined;
+      ro?: undefined;
+    }
+  | {
+      wordId?: undefined;
+      en: Tables<'words'>['example_en'];
+      ro: Tables<'words'>['example_ro'];
+    }
+);
 
-interface SentenceProps {
-  className?: string;
-  wordId?: Tables<'words'>['id'];
-  en?: Tables<'words'>['example_en'];
-  ro?: Tables<'words'>['example_ro'];
-}
-
-function Sentence({ className, wordId, ro, en }: SentenceProps) {
+function Sentence({ wordId, ro, en, css: cssProp = {} }: SentenceProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [sentences, setSentences] = useState<SentenceType>();
 
@@ -43,18 +51,15 @@ function Sentence({ className, wordId, ro, en }: SentenceProps) {
     <SentenceLoading />
   ) : (
     <div
-      className={classNames(
-        styles['example-container'],
-        { [styles.error]: !isLoading && noData },
-        className
-      )}
+      className={css(containerStyles, cssProp)}
+      data-error={!isLoading && noData}
     >
       {noData ? (
         <p>Oh, the AI hasn&apos;t generated anything yet 🙀</p>
       ) : (
         <>
-          <p className={styles.ro}>{ro ?? sentences?.example_ro}</p>
-          <p className={styles.en}>{en ?? sentences?.example_en}</p>
+          <p className={roStyles}>{ro ?? sentences?.example_ro}</p>
+          <p className={enStyles}>{en ?? sentences?.example_en}</p>
         </>
       )}
     </div>

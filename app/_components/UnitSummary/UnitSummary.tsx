@@ -1,7 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { card } from '@/styled-system/recipes';
+import { cx } from '@/styled-system/css';
 
 import { detailsStyles, unitContentStyles } from './UnitSummary.styles';
 import { getCompletedSetsNum } from '@/app/_lib/utils';
@@ -18,6 +20,11 @@ function UnitSummary({ children, setIds, unitId }: UnitSummaryProps) {
   const seachParams = useSearchParams();
   const openUnitId = seachParams.get('open-unit-id');
 
+  const isCompleted = useMemo(
+    () => completedSetsNum === setIds.length,
+    [completedSetsNum, setIds.length]
+  );
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -30,9 +37,12 @@ function UnitSummary({ children, setIds, unitId }: UnitSummaryProps) {
   return (
     <details className={detailsStyles} open={openUnitId === unitId?.toString()}>
       <summary
-        className={unitContentStyles}
+        className={cx(
+          card({ variant: isCompleted ? 'success' : 'base' }),
+          unitContentStyles
+        )}
         aria-label="Click to open a list of unit sets"
-        data-completed={completedSetsNum === setIds.length}
+        data-completed={isCompleted}
       >
         {children}
       </summary>

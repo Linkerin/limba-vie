@@ -75,6 +75,10 @@
     vertical-align: baseline;
   }
 
+  dialog {
+    color: inherit;
+  }
+
   img,
   picture,
   video,
@@ -150,6 +154,7 @@
   svg {
     height: 1em;
     width: auto;
+    vertical-align: baseline;
   }
 
   h1,
@@ -193,6 +198,8 @@
   }
 
   :where(a) {
+    text-decoration: underline;
+    text-underline-position: under;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -201,7 +208,6 @@
     color: var(--colors-primary-darker);
   }
 
-  :where(a),
   :where(a):hover,
   :where(a):focus,
   :where(a):active {

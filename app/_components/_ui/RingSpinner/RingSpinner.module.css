@@ -1,4 +1,4 @@
-:where(.ring-spinner) {
+/* :where(.ring-spinner) {
   display: inline-flex;
   position: relative;
   height: 1em;
@@ -42,4 +42,4 @@
   100% {
     transform: rotate(360deg);
   }
-}
+} */

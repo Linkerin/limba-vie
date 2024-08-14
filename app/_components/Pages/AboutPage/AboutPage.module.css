@@ -1,4 +1,4 @@
-.about > section:not(:last-of-type) {
+/* .about > section:not(:last-of-type) {
   margin-block-end: 2rem;
 }
 
@@ -14,13 +14,6 @@
 .about a,
 .about a:visited {
   color: var(--primary);
-}
-
-.about a,
-.about a:hover,
-.about a:focus,
-.about a:active {
-  text-decoration: none;
 }
 
 .about a > svg {
@@ -91,4 +84,4 @@
   color: var(--primary);
   height: 0.5em;
   margin-inline-end: 0.5em;
-}
+} */

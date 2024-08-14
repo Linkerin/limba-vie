@@ -1,4 +1,4 @@
-:where(.section) {
+/* :where(.section) {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,4 +9,4 @@
 
 :where(.section) > p {
   font-size: 1.5rem;
-}
+} */

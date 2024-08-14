@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { css } from '@/styled-system/css';
 
 import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
 import Finished from '../../WordScreen/Finished/Finished';
@@ -19,6 +20,11 @@ const Actions = dynamic(() => import('../../WordScreen/Actions/Actions'));
 const CheckInput = dynamic(
   () => import('../../WordScreen/CheckInput/CheckInput')
 );
+
+const audioBtnStyles = css.raw({
+  fontSize: '4xl',
+  animation: 'appearance 7s ease-in'
+});
 
 export interface SetPageProps {
   words: Words | RepeatWords;
@@ -58,7 +64,7 @@ function SetPage({ words, checkPage, setInfo, setName }: SetPageProps) {
             {checkPage ? (
               <AudioBtn
                 key={shuffled[currWord].ro}
-                className={styles['check-audio-btn']}
+                css={audioBtnStyles}
                 audioName={shuffled[currWord].audio_name}
                 word={shuffled[currWord].ro}
                 autoplay={false}

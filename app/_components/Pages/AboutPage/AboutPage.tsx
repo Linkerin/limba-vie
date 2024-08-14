@@ -5,12 +5,18 @@ import {
   IconHeartFilled
 } from '@tabler/icons-react';
 
-import styles from './AboutPage.module.css';
+import {
+  addressStyles,
+  containerStyles,
+  creditsListStyles,
+  instagramIconStyles,
+  introStyles
+} from './AboutPage.styles';
 
 function AboutPage() {
   return (
-    <div className={styles.about}>
-      <section id="intro" className={styles.intro}>
+    <div className={containerStyles}>
+      <section id="intro" className={introStyles}>
         <h1>
           Welcome to <span>Limba Vie</span>!
         </h1>
@@ -27,7 +33,7 @@ function AboutPage() {
         </p>
       </section>
 
-      <section id="contacts" className={styles.contacts}>
+      <section id="contacts">
         <h2>Contacts</h2>
         <p>
           Follow us on Instagram:
@@ -38,11 +44,11 @@ function AboutPage() {
             target="_blank"
             prefetch={false}
           >
-            <IconBrandInstagram />
+            <IconBrandInstagram className={instagramIconStyles} />
             limba_vie
           </Link>
         </p>
-        <address>
+        <address className={addressStyles}>
           <p>
             Have any questions, suggestions, or need assistance?
             <br />
@@ -68,13 +74,13 @@ function AboutPage() {
         </address>
       </section>
 
-      <section id="credits" className={styles.credits}>
+      <section id="credits" className={'styles.credits'}>
         <h2>Credits</h2>
         <p>
           We highly appreciate the creators of the open-source assets that
           helped us develop this app:
         </p>
-        <ul>
+        <ul className={creditsListStyles}>
           <li>
             <Link
               href="https://tabler.io/icons"

@@ -1,27 +1,27 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import classNames from 'classnames';
+import { css } from '@/styled-system/css';
 import { IconX } from '@tabler/icons-react';
+import type { SystemStyleObject } from '@/styled-system/types';
 
 import Button from '../Button/Button';
+import { cardStyles, closeBtnStyles, containerStyles } from './Modal.styles';
 import Portal from '../Portal/Portal';
-
-import styles from './Modal.module.css';
 
 interface SetItemPopoverProps {
   children: React.ReactNode;
-  cardClassName?: string;
+  cardCss?: SystemStyleObject;
   closeHandler?: () => void;
-  containerClassName?: string;
+  containerCss?: SystemStyleObject;
   showCloseBtn?: boolean;
 }
 
 function Modal({
   children,
   closeHandler,
-  cardClassName,
-  containerClassName,
+  cardCss = {},
+  containerCss = {},
   showCloseBtn = true
 }: SetItemPopoverProps) {
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -45,11 +45,11 @@ function Modal({
 
   return (
     <Portal>
-      <dialog className={classNames(styles.container, containerClassName)}>
-        <div ref={modalRef} className={classNames(styles.card, cardClassName)}>
+      <dialog className={css(containerStyles, containerCss)}>
+        <div ref={modalRef} className={css(cardStyles, cardCss)}>
           {showCloseBtn && (
             <Button
-              className={styles['close-btn']}
+              className={closeBtnStyles}
               aria-label="Close modal"
               onClick={closeHandler}
             >

@@ -1,4 +1,4 @@
-import Skeleton from '../_ui/Skeleton/Skeleton';
+import Skeleton from '../_ui/Skeleton/SkeletonOld';
 
 function SetItemLinkLoading() {
   const size = '5.5rem';

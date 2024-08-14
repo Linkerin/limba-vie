@@ -1,12 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { css } from '@/styled-system/css';
 
 import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import type { Tables } from '@/app/_lib/supabase.types';
 
-import styles from './LearnedWordWrapper.module.css';
+const styles = css({
+  color: 'success.darker'
+});
 
 interface LearnedWordWrapperProps {
   children: React.ReactNode;
@@ -26,7 +29,7 @@ function LearnedWordWrapper({ children, setId }: LearnedWordWrapperProps) {
   }, []);
 
   return completedSets?.includes(setId) ? (
-    <span className={styles.learned}>{children}</span>
+    <span className={styles}>{children}</span>
   ) : (
     children
   );

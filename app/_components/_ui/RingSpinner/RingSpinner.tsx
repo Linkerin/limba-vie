@@ -1,21 +1,24 @@
-import classNames from 'classnames';
+import { css } from '@/styled-system/css';
+import type { SystemStyleObject } from '@/styled-system/types';
 
-import styles from './RingSpinner.module.css';
+import { styles } from './RingSpinner.styles';
 
-function RingSpinner({
-  className,
-  ...props
-}: React.ComponentPropsWithRef<'span'>) {
+type RingSpinnerProps = React.ComponentPropsWithRef<'span'> & {
+  css?: SystemStyleObject;
+};
+
+function RingSpinner({ css: cssProp = {}, ...props }: RingSpinnerProps) {
   return (
     <span
-      className={classNames(styles['ring-spinner'], className)}
+      className={css(styles, cssProp)}
       role="status"
       {...props}
+      data-element="spinner-container"
     >
-      <span />
-      <span />
-      <span />
-      <span />
+      <span data-element="spinner-part" />
+      <span data-element="spinner-part" />
+      <span data-element="spinner-part" />
+      <span data-element="spinner-part" />
     </span>
   );
 }

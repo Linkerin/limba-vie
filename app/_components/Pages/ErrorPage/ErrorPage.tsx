@@ -1,4 +1,17 @@
-import styles from './ErrorPage.module.css';
+import { css } from '@/styled-system/css';
+
+const styles = css({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-evenly',
+  height: '100%',
+  textAlign: 'center'
+});
+
+const textStyles = css({
+  fontSize: 'token(fontSizes.2xl, 1.5rem)'
+});
 
 interface ErrorPageProps {
   children: React.ReactNode;
@@ -14,10 +27,10 @@ function ErrorPage({
   text
 }: ErrorPageProps) {
   return (
-    <section className={styles.section}>
+    <section className={styles}>
       {precedingElement}
       <h1>{heading}</h1>
-      <p>{text}</p>
+      <p className={textStyles}>{text}</p>
       {children}
     </section>
   );

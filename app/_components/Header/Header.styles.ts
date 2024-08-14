@@ -23,6 +23,7 @@ export const logoStyles = css({
   fontSize: 'lg',
   fontWeight: 500,
   lineHeight: '1.25rem',
+  textDecoration: 'none',
   userSelect: 'none',
 
   '&, &:hover, &:visited': {

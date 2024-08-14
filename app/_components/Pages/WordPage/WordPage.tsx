@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { css } from '@/styled-system/css';
 
 import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
 import Sentence from '../../Word/Sentence/Sentence';
@@ -6,7 +7,18 @@ import Word from '../../Word/Word/Word';
 import WordImg from '../../Word/WordImg/WordImg';
 import type { WordType } from '@/app/_services/dbFetchers';
 
-import styles from './WordPage.module.css';
+const sectionStyles = css({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  height: '100%',
+  animation: 'fadeIn'
+});
+
+const sentenceStyles = css.raw({
+  marginBlockStart: 'token(spacing.6, 1.5rem)'
+});
 
 interface WordPageProps {
   word: WordType;
@@ -16,7 +28,7 @@ function WordPage({ word }: WordPageProps) {
   if (!word) notFound();
 
   return (
-    <section className={styles.section}>
+    <section className={sectionStyles}>
       <>
         <WordImg
           wordEn={word.en}
@@ -33,7 +45,7 @@ function WordPage({ word }: WordPageProps) {
           )}
         </Word>
         <Sentence
-          className={styles.sentence}
+          css={sentenceStyles}
           ro={word.example_ro}
           en={word.example_en}
         />

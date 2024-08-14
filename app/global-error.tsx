@@ -2,11 +2,37 @@
 
 import { useEffect } from 'react';
 import * as Sentry from '@sentry/nextjs';
+import { css } from '@/styled-system/css';
 
-import Button from './_components/_ui/Button/Button';
-import ButtonLink from './_components/_ui/Button/ButtonLink/ButtonLink';
+import Btn from './_components/_ui/Button/Btn';
+import ButtonLink from './_components/_ui/Button/ButtonLink';
 import Header from './_components/Header/Header';
 import NavBar from './_components/NavBar/NavBar';
+
+const mainStyles = css({
+  height: '100%',
+  paddingBlockStart: 'token(spacing.10, 2.5rem)',
+  textAlign: 'center',
+
+  '& > p': {
+    fontSize: 'token(fontSizes.2xl, 1.5rem)'
+  }
+});
+
+const footerStyles = css({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 'token(spacing.4, 1rem)',
+  marginBlock: 'token(spacing.4, 1rem)',
+  marginInline: 'auto',
+  width: '60dvw',
+
+  '& a, & button': {
+    width: '100%'
+  }
+});
 
 interface GlobalErrorProps {
   error: Error & { digest?: string };
@@ -26,19 +52,14 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
     <html>
       <body>
         <Header />
-        <main style={{ height: '100%' }}>
+        <main className={mainStyles}>
           <h1>Oh no, something went wrong</h1>
           <p>We are sorry!</p>
-          <footer style={{ marginBlock: '2rem' }}>
-            <ButtonLink style={{ width: '100%' }} href="/">
-              Go to homepage
-            </ButtonLink>
-            <Button
-              style={{ marginTop: '1rem', width: '100%' }}
-              onClick={resetClickHandler}
-            >
+          <footer className={footerStyles}>
+            <ButtonLink href="/">Go to homepage</ButtonLink>
+            <Btn onClick={resetClickHandler} variant="secondary">
               Try again
-            </Button>
+            </Btn>
           </footer>
         </main>
         <NavBar />

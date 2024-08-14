@@ -1,47 +1,57 @@
-import LearnedWordWrapper from './LearnedWordWrapper/LearnedWordWrapper';
-import ListItemLink from '@/app/_components/_ui/ListItemLink/ListItemLink';
-import type { Dict } from '@/app/_services/dbFetchers';
+import Link from 'next/link';
+import { cx } from '@/styled-system/css';
 
-import styles from './DictPage.module.css';
+import type { Dict } from '@/app/_services/dbFetchers';
+import LearnedWordWrapper from './LearnedWordWrapper/LearnedWordWrapper';
+import { linkOverlay } from '@/styled-system/patterns';
+
+import {
+  columnStyles,
+  listStyles,
+  roInfoStyles,
+  roWordStyles,
+  totalStyles
+} from './DictPage.styles';
 
 function DictPage({ words }: { words: Dict }) {
   return (
     <>
-      <p className={styles.total}>
+      <p className={totalStyles}>
         Total words: <span>{words.length}</span>
       </p>
-      <ol className={styles.list}>
+      <ol className={listStyles}>
         {words.map(word => (
           <li key={word.id}>
-            <div className={styles.column}>
-              <ListItemLink
-                className={styles.ro}
+            <div className={columnStyles}>
+              <Link
+                className={cx(linkOverlay(), roWordStyles)}
                 aria-label="Romanian word"
                 href={`/words/${encodeURIComponent(word.en)}`}
               >
                 <LearnedWordWrapper setId={word.set_id}>
                   {word.ro}
                 </LearnedWordWrapper>
-              </ListItemLink>
+              </Link>
               {word.gender_ro && (
-                <span className={styles.info} aria-label="Romanian word gender">
+                <span
+                  className={roInfoStyles}
+                  aria-label="Romanian word gender"
+                >
                   {' '}
                   {word.gender_ro}
                 </span>
               )}
               {word.plural && (
                 <span
-                  className={styles.info}
+                  className={roInfoStyles}
                   aria-label={`${word.ro} is plural`}
                 >
                   {word.gender_ro ? ', ' : null} pl.
                 </span>
               )}
             </div>
-            <div className={styles.column}>
-              <span className={styles.en} aria-label="English translation">
-                {word.en}
-              </span>
+            <div className={columnStyles}>
+              <span aria-label="English translation">{word.en}</span>
             </div>
           </li>
         ))}
