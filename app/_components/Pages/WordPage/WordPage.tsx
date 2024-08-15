@@ -17,7 +17,7 @@ const sectionStyles = css({
 });
 
 const sentenceStyles = css.raw({
-  marginBlockStart: 'token(spacing.6, 1.5rem)'
+  marginBlock: 'token(spacing.6, 1.5rem) auto'
 });
 
 interface WordPageProps {

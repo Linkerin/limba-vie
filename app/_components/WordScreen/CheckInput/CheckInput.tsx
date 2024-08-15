@@ -1,16 +1,22 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import classNames from 'classnames';
 
-import Button from '../../_ui/Button/Button';
+import Btn from '../../_ui/Button/Btn';
 import { getRandomValueFromArr } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
+import useFormHandlers from './useFormHandlers';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useWordHandlers from '@/app/_hooks/useWordHandlers';
 
-import styles from './CheckInput.module.css';
-import useFormHandlers from './useFormHandlers';
+import {
+  answerStyles,
+  btnStyles,
+  formStyles,
+  inputStyles,
+  labelStyles,
+  wrongInputStyles
+} from './CheckInput.styles';
 
 const CheckInputModal = dynamic(
   () => import('../CheckInputModal/CheckInputModal'),
@@ -60,15 +66,14 @@ function CheckInput({
   return (
     <>
       <form
-        className={classNames(styles.form, {
-          [styles['apple-pwa']]: isApplePwa
-        })}
+        className={formStyles}
         onSubmit={onSubmitHandler}
+        data-apple-pwa={isApplePwa}
       >
-        <label htmlFor="word-check">
+        <label className={labelStyles} htmlFor="word-check">
           Translate into Romanian:
           <input
-            className={styles.input}
+            className={inputStyles}
             id="word-check"
             name="word-check"
             type="text"
@@ -82,17 +87,19 @@ function CheckInput({
             required
           />
         </label>
-        <Button disabled={input.length === 0 || !!resultStatus}>Check</Button>
+        <Btn css={btnStyles} disabled={input.length === 0 || !!resultStatus}>
+          Check
+        </Btn>
       </form>
       {resultStatus && (
         <CheckInputModal onBtnClick={setCurrWord} status={resultStatus}>
           <p>
             {getRandomValueFromArr(phrases[resultStatus])}{' '}
             {resultStatus === 'success' ? 'I' : 'i'}
-            t&apos;s <span className={styles.answer}>{originalWord}</span>.
+            t&apos;s <span className={answerStyles}>{originalWord}</span>.
           </p>
           {resultStatus === 'error' && (
-            <p className={styles['wrong-input']}>
+            <p className={wrongInputStyles}>
               Your answer: <span>{input}</span>
             </p>
           )}

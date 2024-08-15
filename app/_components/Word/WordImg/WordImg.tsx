@@ -2,13 +2,21 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import classNames from 'classnames';
 import { IconRepeat } from '@tabler/icons-react';
+import { cx } from '@/styled-system/css';
 
 import { getWordsImageUrl } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 
-import styles from './WordImg.module.css';
+import {
+  backStyles,
+  cardStyles,
+  containerStyles,
+  flipIconStyles,
+  loaderStyles,
+  sideContentStyles,
+  sideStyles
+} from './WordImg.styles';
 
 interface WordImgProps {
   gender: Tables<'words'>['gender_ro'];
@@ -46,38 +54,29 @@ function WordImg({ gender, wordEn, imgName = wordEn }: WordImgProps) {
     <>
       <button
         aria-label={isFlipped ? 'Show image' : 'Show english translation'}
-        className={styles.container}
+        className={containerStyles}
         onClick={flipHandler}
       >
         <div
-          className={classNames(
-            styles.card,
-            { [styles[`${gender}`]]: !!gender },
-            { [styles.flip]: isFlipped }
-          )}
+          className={cardStyles}
+          data-flipped={isFlipped}
+          data-gender={gender}
         >
-          <IconRepeat className={styles['flip-icon']} />
-          <div
-            className={classNames(styles.front, {
-              [styles.loading]: !isLoaded
-            })}
-          >
+          <IconRepeat className={flipIconStyles} />
+          <div className={sideStyles} aria-busy={!isLoaded}>
             <img
               ref={imgRef}
+              className={sideContentStyles}
               alt={`${wordEn} picture`}
               src={getWordsImageUrl(imgName)}
               fetchPriority="high"
               loading="eager"
               onLoad={onLoadHandler}
             />
-            <div
-              className={classNames(styles.loader, {
-                [styles.loaded]: isLoaded
-              })}
-            />
+            <div className={loaderStyles} data-loaded={isLoaded} />
           </div>
-          <div className={styles.back}>
-            <p>{wordEn}</p>
+          <div className={cx(sideStyles, backStyles)}>
+            <p className={sideContentStyles}>{wordEn}</p>
           </div>
         </div>
       </button>

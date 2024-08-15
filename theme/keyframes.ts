@@ -37,5 +37,9 @@ export const keyframes = defineKeyframes({
       position: 'relative',
       bottom: '0rem'
     }
+  },
+  'move-in': {
+    '0%': { bottom: '-300px' },
+    '100%': { bottom: '0px' }
   }
 });

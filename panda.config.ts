@@ -44,9 +44,15 @@ export default defineConfig({
           background: { value: 'hsl(28, 33%, 97%)' },
           'background-darker': { value: 'hsl(28, 33%, 93%)' },
           'background-dark': { value: 'hsl(28, 33%, 86%)' },
+          'g.masculine': { value: 'hsl(255, 58%, 40%)' },
+          'g.neutral': { value: 'hsl(43, 100%, 44%)' },
+          'g.feminine': { value: 'hsl(352, 60%, 47%)' },
           ...generateTokens('primary', primaryColor),
           ...generateTokens('secondary', secondaryColor),
           ...generateTokens('success', successColor)
+        },
+        sizes: {
+          'img.size': { value: 'min(60dvw, 480px)' }
         }
       }),
       semanticTokens

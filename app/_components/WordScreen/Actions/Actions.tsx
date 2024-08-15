@@ -1,14 +1,24 @@
 'use client';
 
 import { useCallback } from 'react';
-import classNames from 'classnames';
+import { css } from '@/styled-system/css';
 
 import ActionBtn from '../../_ui/ActionBtn/ActionBtn';
 import type { Tables } from '@/app/_lib/supabase.types';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useWordHandlers from '../../../_hooks/useWordHandlers';
 
-import styles from './Actions.module.css';
+const styles = css({
+  backgroundColor: 'background',
+  display: 'flex',
+  justifyContent: 'space-around',
+  paddingBlock: 'token(spacing.4, 1rem)',
+  width: '100%',
+
+  '&[data-apple-pwa=true]': {
+    paddingBlockEnd: 'apple-pwa-pd'
+  }
+});
 
 export interface ActionsProps {
   wordId: Tables<'words'>['id'];
@@ -41,11 +51,7 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
     );
 
   return (
-    <div
-      className={classNames(styles['action-btns'], {
-        [styles['apple-pwa']]: isApplePwa
-      })}
-    >
+    <div className={styles} data-apple-pwa={isApplePwa}>
       <ActionBtn
         action="repeat"
         onClick={repeatClickHandler}

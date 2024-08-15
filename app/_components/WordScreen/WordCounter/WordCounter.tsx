@@ -1,4 +1,11 @@
-import styles from './WordCounter.module.css';
+import { css } from '@/styled-system/css';
+
+const styles = css({
+  color: 'main',
+  cursor: 'default',
+  fontSize: '1.375rem',
+  marginBottom: 'token(spacing.2, 0.5rem)'
+});
 
 interface WordCounterProps {
   current: number;
@@ -7,7 +14,7 @@ interface WordCounterProps {
 
 function WordCounter({ current, total }: WordCounterProps) {
   return (
-    <p className={styles.counter}>
+    <p className={styles}>
       {current} / {total}
     </p>
   );
