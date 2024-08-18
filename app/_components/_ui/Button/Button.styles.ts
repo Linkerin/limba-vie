@@ -7,7 +7,7 @@ export const buttonVariants: RecipeDefinition = {
       base: {
         borderColor: 'main',
         boxShadow: '0.0625rem 0.0625rem token(colors.main)',
-        '&, &:hover, &:visited': {
+        '&, &:hover:not(:disabled), &:visited': {
           color: 'main'
         },
         '&:active:not(:disabled)': {
@@ -17,7 +17,7 @@ export const buttonVariants: RecipeDefinition = {
       primary: {
         borderColor: 'primary.400',
         boxShadow: '0.0625rem 0.0625rem token(colors.primary.400)',
-        '&, &:hover, &:visited': {
+        '&, &:hover:not(:disabled), &:visited': {
           color: 'primary.400'
         },
         '&:active:not(:disabled)': {
@@ -27,7 +27,7 @@ export const buttonVariants: RecipeDefinition = {
       secondary: {
         borderColor: 'secondary.400',
         boxShadow: '0.0625rem 0.0625rem token(colors.secondary.400)',
-        '&, &:hover, &:visited': {
+        '&, &:hover:not(:disabled), &:visited': {
           color: 'secondary.400'
         },
         '&:active:not(:disabled)': {
@@ -37,7 +37,7 @@ export const buttonVariants: RecipeDefinition = {
       success: {
         borderColor: 'success.400',
         boxShadow: '0.0625rem 0.0625rem token(colors.success.400)',
-        '&, &:hover, &:visited': {
+        '&, &:hover:not(:disabled), &:visited': {
           color: 'success.400'
         },
         '&:active:not(:disabled)': {

@@ -2,7 +2,6 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { css } from '@/styled-system/css';
 
 import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
 import Finished from '../../WordScreen/Finished/Finished';
@@ -14,17 +13,16 @@ import WordCounter from '../../WordScreen/WordCounter/WordCounter';
 import WordImg from '../../Word/WordImg/WordImg';
 import type { RepeatWords, SetInfo, Words } from '@/app/_services/dbFetchers';
 
-import styles from './SetPage.module.css';
+import {
+  audioBtnStyles,
+  sectionStyles,
+  wordContainerStyles
+} from './SetPage.styles';
 
 const Actions = dynamic(() => import('../../WordScreen/Actions/Actions'));
 const CheckInput = dynamic(
   () => import('../../WordScreen/CheckInput/CheckInput')
 );
-
-const audioBtnStyles = css.raw({
-  fontSize: '4xl',
-  animation: 'appearance 7s ease-in'
-});
 
 export interface SetPageProps {
   words: Words | RepeatWords;
@@ -51,11 +49,11 @@ function SetPage({ words, checkPage, setInfo, setName }: SetPageProps) {
   useMediaLoad(currWord, shuffled);
 
   return (
-    <section className={styles.section}>
+    <section className={sectionStyles}>
       {currWord < shuffled.length && shuffled.at(currWord) && (
         <>
           <WordCounter current={currWord + 1} total={shuffled.length} />
-          <div className={styles['word-container']}>
+          <div className={wordContainerStyles}>
             <WordImg
               wordEn={shuffled[currWord].en}
               gender={shuffled[currWord].gender_ro}

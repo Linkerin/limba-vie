@@ -6,23 +6,23 @@ ul {
 
 strong {
   font-weight: normal;
-  color: var(--primary);
+  color: var(--colors-primary);
 }
 
 table {
-  border: solid var(--primary-darker);
+  border: solid var(--colors-primary-darker);
   border-collapse: separate;
-  border-radius: var(--radius-md, 0.25rem);
+  border-radius: var(--radii-sm, 0.25rem);
   border-width: 0.125rem;
-  box-shadow: 0.125rem 0.125rem var(--primary-darker);
+  box-shadow: 0.125rem 0.125rem var(--colors-primary-darker);
   font-size: 1.125rem;
   margin-block: 0.5rem;
   width: 100%;
 }
 
 thead {
-  background-color: var(--primary);
-  color: var(--on-primary);
+  background-color: var(--colors-primary);
+  color: var(--colors-background);
 }
 
 th:first-of-type {
@@ -42,7 +42,7 @@ td {
 
 thead th,
 tbody > tr:not(:last-of-type) > td {
-  border-block-end: 0.125rem solid var(--primary-darker);
+  border-block-end: 0.125rem solid var(--colors-primary-darker);
 }
 
 td {
@@ -55,5 +55,5 @@ td > em {
 }
 
 .grammar-container > * {
-  animation: var(--animation-fadein);
+  animation: var(--animations-fade-in);
 }

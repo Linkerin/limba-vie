@@ -15,6 +15,7 @@ export const cardStyles = css({
   position: 'relative',
   backgroundColor: 'primary.container-low',
   borderRadius: 'sm',
+  boxShadow: 'md',
   height: `calc(token(sizes.img.size) + calc(${cardPaddings.main} + ${cardPaddings.bottom}))`,
   width: `calc(token(sizes.img.size) + calc(${cardPaddings.main} * 2))`,
   marginBottom: 'token(spacing.3, 0.75rem)',

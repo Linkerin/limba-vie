@@ -1,6 +1,6 @@
 @layer reset, base, tokens, recipes, utilities;
 
-:root {
+/* :root {
   --background-darker: hsl(12, 20%, 93%);
   --background-dark: hsl(12, 19%, 85%);
 
@@ -66,7 +66,7 @@
     0px 1px 2px 0px rgba(0, 0, 0, 0.3);
 
   --img-size: min(60dvw, 480px);
-}
+} */
 
 @layer reset {
   *,
@@ -212,14 +212,5 @@
   :where(a):focus,
   :where(a):active {
     text-decoration: none;
-  }
-
-  @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
   }
 }

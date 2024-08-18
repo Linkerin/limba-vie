@@ -20,7 +20,7 @@ export const btnStyles = css.raw({
 });
 
 export const labelStyles = css({
-  color: 'on-primary-container',
+  color: 'main',
   fontSize: 'sm',
   fontStyle: 'italic',
   width: '100%'
