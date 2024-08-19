@@ -83,6 +83,7 @@ function AboutPage() {
         <ul className={creditsListStyles}>
           <li>
             <Link
+              aria-label="External link to Tabler Icons website"
               href="https://tabler.io/icons"
               rel="noopener external"
               target="_blank"
@@ -93,6 +94,7 @@ function AboutPage() {
           </li>
           <li>
             <Link
+              aria-label="External link to Freesound website"
               href="https://freesound.org/people/LittleRobotSoundFactory/sounds/270404/"
               rel="noopener external"
               target="_blank"
@@ -103,6 +105,7 @@ function AboutPage() {
             </Link>{' '}
             by{' '}
             <Link
+              aria-label="External link to Freesound website"
               href="https://freesound.org/people/LittleRobotSoundFactory/"
               rel="noopener external"
               target="_blank"
@@ -112,6 +115,7 @@ function AboutPage() {
             </Link>{' '}
             | License:{' '}
             <Link
+              aria-label="External link to Creative Commons license page"
               href="https://creativecommons.org/licenses/by/4.0/"
               rel="noopener external"
               target="_blank"
@@ -122,6 +126,7 @@ function AboutPage() {
           </li>
           <li>
             <Link
+              aria-label="External link to an image on Freepik.com"
               href="https://www.freepik.com/free-vector/cute-bull-thumbs-up-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-flat_35868793.html"
               rel="noopener external"
               target="_blank"
@@ -130,6 +135,18 @@ function AboutPage() {
               Image by catalyststuff <IconExternalLink />
             </Link>{' '}
             on Freepik
+          </li>
+          <li>
+            Vectors and icons by{' '}
+            <Link
+              aria-label="External link to SVG Repo website"
+              href="https://www.svgrepo.com"
+              rel="noopener external"
+              target="_blank"
+              prefetch={false}
+            >
+              SVG Repo <IconExternalLink />
+            </Link>{' '}
           </li>
         </ul>
       </section>

@@ -15,18 +15,20 @@ export const setStyles = css({
   '--elem-width-for-popover': '5.5rem',
 
   aspectRatio: 'square',
-  border: '1px solid token(colors.main)',
+  backgroundColor: 'background-darker',
+  border: '2px solid token(colors.main)',
   borderRadius: 'sm',
   color: 'main',
   position: 'relative',
   width: 'var(--elem-width-for-popover, 5.5rem)',
 
   _hover: {
-    backgroundColor: 'background-darker'
+    backgroundColor: 'background-dark'
   },
 
   _active: {
-    backgroundColor: 'background-dark'
+    backgroundColor: 'background-dark',
+    boxShadow: 'inset 0 0 0.375rem rgba(0, 0, 0, 0.3)'
   },
 
   '&[data-completed=true]': {
@@ -49,18 +51,19 @@ export const contentStyles = css({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: 'token(spacing.2, 0.5rem)',
+  gap: 'token(spacing.3, 0.75rem)',
   borderRadius: 'inherit',
   color: 'inherit',
   cursor: 'pointer',
-  fontSize: 'md',
+  fontSize: 'sm',
   height: '100%',
   width: '100%',
   textDecoration: 'none'
 });
 
 export const emojiStyles = css({
-  fontSize: '2xl'
+  filter: 'drop-shadow(0px 0px 1px token(colors.main))',
+  fontSize: '3xl'
 });
 
 export const completedIconStyles = css({

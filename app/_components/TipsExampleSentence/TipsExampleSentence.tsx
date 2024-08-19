@@ -7,7 +7,7 @@ import {
   containerStyles,
   sentenceStyles,
   translationStyles
-} from './ExampleSentence.styles';
+} from './TipsExampleSentence.styles';
 
 interface ExampleSentenceProps extends React.ComponentPropsWithoutRef<'div'> {
   sentence: string;
@@ -17,7 +17,7 @@ interface ExampleSentenceProps extends React.ComponentPropsWithoutRef<'div'> {
   css?: SystemStyleObject;
 }
 
-function ExampleSentence({
+function TipsExampleSentence({
   className,
   sentence,
   translation,
@@ -45,4 +45,4 @@ function ExampleSentence({
   );
 }
 
-export default ExampleSentence;
+export default TipsExampleSentence;

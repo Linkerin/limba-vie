@@ -45,7 +45,7 @@ export default function RootLayout({
         </SoundProvider>
         <CookieConsent />
         {isProd && <AnonymousSignIn />}
-        {isProd && <WebVitals />}
+        {/* {isProd && <WebVitals />} */}
       </body>
     </html>
   );

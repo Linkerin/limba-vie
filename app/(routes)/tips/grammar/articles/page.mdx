@@ -1,6 +1,6 @@
 import { ARTICLES } from '@/app/_lib/constants';
 import Attention from '@/app/_components/_ui/Attention/Attention';
-import ExampleSentence from '@/app/_components/ExampleSentence/ExampleSentence';
+import TipsExampleSentence from '@/app/_components/TipsExampleSentence/TipsExampleSentence';
 
 export const description = ARTICLES.articles.description;
 export const title = ARTICLES.articles.title;
@@ -153,7 +153,7 @@ The form of the definite article also depends on whether the noun is
 
 {examples.m.map(elem =>
 
-<ExampleSentence
+<TipsExampleSentence
   key={elem.sentence}
   sentence={elem.sentence}
   translation={elem.translation}
@@ -165,7 +165,7 @@ The form of the definite article also depends on whether the noun is
 
 {examples.f.map(elem =>
 
-<ExampleSentence
+<TipsExampleSentence
   key={elem.sentence}
   sentence={elem.sentence}
   translation={elem.translation}
@@ -177,7 +177,7 @@ The form of the definite article also depends on whether the noun is
 
 {examples.n.map(elem =>
 
-  <ExampleSentence
+  <TipsExampleSentence
     key={elem.sentence}
     sentence={elem.sentence}
     translation={elem.translation}
