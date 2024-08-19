@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import Image from 'next/image';
 
 import ButtonLink from '../../_ui/Button/ButtonLink';
@@ -19,14 +20,30 @@ import {
 } from './Finished.styles';
 
 interface FinishedProps {
+  prevUnitId?: number | null;
   setInfo?: SetInfo;
   setName?: Tables<'sets'>['set'];
 }
 
-function Finished({ setInfo, setName }: FinishedProps) {
+function Finished({ prevUnitId, setInfo, setName }: FinishedProps) {
   useSaveSetCompletion(setInfo?.id);
 
-  const homePath = setInfo?.prev_set_id ? `/#set-${setInfo.prev_set_id}` : '/';
+  const url = useMemo(() => {
+    if (!prevUnitId && !setInfo?.unit_id) return '/';
+
+    const url = `#unit-${prevUnitId ? prevUnitId : setInfo?.unit_id}`;
+
+    return url;
+  }, [prevUnitId, setInfo?.unit_id]);
+
+  const homeUrl = new URL(url, process.env.NEXT_PUBLIC_BASE_URL);
+  const params = new URLSearchParams();
+
+  if (setInfo?.unit_id) {
+    params.append('open-unit-id', setInfo.unit_id.toString());
+  }
+  homeUrl.search = params.toString();
+
   const set = setName ?? setInfo?.set ?? '';
 
   return (
@@ -47,7 +64,7 @@ function Finished({ setInfo, setName }: FinishedProps) {
       <ButtonLink
         css={btnStyles}
         aria-label="To homepage"
-        href={homePath}
+        href={homeUrl.href}
         prefetch
       >
         Continue

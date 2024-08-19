@@ -113,8 +113,8 @@ export type SentenceType = Awaited<ReturnType<typeof getSentence>>;
 
 export const getSetInfo = cache(async (setName: string) => {
   const { data, error } = await supabase
-    .from('sorted_sets')
-    .select('id, prev_set_id, set')
+    .from('sets_view')
+    .select('id, unit_id, set')
     .eq('set', setName)
     .limit(1);
   if (error) throw error;

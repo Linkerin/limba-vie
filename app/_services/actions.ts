@@ -30,4 +30,16 @@ export async function getUnitSets(unitId: Tables<'units_view'>['id']) {
   return data;
 }
 
+export async function getPrevUnitId(unitId: Tables<'units_view'>['id']) {
+  if (!unitId) return null;
+
+  const { data, error } = await supabase
+    .from('units_view')
+    .select('prev_unit')
+    .eq('id', unitId);
+  if (error) throw error;
+
+  return data.at(0)?.prev_unit;
+}
+
 export type UnitSets = Awaited<ReturnType<typeof getUnitSets>>;

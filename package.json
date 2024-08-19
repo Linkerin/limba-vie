@@ -1,10 +1,10 @@
 {
   "name": "limba",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "rm -rf .next && next dev",
-    "build": "rm -rf .next && NEXT_PUBLIC_ENVIRONMENT=PROD panda codegen && next build",
+    "build": "rm -rf .next && panda codegen && next build",
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true npm run build",

@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useState } from 'react';
+import { createContext, useCallback, useEffect, useState } from 'react';
 
 import { LOCAL_STORAGE_KEYS } from '../_lib/constants';
 import ssrLocalStorage from '../_services/SsrLocalStorage';
@@ -25,9 +25,7 @@ export default function SoundProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [autoplay, setAutoplay] = useState(
-    !(ssrLocalStorage.getItem(autoplayKey) === 'false')
-  );
+  const [autoplay, setAutoplay] = useState(true);
 
   const [currentPlaying, setCurrentPlaying] = useState<CurrentPlaying>(null);
 
@@ -42,6 +40,14 @@ export default function SoundProvider({
 
       return !prevState;
     });
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const localAutoplay = !(ssrLocalStorage.getItem(autoplayKey) === 'false');
+
+    setAutoplay(localAutoplay);
   }, []);
 
   return (
