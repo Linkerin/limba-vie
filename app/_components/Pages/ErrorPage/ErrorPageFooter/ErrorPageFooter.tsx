@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { css } from '@/styled-system/css';
 
-import Btn from '@/app/_components/_ui/Button/Btn';
+import Button from '@/app/_components/_ui/Button/Button';
 import ButtonLink from '@/app/_components/_ui/Button/ButtonLink';
 
 const styles = css({
@@ -35,17 +35,17 @@ function ErrorPageFooter({ reset }: { reset?: () => void }) {
   return (
     <footer className={styles}>
       {reset && typeof reset === 'function' && (
-        <Btn onClick={() => reset()} variant="secondary">
+        <Button onClick={() => reset()} variant="secondary">
           Try again
-        </Btn>
+        </Button>
       )}
-      <Btn
+      <Button
         aria-label="Navigate to the previous page"
         onClick={backClickHandler}
         variant="primary"
       >
         Go back
-      </Btn>
+      </Button>
       <ButtonLink href="/">Go to homepage</ButtonLink>
     </footer>
   );

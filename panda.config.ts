@@ -31,7 +31,10 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
 
-  hash: process.env.NEXT_PUBLIC_ENVIRONMENT === 'PROD' ? true : false,
+  hash:
+    process.env.NEXT_PUBLIC_ENVIRONMENT === 'PROD'
+      ? { className: true, cssVar: false }
+      : false,
   minify: process.env.NEXT_PUBLIC_ENVIRONMENT === 'PROD' ? true : false,
 
   // Useful for theme customization

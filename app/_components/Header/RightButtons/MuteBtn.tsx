@@ -3,7 +3,7 @@
 import { useCallback } from 'react';
 import { IconVolume, IconVolumeOff } from '@tabler/icons-react';
 
-import Btn from '../../_ui/Button/Btn';
+import Button from '../../_ui/Button/Button';
 import useSoundMode from '@/app/_hooks/useSoundMode';
 
 import styles from './RightButtons.styles';
@@ -20,7 +20,7 @@ function MuteBtn() {
   );
 
   return (
-    <Btn
+    <Button
       aria-label={`Turn ${isSoundAllowed ? 'off' : 'on'} word sounds autoplay`}
       css={styles}
       onClick={clickHandler}
@@ -30,7 +30,7 @@ function MuteBtn() {
       variant="base"
     >
       {isSoundAllowed ? <IconVolume /> : <IconVolumeOff />}
-    </Btn>
+    </Button>
   );
 }
 

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { css } from '@/styled-system/css';
 
-import Btn from '../_ui/Button/Btn';
+import Button from '../_ui/Button/Button';
 import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
 import Modal from '../_ui/Modal/Modal';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
@@ -74,9 +74,9 @@ function CookieConsent() {
         </Link>
         .
       </p>
-      <Btn css={btnStyles} onClick={handleClose} variant="primary" autoFocus>
+      <Button css={btnStyles} onClick={handleClose} variant="primary" autoFocus>
         Accept
-      </Btn>
+      </Button>
     </Modal>
   ) : null;
 }

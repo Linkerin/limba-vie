@@ -1,4 +1,4 @@
-import Btn from '../../_ui/Button/Btn';
+import Button from '../../_ui/Button/Button';
 import CheckSound from './CheckSound/CheckSound';
 import Portal from '../../_ui/Portal/Portal';
 
@@ -52,14 +52,14 @@ function CheckInputModal({
     <Portal>
       <div className={containerStyles} data-status={status}>
         {children}
-        <Btn
+        <Button
           css={btnStyles}
           onClick={onBtnClick}
           variant={status === 'success' ? 'success' : 'secondary'}
           autoFocus
         >
           {buttonText}
-        </Btn>
+        </Button>
         <CheckSound status={status} />
       </div>
     </Portal>

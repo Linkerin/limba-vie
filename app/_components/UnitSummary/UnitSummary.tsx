@@ -5,9 +5,10 @@ import { useSearchParams } from 'next/navigation';
 import { card } from '@/styled-system/recipes';
 import { cx } from '@/styled-system/css';
 
-import { detailsStyles, unitContentStyles } from './UnitSummary.styles';
 import { getCompletedSetsNum } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
+
+import { detailsStyles, unitContentStyles } from './UnitSummary.styles';
 
 interface UnitSummaryProps {
   children: React.ReactNode;

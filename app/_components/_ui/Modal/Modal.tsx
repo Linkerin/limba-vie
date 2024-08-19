@@ -6,8 +6,9 @@ import { IconX } from '@tabler/icons-react';
 import type { SystemStyleObject } from '@/styled-system/types';
 
 import Button from '../Button/Button';
-import { cardStyles, closeBtnStyles, containerStyles } from './Modal.styles';
 import Portal from '../Portal/Portal';
+
+import { cardStyles, closeBtnStyles, containerStyles } from './Modal.styles';
 
 interface SetItemPopoverProps {
   children: React.ReactNode;
@@ -49,7 +50,7 @@ function Modal({
         <div ref={modalRef} className={css(cardStyles, cardCss)}>
           {showCloseBtn && (
             <Button
-              className={closeBtnStyles}
+              css={closeBtnStyles}
               aria-label="Close modal"
               onClick={closeHandler}
             >

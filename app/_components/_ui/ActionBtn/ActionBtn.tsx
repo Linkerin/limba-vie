@@ -1,7 +1,7 @@
 import { IconCheck, IconMessage2, IconRepeat } from '@tabler/icons-react';
 import { css } from '@/styled-system/css';
 
-import Btn, { ButtonProps } from '../Button/Btn';
+import Button, { ButtonProps } from '../Button/Button';
 
 const styles = css.raw({
   padding: 'token(spacing.2, 0.5rem)',
@@ -22,7 +22,7 @@ interface ActionBtnProps extends ButtonProps {
 
 function ActionBtn({ action, ...props }: ActionBtnProps) {
   return (
-    <Btn
+    <Button
       css={styles}
       aria-label={ariaLabes[action]}
       title={ariaLabes[action]}
@@ -33,7 +33,7 @@ function ActionBtn({ action, ...props }: ActionBtnProps) {
         {action === 'learned' && <IconCheck stroke={2} />}
         {action === 'example' && <IconMessage2 stroke={2} />}
       </span>
-    </Btn>
+    </Button>
   );
 }
 

@@ -1,34 +1,31 @@
 'use client';
 
-import classNames from 'classnames';
+import { useMemo } from 'react';
+import { css } from '@/styled-system/css';
 
-import styles from './Button.module.css';
+import type { ButtonBaseProps } from './Button.types';
+import { buttonStyles } from './Button.styles';
 
-export interface ButtonBaseProps {
-  fadeAnimation?: boolean;
-  variant?: 'primary' | 'secondary' | 'green' | 'base';
-  vibrate?: boolean;
-}
-export type ButtonProps = React.ComponentPropsWithRef<'button'> &
-  ButtonBaseProps;
+export type ButtonProps = ButtonBaseProps &
+  React.ComponentPropsWithRef<'button'>;
 
 function Button({
   children,
-  className,
+  css: cssProp,
   fadeAnimation = false,
-  variant = 'primary',
+  variant = 'base',
   vibrate = true,
   onClick,
   ...props
 }: ButtonProps) {
+  const styles = useMemo(
+    () => css(buttonStyles.raw({ variant }), cssProp),
+    [cssProp, variant]
+  );
+
   return (
     <button
-      className={classNames(
-        styles.btn,
-        styles[variant],
-        { [styles.fade]: fadeAnimation },
-        className
-      )}
+      className={styles}
       onClick={e => {
         if (typeof navigator?.vibrate === 'function' && vibrate) {
           navigator.vibrate(40);

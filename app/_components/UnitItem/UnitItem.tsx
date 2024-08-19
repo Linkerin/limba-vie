@@ -1,17 +1,18 @@
 import dynamic from 'next/dynamic';
 import { IconChevronDown } from '@tabler/icons-react';
 
-import {
-  arrowIconStyles,
-  progressContainerStyles,
-  setsListStyles
-} from './UnitItem.styles';
 import { getUnitSets } from '@/app/_services/actions';
 import SetItemLinkLoading from '../SetItemLink/SetItemLinkLoading';
 import UnitHeading from '../UnitHeading/UnitHeading';
 import type { Units } from '@/app/_services/dbFetchers';
 import UnitProgress from '../UnitProgress/UnitProgress';
 import UnitSummary from '../UnitSummary/UnitSummary';
+
+import {
+  arrowIconStyles,
+  progressContainerStyles,
+  setsListStyles
+} from './UnitItem.styles';
 
 const SetItemLink = dynamic(() => import('../SetItemLink/SetItemLink'), {
   loading: () => <SetItemLinkLoading />,

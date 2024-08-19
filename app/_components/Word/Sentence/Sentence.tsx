@@ -3,11 +3,12 @@
 import { useEffect, useState } from 'react';
 import { css } from '@/styled-system/css';
 
-import { containerStyles, enStyles, roStyles } from './Sentence.styles';
 import { getSentence, SentenceType } from '@/app/_services/dbFetchers';
 import SentenceLoading from './SentenceLoading/SentenceLoading';
 import type { SystemStyleObject } from '@/styled-system/types';
 import type { Tables } from '@/app/_lib/supabase.types';
+
+import { containerStyles, enStyles, roStyles } from './Sentence.styles';
 
 type SentenceProps = {
   css?: SystemStyleObject;

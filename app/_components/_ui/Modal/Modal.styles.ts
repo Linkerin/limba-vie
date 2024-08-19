@@ -26,7 +26,7 @@ export const cardStyles = css.raw({
   width: 'min(768px, 80dvw)'
 });
 
-export const closeBtnStyles = css({
+export const closeBtnStyles = css.raw({
   alignSelf: 'flex-end',
   aspectRatio: '1 / 1',
   fontSize: 'xl',

@@ -1,17 +1,9 @@
 import { getUnits } from '../_services/dbFetchers';
-import UnitItem from '../_components/UnitItem/UnitItem';
-import UnitsList from '../_components/UnitsList/UnitsList';
-
+import HomePage from '../_components/Pages/HomePage/HomePage';
 async function Home() {
   const units = await getUnits();
 
-  return (
-    <UnitsList>
-      {units.map(unit => (
-        <UnitItem key={unit.id} unit={unit} />
-      ))}
-    </UnitsList>
-  );
+  return <HomePage units={units} />;
 }
 
 export const revalidate = Number(process.env.REVALIDATE_PERIOD_SEC);

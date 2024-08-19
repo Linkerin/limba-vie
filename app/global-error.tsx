@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import * as Sentry from '@sentry/nextjs';
 import { css } from '@/styled-system/css';
 
-import Btn from './_components/_ui/Button/Btn';
+import Btn from './_components/_ui/Button/Button';
 import ButtonLink from './_components/_ui/Button/ButtonLink';
 import Header from './_components/Header/Header';
 import NavBar from './_components/NavBar/NavBar';

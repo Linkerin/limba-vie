@@ -5,13 +5,14 @@ import { css } from '@/styled-system/css';
 import { IconVolume } from '@tabler/icons-react';
 import type { SystemStyleObject } from '@/styled-system/types';
 
-import { buttonStyles, iconStyles } from './AudioBtn.styles';
 import { getAudioUrl } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 import {
   useCurrentPlaying,
   useIsSoundAllowed
 } from '@/app/_hooks/useSoundMode';
+
+import { buttonStyles, iconStyles } from './AudioBtn.styles';
 
 interface AudioBtnProps {
   audioName: Tables<'words'>['audio_name'];

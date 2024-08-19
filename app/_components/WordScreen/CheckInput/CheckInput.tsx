@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 
-import Btn from '../../_ui/Button/Btn';
+import Button from '../../_ui/Button/Button';
 import { getRandomValueFromArr } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 import useFormHandlers from './useFormHandlers';
@@ -87,9 +87,9 @@ function CheckInput({
             required
           />
         </label>
-        <Btn css={btnStyles} disabled={input.length === 0 || !!resultStatus}>
+        <Button css={btnStyles} disabled={input.length === 0 || !!resultStatus}>
           Check
-        </Btn>
+        </Button>
       </form>
       {resultStatus && (
         <CheckInputModal onBtnClick={setCurrWord} status={resultStatus}>

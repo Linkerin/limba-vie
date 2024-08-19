@@ -1,9 +1,15 @@
-import Skeleton from '../_ui/Skeleton/SkeletonOld';
+import Skeleton from '../_ui/Skeleton/Skeleton';
+
+import { css } from '@/styled-system/css';
+
+const size = '5.5rem';
+const styles = css.raw({
+  height: size,
+  width: size
+});
 
 function SetItemLinkLoading() {
-  const size = '5.5rem';
-
-  return <Skeleton height={size} width={size} />;
+  return <Skeleton css={styles} />;
 }
 
 export default SetItemLinkLoading;

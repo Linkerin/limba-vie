@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 import About from './RightButtons/About';
+
 import {
   headerStyles,
   logoStyles,

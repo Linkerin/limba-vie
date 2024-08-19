@@ -1,5 +1,6 @@
-import coatOfArmsMd from '@/public/icons/moldova_coat_of_arms.svg';
 import { css } from '@/styled-system/css';
+
+import coatOfArmsMd from '@/public/icons/moldova_coat_of_arms.svg';
 
 const containerStyles = css({
   display: 'flex',
