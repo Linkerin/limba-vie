@@ -39,6 +39,10 @@ export const unitContentStyles = css({
   width: '100%',
   zIndex: 0,
 
+  '&::-webkit-details-marker': {
+    display: 'none'
+  },
+
   '&:hover img, &:active img': {
     opacity: 0.85
   },

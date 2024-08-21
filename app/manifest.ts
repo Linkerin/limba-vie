@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { token } from '@/styled-system/tokens';
 
 const isPreview = process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW';
 
@@ -12,7 +13,7 @@ export default function manifest(): MetadataRoute.Manifest {
     display: 'standalone',
     orientation: 'portrait',
     background_color: '#b23444',
-    theme_color: '#f5f4fb',
+    theme_color: token('colors.background') ?? '#faf7f5',
     categories: ['education'],
     icons: [
       {
