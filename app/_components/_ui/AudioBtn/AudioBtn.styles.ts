@@ -1,9 +1,10 @@
 import { css } from '@/styled-system/css';
 
 export const buttonStyles = css.raw({
+  aspectRatio: '1 / 1',
   background: 'none',
   border: 'none',
-  borderRadius: 'lg',
+  borderRadius: 'sm',
   boxShadow: 'none',
   color: 'primary',
   cursor: 'pointer',
@@ -11,11 +12,11 @@ export const buttonStyles = css.raw({
   padding: 'token(spacing.1, 0.25rem)',
 
   _active: {
-    backgroundColor: 'primary.container',
+    backgroundColor: 'primary.container'
+  },
 
-    '& > svg': {
-      minWidth: '1em'
-    }
+  '& > svg': {
+    minWidth: '1em'
   }
 });
 

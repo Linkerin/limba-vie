@@ -4,7 +4,7 @@ const styles = css({
   color: 'main',
   cursor: 'default',
   fontSize: '1.375rem',
-  marginBottom: 'token(spacing.2, 0.5rem)'
+  marginBottom: 'token(spacing.1, 0.25rem)'
 });
 
 interface WordCounterProps {

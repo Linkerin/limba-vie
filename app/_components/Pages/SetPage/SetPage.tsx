@@ -11,6 +11,7 @@ import useMediaLoad from '@/app/_hooks/useMediaLoad';
 import Word from '../../Word/Word/Word';
 import WordCounter from '../../WordScreen/WordCounter/WordCounter';
 import WordImg from '../../Word/WordImg/WordImg';
+import WordPlural from '../../Word/WordPlural/WordPlural';
 import type { RepeatWords, SetInfo, Words } from '@/app/_services/dbFetchers';
 
 import {
@@ -75,16 +76,21 @@ function SetPage({
                 autoplay={false}
               />
             ) : (
-              <Word
-                word={shuffled[currWord].ro}
-                plural={shuffled[currWord].plural}
-                gender={shuffled[currWord].gender_ro}
-              >
-                <AudioBtn
-                  audioName={shuffled[currWord].audio_name}
+              <>
+                <Word
                   word={shuffled[currWord].ro}
-                />
-              </Word>
+                  plural={shuffled[currWord].plural}
+                  gender={shuffled[currWord].gender_ro}
+                >
+                  <AudioBtn
+                    audioName={shuffled[currWord].audio_name}
+                    word={shuffled[currWord].ro}
+                  />
+                </Word>
+                {shuffled[currWord].ro_plural && (
+                  <WordPlural plural={shuffled[currWord].ro_plural} />
+                )}
+              </>
             )}
             {showExample && <Sentence wordId={shuffled[currWord].id} />}
           </div>

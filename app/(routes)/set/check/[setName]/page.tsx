@@ -14,7 +14,7 @@ interface SetPageParams {
 export function generateMetadata({ params }: SetPageParams): Metadata {
   const set = capitalizeWord(params.setName);
   return {
-    title: `${set} Set: pratice`
+    title: `${decodeURIComponent(set ?? '')} set: practice`
   };
 }
 

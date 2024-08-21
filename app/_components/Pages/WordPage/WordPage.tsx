@@ -7,6 +7,7 @@ import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
 import Sentence from '../../Word/Sentence/Sentence';
 import Word from '../../Word/Word/Word';
 import WordImg from '../../Word/WordImg/WordImg';
+import WordPlural from '../../Word/WordPlural/WordPlural';
 import type { WordType } from '@/app/_services/dbFetchers';
 
 const sectionStyles = css({
@@ -19,15 +20,15 @@ const sectionStyles = css({
 });
 
 const sentenceStyles = css.raw({
-  marginBlock: 'token(spacing.6, 1.5rem) token(spacing.4, 1rem)'
+  marginBlock: 'token(spacing.4, 1rem)'
 });
 
 const dexLinkStyles = css({
   fontSize: 'xs',
-  marginBlockEnd: 'auto',
+  marginBlockStart: 'auto',
   width: '90%',
 
-  '& > svg': {
+  '& svg': {
     display: 'inline-block',
     marginInlineStart: '0.25em',
     verticalAlign: '-11.5%'
@@ -61,22 +62,25 @@ function WordPage({ word }: WordPageProps) {
           />
         )}
       </Word>
+      {word.ro_plural && <WordPlural plural={word.ro_plural} />}
       <Sentence
         css={sentenceStyles}
         ro={word.example_ro}
         en={word.example_en}
       />
-      <Link
-        className={dexLinkStyles}
-        aria-label={`External link to '${word.ro}' word page on DEXOnline.ro`}
-        href={`https://dexonline.ro/definitie/${encodeURIComponent(word.ro)}`}
-        rel="noopener external"
-        target="_blank"
-        prefetch={false}
-      >
-        Check the word at <span>dexonline.ro</span>
-        <IconExternalLink />
-      </Link>
+      <p className={dexLinkStyles}>
+        Check the word at{' '}
+        <Link
+          aria-label={`External link to '${word.ro}' word page on DEXOnline.ro`}
+          href={`https://dexonline.ro/definitie/${encodeURIComponent(word.ro)}`}
+          rel="noopener external"
+          target="_blank"
+          prefetch={false}
+        >
+          dexonline.ro
+          <IconExternalLink />
+        </Link>
+      </p>
     </section>
   );
 }

@@ -31,6 +31,7 @@ const fields = `id,
                 en,
                 en_alternatives,
                 ro,
+                ro_plural,
                 gender_ro,
                 plural,
                 img_name,
@@ -153,6 +154,7 @@ export const getWord = cache(async (word: string) => {
       `id,
        en,
        ro,
+       ro_plural,
        gender_ro,
        plural,
        img_name,
@@ -173,15 +175,8 @@ export const getWords = cache(async (setName: string) => {
   const { data, error } = await supabase
     .from('words')
     .select(
-      `id,
-         en,
-         en_alternatives,
-         ro,
-         gender_ro,
-         plural,
-         img_name,
-         audio_name,
-         sets_new!inner(id, set)`
+      `${fields},
+       sets_new!inner(id, set)`
     )
     .eq('sets_new.set', setName);
   if (error) throw error;

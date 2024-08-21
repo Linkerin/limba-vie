@@ -118,6 +118,7 @@ export type Database = {
           instagram: boolean;
           plural: boolean;
           ro: string;
+          ro_plural: string | null;
           set_id: number;
           updated_at: string;
         };
@@ -134,6 +135,7 @@ export type Database = {
           instagram?: boolean;
           plural?: boolean;
           ro: string;
+          ro_plural?: string | null;
           set_id: number;
           updated_at?: string;
         };
@@ -150,6 +152,7 @@ export type Database = {
           instagram?: boolean;
           plural?: boolean;
           ro?: string;
+          ro_plural?: string | null;
           set_id?: number;
           updated_at?: string;
         };
