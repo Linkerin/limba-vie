@@ -87,7 +87,11 @@ function CheckInput({
             required
           />
         </label>
-        <Button css={btnStyles} disabled={input.length === 0 || !!resultStatus}>
+        <Button
+          css={btnStyles}
+          variant="primary"
+          disabled={input.length === 0 || !!resultStatus}
+        >
           Check
         </Button>
       </form>

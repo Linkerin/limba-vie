@@ -32,6 +32,8 @@ export const inputStyles = css({
   borderRadius: 'sm',
   color: 'on-primary-container',
   fontSize: 'xl',
+  fontStyle: 'normal',
+  fontWeight: 'normal',
   marginBlockStart: 'token(spacing.3, 0.75rem)',
   minHeight: '3.375rem',
   paddingInline: 'token(spacing.2, 0.5rem)',
