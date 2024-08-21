@@ -1,5 +1,7 @@
 import { css } from '@/styled-system/css';
 
+import type { Tables } from '@/app/_lib/supabase.types';
+
 const styles = css({
   fontSize: 'sm',
   marginBlockStart: 'token(spacing.1, 0.25rem)',
@@ -11,12 +13,12 @@ const styles = css({
   }
 });
 
-function WordPlural({ plural }: { plural: string }) {
-  return (
+function WordPlural({ plural }: { plural: Tables<'words'>['ro_plural'] }) {
+  return plural ? (
     <p className={styles}>
       <span>pl.:</span> {plural}
     </p>
-  );
+  ) : null;
 }
 
 export default WordPlural;
