@@ -124,16 +124,16 @@ export const getSetInfo = cache(async (setName: string) => {
 
 export type SetInfo = Awaited<ReturnType<typeof getSetInfo>>;
 
-export const getSets = cache(async () => {
-  const { data, error } = await supabase
-    .from('sorted_sets')
-    .select('id, set, emoji, words_count, unit');
-  if (error) throw error;
+// export const getSets = cache(async () => {
+//   const { data, error } = await supabase
+//     .from('sorted_sets')
+//     .select('id, set, emoji, words_count, unit');
+//   if (error) throw error;
 
-  return data;
-});
+//   return data;
+// });
 
-export type Sets = Awaited<ReturnType<typeof getSets>>;
+// export type Sets = Awaited<ReturnType<typeof getSets>>;
 
 export const getUnits = cache(async () => {
   const { data, error } = await supabase
@@ -181,9 +181,9 @@ export const getWords = cache(async (setName: string) => {
          plural,
          img_name,
          audio_name,
-         sets!inner(id, set)`
+         sets_new!inner(id, set)`
     )
-    .eq('sets.set', setName);
+    .eq('sets_new.set', setName);
   if (error) throw error;
 
   return data;
