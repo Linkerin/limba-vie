@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (error) throw error;
 
   const words: MetadataRoute.Sitemap = data.map(word => ({
-    url: `${baseUrl}/words/${word.en}`,
+    url: `${baseUrl}/words/${encodeURIComponent(word.en)}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.5
@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const articles: MetadataRoute.Sitemap = Object.values(ARTICLES).map(
     article => ({
-      url: `${baseUrl}/tips/grammar/${article.link}`,
+      url: `${baseUrl}/tips/grammar/${encodeURIComponent(article.link)}`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6
