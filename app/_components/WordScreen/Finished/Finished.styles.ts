@@ -2,6 +2,7 @@ import { css } from '@/styled-system/css';
 
 export const containerStyles = css({
   animation: 'fadeIn',
+  marginBlock: 'auto',
   textAlign: 'center'
 });
 
@@ -19,6 +20,7 @@ export const msgStyles = css({
 });
 
 export const setNameStyles = css({
+  display: 'inline-block',
   backgroundColor: 'primary.container',
   borderRadius: '0.5em',
   color: 'primary',
@@ -29,6 +31,6 @@ export const setNameStyles = css({
 
 export const btnStyles = css.raw({
   fontSize: '2xl',
-  marginBlock: 'auto token(spacing.2, 0.5rem)',
+  marginBlockEnd: 'token(spacing.2, 0.5rem)',
   width: '100%'
 });
