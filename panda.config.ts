@@ -5,9 +5,9 @@ import { cardRecipe } from './theme/recipes';
 import { keyframes } from './theme/keyframes';
 import { semanticTokens } from './theme/semanticTokens';
 
-const primaryColor = new Spectrum('hex', '#4d52b3');
-const secondaryColor = new Spectrum('hex', '#bf5540');
-const successColor = new Spectrum('hex', '#609f7c');
+const primaryColor = new Spectrum('hsl', [237, 0.4, 0.5, 1]);
+const secondaryColor = new Spectrum('hsl', [24, 0.8, 0.5, 1]);
+const successColor = new Spectrum('hsl', [147, 0.25, 0.5, 1]);
 
 function generateTokens(prefix: string, color: Spectrum) {
   const palette = createPalette(color);

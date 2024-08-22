@@ -15,33 +15,33 @@ export const buttonVariants: RecipeDefinition = {
         }
       },
       primary: {
-        borderColor: 'primary.400',
-        boxShadow: '0.0625rem 0.0625rem token(colors.primary.400)',
+        borderColor: 'primary.dark',
+        boxShadow: '0.0625rem 0.0625rem token(colors.primary.dark)',
         '&, &:hover:not(:disabled), &:visited': {
-          color: 'primary.400'
+          color: 'primary.dark'
         },
         '&:active:not(:disabled)': {
-          backgroundColor: 'primary.850'
+          backgroundColor: 'primary.container'
         }
       },
       secondary: {
-        borderColor: 'secondary.400',
-        boxShadow: '0.0625rem 0.0625rem token(colors.secondary.400)',
+        borderColor: 'secondary.dark',
+        boxShadow: '0.0625rem 0.0625rem token(colors.secondary.dark)',
         '&, &:hover:not(:disabled), &:visited': {
-          color: 'secondary.400'
+          color: 'secondary.dark'
         },
         '&:active:not(:disabled)': {
-          backgroundColor: 'secondary.850'
+          backgroundColor: 'secondary.container'
         }
       },
       success: {
-        borderColor: 'success.400',
-        boxShadow: '0.0625rem 0.0625rem token(colors.success.400)',
+        borderColor: 'success.dark',
+        boxShadow: '0.0625rem 0.0625rem token(colors.success.dark)',
         '&, &:hover:not(:disabled), &:visited': {
-          color: 'success.400'
+          color: 'success.dark'
         },
         '&:active:not(:disabled)': {
-          backgroundColor: 'success.850'
+          backgroundColor: 'success.container'
         }
       }
     }
