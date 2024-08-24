@@ -16,10 +16,6 @@ const liStyles = css({
 
   '&:not(:last-of-type)': {
     marginBlockEnd: 'token(spacing.3, 0.75rem)'
-  },
-
-  '&[data-fade=true]': {
-    animation: 'fadeIn'
   }
 });
 
@@ -37,7 +33,7 @@ function TipsPage() {
   return (
     <ol>
       {Object.values(ARTICLES).map(val => (
-        <li key={val.link} className={cx(card(), liStyles)} data-fade={false}>
+        <li key={val.link} className={cx(card(), liStyles)}>
           <Link
             aria-label={`To ${val.title} grammar article`}
             href={`/tips/grammar/${val.link}`}
