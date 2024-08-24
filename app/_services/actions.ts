@@ -2,7 +2,7 @@
 
 import { headers, cookies } from 'next/headers';
 import supabase from '../_lib/supabase';
-import { Tables } from '../_lib/supabase.types';
+import type { Tables } from '../_lib/supabase.types';
 
 export async function getUserInfoFromReq() {
   const cookiesStore = cookies();

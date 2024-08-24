@@ -1,11 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { css } from '@/styled-system/css';
 
-import { getCompletedSetsNum } from '@/app/_lib/utils';
 import type { SetIdsArr } from '@/app/_lib/types';
 import Skeleton from '../_ui/Skeleton/Skeleton';
+import useCompletedSetsNum from '@/app/_hooks/useCompletedSetsNum';
 
 const borderWidth = '1px';
 
@@ -34,16 +33,7 @@ const styles = css({
 });
 
 function UnitProgress({ setIds }: { setIds: SetIdsArr }) {
-  const [completedSetsNum, setCompletedSetsNum] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const setsNum = getCompletedSetsNum(setIds);
-    if (typeof setsNum === 'number') {
-      setCompletedSetsNum(setsNum);
-    }
-  }, [setIds]);
+  const completedSetsNum = useCompletedSetsNum(setIds);
 
   return (
     <Skeleton

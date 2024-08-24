@@ -1,15 +1,16 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { IconCheck } from '@tabler/icons-react';
+import { useLiveQuery } from 'dexie-react-hooks';
 
 import ButtonLink from '../_ui/Button/ButtonLink';
 import { capitalizeWord } from '@/app/_lib/utils';
+import db from '@/app/_lib/db';
 import type { PopoverProps } from '../_ui/Popover/Popover';
 import RingSpinner from '../_ui/RingSpinner/RingSpinner';
-import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 import {
@@ -25,37 +26,25 @@ const Popover = dynamic(() => import('../_ui/Popover/Popover'), {
   loading: () => <RingSpinner css={popoverSpinnerStyles} />
 });
 
-function isSetCompleted(id: number | null) {
-  if (typeof window === 'undefined') return;
-  if (id === null) return false;
-
-  const completedSets = ssrLocalStorage.getItem('lvCompletedSets');
-  if (!completedSets) return false;
-
-  const completedSetsArr = JSON.parse(completedSets);
-  if (completedSetsArr.includes(id)) return true;
-
-  return false;
-}
-
 interface SetItemLinkProps {
-  id: Tables<'sets_view'>['id'];
+  id: Tables<'sets'>['id'];
   emoji: Tables<'sets_view'>['emoji'];
   set: Tables<'sets_view'>['set'];
   wordsNum: Tables<'sets_view'>['words_count'];
 }
 
 function SetItemLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
-  const isCompleted = useMemo(() => isSetCompleted(id), [id]);
-  const contentText = `${wordsNum} word${wordsNum === 1 ? '' : 's'}`;
-  const setLink = set ? `/set/${encodeURIComponent(set)}` : '#';
-  const setAriaLabel = `To '${set}' words set`;
-
   const [isPopoverOpened, setIsPopoverOpened] = useState(false);
   const [popoverX, setPopoverX] = useState<PopoverProps['positionX']>('left');
   const [popoverY, setPopoverY] = useState<PopoverProps['positionY']>('bottom');
 
   const liRef = useRef<HTMLLIElement>(null);
+
+  const setCompletionInfo = useLiveQuery(() => db.completedSets.get(id));
+
+  const contentText = `${wordsNum} word${wordsNum === 1 ? '' : 's'}`;
+  const setLink = set ? `/set/${encodeURIComponent(set)}` : '#';
+  const setAriaLabel = `To '${set}' words set`;
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
     e => {
@@ -102,8 +91,8 @@ function SetItemLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
   }, [isPopoverOpened]);
 
   return (
-    <li ref={liRef} className={setStyles} data-completed={isCompleted}>
-      {isCompleted ? (
+    <li ref={liRef} className={setStyles} data-completed={!!setCompletionInfo}>
+      {setCompletionInfo ? (
         <button className={contentStyles} onClick={handleClick}>
           <span className={emojiStyles}>{emoji}</span>
           {contentText}

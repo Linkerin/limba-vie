@@ -1,68 +1,37 @@
 'use client';
 
 import { useMemo } from 'react';
-import { captureException } from '@sentry/nextjs';
 
+import db from '../_lib/db';
 import { REPEAT_WORDS_CTY } from '@/app/_lib/constants';
 import { shuffleArr } from '../_lib/utils';
-import ssrLocalStorage from '../_services/SsrLocalStorage';
-
-function getWordForRepeat() {
-  try {
-    const repeatWordsStr = ssrLocalStorage.getItem('lvRepeatWords');
-
-    if (repeatWordsStr) {
-      const repeatWords = JSON.parse(repeatWordsStr);
-      const wordIds = Object.keys(repeatWords);
-
-      if (wordIds.length > 0) {
-        return wordIds;
-      }
-    }
-
-    return [];
-  } catch (err) {
-    if (process.env.NODE_ENV === 'development') console.error(err);
-    captureException(err, { level: 'warning' });
-
-    return [];
-  }
-}
-
-function getCompletedSets() {
-  try {
-    const completedSetsStr = ssrLocalStorage.getItem('lvCompletedSets');
-
-    if (completedSetsStr) {
-      const completedSets = JSON.parse(completedSetsStr);
-      if (completedSets.length > 0) return completedSets as number[];
-    }
-
-    return [];
-  } catch (err) {
-    if (process.env.NODE_ENV === 'development') console.error(err);
-    captureException(err, { level: 'warning' });
-
-    return [];
-  }
-}
+import useCompletedSets from './useCompletedSets';
+import { useLiveQuery } from 'dexie-react-hooks';
 
 function useRepeatBtn() {
-  const completedSets = getCompletedSets();
-  const wordsForRepeat = getWordForRepeat();
+  const completedSets = useCompletedSets();
+  const competedSetsIds = completedSets
+    ? completedSets.map(set => set.setId)
+    : [];
+  // const wordsForRepeat = getWordForRepeat();
+
+  const wordsForRepeat = useLiveQuery(() => db.wordsForRepeat.toArray());
+  const repeatWordsIds = wordsForRepeat
+    ? wordsForRepeat.map(word => word.wordId)
+    : [];
 
   const show = useMemo(() => {
-    if (completedSets.length > 0 || wordsForRepeat.length > 0) {
+    if (competedSetsIds.length > 0 || repeatWordsIds.length > 0) {
       return true;
     }
 
     return false;
-  }, [completedSets.length, wordsForRepeat.length]);
+  }, [competedSetsIds.length, repeatWordsIds.length]);
 
-  const setParamArr = shuffleArr(completedSets)
+  const setParamArr = shuffleArr(competedSetsIds)
     .slice(0, 5)
     .map(val => ['set', `${val}`]);
-  const repeatParamArr = shuffleArr(wordsForRepeat)
+  const repeatParamArr = shuffleArr(repeatWordsIds)
     .slice(0, REPEAT_WORDS_CTY)
     .map(val => ['r', `${val}`]);
 

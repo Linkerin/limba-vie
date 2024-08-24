@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server';
 import { captureException } from '@sentry/nextjs';
 
 import { createClient } from '@supabase/supabase-js';
-import { Database } from '@/app/_lib/supabase.types';
+import type { Database } from '@/app/_lib/supabase.types';
 
 export const runtime = 'edge';
 export const preferredRegion = ['iad1', 'hnd1'];

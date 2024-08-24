@@ -5,6 +5,7 @@ import { css } from '@/styled-system/css';
 
 import type { ButtonBaseProps } from './Button.types';
 import { buttonStyles } from './Button.styles';
+import { useIsSoundAllowed } from '@/app/_hooks/useSoundMode';
 
 export type ButtonProps = ButtonBaseProps &
   React.ComponentPropsWithRef<'button'>;
@@ -23,11 +24,14 @@ function Button({
     [cssProp, variant]
   );
 
+  const isSoundAllowed = useIsSoundAllowed();
+  const isVibrationAllowed = !isSoundAllowed ? false : vibrate;
+
   return (
     <button
       className={styles}
       onClick={e => {
-        if (typeof navigator?.vibrate === 'function' && vibrate) {
+        if (typeof navigator?.vibrate === 'function' && isVibrationAllowed) {
           navigator.vibrate(40);
         }
         onClick && onClick(e);

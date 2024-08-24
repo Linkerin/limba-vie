@@ -157,15 +157,15 @@ export const trimVerb = (
   return result;
 };
 
-export function getCompletedSetsNum(ids: SetIdsArr) {
-  if (typeof window === 'undefined') return;
+// export function getCompletedSetsNum(ids: SetIdsArr) {
+//   if (typeof window === 'undefined') return;
 
-  const setsStr = ssrLocalStorage.getItem(LOCAL_STORAGE_KEYS.completedSets);
+//   const setsStr = ssrLocalStorage.getItem(LOCAL_STORAGE_KEYS.completedSets);
 
-  if (!setsStr) return 0;
+//   if (!setsStr) return 0;
 
-  const allCompletedSets = JSON.parse(setsStr);
-  const unitCompletedSets = ids.filter(id => allCompletedSets.includes(id));
+//   const allCompletedSets = JSON.parse(setsStr);
+//   const unitCompletedSets = ids.filter(id => allCompletedSets.includes(id));
 
-  return unitCompletedSets.length;
-}
+//   return unitCompletedSets.length;
+// }

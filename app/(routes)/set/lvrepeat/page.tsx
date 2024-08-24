@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 import { getRepeatWords } from '@/app/_services/dbFetchers';
 import SetPage from '@/app/_components/Pages/SetPage/SetPage';
-import { RepeatPageSearchParams } from '@/app/_lib/types';
+import type { RepeatPageSearchParams } from '@/app/_lib/types';
 
 async function RepeatPage({
   searchParams

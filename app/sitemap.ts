@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 
 import { ARTICLES } from './_lib/constants';
 import supabase from './_lib/supabase';

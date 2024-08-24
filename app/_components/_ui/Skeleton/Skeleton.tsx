@@ -1,5 +1,5 @@
 import { css } from '@/styled-system/css';
-import { SystemStyleObject } from '@/styled-system/types';
+import type { SystemStyleObject } from '@/styled-system/types';
 
 import { styles } from './Skeleton.styles';
 

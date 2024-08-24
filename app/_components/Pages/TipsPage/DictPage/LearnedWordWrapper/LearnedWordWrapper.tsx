@@ -1,11 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { css } from '@/styled-system/css';
 
-import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
-import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import type { Tables } from '@/app/_lib/supabase.types';
+import useCompletedSets from '@/app/_hooks/useCompletedSets';
 
 const styles = css({
   color: 'success.darker'
@@ -17,18 +15,9 @@ interface LearnedWordWrapperProps {
 }
 
 function LearnedWordWrapper({ children, setId }: LearnedWordWrapperProps) {
-  const [completedSets, setCompletedSets] = useState<Array<number>>([]);
+  const completedSetIds = useCompletedSets()?.map(set => set.setId);
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const sets = ssrLocalStorage.getItem(LOCAL_STORAGE_KEYS.completedSets);
-    if (sets) {
-      setCompletedSets(JSON.parse(sets));
-    }
-  }, []);
-
-  return completedSets?.includes(setId) ? (
+  return completedSetIds?.includes(setId) ? (
     <span className={styles}>{children}</span>
   ) : (
     children

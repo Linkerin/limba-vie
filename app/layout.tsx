@@ -20,6 +20,11 @@ const NavBar = dynamic(() => import('./_components/NavBar/NavBar'), {
   ssr: false
 });
 
+const LocalStorageMigration = dynamic(
+  () => import('./_components/LocalStorageMigration'),
+  { ssr: false }
+);
+
 const alata = Alata({
   subsets: ['latin'],
   weight: '400',
@@ -46,6 +51,7 @@ export default function RootLayout({
         <CookieConsent />
         {isProd && <AnonymousSignIn />}
         {/* {isProd && <WebVitals />} */}
+        <LocalStorageMigration />
       </body>
     </html>
   );

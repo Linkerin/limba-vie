@@ -1,7 +1,7 @@
 import { IconCheck, IconMessage2, IconRepeat } from '@tabler/icons-react';
 import { css } from '@/styled-system/css';
 
-import Button, { ButtonProps } from '../Button/Button';
+import Button, { type ButtonProps } from '../Button/Button';
 
 const styles = css.raw({
   padding: 'token(spacing.2, 0.5rem)',

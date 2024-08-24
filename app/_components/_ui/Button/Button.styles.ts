@@ -1,5 +1,5 @@
 import { cva } from '@/styled-system/css';
-import { RecipeDefinition } from '@/styled-system/types';
+import type { RecipeDefinition } from '@/styled-system/types';
 
 export const buttonVariants: RecipeDefinition = {
   variants: {

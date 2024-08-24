@@ -43,15 +43,17 @@ async function UnitItem({ unit }: UnitItemProps) {
         aria-label="List of links to word sets"
         data-element="sets-list"
       >
-        {sets.map(set => (
-          <SetItemLink
-            key={set.id}
-            id={set.id}
-            emoji={set.emoji}
-            set={set.set}
-            wordsNum={set.words_count}
-          />
-        ))}
+        {sets.map(set =>
+          set.id ? (
+            <SetItemLink
+              key={set.id}
+              id={set.id}
+              emoji={set.emoji}
+              set={set.set}
+              wordsNum={set.words_count}
+            />
+          ) : null
+        )}
       </ol>
     </li>
   );

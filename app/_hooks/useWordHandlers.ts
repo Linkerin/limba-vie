@@ -2,59 +2,49 @@
 
 import { useCallback } from 'react';
 
+import db from '../_lib/db';
 import type { Tables } from '@/app/_lib/supabase.types';
-import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
-import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
-
-const key = LOCAL_STORAGE_KEYS.repeatWords;
 
 interface UseWordHandlersProps {
   wordId: Tables<'words'>['id'];
 }
 
 function useWordHandlers({ wordId }: UseWordHandlersProps) {
-  const repeatHandler = useCallback(() => {
-    const repeatWordsStr = ssrLocalStorage.getItem(key);
-    if (!repeatWordsStr) {
-      ssrLocalStorage.setItem(key, JSON.stringify({ [wordId]: 3 }));
+  const repeatHandler = useCallback(async () => {
+    if (!wordId) return false;
 
-      return;
-    }
+    const now = new Date();
+    const record = await db.wordsForRepeat.put(
+      {
+        wordId,
+        repeatTimes: 3,
+        addedAt: now.toISOString()
+      },
+      wordId
+    );
 
-    const repeatWords = JSON.parse(repeatWordsStr);
+    if (typeof record !== 'number') return false;
 
-    const updatedRepeatWords = { ...repeatWords, [wordId]: 3 };
-    ssrLocalStorage.setItem(key, JSON.stringify(updatedRepeatWords));
-
-    return;
+    return true;
   }, [wordId]);
 
-  const learnedHandler = useCallback(() => {
-    const repeatWordsStr = ssrLocalStorage.getItem(key);
+  const learnedHandler = useCallback(async () => {
+    const word = await db.wordsForRepeat.get(wordId);
 
-    if (!repeatWordsStr) return;
+    if (!word) return false;
 
-    const repeatWords = JSON.parse(repeatWordsStr);
-    if (!repeatWords[wordId]) return;
-
-    if (repeatWords[wordId] <= 1) {
-      const filteredArrOfRepeatWords = Object.entries(repeatWords).filter(
-        ([key, _]) => key !== wordId.toString()
-      );
-
-      let updatedRepeatWords = Object.fromEntries(filteredArrOfRepeatWords);
-      ssrLocalStorage.setItem(key, JSON.stringify(updatedRepeatWords));
-
-      return;
+    if (word.repeatTimes <= 1) {
+      await db.wordsForRepeat.delete(wordId);
+      return true;
     }
 
-    const updatedRepeatWords = {
-      ...repeatWords,
-      [wordId]: repeatWords[wordId] - 1
-    };
-    ssrLocalStorage.setItem(key, JSON.stringify(updatedRepeatWords));
+    const record = await db.wordsForRepeat.update(wordId, {
+      repeatTimes: word.repeatTimes - 1
+    });
 
-    return;
+    if (typeof record !== 'number') return false;
+
+    return true;
   }, [wordId]);
 
   return {

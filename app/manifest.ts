@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 import { token } from '@/styled-system/tokens';
 
 const isPreview = process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW';

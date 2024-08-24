@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 
 import { getAudioUrl, getWordsImageUrl } from '../_lib/utils';

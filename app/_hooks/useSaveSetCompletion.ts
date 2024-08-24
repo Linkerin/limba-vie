@@ -1,19 +1,17 @@
-import ssrLocalStorage from '../_services/SsrLocalStorage';
+'use client';
 
-function useSaveSetCompletion(setId: number | null | undefined) {
+import db from '../_lib/db';
+
+async function useSaveSetCompletion(setId: number | null | undefined) {
   if (!setId) return false;
 
-  const key = 'lvCompletedSets';
-  const completedSets = ssrLocalStorage.getItem(key);
+  const now = new Date();
+  const record = await db.completedSets.put(
+    { setId, completedAt: now.toISOString() },
+    setId
+  );
 
-  if (!completedSets) {
-    ssrLocalStorage.setItem(key, JSON.stringify([setId]));
-  } else {
-    const completedSetsArr = JSON.parse(completedSets);
-    completedSetsArr.push(setId);
-    const uniqueSetIds = Array.from(new Set(completedSetsArr));
-    ssrLocalStorage.setItem(key, JSON.stringify(uniqueSetIds));
-  }
+  if (typeof record !== 'number') return false;
 
   return true;
 }

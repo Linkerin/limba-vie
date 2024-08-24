@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { css } from '@/styled-system/css';
 
-import { getSentence, SentenceType } from '@/app/_services/dbFetchers';
+import { getSentence, type SentenceType } from '@/app/_services/dbFetchers';
 import SentenceLoading from './SentenceLoading/SentenceLoading';
 import type { SystemStyleObject } from '@/styled-system/types';
 import type { Tables } from '@/app/_lib/supabase.types';
