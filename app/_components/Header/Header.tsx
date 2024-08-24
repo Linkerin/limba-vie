@@ -1,7 +1,9 @@
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import About from './RightButtons/About';
+import logoImg from '@/public/logo.svg';
 
 import {
   headerStyles,
@@ -20,8 +22,11 @@ function Header() {
         className={logoStyles}
         prefetch={false}
       >
-        <span>Limba</span>
-        <span>Vie</span>
+        <Image
+          alt="Geometrical taur head image as Limba Vie logo"
+          src={logoImg}
+          priority
+        />
       </Link>
       <div className={rightContainerStyles}>
         <MuteBtn />

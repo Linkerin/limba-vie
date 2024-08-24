@@ -15,23 +15,12 @@ export const headerStyles = css({
 });
 
 export const logoStyles = css({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-end',
-  justifyContent: 'center',
-  gap: '0.0075em',
-  fontSize: 'lg',
-  fontWeight: 500,
-  lineHeight: '1.25rem',
-  textDecoration: 'none',
-  userSelect: 'none',
+  height: '100%',
+  paddingBlock: '0.125rem',
 
-  '&, &:hover, &:visited': {
-    color: 'hsl(348, 92%, 42%)'
-  },
-  '& > span:first-of-type': {
-    borderBottom: '2px solid hsl(35, 75%, 55%)',
-    color: 'hsl(216, 90%, 30%)'
+  '& > img': {
+    height: '100%',
+    width: 'auto'
   }
 });
 
