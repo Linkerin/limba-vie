@@ -17,15 +17,29 @@ function LocalStorageMigration() {
 
         if (!localStorageCompletedSets) return;
 
+        const now = new Date();
         const count = await db.completedSets.count();
-        if (count) return;
+
+        // Checks whether the table contains date info as strings and clears the table to rewrite
+        if (count) {
+          const record = (await db.completedSets.limit(1).toArray()).at(0);
+
+          const dateVal = record?.completedAt;
+          if (
+            dateVal instanceof Date &&
+            typeof dateVal.getDate === 'function'
+          ) {
+            return;
+          }
+
+          await db.completedSets.clear();
+        }
 
         const setsArr = JSON.parse(localStorageCompletedSets) as number[];
-        const now = new Date();
 
         const itemsToAdd = setsArr.map(setId => ({
           setId,
-          completedAt: now.toISOString()
+          completedAt: now
         }));
 
         const lastRecordId = await db.completedSets.bulkAdd(itemsToAdd);
@@ -51,19 +65,33 @@ function LocalStorageMigration() {
 
         if (!localStorageRepeatWords) return;
 
+        const now = new Date();
         const count = await db.wordsForRepeat.count();
-        if (count) return;
+
+        // Checks whether the table contains date info as strings and clears the table to rewrite
+        if (count) {
+          const record = (await db.wordsForRepeat.limit(1).toArray()).at(0);
+
+          const dateVal = record?.addedAt;
+          if (
+            dateVal instanceof Date &&
+            typeof dateVal.getDate === 'function'
+          ) {
+            return;
+          }
+
+          await db.wordsForRepeat.clear();
+        }
 
         const repeatWordsObj = JSON.parse(localStorageRepeatWords) as Record<
           string,
           number
         >;
-        const now = new Date();
 
         const itemsToAdd = Object.entries(repeatWordsObj).map(record => ({
           wordId: parseInt(record[0]),
           repeatTimes: record[1],
-          addedAt: now.toISOString()
+          addedAt: now
         }));
 
         const lastRecordId = await db.wordsForRepeat.bulkAdd(itemsToAdd);

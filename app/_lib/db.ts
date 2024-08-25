@@ -3,13 +3,13 @@ import type { Tables } from './supabase.types';
 
 export interface CompletedSet {
   setId: Tables<'sets'>['id'];
-  completedAt: string;
+  completedAt: Date;
 }
 
 export interface WordsForRepeat {
   wordId: Tables<'words'>['id'];
   repeatTimes: number;
-  addedAt: string;
+  addedAt: Date;
 }
 
 const db = new Dexie('LimbaVieDB') as Dexie & {

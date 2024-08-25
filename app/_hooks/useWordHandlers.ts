@@ -13,12 +13,11 @@ function useWordHandlers({ wordId }: UseWordHandlersProps) {
   const repeatHandler = useCallback(async () => {
     if (!wordId) return false;
 
-    const now = new Date();
     const record = await db.wordsForRepeat.put(
       {
         wordId,
         repeatTimes: 3,
-        addedAt: now.toISOString()
+        addedAt: new Date()
       },
       wordId
     );
