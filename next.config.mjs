@@ -2,6 +2,7 @@ import createMDX from '@next/mdx';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import remarkGfm from 'remark-gfm';
 import { withSentryConfig } from '@sentry/nextjs';
+import withSerwistInit from '@serwist/next';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -30,8 +31,16 @@ const withMDX = createMDX({
   }
 });
 
+const withSerwist = withSerwistInit({
+  swSrc: 'app/sw.ts',
+  swDest: 'public/sw.js',
+  additionalPrecacheEntries: ['/', '/offline', '/about', '/tips/grammar'],
+  cacheOnNavigation: true,
+  reloadOnOnline: true
+});
+
 const sentryConfig = withSentryConfig(
-  withMDX(nextConfig),
+  withSerwist(withMDX(nextConfig)),
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
