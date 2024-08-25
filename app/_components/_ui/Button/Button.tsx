@@ -15,7 +15,7 @@ function Button({
   css: cssProp,
   fadeAnimation = false,
   variant = 'base',
-  vibrate = true,
+  vibrate,
   onClick,
   ...props
 }: ButtonProps) {
@@ -25,7 +25,7 @@ function Button({
   );
 
   const isSoundAllowed = useIsSoundAllowed();
-  const isVibrationAllowed = !isSoundAllowed ? false : vibrate;
+  const isVibrationAllowed = vibrate === true || isSoundAllowed ? true : false;
 
   return (
     <button

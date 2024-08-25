@@ -1,11 +1,9 @@
 import {
   AUDIO_FILE_FORMAT,
   CLOUDINARY_IMG_URL,
-  LOCAL_STORAGE_KEYS,
   SUPABASE_STORAGE_URL
 } from './constants';
-import type { Gender, SetIdsArr } from './types';
-import ssrLocalStorage from '../_services/SsrLocalStorage';
+import type { Gender } from './types';
 import type { Tables } from './supabase.types';
 
 /**
@@ -96,7 +94,7 @@ export function getImageUrl(
   const opt: GetImgUrlOptions = {
     folder: 'limba',
     format: 'auto',
-    q: 75,
+    q: 80,
     sanitize: false,
     ...options
   };
@@ -156,16 +154,3 @@ export const trimVerb = (
 
   return result;
 };
-
-// export function getCompletedSetsNum(ids: SetIdsArr) {
-//   if (typeof window === 'undefined') return;
-
-//   const setsStr = ssrLocalStorage.getItem(LOCAL_STORAGE_KEYS.completedSets);
-
-//   if (!setsStr) return 0;
-
-//   const allCompletedSets = JSON.parse(setsStr);
-//   const unitCompletedSets = ids.filter(id => allCompletedSets.includes(id));
-
-//   return unitCompletedSets.length;
-// }
