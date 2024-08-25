@@ -5,6 +5,8 @@ import {
   IconHeartFilled
 } from '@tabler/icons-react';
 
+import ExportProgress from '../../ExportProgress/ExportProgress';
+
 import {
   addressStyles,
   containerStyles,
@@ -169,6 +171,14 @@ function AboutPage() {
           </Link>
           .
         </p>
+      </section>
+      <section>
+        <h2>Progress</h2>
+        <p>
+          By clicking the button below, you can download your progress in the
+          application as a JSON file.
+        </p>
+        <ExportProgress />
       </section>
     </div>
   );
