@@ -43,8 +43,7 @@ const withSerwist = withSerwistInit({
     '/sounds/error-modal.aac',
     '/sounds/success-modal.aac'
   ],
-  cacheOnNavigation: true,
-  reloadOnOnline: true
+  cacheOnNavigation: true
 });
 
 const sentryConfig = withSentryConfig(

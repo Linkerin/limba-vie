@@ -4,6 +4,7 @@ import { css } from '@/styled-system/css';
 
 import db from '@/app/_lib/db';
 import Button from '../_ui/Button/Button';
+import { randomUUID } from 'crypto';
 
 const styles = css.raw({
   fontSize: 'lg',
@@ -22,6 +23,7 @@ const clickHandler = async () => {
   ]);
 
   const now = new Date();
+  const hash = self.crypto.randomUUID().slice(0, 8);
   const timestamp = new Intl.DateTimeFormat().format(now);
   const jsonString = JSON.stringify(
     { completedSets, wordsForRepeat, created: now.toISOString() },
@@ -32,7 +34,7 @@ const clickHandler = async () => {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.download = `limba_vie_progress_${timestamp}.json`;
+  link.download = `limba_vie_progress_${timestamp}_${hash}.json`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
