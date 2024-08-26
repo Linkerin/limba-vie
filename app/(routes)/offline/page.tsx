@@ -1,7 +1,5 @@
-import Image from 'next/image';
+/* eslint-disable @next/next/no-img-element */
 import { css } from '@/styled-system/css';
-
-import lostConnectionImg from '@/public/images/lost_connection.webp';
 
 const imgStyles = css({
   height: '35dvh',
@@ -21,10 +19,10 @@ const pStyles = css({
 function Offline() {
   return (
     <section>
-      <Image
+      <img
         className={imgStyles}
         alt="A bit crazy taur that messed up with Internet cables"
-        src={lostConnectionImg}
+        src="/images/lost_connection.webp"
       />
       <h1 className={headingStyles}>Ooops, you are offline</h1>
       <p>
