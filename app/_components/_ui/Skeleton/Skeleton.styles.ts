@@ -15,10 +15,7 @@ export const styles = css.raw({
 
   '& *': {
     visibility: 'hidden',
-    opacity: 0
-  },
-
-  '&[data-fade=true]': {
+    opacity: 0,
     transition: 'opacity 0.4s linear'
   },
 

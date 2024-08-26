@@ -36,6 +36,7 @@ export const unitContentStyles = css({
   cursor: 'pointer',
   padding:
     'token(spacing.6, 1.5rem) token(spacing.3.5, 0.875rem) token(spacing.6, 1.5rem) token(spacing.6, 1.5rem)',
+  transition: 'all 0.4s linear',
   width: '100%',
   zIndex: 0,
 
