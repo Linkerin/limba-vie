@@ -34,7 +34,18 @@ const withMDX = createMDX({
 const withSerwist = withSerwistInit({
   swSrc: 'app/sw.ts',
   swDest: 'public/sw.js',
-  additionalPrecacheEntries: ['/', '/offline', '/about', '/tips/grammar'],
+  additionalPrecacheEntries: [
+    '/',
+    '/offline',
+    '/about',
+    '/tips/grammar',
+    '/logo.svg',
+    '/taur.svg',
+    '/images/lost_connection.webp',
+    '/sounds/tadam.aac',
+    '/sounds/error-modal.aac',
+    '/sounds/success-modal.aac'
+  ],
   cacheOnNavigation: true,
   reloadOnOnline: true
 });
