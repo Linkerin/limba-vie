@@ -7,7 +7,7 @@ const styles = css({
   marginBlock: 'auto',
 
   '& > span': {
-    fontSize: '2rem'
+    fontSize: '4xl'
   }
 });
 

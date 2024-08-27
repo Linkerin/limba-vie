@@ -87,12 +87,16 @@ function SetPage({
                     word={shuffled[currWord].ro}
                   />
                 </Word>
+              </>
+            )}
+            {showExample && (
+              <>
                 {shuffled[currWord].ro_plural && (
                   <WordPlural plural={shuffled[currWord].ro_plural} />
                 )}
+                <Sentence wordId={shuffled[currWord].id} />
               </>
             )}
-            {showExample && <Sentence wordId={shuffled[currWord].id} />}
           </div>
           {checkPage ? (
             <CheckInput
