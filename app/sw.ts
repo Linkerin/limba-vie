@@ -20,8 +20,15 @@ const serwist = new Serwist({
   clientsClaim: true,
   navigationPreload: true,
   runtimeCaching: defaultCache,
-  precacheOptions: {
-    navigateFallback: '/offline'
+  fallbacks: {
+    entries: [
+      {
+        url: '/~offline',
+        matcher({ request }) {
+          return request.destination === 'document';
+        }
+      }
+    ]
   }
 });
 

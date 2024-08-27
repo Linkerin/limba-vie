@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { css } from '@/styled-system/css';
 
+import OfflineRefreshButton from './OfflineRefreshButton/OfflineRefreshButton';
+
 const imgStyles = css({
   height: '35dvh',
   marginInline: 'auto',
@@ -15,8 +17,7 @@ const pStyles = css({
   fontSize: 'xl',
   marginBlockStart: 'token(spacing.6, 1.5rem)'
 });
-
-function Offline() {
+function OfflinePage() {
   return (
     <section>
       <img
@@ -30,8 +31,9 @@ function Offline() {
         switch from mobile network to WiFi?
       </p>
       <p className={pStyles}>We are waiting for your return online!</p>
+      <OfflineRefreshButton />
     </section>
   );
 }
 
-export default Offline;
+export default OfflinePage;

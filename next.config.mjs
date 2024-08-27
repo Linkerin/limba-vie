@@ -35,15 +35,17 @@ const withSerwist = withSerwistInit({
   swSrc: 'app/sw.ts',
   swDest: 'public/sw.js',
   additionalPrecacheEntries: [
-    '/offline',
-    '/about',
-    '/tips/grammar',
-    '/images/lost_connection.webp',
-    '/sounds/tadam.aac',
-    '/sounds/error-modal.aac',
-    '/sounds/success-modal.aac'
+    { url: '/', revision: crypto.randomUUID() },
+    { url: '/~offline', revision: crypto.randomUUID() },
+    { url: '/about', revision: crypto.randomUUID() },
+    { url: '/tips/grammar', revision: crypto.randomUUID() },
+    { url: '/images/lost_connection.webp', revision: crypto.randomUUID() },
+    { url: '/sounds/tadam.aac', revision: crypto.randomUUID() },
+    { url: '/sounds/error-modal.aac', revision: crypto.randomUUID() },
+    { url: '/sounds/success-modal.aac', revision: crypto.randomUUID() }
   ],
-  cacheOnNavigation: true
+  cacheOnNavigation: true,
+  reloadOnOnline: true
 });
 
 const sentryConfig = withSentryConfig(
