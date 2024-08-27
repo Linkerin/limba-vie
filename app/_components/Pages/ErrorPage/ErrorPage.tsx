@@ -10,7 +10,7 @@ const styles = css({
 });
 
 const textStyles = css({
-  fontSize: 'token(fontSizes.2xl, 1.5rem)'
+  fontSize: 'token(fontSizes.xl, 1.25rem)'
 });
 
 interface ErrorPageProps {
@@ -29,8 +29,10 @@ function ErrorPage({
   return (
     <section className={styles}>
       {precedingElement}
-      <h1>{heading}</h1>
-      <p className={textStyles}>{text}</p>
+      <div>
+        <h1>{heading}</h1>
+        <p className={textStyles}>{text}</p>
+      </div>
       {children}
     </section>
   );

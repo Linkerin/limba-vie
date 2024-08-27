@@ -13,6 +13,8 @@ const styles = css({
   alignItems: 'center',
   justifyContent: 'center',
   gap: 'token(spacing.4,  1rem)',
+  marginBlock: 'token(spacing.2, 0.5rem)',
+  width: '100%',
 
   '& > a, & > button': {
     width: '100%'
@@ -46,7 +48,9 @@ function ErrorPageFooter({ reset }: { reset?: () => void }) {
       >
         Go back
       </Button>
-      <ButtonLink href="/">Go to homepage</ButtonLink>
+      <ButtonLink href="/" variant="primary">
+        Go to homepage
+      </ButtonLink>
     </footer>
   );
 }
