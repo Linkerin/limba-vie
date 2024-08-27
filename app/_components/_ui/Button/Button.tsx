@@ -25,7 +25,8 @@ function Button({
   );
 
   const isSoundAllowed = useIsSoundAllowed();
-  const isVibrationAllowed = vibrate === true || isSoundAllowed ? true : false;
+  const isVibrationAllowed =
+    typeof vibrate === 'boolean' ? vibrate : isSoundAllowed;
 
   return (
     <button

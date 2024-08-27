@@ -1,4 +1,5 @@
 import createMDX from '@next/mdx';
+import crypto from 'crypto';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import remarkGfm from 'remark-gfm';
 import { withSentryConfig } from '@sentry/nextjs';
