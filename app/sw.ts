@@ -27,6 +27,12 @@ const serwist = new Serwist({
         matcher({ request }) {
           return request.destination === 'document';
         }
+      },
+      {
+        url: '/images/no_image.svg',
+        matcher({ request }) {
+          return request.destination === 'image';
+        }
       }
     ]
   }

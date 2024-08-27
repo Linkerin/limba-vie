@@ -41,12 +41,14 @@ const withSerwist = withSerwistInit({
     { url: '/about', revision: crypto.randomUUID() },
     { url: '/tips/grammar', revision: crypto.randomUUID() },
     { url: '/images/lost_connection.webp', revision: crypto.randomUUID() },
+    { url: '/images/no_image.svg', revision: crypto.randomUUID() },
     { url: '/sounds/tadam.aac', revision: crypto.randomUUID() },
     { url: '/sounds/error-modal.aac', revision: crypto.randomUUID() },
     { url: '/sounds/success-modal.aac', revision: crypto.randomUUID() }
   ],
   cacheOnNavigation: true,
-  reloadOnOnline: true
+  reloadOnOnline: true,
+  disable: process.env.NODE_ENV === 'development'
 });
 
 const sentryConfig = withSentryConfig(
