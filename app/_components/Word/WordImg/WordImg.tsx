@@ -2,7 +2,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { IconRepeat } from '@tabler/icons-react';
+import { IconView360Arrow } from '@tabler/icons-react';
 import { cx } from '@/styled-system/css';
 
 import { getWordsImageUrl } from '@/app/_lib/utils';
@@ -62,7 +62,7 @@ function WordImg({ gender, wordEn, imgName = wordEn }: WordImgProps) {
           data-flipped={isFlipped}
           data-gender={gender}
         >
-          <IconRepeat className={flipIconStyles} />
+          <IconView360Arrow className={flipIconStyles} />
           <div className={sideStyles} aria-busy={!isLoaded}>
             <img
               ref={imgRef}

@@ -53,9 +53,9 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
   return (
     <div className={styles} data-apple-pwa={isApplePwa}>
       <ActionBtn
-        action="repeat"
-        onClick={repeatClickHandler}
-        variant="secondary"
+        action="learned"
+        onClick={learnedClickHandler}
+        variant="success"
       />
       <ActionBtn
         action="example"
@@ -63,9 +63,9 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
         variant="primary"
       />
       <ActionBtn
-        action="learned"
-        onClick={learnedClickHandler}
-        variant="success"
+        action="repeat"
+        onClick={repeatClickHandler}
+        variant="secondary"
       />
     </div>
   );
