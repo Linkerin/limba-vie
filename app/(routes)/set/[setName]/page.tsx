@@ -41,7 +41,7 @@ async function Set({ params }: SetPageParams) {
 export default Set;
 
 export async function generateStaticParams() {
-  const { data, error } = await supabase.from('sets').select('set');
+  const { data, error } = await supabase.from('sets_new').select('set');
   if (error) throw error;
 
   return data.map(set => ({

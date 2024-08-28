@@ -48,7 +48,7 @@ async function Check({ params }: SetPageParams) {
 export default Check;
 
 export async function generateStaticParams() {
-  const { data, error } = await supabase.from('sets').select('set');
+  const { data, error } = await supabase.from('sets_new').select('set');
   if (error) throw error;
 
   return data.map(set => ({
