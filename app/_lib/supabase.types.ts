@@ -196,20 +196,6 @@ export type Database = {
           }
         ];
       };
-      sorted_sets: {
-        Row: {
-          created_at: string | null;
-          emoji: string | null;
-          id: number | null;
-          position: number | null;
-          prev_set_id: number | null;
-          set: string | null;
-          unit: number | null;
-          updated_at: string | null;
-          words_count: number | null;
-        };
-        Relationships: [];
-      };
       units_view: {
         Row: {
           created_at: string | null;
