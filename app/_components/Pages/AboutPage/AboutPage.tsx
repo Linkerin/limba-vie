@@ -5,6 +5,7 @@ import {
   IconHeartFilled
 } from '@tabler/icons-react';
 
+import DeleteAllData from '../../DeleteAllData/DeleteAllData';
 import ExportProgress from '../../ExportProgress/ExportProgress';
 import ImportProgress from '../../ImportProgress/ImportProgress';
 
@@ -181,6 +182,13 @@ function AboutPage() {
         </p>
         <ExportProgress />
         <ImportProgress />
+        <p>
+          You can remove all your progress and settings. This action is{' '}
+          <strong> irrevocable</strong>.<br />
+          If you&apos;d like to have a backup of your progress, first download
+          and save the JSON file with the actual progress.
+        </p>
+        <DeleteAllData />
       </section>
     </div>
   );

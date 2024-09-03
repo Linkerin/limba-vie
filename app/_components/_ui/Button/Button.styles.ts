@@ -6,7 +6,9 @@ export const buttonVariants: RecipeDefinition = {
     variant: {
       base: {
         borderColor: 'main',
-        boxShadow: '0.0625rem 0.0625rem token(colors.main)',
+        '&:not(:disabled)': {
+          boxShadow: '0.0625rem 0.0625rem token(colors.main)'
+        },
         '&, &:hover:not(:disabled), &:visited': {
           color: 'main'
         },
@@ -16,7 +18,9 @@ export const buttonVariants: RecipeDefinition = {
       },
       primary: {
         borderColor: 'primary.dark',
-        boxShadow: '0.0625rem 0.0625rem token(colors.primary.dark)',
+        '&:not(:disabled)': {
+          boxShadow: '0.0625rem 0.0625rem token(colors.primary.dark)'
+        },
         '&, &:hover:not(:disabled), &:visited': {
           color: 'primary.dark'
         },
@@ -26,7 +30,9 @@ export const buttonVariants: RecipeDefinition = {
       },
       secondary: {
         borderColor: 'secondary.dark',
-        boxShadow: '0.0625rem 0.0625rem token(colors.secondary.dark)',
+        '&:not(:disabled)': {
+          boxShadow: '0.0625rem 0.0625rem token(colors.secondary.dark)'
+        },
         '&, &:hover:not(:disabled), &:visited': {
           color: 'secondary.dark'
         },
@@ -36,7 +42,9 @@ export const buttonVariants: RecipeDefinition = {
       },
       success: {
         borderColor: 'success.dark',
-        boxShadow: '0.0625rem 0.0625rem token(colors.success.dark)',
+        '&:not(:disabled)': {
+          boxShadow: '0.0625rem 0.0625rem token(colors.success.dark)'
+        },
         '&, &:hover:not(:disabled), &:visited': {
           color: 'success.dark'
         },
@@ -90,7 +98,7 @@ export const buttonStyles = cva({
     _disabled: {
       backgroundColor: 'none',
       borderColor: 'neutral.500',
-      boxShadow: '0.0625rem 0.0625rem neutral.500',
+      boxShadow: 'none',
       color: 'neutral.500',
       cursor: 'not-allowed',
       opacity: 0.7

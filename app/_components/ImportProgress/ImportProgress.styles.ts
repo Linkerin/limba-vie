@@ -11,7 +11,7 @@ export const inputStyles = css({
 
 export const btnStyles = css.raw({
   fontSize: 'lg',
-  marginBlockStart: 'token(spacing.3, 0.75rem)'
+  marginBlock: 'token(spacing.3, 0.75rem)'
 });
 
 export const contentStyles = css({
