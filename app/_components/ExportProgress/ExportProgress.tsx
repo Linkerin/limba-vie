@@ -4,7 +4,8 @@ import { css } from '@/styled-system/css';
 
 import db from '@/app/_lib/db';
 import Button from '../_ui/Button/Button';
-import { randomUUID } from 'crypto';
+import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
+import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 
 const styles = css.raw({
   fontSize: 'lg',
@@ -17,6 +18,8 @@ const clickHandler = async () => {
   const setsPromise = db.completedSets.toArray();
   const wordsPromise = db.wordsForRepeat.toArray();
 
+  const userId = ssrLocalStorage.getItem(LOCAL_STORAGE_KEYS.userId);
+
   const [completedSets, wordsForRepeat] = await Promise.all([
     setsPromise,
     wordsPromise
@@ -26,7 +29,7 @@ const clickHandler = async () => {
   const hash = self.crypto.randomUUID().slice(0, 8);
   const timestamp = new Intl.DateTimeFormat().format(now);
   const jsonString = JSON.stringify(
-    { completedSets, wordsForRepeat, created: now.toISOString() },
+    { completedSets, wordsForRepeat, userId, created: now.toISOString() },
     null,
     2
   );
