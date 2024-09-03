@@ -6,6 +6,7 @@ import {
 } from '@tabler/icons-react';
 
 import ExportProgress from '../../ExportProgress/ExportProgress';
+import ImportProgress from '../../ImportProgress/ImportProgress';
 
 import {
   addressStyles,
@@ -172,13 +173,14 @@ function AboutPage() {
           .
         </p>
       </section>
-      <section>
+      <section id="progress">
         <h2>Progress</h2>
         <p>
           By clicking the button below, you can download your progress in the
           application as a JSON file.
         </p>
         <ExportProgress />
+        <ImportProgress />
       </section>
     </div>
   );

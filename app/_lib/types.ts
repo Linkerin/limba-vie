@@ -1,6 +1,14 @@
+import type { CompletedSet, WordsForRepeat } from './db';
 import type { Tables } from './supabase.types';
 
 export type Gender = Tables<'words'>['gender_ro'];
+
+export interface Progress {
+  completedSets: CompletedSet[];
+  wordsForRepeat: WordsForRepeat[];
+  userId: string;
+  created: Date;
+}
 
 export interface RepeatPageSearchParams {
   set: string | string[] | undefined;

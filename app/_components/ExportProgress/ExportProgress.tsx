@@ -29,7 +29,7 @@ const clickHandler = async () => {
   const hash = self.crypto.randomUUID().slice(0, 8);
   const timestamp = new Intl.DateTimeFormat().format(now);
   const jsonString = JSON.stringify(
-    { completedSets, wordsForRepeat, userId, created: now.toISOString() },
+    { completedSets, wordsForRepeat, userId, created: now },
     null,
     2
   );

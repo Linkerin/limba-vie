@@ -1,8 +1,8 @@
 import { css } from '@/styled-system/css';
 
 export const containerStyles = css.raw({
-  backgroundColor: 'primary.container-low',
-  border: '2px solid token(colors.primary.darker)',
+  backgroundColor: 'main.container',
+  border: '2px solid token(colors.main)',
   borderRadius: 'sm',
   margin: 'auto',
   padding:

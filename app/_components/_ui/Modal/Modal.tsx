@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { css } from '@/styled-system/css';
 import { IconX } from '@tabler/icons-react';
 import type { SystemStyleObject } from '@/styled-system/types';
@@ -14,7 +14,7 @@ export type ModalState = 'SHOW' | 'SHOW_MODAL' | 'CLOSE';
 interface SetItemPopoverProps extends React.ComponentPropsWithRef<'dialog'> {
   state: ModalState;
   css?: SystemStyleObject;
-  closeHandler?: () => void;
+  closeHandler?: React.MouseEventHandler;
   showCloseBtn?: boolean;
   autofocusCloseBtn?: boolean;
 }
@@ -49,6 +49,10 @@ const Modal = function Modal({
 
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
+  const defaultCloseHandler = useCallback(() => {
+    dialogRef.current?.close();
+  }, []);
+
   return (
     <dialog
       ref={dialogRef}
@@ -59,7 +63,7 @@ const Modal = function Modal({
         <Button
           css={closeBtnStyles}
           aria-label="Close modal"
-          onClick={closeHandler}
+          onClick={closeHandler ?? defaultCloseHandler}
           autoFocus={autofocusCloseBtn}
         >
           <IconX />
