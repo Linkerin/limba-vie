@@ -1,9 +1,10 @@
 import { Alata } from 'next/font/google';
 import dynamic from 'next/dynamic';
 
+import CookieConsent from './_components/CookieConsent/CookieConsent';
 import Header from './_components/Header/Header';
 import SoundProvider from './_contexts/SoundProvider';
-import WebVitals from './_components/WebVitals';
+// import WebVitals from './_components/WebVitals';
 
 import './globals.css';
 
@@ -12,10 +13,6 @@ export { metadata } from './metadata';
 const AnonymousSignIn = dynamic(() => import('./_components/AnonymousSignIn'), {
   ssr: false
 });
-const CookieConsent = dynamic(
-  () => import('./_components/CookieConsent/CookieConsent'),
-  { ssr: false }
-);
 const NavBar = dynamic(() => import('./_components/NavBar/NavBar'), {
   ssr: false
 });

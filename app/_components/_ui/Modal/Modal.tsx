@@ -6,62 +6,68 @@ import { IconX } from '@tabler/icons-react';
 import type { SystemStyleObject } from '@/styled-system/types';
 
 import Button from '../Button/Button';
-import Portal from '../Portal/Portal';
 
-import { cardStyles, closeBtnStyles, containerStyles } from './Modal.styles';
+import { closeBtnStyles, containerStyles } from './Modal.styles';
 
-interface SetItemPopoverProps {
-  children: React.ReactNode;
-  cardCss?: SystemStyleObject;
+export type ModalState = 'SHOW' | 'SHOW_MODAL' | 'CLOSE';
+
+interface SetItemPopoverProps extends React.ComponentPropsWithRef<'dialog'> {
+  state: ModalState;
+  css?: SystemStyleObject;
   closeHandler?: () => void;
-  containerCss?: SystemStyleObject;
   showCloseBtn?: boolean;
+  autofocusCloseBtn?: boolean;
 }
 
-function Modal({
+const Modal = function Modal({
   children,
   closeHandler,
-  cardCss = {},
-  containerCss = {},
-  showCloseBtn = true
+  state,
+  css: cssProp = {},
+  autofocusCloseBtn = false,
+  showCloseBtn = true,
+  ...props
 }: SetItemPopoverProps) {
-  const modalRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
-    if (typeof document === 'undefined') return;
+    switch (state) {
+      case 'SHOW':
+        dialogRef.current?.show();
+        break;
 
-    const handleOutClick = (e: MouseEvent | TouchEvent) => {
-      if (e.target instanceof Element && modalRef.current?.contains(e.target))
-        return;
+      case 'SHOW_MODAL':
+        dialogRef.current?.showModal();
+        break;
 
-      closeHandler && closeHandler();
-    };
+      case 'CLOSE':
+        dialogRef.current?.close();
+        break;
 
-    document.addEventListener('mousedown', handleOutClick);
+      default:
+        break;
+    }
+  }, [state]);
 
-    return () => {
-      document.removeEventListener('mousedown', handleOutClick);
-    };
-  }, [closeHandler]);
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   return (
-    <Portal>
-      <dialog className={css(containerStyles, containerCss)}>
-        <div ref={modalRef} className={css(cardStyles, cardCss)}>
-          {showCloseBtn && (
-            <Button
-              css={closeBtnStyles}
-              aria-label="Close modal"
-              onClick={closeHandler}
-            >
-              <IconX />
-            </Button>
-          )}
-          {children}
-        </div>
-      </dialog>
-    </Portal>
+    <dialog
+      ref={dialogRef}
+      className={css(containerStyles, cssProp)}
+      {...props}
+    >
+      {showCloseBtn && (
+        <Button
+          css={closeBtnStyles}
+          aria-label="Close modal"
+          onClick={closeHandler}
+          autoFocus={autofocusCloseBtn}
+        >
+          <IconX />
+        </Button>
+      )}
+      {children}
+    </dialog>
   );
-}
+};
 
 export default Modal;

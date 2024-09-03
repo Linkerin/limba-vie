@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { css } from '@/styled-system/css';
 
 import type { ButtonBaseProps } from './Button.types';
@@ -28,17 +28,18 @@ function Button({
   const isVibrationAllowed =
     typeof vibrate === 'boolean' ? vibrate : isSoundAllowed;
 
+  const onClickHandler = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (typeof navigator?.vibrate === 'function' && isVibrationAllowed) {
+        navigator.vibrate(40);
+      }
+      onClick && onClick(e);
+    },
+    [isVibrationAllowed, onClick]
+  );
+
   return (
-    <button
-      className={styles}
-      onClick={e => {
-        if (typeof navigator?.vibrate === 'function' && isVibrationAllowed) {
-          navigator.vibrate(40);
-        }
-        onClick && onClick(e);
-      }}
-      {...props}
-    >
+    <button className={styles} onClick={onClickHandler} {...props}>
       {children}
     </button>
   );
