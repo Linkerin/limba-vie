@@ -59,7 +59,9 @@ function Sentence({ wordId, ro, en, css: cssProp = {} }: SentenceProps) {
         <p>Oh, the AI hasn&apos;t generated anything yet 🙀</p>
       ) : (
         <>
-          <p className={roStyles}>{ro ?? sentences?.example_ro}</p>
+          <p className={roStyles} lang="ro-RO">
+            {ro ?? sentences?.example_ro}
+          </p>
           <p className={enStyles}>{en ?? sentences?.example_en}</p>
         </>
       )}

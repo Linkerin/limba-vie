@@ -53,14 +53,14 @@ function Word({ children, gender, plural, word }: WordProps) {
   return (
     <>
       <div className={styles}>
-        <p className={kalam.className}>
+        <p className={kalam.className} lang="ro-RO">
           {article ? article + ' ' : null}
           {word}
         </p>
         {children}
       </div>
       {gender && gender?.length > 0 && (
-        <p className={genderStyles} data-gender={gender}>
+        <p className={genderStyles} lang="ro-RO" data-gender={gender}>
           {getFullGender(gender)}
         </p>
       )}

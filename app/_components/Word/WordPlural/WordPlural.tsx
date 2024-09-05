@@ -17,7 +17,7 @@ const styles = css({
 
 function WordPlural({ plural }: { plural: Tables<'words'>['ro_plural'] }) {
   return plural ? (
-    <p className={styles}>
+    <p className={styles} lang="ro-RO">
       <span>plural:</span> {plural}
     </p>
   ) : null;

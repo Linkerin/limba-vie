@@ -27,6 +27,7 @@ function DictPage({ words }: { words: Dict }) {
                 className={cx(linkOverlay(), roWordStyles)}
                 aria-label="Romanian word"
                 href={`/words/${encodeURIComponent(word.en)}`}
+                lang="ro-RO"
               >
                 <LearnedWordWrapper setId={word.set_id}>
                   {word.ro}

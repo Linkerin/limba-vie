@@ -38,7 +38,7 @@ function TipsExampleSentence({
             autoplay={false}
           />
         )}
-        <p>{sentence}</p>
+        <p lang="ro-RO">{sentence}</p>
       </div>
       <p className={translationStyles}>{translation}</p>
     </div>
