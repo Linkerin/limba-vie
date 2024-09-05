@@ -25,5 +25,11 @@ export const ARTICLES = Object.freeze({
     description:
       'Grammar explanation of the plural number of the noun formation in Romanian language',
     link: 'plurals'
+  },
+  personalPronouns: {
+    title: 'Personal pronouns. Verbs "to be" and "to have".',
+    description:
+      'Grammar explanation of personal pronouns and their usage with the verbs "to be" and "to have" in Romanian language',
+    link: 'personal-pronouns'
   }
 });

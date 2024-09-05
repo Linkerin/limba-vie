@@ -1,0 +1,85 @@
+import { ARTICLES } from '@/app/_lib/constants';
+import Attention from '@/app/_components/_ui/Attention/Attention';
+
+export const description = ARTICLES.personalPronouns.description;
+export const title = ARTICLES.personalPronouns.title;
+export const ogImgUrl = `${
+  process.env.NEXT_PUBLIC_BASE_URL
+}/api/img/og-image/text?text=${encodeURIComponent(title)}`;
+
+export const metadata = {
+  title,
+  description,
+  openGraph: {
+    images: ogImgUrl,
+    description
+  },
+  twitter: {
+    images: ogImgUrl,
+    description
+  }
+};
+
+# {metadata.title}
+
+## Informal
+
+| Romanian | English              |
+| -------- | -------------------- |
+| eu       | I                    |
+| tu       | you                  |
+| el       | he                   |
+| ea       | she                  |
+| noi      | we                   |
+| voi      | you / y'all (plural) |
+| ei       | they (masculine)     |
+| ele      | they (feminine)      |
+
+## Formal
+
+| Romanian, informal | Romanian, formal |
+| ------------------ | ---------------- |
+| eu                 | -                |
+| tu                 | dumneavoastră    |
+| el                 | dumnealui        |
+| ea                 | dumneaei         |
+| noi                | -                |
+| voi                | dumneavoastră    |
+| ei / ele           | dumnealor        |
+
+## Conjugation of the verb _"a fi"_ (_"to be"_)
+
+This verb is used to express existence, state, or identity.
+
+| Pronume | a fi        |
+| ------- | ----------- |
+| eu      | sunt        |
+| tu      | **e**ști    |
+| el      | **e**ste    |
+| ea      | **e**ste    |
+| noi     | s**u**ntem  |
+| voi     | s**u**nteți |
+| ei      | sunt        |
+| ele     | sunt        |
+
+## Conjugation of the verb _"a avea"_ (_"to have"_)
+
+This verb is used to express possession or ownership.
+
+| Pronume | a avea    |
+| ------- | --------- |
+| eu      | am        |
+| tu      | ai        |
+| el      | **a**re   |
+| ea      | **a**re   |
+| noi     | av**e**m  |
+| voi     | av**e**ți |
+| ei      | au        |
+| ele     | au        |
+
+<Attention heading="Note:">
+  Personal pronouns (_eu_, _tu_, etc.) are often omitted in Romanian because the
+  verb form clearly indicates the subject. <br />
+  For example: instead of _"Eu sunt obosit"_ (_"I am tired"_), you can simply say
+  _"Sunt obosit"_.
+</Attention>

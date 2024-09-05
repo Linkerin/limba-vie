@@ -20,6 +20,7 @@ const liStyles = css({
 });
 
 const linkStyles = css({
+  lineHeight: '1.25em',
   textDecoration: 'none',
   userSelect: 'none',
   whiteSpace: 'normal',
