@@ -145,4 +145,8 @@
   :where(a):active {
     text-decoration: none;
   }
+
+  :where(a) > svg {
+    display: inline-block;
+  }
 }

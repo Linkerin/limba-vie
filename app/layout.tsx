@@ -5,6 +5,7 @@ import CookieConsent from './_components/CookieConsent/CookieConsent';
 import Header from './_components/Header/Header';
 import SoundProvider from './_contexts/SoundProvider';
 // import WebVitals from './_components/WebVitals';
+import UrlChangeAlert from './_components/UrlChangeAlert/UrlChangeAlert';
 
 import './globals.css';
 
@@ -41,7 +42,10 @@ export default function RootLayout({
       <body className={alata.className}>
         <SoundProvider>
           <Header />
-          <main id="main">{children}</main>
+          <main id="main">
+            <UrlChangeAlert />
+            {children}
+          </main>
           <NavBar />
           <div id="modal" />
         </SoundProvider>
