@@ -3,7 +3,7 @@
 import { css } from '@/styled-system/css';
 
 import type { SetIdsArr } from '@/app/_lib/types';
-import Skeleton from '../_ui/Skeleton/Skeleton';
+import Skeleton from '../../_ui/Skeleton/Skeleton';
 import useCompletedSetsNum from '@/app/_hooks/useCompletedSetsNum';
 
 const borderWidth = '1px';

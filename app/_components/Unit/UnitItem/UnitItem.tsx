@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import { IconChevronDown } from '@tabler/icons-react';
 
 import { getUnitSets } from '@/app/_services/actions';
-import SetItemLinkLoading from '../SetItemLink/SetItemLinkLoading';
+import UnitSetLinkLoading from '../UnitSetLink/UnitSetLinkLoading';
 import UnitHeading from '../UnitHeading/UnitHeading';
 import type { Units } from '@/app/_services/dbFetchers';
 import UnitProgress from '../UnitProgress/UnitProgress';
@@ -14,8 +14,8 @@ import {
   setsListStyles
 } from './UnitItem.styles';
 
-const SetItemLink = dynamic(() => import('../SetItemLink/SetItemLink'), {
-  loading: () => <SetItemLinkLoading />,
+const UnitSetLink = dynamic(() => import('../UnitSetLink/UnitSetLink'), {
+  loading: () => <UnitSetLinkLoading />,
   ssr: false
 });
 
@@ -45,7 +45,7 @@ async function UnitItem({ unit }: UnitItemProps) {
       >
         {sets.map(set =>
           set.id ? (
-            <SetItemLink
+            <UnitSetLink
               key={set.id}
               id={set.id}
               emoji={set.emoji}

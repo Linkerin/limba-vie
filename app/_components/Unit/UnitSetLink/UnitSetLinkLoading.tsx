@@ -1,4 +1,4 @@
-import Skeleton from '../_ui/Skeleton/Skeleton';
+import Skeleton from '../../_ui/Skeleton/Skeleton';
 
 import { css } from '@/styled-system/css';
 
@@ -8,8 +8,8 @@ const styles = css.raw({
   width: size
 });
 
-function SetItemLinkLoading() {
+function UnitSetLinkLoading() {
   return <Skeleton css={styles} />;
 }
 
-export default SetItemLinkLoading;
+export default UnitSetLinkLoading;

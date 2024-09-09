@@ -6,11 +6,11 @@ import Link from 'next/link';
 import { IconCheck } from '@tabler/icons-react';
 import { useLiveQuery } from 'dexie-react-hooks';
 
-import ButtonLink from '../_ui/Button/ButtonLink';
+import ButtonLink from '../../_ui/Button/ButtonLink';
 import { capitalizeWord } from '@/app/_lib/utils';
 import db from '@/app/_lib/db';
-import type { PopoverProps } from '../_ui/Popover/Popover';
-import RingSpinner from '../_ui/RingSpinner/RingSpinner';
+import type { PopoverProps } from '../../_ui/Popover/Popover';
+import RingSpinner from '../../_ui/RingSpinner/RingSpinner';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 import {
@@ -20,9 +20,9 @@ import {
   popoverHeadingStyles,
   popoverSpinnerStyles,
   setStyles
-} from './SetItemLink.styles';
+} from './UnitSetLink.styles';
 
-const Popover = dynamic(() => import('../_ui/Popover/Popover'), {
+const Popover = dynamic(() => import('../../_ui/Popover/Popover'), {
   loading: () => <RingSpinner css={popoverSpinnerStyles} />
 });
 
@@ -33,7 +33,7 @@ interface SetItemLinkProps {
   wordsNum: Tables<'sets_view'>['words_count'];
 }
 
-function SetItemLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
+function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
   const [isPopoverOpened, setIsPopoverOpened] = useState(false);
   const [popoverX, setPopoverX] = useState<PopoverProps['positionX']>('left');
   const [popoverY, setPopoverY] = useState<PopoverProps['positionY']>('bottom');
@@ -139,4 +139,4 @@ function SetItemLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
   );
 }
 
-export default SetItemLink;
+export default UnitSetLink;
