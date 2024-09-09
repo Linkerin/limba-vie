@@ -2,6 +2,7 @@ import { defineConfig, defineTokens } from '@pandacss/dev';
 import Spectrum, { createPalette } from '@snipshot/spectrum';
 
 import { cardRecipe } from './theme/recipes';
+import { GENDER_COLORS } from './app/_lib/constants';
 import { keyframes } from './theme/keyframes';
 import { semanticTokens } from './theme/semanticTokens';
 
@@ -47,9 +48,9 @@ export default defineConfig({
           background: { value: 'hsl(28, 33%, 97%)' },
           'background-darker': { value: 'hsl(28, 33%, 93%)' },
           'background-dark': { value: 'hsl(28, 33%, 86%)' },
-          'g.masculine': { value: 'hsl(255, 58%, 40%)' },
-          'g.neutral': { value: 'hsl(43, 100%, 44%)' },
-          'g.feminine': { value: 'hsl(352, 60%, 47%)' },
+          'g.masculine': { value: GENDER_COLORS.m },
+          'g.neutral': { value: GENDER_COLORS.n },
+          'g.feminine': { value: GENDER_COLORS.f },
           ...generateTokens('primary', primaryColor),
           ...generateTokens('secondary', secondaryColor),
           ...generateTokens('success', successColor)

@@ -2,16 +2,11 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 
+import { GENDER_COLORS } from '@/app/_lib/constants';
 import { getArticle, getWordsImageUrl } from '@/app/_lib/utils';
 import supabase from '@/app/_lib/supabase';
 
 export const runtime = 'edge';
-
-const bgColors = {
-  m: '#482ba1',
-  f: '#c03043',
-  n: '#e0a100'
-};
 
 const size = 1440;
 const imgSizePx = 928;
@@ -53,7 +48,7 @@ export async function GET(request: NextRequest) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          background: gender ? bgColors[gender] : '#6f6e91',
+          background: gender ? GENDER_COLORS[gender] : '#6f6e91',
           width: '100%',
           height: '100%',
           paddingTop: '64px'
@@ -102,23 +97,17 @@ export async function GET(request: NextRequest) {
             position: 'absolute',
             bottom: '50px',
             right: '50px',
-            backgroundColor: '#dfd9f2',
-            borderRadius: '16px',
-            fontSize: '30px',
-            lineHeight: '1.125em',
-            padding: '14px'
+            backgroundColor: 'hsl(28, 33%, 97%)',
+            borderRadius: '12px',
+            padding: '8px'
           }}
         >
-          <p
-            style={{
-              color: '#4d3399',
-              borderBottom: '4px solid #e29b36',
-              margin: 0
-            }}
-          >
-            Limba
-          </p>
-          <p style={{ color: '#ce0930', margin: 0 }}>Vie</p>
+          <img
+            src={`${process.env.NEXT_PUBLIC_BASE_URL}/logo.svg`}
+            alt="Taur head logo"
+            height={96}
+            width={96}
+          />
         </div>
       </div>
     ),

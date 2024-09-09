@@ -2,6 +2,12 @@ export const AUDIO_FILE_FORMAT = 'aac';
 
 export const CLOUDINARY_IMG_URL = `${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/image/upload`;
 
+export const GENDER_COLORS = Object.freeze({
+  m: 'hsl(255, 58%, 40%)',
+  n: 'hsl(43, 100%, 44%)',
+  f: 'hsl(352, 60%, 47%)'
+});
+
 export const LOCAL_STORAGE_KEYS = Object.freeze({
   completedSets: 'lvCompletedSets',
   repeatWords: 'lvRepeatWords',
