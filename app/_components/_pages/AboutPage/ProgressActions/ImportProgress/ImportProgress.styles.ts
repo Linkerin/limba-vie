@@ -2,16 +2,11 @@ import { css } from '@/styled-system/css';
 
 export const labelStyles = css({
   display: 'block',
-  marginBlock: 'token(spacing.3, 0.75rem)'
+  marginBlockEnd: 'token(spacing.3, 0.75rem)'
 });
 
 export const inputStyles = css({
   display: 'none'
-});
-
-export const btnStyles = css.raw({
-  fontSize: 'lg',
-  marginBlock: 'token(spacing.3, 0.75rem)'
 });
 
 export const contentStyles = css({

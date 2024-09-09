@@ -1,5 +1,8 @@
-import db, { type CompletedSet, type WordsForRepeat } from '../../_lib/db';
-import type { Progress } from '../../_lib/types';
+import db, {
+  type CompletedSet,
+  type WordsForRepeat
+} from '../../../../../_lib/db';
+import type { Progress } from '../../../../../_lib/types';
 
 /**
  * Validates whether the provided `data` object is a valid `Progress` object.

@@ -68,3 +68,8 @@ export const creditsListStyles = css({
     }
   }
 });
+
+export const hrStyles = css({
+  borderColor: 'main.lower',
+  marginBlock: 'token(spacing.4, 1rem)'
+});

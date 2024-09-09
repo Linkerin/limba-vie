@@ -1,5 +1,5 @@
 import { getUnits } from '../_services/dbFetchers';
-import HomePage from '../_components/Pages/HomePage/HomePage';
+import HomePage from '../_components/_pages/HomePage/HomePage';
 async function Home() {
   const units = await getUnits();
 

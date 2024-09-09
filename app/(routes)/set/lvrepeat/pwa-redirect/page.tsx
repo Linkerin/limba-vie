@@ -1,6 +1,6 @@
 'use client';
 
-import PwaRedirectPage from '@/app/_components/Pages/SetPage/PwaRedirectPage/PwaRedirectPage';
+import PwaRedirectPage from '@/app/_components/_pages/SetPage/PwaRedirectPage/PwaRedirectPage';
 
 function PwaRedirect() {
   return <PwaRedirectPage />;

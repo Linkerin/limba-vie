@@ -3,8 +3,8 @@
 import { useEffect } from 'react';
 import * as Sentry from '@sentry/nextjs';
 
-import ErrorPage from './_components/Pages/ErrorPage/ErrorPage';
-import ErrorPageFooter from './_components/Pages/ErrorPage/ErrorPageFooter/ErrorPageFooter';
+import ErrorPage from './_components/_pages/ErrorPage/ErrorPage';
+import ErrorPageFooter from './_components/_pages/ErrorPage/ErrorPageFooter/ErrorPageFooter';
 
 export default function Error({
   error,

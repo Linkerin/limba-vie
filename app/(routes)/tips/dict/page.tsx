@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import DictPage from '@/app/_components/Pages/TipsPage/DictPage/DictPage';
+import DictPage from '@/app/_components/_pages/TipsPage/DictPage/DictPage';
 import { getDict } from '@/app/_services/dbFetchers';
 
 export const metadata: Metadata = {

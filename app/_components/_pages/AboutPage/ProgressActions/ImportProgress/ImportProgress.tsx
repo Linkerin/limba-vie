@@ -3,13 +3,13 @@
 import { useCallback, useRef, useState } from 'react';
 import { IconChecks, IconExclamationCircle } from '@tabler/icons-react';
 
-import Button from '../_ui/Button/Button';
+import Button from '../../../../_ui/Button/Button';
 import { importProgress } from './importUtils';
-import Loader from '../_ui/Loader/Loader';
-import Modal from '../_ui/Modal/Modal';
+import Loader from '../../../../_ui/Loader/Loader';
+import Modal from '../../../../_ui/Modal/Modal';
 
+import { actionBtnStyles } from '../ProgressActions.styles';
 import {
-  btnStyles,
   contentStyles,
   inputStyles,
   labelStyles,
@@ -57,7 +57,7 @@ function ImportProgress() {
   return (
     <>
       <label className={labelStyles} htmlFor="progress-upload">
-        You can also upload the JSON file below to update your progress:
+        Import your progress to resume where you left off.
       </label>
       <input
         ref={inputRef}
@@ -68,9 +68,10 @@ function ImportProgress() {
         accept=".json"
         onChange={changeHandler}
       />
-      <Button css={btnStyles} onClick={clickHandler} variant="primary">
+      <Button css={actionBtnStyles} onClick={clickHandler} variant="primary">
         Upload progress
       </Button>
+
       <Modal
         closeHandler={modalCloseHandler}
         showCloseBtn={loadState === 'LOAD' ? false : true}

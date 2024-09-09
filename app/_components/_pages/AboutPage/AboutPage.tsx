@@ -5,14 +5,15 @@ import {
   IconHeartFilled
 } from '@tabler/icons-react';
 
-import DeleteAllData from '../../DeleteAllData/DeleteAllData';
-import ExportProgress from '../../ExportProgress/ExportProgress';
-import ImportProgress from '../../ImportProgress/ImportProgress';
+import DeleteAllData from './ProgressActions/DeleteAllData/DeleteAllData';
+import ExportProgress from './ProgressActions/ExportProgress/ExportProgress';
+import ImportProgress from './ProgressActions/ImportProgress/ImportProgress';
 
 import {
   addressStyles,
   containerStyles,
   creditsListStyles,
+  hrStyles,
   instagramIconStyles,
   introStyles
 } from './AboutPage.styles';
@@ -176,18 +177,10 @@ function AboutPage() {
       </section>
       <section id="progress">
         <h2>Progress</h2>
-        <p>
-          By clicking the button below, you can download your progress in the
-          application as a JSON file.
-        </p>
         <ExportProgress />
+        <hr className={hrStyles} />
         <ImportProgress />
-        <p>
-          You can remove all your progress and settings. This action is{' '}
-          <strong> irrevocable</strong>.<br />
-          If you&apos;d like to have a backup of your progress, first download
-          and save the JSON file with the actual progress.
-        </p>
+        <hr className={hrStyles} />
         <DeleteAllData />
       </section>
     </div>

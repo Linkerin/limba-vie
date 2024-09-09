@@ -5,7 +5,7 @@ import { capitalizeWord } from '@/app/_lib/utils';
 import { getPrevUnitId } from '@/app/_services/actions';
 import { getSetInfo, getWords } from '@/app/_services/dbFetchers';
 import supabase from '@/app/_lib/supabase';
-import SetPage from '@/app/_components/Pages/SetPage/SetPage';
+import SetPage from '@/app/_components/_pages/SetPage/SetPage';
 
 interface SetPageParams {
   params: { setName: string };

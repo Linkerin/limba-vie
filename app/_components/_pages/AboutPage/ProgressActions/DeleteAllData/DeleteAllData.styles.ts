@@ -1,10 +1,5 @@
 import { css } from '@/styled-system/css';
 
-export const btnStyles = css.raw({
-  fontSize: 'lg',
-  marginBlockStart: 'token(spacing.3, 0.75rem)'
-});
-
 export const modalStyles = css.raw({
   backgroundColor: 'secondary.container',
   borderColor: 'secondary.dark'

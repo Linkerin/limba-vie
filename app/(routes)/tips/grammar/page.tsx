@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import TipsPage from '@/app/_components/Pages/TipsPage/TipsPage';
+import TipsPage from '@/app/_components/_pages/TipsPage/TipsPage';
 
 export const metadata: Metadata = {
   title: 'Grammar',

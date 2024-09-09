@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { capitalizeWord } from '@/app/_lib/utils';
 import { getPrevUnitId } from '@/app/_services/actions';
 import { getSetInfo, getWords } from '@/app/_services/dbFetchers';
-import SetPage from '@/app/_components/Pages/SetPage/SetPage';
+import SetPage from '@/app/_components/_pages/SetPage/SetPage';
 import supabase from '@/app/_lib/supabase';
 
 interface SetPageParams {

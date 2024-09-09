@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { capitalizeWord } from '@/app/_lib/utils';
 import { getWord } from '@/app/_services/dbFetchers';
-import WordPage from '@/app/_components/Pages/WordPage/WordPage';
+import WordPage from '@/app/_components/_pages/WordPage/WordPage';
 import supabase from '@/app/_lib/supabase';
 
 interface WordPageParams {

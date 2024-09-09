@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import OfflinePage from '@/app/_components/Pages/OfflinePage/OfflinePage';
+import OfflinePage from '@/app/_components/_pages/OfflinePage/OfflinePage';
 
 export const metadata: Metadata = {
   title: 'Offline'

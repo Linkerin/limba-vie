@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import TermsOfUsePage from '@/app/_components/Pages/AboutPage/Legal/TermsOfUse/TermsOfUsePage';
+import TermsOfUsePage from '@/app/_components/_pages/AboutPage/Legal/TermsOfUse/TermsOfUsePage';
 
 export const metadata: Metadata = {
   title: 'Terms of Use',

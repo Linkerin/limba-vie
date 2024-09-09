@@ -3,12 +3,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import Button from '../_ui/Button/Button';
+import Button from '../../../../_ui/Button/Button';
 import { deleteAllData } from './deleteDataUtils';
-import Modal from '../_ui/Modal/Modal';
+import Modal from '../../../../_ui/Modal/Modal';
 
+import { actionBtnStyles } from '../ProgressActions.styles';
 import {
-  btnStyles,
   confirmationBtnStyles,
   headingStyles,
   modalStyles,
@@ -28,7 +28,7 @@ function DeleteAllData() {
 
     await deleteAllData();
     router.push('/');
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     if (!showModal) return;
@@ -46,20 +46,27 @@ function DeleteAllData() {
 
   return (
     <>
+      <p>
+        Permanently delete all progress and settings.
+        <br />
+        This action is <strong>irrevocable</strong>! Be sure to have a backup
+        first.
+      </p>
       <Button
-        css={btnStyles}
+        css={actionBtnStyles}
         onClick={openModalClickHandler}
         variant="secondary"
       >
         Delete all data
       </Button>
+
       <Modal
         css={modalStyles}
         state={showModal ? 'SHOW_MODAL' : 'CLOSE'}
         autofocusCloseBtn={true}
         closeHandler={modalCloseHandler}
       >
-        <h2 className={headingStyles}>Attention!</h2>
+        <h1 className={headingStyles}>Attention!</h1>
         <p className={pStyles}>
           Are you sure that you want to delete everything from the app? This
           action is <strong>irrevocable</strong> and will{' '}
