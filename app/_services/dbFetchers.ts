@@ -1,4 +1,7 @@
+'use server';
+
 import { cache } from 'react';
+import { unstable_cache } from 'next/cache';
 
 import { REPEAT_WORDS_CTY } from '../_lib/constants';
 import type { RepeatPageSearchParams } from '../_lib/types';
@@ -99,16 +102,20 @@ export const getRepeatWords = async ({ set, r }: RepeatPageSearchParams) => {
 
 export type RepeatWords = Awaited<ReturnType<typeof getRepeatWords>>;
 
-export const getSentence = cache(async (id: Tables<'words'>['id']) => {
-  const { data, error } = await supabase
-    .from('words')
-    .select('example_ro, example_en')
-    .eq('id', id);
-  if (error) throw error;
-  if (!data) return null;
+export const getSentence = unstable_cache(
+  async (id: Tables<'words'>['id']) => {
+    const { data, error } = await supabase
+      .from('words')
+      .select('example_ro, example_en')
+      .eq('id', id);
+    if (error) throw error;
+    if (!data) return null;
 
-  return data[0];
-});
+    return data[0];
+  },
+  undefined,
+  { revalidate: parseInt(process.env.REVALIDATE_PERIOD_SEC ?? '3600') }
+);
 
 export type SentenceType = Awaited<ReturnType<typeof getSentence>>;
 
@@ -124,17 +131,6 @@ export const getSetInfo = cache(async (setName: string) => {
 });
 
 export type SetInfo = Awaited<ReturnType<typeof getSetInfo>>;
-
-// export const getSets = cache(async () => {
-//   const { data, error } = await supabase
-//     .from('sorted_sets')
-//     .select('id, set, emoji, words_count, unit');
-//   if (error) throw error;
-
-//   return data;
-// });
-
-// export type Sets = Awaited<ReturnType<typeof getSets>>;
 
 export const getUnits = cache(async () => {
   const { data, error } = await supabase
