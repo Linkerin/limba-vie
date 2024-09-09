@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 
 import { GENDER_COLORS } from '@/app/_lib/constants';
-import { getArticle, getWordsImageUrl } from '@/app/_lib/utils';
+import { getArticle, getImageUrl } from '@/app/_lib/utils';
 import supabase from '@/app/_lib/supabase';
 
 export const runtime = 'edge';
@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
         }}
       >
         <img
-          src={getWordsImageUrl(wordObj.img_name, imgSizePx)}
+          src={getImageUrl(wordObj.img_name, imgSizePx)}
           alt={`${wordObj.en} image`}
           height={`${imgSizePx}px`}
           width={`${imgSizePx}px`}

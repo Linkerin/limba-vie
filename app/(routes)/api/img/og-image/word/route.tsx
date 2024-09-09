@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 
 import type { Gender } from '@/app/_lib/types';
-import { getArticle, getWordsImageUrl } from '@/app/_lib/utils';
+import { getArticle, getImageUrl } from '@/app/_lib/utils';
 
 export const runtime = 'edge';
 
@@ -97,7 +97,7 @@ export async function GET(request: NextRequest) {
           </div>
           <img
             alt={`'${en}' word image`}
-            src={getWordsImageUrl(img, imgSize)}
+            src={getImageUrl(img, imgSize)}
             height={imgSize}
             width={imgSize}
             style={{ borderRadius: '32px' }}

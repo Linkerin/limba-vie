@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { IconView360Arrow } from '@tabler/icons-react';
 import { cx } from '@/styled-system/css';
 
-import { getWordsImageUrl } from '@/app/_lib/utils';
+import { getImageUrl } from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 import {
@@ -68,7 +68,7 @@ function WordImg({ gender, wordEn, imgName = wordEn }: WordImgProps) {
               ref={imgRef}
               className={sideContentStyles}
               alt={`${wordEn} picture`}
-              src={getWordsImageUrl(imgName)}
+              src={getImageUrl(imgName)}
               fetchPriority="high"
               loading="eager"
               onLoad={onLoadHandler}

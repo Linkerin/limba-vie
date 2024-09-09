@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-import { getAudioUrl, getWordsImageUrl } from '../_lib/utils';
+import { getAudioUrl, getImageUrl } from '../_lib/utils';
 import type { SetPageProps } from '../_components/_pages/SetPage/SetPage';
 
 function useMediaLoad(current: number, words: SetPageProps['words']) {
@@ -13,7 +13,7 @@ function useMediaLoad(current: number, words: SetPageProps['words']) {
     const load = (i: number) => {
       new Audio(getAudioUrl({ audioName: words[i].audio_name }));
       const img = new Image();
-      img.src = getWordsImageUrl(words[i].img_name);
+      img.src = getImageUrl(words[i].img_name);
 
       return;
     };

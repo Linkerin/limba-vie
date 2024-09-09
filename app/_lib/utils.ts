@@ -69,16 +69,6 @@ export function getFullGender(genderAbbr: Gender) {
   }
 }
 
-export function getWordsImageUrl(
-  imgName: Tables<'words'>['img_name'],
-  width: number = 480,
-  folder: string = 'limba'
-) {
-  const url = `${CLOUDINARY_IMG_URL}/f_auto,q_75,w_${width}/v1/${folder}/${imgName}`;
-
-  return url;
-}
-
 interface GetImgUrlOptions {
   folder?: string;
   format?: 'auto' | 'png' | 'svg' | 'webp';
