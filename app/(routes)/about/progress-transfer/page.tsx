@@ -70,8 +70,8 @@ function TransferPage() {
       </p>
       <p>Below is a quick guide to help you move your progress smoothly.</p>
       <p>
-        If you have questions or need assistance, do not hesitate to contact us
-        at{' '}
+        If you have any questions or need assistance, do not hesitate to contact
+        us at{' '}
         <Link
           aria-label="Contact e-mail address"
           href="mailto:limba@ravenplan.com"
@@ -113,13 +113,14 @@ function TransferPage() {
           >
             limba.ravenplan.com/about <IconExternalLink />
           </Link>
-          . There you will find the same &quot;Progress&quot; section.
+          . There you will find the same <strong>&quot;Progress&quot;</strong>{' '}
+          section.
         </li>
         <li>
           Click the button{' '}
           <span className={buttonNameStyles}>Upload progress</span>. This will
           open a window where you need to select the JSON file that you
-          downloaded in step 2.
+          downloaded in <strong>step 2</strong>.
         </li>
         <li>
           That&apos;s it! You will see a confirmation message once your progress

@@ -1,8 +1,10 @@
+import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import db, {
   type CompletedSet,
   type WordsForRepeat
 } from '../../../../../_lib/db';
 import type { Progress } from '../../../../../_lib/types';
+import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
 
 /**
  * Validates whether the provided `data` object is a valid `Progress` object.
@@ -10,7 +12,7 @@ import type { Progress } from '../../../../../_lib/types';
  * @param data - The object to validate.
  * @returns `true` if the `data` object is valid, `false` otherwise.
  */
-export const isValidProgressJson = (data: any): data is Progress => {
+const isValidProgressJson = (data: any): data is Progress => {
   return (
     typeof data === 'object' &&
     data !== null &&
@@ -28,7 +30,7 @@ export const isValidProgressJson = (data: any): data is Progress => {
  * @param set - The object to validate.
  * @returns `true` if the `set` object is valid, `false` otherwise.
  */
-export const isValidCompletedSet = (set: any): set is CompletedSet => {
+const isValidCompletedSet = (set: any): set is CompletedSet => {
   return (
     typeof set === 'object' &&
     set !== null &&
@@ -44,7 +46,7 @@ export const isValidCompletedSet = (set: any): set is CompletedSet => {
  * @param word - The object to validate.
  * @returns `true` if the `word` object is valid, `false` otherwise.
  */
-export const isValidWordForRepeat = (word: any): word is WordsForRepeat => {
+const isValidWordForRepeat = (word: any): word is WordsForRepeat => {
   return (
     typeof word === 'object' &&
     word !== null &&
@@ -63,7 +65,7 @@ export const isValidWordForRepeat = (word: any): word is WordsForRepeat => {
  * @returns The parsed `Progress` object.
  * @throws {Error} If the JSON structure is invalid.
  */
-export const parseImportedData = (jsonStr: string): Progress => {
+const parseImportedData = (jsonStr: string): Progress => {
   const parsed = JSON.parse(jsonStr, (key, value) => {
     const keyAttr = key as keyof Progress;
     switch (keyAttr) {
@@ -111,7 +113,7 @@ export const parseImportedData = (jsonStr: string): Progress => {
  * @param importedSets - An array of `CompletedSet` objects representing the sets to be imported.
  * @returns A Promise that resolves when the merge operation is complete.
  */
-export const mergeCompletedSets = async (importedSets: CompletedSet[]) => {
+const mergeCompletedSets = async (importedSets: CompletedSet[]) => {
   const importedIds = importedSets.map(set => set.setId);
   const existingSets = await db.completedSets.bulkGet(importedIds);
   const setsForWriting: CompletedSet[] = [];
@@ -137,7 +139,7 @@ export const mergeCompletedSets = async (importedSets: CompletedSet[]) => {
  * @param importedWords - An array of `WordsForRepeat` objects representing the words to be imported.
  * @returns A Promise that resolves when the merge operation is complete.
  */
-export const mergeWordsForRepeat = async (importedWords: WordsForRepeat[]) => {
+const mergeWordsForRepeat = async (importedWords: WordsForRepeat[]) => {
   const importedIds = importedWords.map(word => word.wordId);
   const existingWords = await db.wordsForRepeat.bulkGet(importedIds);
   const wordsForWriting: WordsForRepeat[] = [];
@@ -156,6 +158,13 @@ export const mergeWordsForRepeat = async (importedWords: WordsForRepeat[]) => {
   }
 
   await db.wordsForRepeat.bulkPut(wordsForWriting);
+};
+
+const recordUserId = (userId: string | null) => {
+  if (!userId) return;
+  ssrLocalStorage.setItem(LOCAL_STORAGE_KEYS.userId, userId);
+
+  return;
 };
 
 /**
@@ -182,6 +191,7 @@ export const importProgress = async (file: File): Promise<void> => {
 
   const setsMergePromise = mergeCompletedSets(importedData.completedSets);
   const wordsMergePromise = mergeWordsForRepeat(importedData.wordsForRepeat);
+  recordUserId(importedData.userId);
   await Promise.all([setsMergePromise, wordsMergePromise]);
 
   console.log('Progress imported successfully');

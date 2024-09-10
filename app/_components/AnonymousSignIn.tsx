@@ -56,7 +56,6 @@ function AnonymousSignIn() {
         return;
       } catch (err) {
         ssrLocalStorage.removeItem(key);
-        console.error('Sign In error');
         throw err;
       }
     })();

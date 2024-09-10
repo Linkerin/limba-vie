@@ -60,9 +60,9 @@ function AboutPage() {
             Reach out to us at{' '}
             <Link
               aria-label="Contact e-mail address"
-              href="mailto:limba@snipshot.dev"
+              href="mailto:limba@ravenplan.com"
             >
-              limba@snipshot.dev
+              limba@ravenplan.com
             </Link>
           </p>
           <p>
