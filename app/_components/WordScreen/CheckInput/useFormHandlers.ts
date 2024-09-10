@@ -1,6 +1,10 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { getArticle, normalizeWord } from '@/app/_lib/utils';
+import {
+  getArticle,
+  normalizeWord,
+  removePunctuationAtEdges
+} from '@/app/_lib/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 interface UseFormHandlersParams {
@@ -26,6 +30,8 @@ function useFormHandlers({
   const answer = useMemo(() => {
     const normalizedWord = normalizeWord(wordRo);
     const article = getArticle(gender, plural);
+    const normalizedRemovedPunctuation =
+      removePunctuationAtEdges(normalizedWord);
 
     const normalizedWithArticle = article
       ? `${article} ${normalizedWord}`
@@ -35,6 +41,7 @@ function useFormHandlers({
     const result = {
       word: normalizedWord,
       withArticle: normalizedWithArticle,
+      removedPunctuation: normalizedRemovedPunctuation,
       original: originalWithArticle
     };
 
@@ -53,10 +60,12 @@ function useFormHandlers({
       e.preventDefault();
 
       const normalizedInput = normalizeWord(input);
+      const removedPunctuationInput = removePunctuationAtEdges(normalizedInput);
 
       if (
         normalizedInput === answer.word ||
-        normalizedInput === answer.withArticle
+        normalizedInput === answer.withArticle ||
+        removedPunctuationInput === answer.removedPunctuation
       ) {
         setResultStatus('success');
         learnedHandler();
@@ -68,7 +77,7 @@ function useFormHandlers({
 
       return;
     },
-    [answer.word, answer.withArticle, input, learnedHandler, repeatHandler]
+    [answer, input, learnedHandler, repeatHandler]
   );
 
   return {

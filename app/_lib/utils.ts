@@ -127,6 +127,25 @@ export function normalizeWord(word: string) {
     .toLowerCase();
 }
 
+/**
+ * Removes punctuation at the beginning and end of the input string.
+ *
+ * @param str - The input string from which punctuation is to be removed.
+ * @returns The input string with punctuation removed from the edges and trimmed.
+ */
+export function removePunctuationAtEdges(str: string): string {
+  const removedAtBeginning = str.replace(/^[\p{P}\p{S}]+/gu, '');
+
+  // Removes ellipsis `...` followed by a puctuation mark
+  const removedEllipsis = removedAtBeginning.replace(
+    /(?:\.\.\. ?)[\p{P}\p{S}]+$/gu,
+    ''
+  );
+  const removedAtEnd = removedEllipsis.replace(/[\p{P}\p{S}]+$/gu, '');
+
+  return removedAtEnd.trim();
+}
+
 export function getRandomValueFromArr(arr: any[]) {
   const index = Math.floor(Math.random() * arr.length);
 

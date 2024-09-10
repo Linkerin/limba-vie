@@ -6,7 +6,11 @@ import { usePathname } from 'next/navigation';
 import { css } from '@/styled-system/css';
 import { IconExternalLink } from '@tabler/icons-react';
 
-const noShowUrl = 'limba.ravenplan.com';
+const noShowUrls = [
+  'limba.ravenplan.com',
+  'localhost',
+  'preview--limba.netlify.app'
+];
 
 const containerStyles = css({
   position: 'sticky',
@@ -54,7 +58,7 @@ function UrlChangeAlert() {
     setUrl(window.location.hostname);
   }, []);
 
-  return url === noShowUrl || pathname.includes('/about') ? null : (
+  return noShowUrls.includes(url) || pathname.includes('/about') ? null : (
     <section className={containerStyles}>
       <h1 className={headingStyles}>We are moving!</h1>
       <p>

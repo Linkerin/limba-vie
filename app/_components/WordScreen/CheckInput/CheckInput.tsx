@@ -85,6 +85,7 @@ function CheckInput({
             title="Type the word in Romanian"
             value={input}
             required
+            autoFocus
           />
         </label>
         <Button
