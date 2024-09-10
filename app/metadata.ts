@@ -50,7 +50,7 @@ export const metadata: Metadata = {
       },
       {
         rel: 'mask-icon',
-        color: '#b23444',
+        color: '#3f3f46',
         url: '/favicons/safari-pinned-tab.svg'
       }
     ]
@@ -126,7 +126,7 @@ export const metadata: Metadata = {
     images: `${process.env.NEXT_PUBLIC_BASE_URL}/api/img/og-image`
   },
   other: {
-    'msapplication-TileColor': '#b23444',
+    'msapplication-TileColor': '#b91d47',
     'msapplication-config': '/favicons/browserconfig.xml',
     'google-site-verification': 'r8nxIG5r_BDLpt_uni8VoJX78l1oWwq3MbL8HBZ1T_I'
   }
