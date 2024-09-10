@@ -69,7 +69,7 @@ function UrlChangeAlert() {
       </p>
       <p>
         We kindly ask you to transfer your current progress there. From{' '}
-        <time dateTime="2024-10-10">October, 10th</time> this link{' '}
+        <time dateTime="2024-10-15">October, 15th</time> this link{' '}
         <strong>will not be available</strong>.
       </p>
       <p>
