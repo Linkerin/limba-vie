@@ -6,6 +6,7 @@ import { GENDER_COLORS } from './app/_lib/constants';
 import { keyframes } from './theme/keyframes';
 import { semanticTokens } from './theme/semanticTokens';
 
+const lightnessTokens = [30, 40, 50, 70, 80, 90, 95];
 const primaryColor = new Spectrum('hsl', [237, 0.4, 0.5, 1]);
 const secondaryColor = new Spectrum('hsl', [24, 0.8, 0.5, 1]);
 const successColor = new Spectrum('hsl', [147, 0.25, 0.5, 1]);
@@ -15,8 +16,8 @@ function generateTokens(prefix: string, color: Spectrum) {
 
   const tokens: Record<string, Record<'value', string>> = {};
 
-  for (let i = 5; i < 100; i += 5) {
-    tokens[`${prefix}.${i * 10}`] = { value: palette[i].hex };
+  for (const token of lightnessTokens) {
+    tokens[`${prefix}.${token * 10}`] = { value: palette[token].hex };
   }
 
   return tokens;
