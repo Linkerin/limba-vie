@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import About from './RightButtons/About';
 import logoImg from '@/public/logo.svg';
+import flowerLogoImg from '@/public/images/flower_logo.svg';
 
 import {
   headerStyles,
@@ -24,7 +25,11 @@ function Header() {
       >
         <Image
           alt="Geometrical taur head image as Limba Vie logo"
-          src={logoImg}
+          src={
+            process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW'
+              ? flowerLogoImg
+              : logoImg
+          }
           priority
         />
       </Link>
