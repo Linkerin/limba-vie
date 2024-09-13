@@ -6,6 +6,7 @@ import {
   audioBtnStyles,
   containerStyles,
   sentenceStyles,
+  roSentenceStyles,
   translationStyles
 } from './TipsExampleSentence.styles';
 
@@ -38,7 +39,9 @@ function TipsExampleSentence({
             autoplay={false}
           />
         )}
-        <p lang="ro-RO">{sentence}</p>
+        <p className={roSentenceStyles} lang="ro-RO">
+          {sentence}
+        </p>
       </div>
       <p className={translationStyles}>{translation}</p>
     </div>

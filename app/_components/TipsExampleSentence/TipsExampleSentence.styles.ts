@@ -16,11 +16,11 @@ export const sentenceStyles = css({
   borderRadius: 'sm',
   borderWidth: '0.125rem',
   color: 'on-primary-container',
-  marginBlockEnd: 'token(spacing.1, 0.25rem)',
+  marginBlockEnd: 'token(spacing.1, 0.25rem)'
+});
 
-  '& > p': {
-    padding: 'token(spacing.2, 0.5rem) token(spacing.4, 1rem)'
-  }
+export const roSentenceStyles = css({
+  padding: 'token(spacing.2, 0.5rem) token(spacing.4, 1rem)'
 });
 
 export const audioBtnStyles = css.raw({

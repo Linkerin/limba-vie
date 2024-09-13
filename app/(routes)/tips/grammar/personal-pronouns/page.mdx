@@ -1,5 +1,6 @@
 import { ARTICLES } from '@/app/_lib/constants';
 import Attention from '@/app/_components/_ui/Attention/Attention';
+import TipsExampleSentence from '@/app/_components/TipsExampleSentence/TipsExampleSentence';
 
 export const description = ARTICLES.personalPronouns.description;
 export const title = ARTICLES.personalPronouns.title;
@@ -18,6 +19,32 @@ export const metadata = {
     images: ogImgUrl,
     description
   }
+};
+
+export const audioFolder = 'grammar/personal-pronouns';
+export const examples = {
+  fi: [
+    { id: 1, sentence: 'Eu sunt obosit.', translation: 'I am tired.' },
+    {
+      id: 2,
+      sentence: 'Cartea este pe masă.',
+      translation: 'The book is on the table.'
+    },
+    { id: 3, sentence: 'Ei sunt prieteni.', translation: 'They are friends.' }
+  ],
+  avea: [
+    { id: 1, sentence: 'Eu am o pisică.', translation: 'I have a cat.' },
+    {
+      id: 2,
+      sentence: 'Ea are o mașină roșie.',
+      translation: 'She has a red car.'
+    },
+    {
+      id: 3,
+      sentence: 'Avem o casă nouă.',
+      translation: 'We have a new house.'
+    }
+  ]
 };
 
 # {metadata.title}
@@ -62,6 +89,26 @@ This verb is used to express existence, state, or identity.
 | ei      | sunt        |
 | ele     | sunt        |
 
+<Attention heading="Note:">
+  Personal pronouns (<span lang="ro-RO">_eu_</span>,{' '}
+  <span lang="ro-RO">_tu_</span>, etc.) are often omitted in Romanian because
+  the verb form clearly indicates the subject. <br />
+  For example: instead of <span lang="ro-RO">_"Eu sunt obosit"_</span> (_"I am tired"_),
+  you can simply say <span lang="ro-RO">_"Sunt obosit"_</span>.
+</Attention>
+
+### Examples:
+
+{examples.fi.map(elem =>
+
+<TipsExampleSentence
+  key={elem.sentence}
+  sentence={elem.sentence}
+  translation={elem.translation}
+  audioName={`personal-pronouns-ex-fi-${elem.id}`}
+  audioFolder={audioFolder}
+/> )}
+
 ## Conjugation of the verb <span lang="ro-RO">_"a avea"_</span> (_"to have"_)
 
 This verb is used to express possession or ownership.
@@ -77,10 +124,14 @@ This verb is used to express possession or ownership.
 | ei      | au        |
 | ele     | au        |
 
-<Attention heading="Note:">
-  Personal pronouns (<span lang="ro-RO">_eu_</span>,{' '}
-  <span lang="ro-RO">_tu_</span>, etc.) are often omitted in Romanian because
-  the verb form clearly indicates the subject. <br />
-  For example: instead of <span lang="ro-RO">_"Eu sunt obosit"_</span> (_"I am tired"_),
-  you can simply say <span lang="ro-RO">_"Sunt obosit"_</span>.
-</Attention>
+### Examples:
+
+{examples.avea.map(elem =>
+
+<TipsExampleSentence
+  key={elem.sentence}
+  sentence={elem.sentence}
+  translation={elem.translation}
+  audioName={`personal-pronouns-ex-avea-${elem.id}`}
+  audioFolder={audioFolder}
+/> )}
