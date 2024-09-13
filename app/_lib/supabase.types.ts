@@ -14,36 +14,6 @@ export type Database = {
           created_at: string;
           emoji: string | null;
           id: number;
-          prev_set_id: number | null;
-          set: string;
-          unit: number;
-          updated_at: string;
-        };
-        Insert: {
-          created_at?: string;
-          emoji?: string | null;
-          id?: number;
-          prev_set_id?: number | null;
-          set: string;
-          unit: number;
-          updated_at?: string;
-        };
-        Update: {
-          created_at?: string;
-          emoji?: string | null;
-          id?: number;
-          prev_set_id?: number | null;
-          set?: string;
-          unit?: number;
-          updated_at?: string;
-        };
-        Relationships: [];
-      };
-      sets_new: {
-        Row: {
-          created_at: string;
-          emoji: string | null;
-          id: number;
           order: number | null;
           set: string;
           unit_id: number | null;
@@ -76,6 +46,36 @@ export type Database = {
             referencedColumns: ['id'];
           }
         ];
+      };
+      sets_old: {
+        Row: {
+          created_at: string;
+          emoji: string | null;
+          id: number;
+          prev_set_id: number | null;
+          set: string;
+          unit: number;
+          updated_at: string;
+        };
+        Insert: {
+          created_at?: string;
+          emoji?: string | null;
+          id?: number;
+          prev_set_id?: number | null;
+          set: string;
+          unit: number;
+          updated_at?: string;
+        };
+        Update: {
+          created_at?: string;
+          emoji?: string | null;
+          id?: number;
+          prev_set_id?: number | null;
+          set?: string;
+          unit?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
       };
       units: {
         Row: {
@@ -161,7 +161,7 @@ export type Database = {
             foreignKeyName: 'words_set_id_fkey';
             columns: ['set_id'];
             isOneToOne: false;
-            referencedRelation: 'sets_new';
+            referencedRelation: 'sets';
             referencedColumns: ['id'];
           },
           {
