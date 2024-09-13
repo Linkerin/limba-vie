@@ -13,7 +13,6 @@ function useRepeatBtn() {
   const competedSetsIds = completedSets
     ? completedSets.map(set => set.setId)
     : [];
-  // const wordsForRepeat = getWordForRepeat();
 
   const wordsForRepeat = useLiveQuery(() => db.wordsForRepeat.toArray());
   const repeatWordsIds = wordsForRepeat

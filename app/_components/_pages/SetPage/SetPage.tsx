@@ -12,7 +12,11 @@ import Word from '../../Word/Word/Word';
 import WordCounter from '../../WordScreen/WordCounter/WordCounter';
 import WordImg from '../../Word/WordImg/WordImg';
 import WordPlural from '../../Word/WordPlural/WordPlural';
-import type { RepeatWords, SetInfo, Words } from '@/app/_services/dbFetchers';
+import type {
+  RepeatWords,
+  SetInfo,
+  SetWords
+} from '@/app/_services/dbFetchers';
 
 import {
   audioBtnStyles,
@@ -26,7 +30,7 @@ const CheckInput = dynamic(
 );
 
 export interface SetPageProps {
-  words: Words | RepeatWords;
+  words: SetWords | RepeatWords;
   checkPage?: boolean;
   prevUnitId?: number | null;
   setInfo?: SetInfo;

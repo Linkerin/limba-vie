@@ -4,7 +4,7 @@ import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 
 import { REPEAT_WORDS_CTY } from '../_lib/constants';
-import type { RepeatPageSearchParams } from '../_lib/types';
+import type { RepeatPageSearchParams, WordsArr } from '../_lib/types';
 import supabase from '../_lib/supabase';
 import type { Tables } from '../_lib/supabase.types';
 import { trimVerb } from '../_lib/utils';
@@ -30,7 +30,19 @@ export const getDict = cache(async () => {
 
 export type Dict = Awaited<ReturnType<typeof getDict>>;
 
-const fields = `id,
+export async function getPrevUnitId(unitId: Tables<'units_view'>['id']) {
+  if (!unitId) return null;
+
+  const { data, error } = await supabase
+    .from('units_view')
+    .select('prev_unit')
+    .eq('id', unitId);
+  if (error) throw error;
+
+  return data.at(0)?.prev_unit;
+}
+
+const FIELDS = `id,
                 en,
                 en_alternatives,
                 ro,
@@ -40,16 +52,6 @@ const fields = `id,
                 img_name,
                 audio_name`;
 
-type WordsArr = Omit<
-  Tables<'words'>,
-  | 'set_id'
-  | 'created_at'
-  | 'updated_at'
-  | 'example_ro'
-  | 'example_en'
-  | 'instagram'
->[];
-
 interface getRepeatSetsParams {
   setId: Tables<'words'>['set_id'];
   ids: (string | undefined)[];
@@ -58,7 +60,7 @@ interface getRepeatSetsParams {
 const getRepeatSets = async ({ setId, ids, words }: getRepeatSetsParams) => {
   const { data, error } = await supabase
     .from('words')
-    .select(fields)
+    .select(FIELDS)
     .eq('set_id', setId)
     .not('id', 'in', `(${ids.join(',')})`);
   if (error) throw error;
@@ -73,7 +75,7 @@ export const getRepeatWords = async ({ set, r }: RepeatPageSearchParams) => {
   if (r && r.length > 0) {
     const { data, error } = await supabase
       .from('words')
-      .select(fields)
+      .select(FIELDS)
       .in('id', ids);
     if (error) throw error;
 
@@ -143,6 +145,19 @@ export const getUnits = cache(async () => {
 
 export type Units = Awaited<ReturnType<typeof getUnits>>;
 
+export async function getUnitSets(unitId: Tables<'units_view'>['id']) {
+  if (!unitId) throw new Error('Unit id was not provided to fetch sets');
+
+  const { data, error } = await supabase
+    .from('sets_view')
+    .select('id, set, emoji, order, words_count')
+    .eq('unit_id', unitId)
+    .order('order');
+  if (error) throw error;
+
+  return data;
+}
+
 export const getWord = cache(async (word: string) => {
   const { data, error } = await supabase
     .from('words')
@@ -167,11 +182,11 @@ export const getWord = cache(async (word: string) => {
 
 export type WordType = Awaited<ReturnType<typeof getWord>>;
 
-export const getWords = cache(async (setName: string) => {
+export const getSetWords = cache(async (setName: string) => {
   const { data, error } = await supabase
     .from('words')
     .select(
-      `${fields},
+      `${FIELDS},
        sets_new!inner(id, set)`
     )
     .eq('sets_new.set', setName);
@@ -180,4 +195,4 @@ export const getWords = cache(async (setName: string) => {
   return data;
 });
 
-export type Words = Awaited<ReturnType<typeof getWords>>;
+export type SetWords = Awaited<ReturnType<typeof getSetWords>>;

@@ -49,7 +49,7 @@ const headingStyles = css({
 });
 
 function UrlChangeAlert() {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState('localhost');
   const pathname = usePathname();
 
   useEffect(() => {

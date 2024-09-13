@@ -2,8 +2,11 @@ import { cache } from 'react';
 import type { Metadata } from 'next';
 
 import { capitalizeWord } from '@/app/_lib/utils';
-import { getPrevUnitId } from '@/app/_services/actions';
-import { getSetInfo, getWords } from '@/app/_services/dbFetchers';
+import {
+  getPrevUnitId,
+  getSetInfo,
+  getSetWords
+} from '@/app/_services/dbFetchers';
 import SetPage from '@/app/_components/_pages/SetPage/SetPage';
 import supabase from '@/app/_lib/supabase';
 
@@ -19,7 +22,7 @@ export function generateMetadata({ params }: SetPageParams): Metadata {
 }
 
 const getData = cache(async (setName: string) => {
-  const wordsPromise = getWords(setName);
+  const wordsPromise = getSetWords(setName);
   const setInfoPromise = getSetInfo(setName);
 
   const [words, setInfo] = await Promise.all([wordsPromise, setInfoPromise]);

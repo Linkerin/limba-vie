@@ -16,3 +16,13 @@ export interface RepeatPageSearchParams {
 }
 
 export type SetIdsArr = (number | null)[];
+
+export type WordsArr = Omit<
+  Tables<'words'>,
+  | 'set_id'
+  | 'created_at'
+  | 'updated_at'
+  | 'example_ro'
+  | 'example_en'
+  | 'instagram'
+>[];

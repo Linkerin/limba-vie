@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { IconChevronDown } from '@tabler/icons-react';
 
-import { getUnitSets } from '@/app/_services/actions';
+import { getUnitSets } from '@/app/_services/dbFetchers';
 import UnitSetLinkLoading from '../UnitSetLink/UnitSetLinkLoading';
 import UnitHeading from '../UnitHeading/UnitHeading';
 import type { Units } from '@/app/_services/dbFetchers';
