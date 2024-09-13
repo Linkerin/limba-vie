@@ -1,4 +1,4 @@
-[![Limba Vie logo](./readme_images/logo.svg)](https://limba.vercel.app)
+[![Limba Vie logo](./readme_images/logo.svg)](https://limba.ravenplan.com)
 
 # Limba Vie
 
@@ -15,7 +15,7 @@ words through fun and colorful flashcards.
 
 We do out best to personalize your learning journey with intelligent features
 and a user-friendly interface. Start using it
-[**now**](https://limba.vercel.app)!
+[**now**](https://limba.ravenplan.com)!
 
 ![Limba Vie demo](./readme_images/mockup.webp)
 
@@ -43,11 +43,13 @@ is powerful, flexible, and easy to use. Our tech stack includes:
 - [Gemini AI](https://gemini.google.com/) for generating contextually accurate
   example sentences.
 - [Vercel](https://vercel.com) for scalable and reliable hosting.
+- [Panda CSS](https://panda-css.com) - for a modern CSS-in-JS solution
+  compatible with React Server Components.
 
 ## Contacts 📨 <a id="contacts"></a>
 
 If you want to get in touch, we will be glad to receive your e-mail 😉:
-[limba@snipshot.dev](mailto:limba@snipshot.dev).
+[limba@ravenplan.com](mailto:limba@ravenplan.com).
 
 ## License 🪪 <a id="license"></a>
 
