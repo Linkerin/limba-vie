@@ -69,6 +69,6 @@ export async function generateStaticParams() {
   if (error) throw error;
 
   return data.map(word => ({
-    word: word.en
+    word: encodeURIComponent(word.en)
   }));
 }

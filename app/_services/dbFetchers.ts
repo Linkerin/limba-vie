@@ -187,9 +187,9 @@ export const getSetWords = cache(async (setName: string) => {
     .from('words')
     .select(
       `${FIELDS},
-       sets_new!inner(id, set)`
+       sets!inner(id, set)`
     )
-    .eq('sets_new.set', setName);
+    .eq('sets.set', setName);
   if (error) throw error;
 
   return data;

@@ -7,7 +7,6 @@ import {
   getSetInfo,
   getSetWords
 } from '@/app/_services/dbFetchers';
-import supabase from '@/app/_lib/supabase';
 import SetPage from '@/app/_components/_pages/SetPage/SetPage';
 
 interface SetPageParams {
@@ -49,14 +48,5 @@ async function Check({ params }: SetPageParams) {
 }
 
 export default Check;
-
-export async function generateStaticParams() {
-  const { data, error } = await supabase.from('sets_new').select('set');
-  if (error) throw error;
-
-  return data.map(set => ({
-    setName: set.set
-  }));
-}
 
 export const revalidate = Number(process.env.REVALIDATE_PERIOD_SEC);
