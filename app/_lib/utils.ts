@@ -1,6 +1,7 @@
 import {
   AUDIO_FILE_FORMAT,
   CLOUDINARY_IMG_URL,
+  REPORT_TYPES,
   SUPABASE_STORAGE_URL
 } from './constants';
 import type { Gender } from './types';
@@ -113,6 +114,82 @@ export function getAudioUrl({
   return url;
 }
 
+export function getRandomValueFromArr(arr: any[]) {
+  const index = Math.floor(Math.random() * arr.length);
+
+  return arr[index];
+}
+
+export function isUserReportRecord(
+  record: any
+): record is Tables<'user_reports'> {
+  if (
+    !record.type ||
+    typeof record.type !== 'string' ||
+    !REPORT_TYPES.includes(record.type)
+  ) {
+    return false;
+  }
+
+  if (
+    typeof record.comment !== 'undefined' &&
+    typeof record.comment !== 'string'
+  ) {
+    return false;
+  }
+
+  if (
+    typeof record.word_id !== 'undefined' &&
+    typeof record.word_id !== 'number' &&
+    record.word_id !== null
+  ) {
+    return false;
+  }
+
+  if (typeof record.word_id === 'number' && isNaN(record.word_id)) {
+    return false;
+  }
+
+  if (
+    typeof record.grammar_article !== 'undefined' &&
+    typeof record.grammar_article !== 'string' &&
+    record.grammar_article !== null
+  ) {
+    return false;
+  }
+
+  if (
+    typeof record.user_id !== 'undefined' &&
+    typeof record.user_id !== 'string' &&
+    record.user_id !== null
+  ) {
+    return false;
+  }
+
+  if (
+    typeof record.created_at !== 'undefined' &&
+    typeof record.created_at !== 'string'
+  ) {
+    return false;
+  }
+
+  if (
+    typeof record.updated_at !== 'undefined' &&
+    typeof record.updated_at !== 'string'
+  ) {
+    return false;
+  }
+
+  if (
+    typeof record.word_id === 'number' &&
+    typeof record.grammar_article === 'string'
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
 /**
  * Normalizes a word by removing diacritics and converting it to lowercase.
  *
@@ -144,12 +221,6 @@ export function removePunctuationAtEdges(str: string): string {
   const removedAtEnd = removedEllipsis.replace(/[\p{P}\p{S}]+$/gu, '');
 
   return removedAtEnd.trim();
-}
-
-export function getRandomValueFromArr(arr: any[]) {
-  const index = Math.floor(Math.random() * arr.length);
-
-  return arr[index];
 }
 
 export const trimVerb = (

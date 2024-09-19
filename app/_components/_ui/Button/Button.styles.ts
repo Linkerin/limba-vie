@@ -51,6 +51,16 @@ export const buttonVariants: RecipeDefinition = {
         '&:active:not(:disabled)': {
           backgroundColor: 'success.container'
         }
+      },
+      text: {
+        borderColor: 'transparent',
+        boxShadow: 'none',
+        '&, &:hover:not(:disabled), &:visited': {
+          color: 'main'
+        },
+        '&:active:not(:disabled)': {
+          backgroundColor: 'main.container.darker'
+        }
       }
     }
   },

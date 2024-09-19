@@ -5,8 +5,7 @@ export const containerStyles = css.raw({
   border: '2px solid token(colors.main)',
   borderRadius: 'sm',
   margin: 'auto',
-  padding:
-    'token(spacing.4, 1rem) token(spacing.4, 1rem) token(spacing.2, 0.5rem)',
+  padding: 'token(spacing.4, 1rem)',
   width: 'min(768px, 80dvw)',
 
   '&::backdrop': {

@@ -17,6 +17,18 @@ export const LOCAL_STORAGE_KEYS = Object.freeze({
 });
 export const REPEAT_WORDS_CTY = 20;
 
+// report sending counter updates once in an hour
+export const REPORT_SENDING_COOLDOWN_SEC = 3600;
+
+export const REPORT_TYPES = [
+  'incorrect_ro',
+  'incorrect_en',
+  'offensive',
+  'image_audio',
+  'answer',
+  'other'
+];
+
 export const SUPABASE_STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public`;
 
 export const ARTICLES = Object.freeze({

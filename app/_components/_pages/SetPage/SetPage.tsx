@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 
 import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
 import Finished from '../../WordScreen/Finished/Finished';
+import ReportModal from '../../ReportModal/ReportModal';
 import Sentence from '../../Word/Sentence/Sentence';
 import { shuffleArr } from '@/app/_lib/utils';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
@@ -20,6 +21,7 @@ import type {
 
 import {
   audioBtnStyles,
+  reportCounterContainerStyles,
   sectionStyles,
   wordContainerStyles
 } from './SetPage.styles';
@@ -61,69 +63,82 @@ function SetPage({
   useMediaLoad(currWord, shuffled);
 
   return (
-    <section className={sectionStyles}>
-      {currWord < shuffled.length && shuffled.at(currWord) && (
-        <>
-          <WordCounter current={currWord + 1} total={shuffled.length} />
-          <div className={wordContainerStyles}>
-            <WordImg
-              wordEn={shuffled[currWord].en}
-              gender={shuffled[currWord].gender_ro}
-              imgName={shuffled[currWord].img_name}
-            />
+    <>
+      <section className={sectionStyles}>
+        {currWord < shuffled.length && shuffled.at(currWord) && (
+          <>
+            <div className={reportCounterContainerStyles}>
+              <ReportModal
+                key={shuffled[currWord].id}
+                wordId={shuffled[currWord].id}
+                wordCheck={checkPage}
+              />
+              <WordCounter current={currWord + 1} total={shuffled.length} />
+            </div>
+            <div className={wordContainerStyles}>
+              <WordImg
+                wordEn={shuffled[currWord].en}
+                gender={shuffled[currWord].gender_ro}
+                imgName={shuffled[currWord].img_name}
+              />
+              {checkPage ? (
+                <AudioBtn
+                  key={shuffled[currWord].ro}
+                  css={audioBtnStyles}
+                  audioName={shuffled[currWord].audio_name}
+                  word={shuffled[currWord].ro}
+                  autoplay={false}
+                />
+              ) : (
+                <>
+                  <Word
+                    word={shuffled[currWord].ro}
+                    plural={shuffled[currWord].plural}
+                    gender={shuffled[currWord].gender_ro}
+                  >
+                    <AudioBtn
+                      audioName={shuffled[currWord].audio_name}
+                      word={shuffled[currWord].ro}
+                    />
+                  </Word>
+                </>
+              )}
+              {showExample && (
+                <>
+                  {shuffled[currWord].ro_plural && (
+                    <WordPlural plural={shuffled[currWord].ro_plural} />
+                  )}
+                  <Sentence wordId={shuffled[currWord].id} />
+                </>
+              )}
+            </div>
             {checkPage ? (
-              <AudioBtn
-                key={shuffled[currWord].ro}
-                css={audioBtnStyles}
-                audioName={shuffled[currWord].audio_name}
-                word={shuffled[currWord].ro}
-                autoplay={false}
+              <CheckInput
+                key={shuffled[currWord].id}
+                gender={shuffled[currWord].gender_ro}
+                plural={shuffled[currWord].plural}
+                setCurrWord={nextWord}
+                wordId={shuffled[currWord].id}
+                wordRo={shuffled[currWord].ro}
               />
             ) : (
-              <>
-                <Word
-                  word={shuffled[currWord].ro}
-                  plural={shuffled[currWord].plural}
-                  gender={shuffled[currWord].gender_ro}
-                >
-                  <AudioBtn
-                    audioName={shuffled[currWord].audio_name}
-                    word={shuffled[currWord].ro}
-                  />
-                </Word>
-              </>
+              <Actions
+                exampleClickHandler={exampleClickHandler}
+                setCurrWord={nextWord}
+                wordId={shuffled[currWord].id}
+              />
             )}
-            {showExample && (
-              <>
-                {shuffled[currWord].ro_plural && (
-                  <WordPlural plural={shuffled[currWord].ro_plural} />
-                )}
-                <Sentence wordId={shuffled[currWord].id} />
-              </>
-            )}
-          </div>
-          {checkPage ? (
-            <CheckInput
-              key={shuffled[currWord].id}
-              gender={shuffled[currWord].gender_ro}
-              plural={shuffled[currWord].plural}
-              setCurrWord={nextWord}
-              wordId={shuffled[currWord].id}
-              wordRo={shuffled[currWord].ro}
-            />
-          ) : (
-            <Actions
-              exampleClickHandler={exampleClickHandler}
-              setCurrWord={nextWord}
-              wordId={shuffled[currWord].id}
-            />
-          )}
-        </>
-      )}
-      {currWord >= shuffled.length && (
-        <Finished prevUnitId={prevUnitId} setInfo={setInfo} setName={setName} />
-      )}
-    </section>
+          </>
+        )}
+        {currWord >= shuffled.length && (
+          <Finished
+            prevUnitId={prevUnitId}
+            setInfo={setInfo}
+            setName={setName}
+          />
+        )}
+      </section>
+    </>
   );
 }
 

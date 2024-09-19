@@ -17,6 +17,6 @@ export const pStyles = css({
 });
 
 export const confirmationBtnStyles = css.raw({
-  marginBlock: 'token(spacing.6, 1.5rem) token(spacing.3, 0.75rem)',
+  marginBlockStart: 'token(spacing.6, 1.5rem)',
   width: '100%'
 });

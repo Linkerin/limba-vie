@@ -104,6 +104,54 @@ export type Database = {
         };
         Relationships: [];
       };
+      user_reports: {
+        Row: {
+          comment: string | null;
+          created_at: string;
+          grammar_article: string | null;
+          id: string;
+          type: Database['public']['Enums']['user_report_type'];
+          updated_at: string;
+          user_id: string | null;
+          word_id: number | null;
+        };
+        Insert: {
+          comment?: string | null;
+          created_at?: string;
+          grammar_article?: string | null;
+          id?: string;
+          type: Database['public']['Enums']['user_report_type'];
+          updated_at?: string;
+          user_id?: string | null;
+          word_id?: number | null;
+        };
+        Update: {
+          comment?: string | null;
+          created_at?: string;
+          grammar_article?: string | null;
+          id?: string;
+          type?: Database['public']['Enums']['user_report_type'];
+          updated_at?: string;
+          user_id?: string | null;
+          word_id?: number | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'user_reports_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'user_reports_word_id_fkey';
+            columns: ['word_id'];
+            isOneToOne: false;
+            referencedRelation: 'words';
+            referencedColumns: ['id'];
+          }
+        ];
+      };
       words: {
         Row: {
           audio_name: string | null;
@@ -215,6 +263,13 @@ export type Database = {
     };
     Enums: {
       gender_ro: 'm' | 'n' | 'f';
+      user_report_type:
+        | 'incorrect_ro'
+        | 'incorrect_en'
+        | 'offensive'
+        | 'image_audio'
+        | 'answer'
+        | 'other';
     };
     CompositeTypes: {
       [_ in never]: never;

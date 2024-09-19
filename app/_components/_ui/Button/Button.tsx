@@ -1,11 +1,14 @@
 'use client';
 
 import { useCallback, useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import { css } from '@/styled-system/css';
 
 import type { ButtonBaseProps } from './Button.types';
 import { buttonStyles } from './Button.styles';
 import { useIsSoundAllowed } from '@/app/_hooks/useSoundMode';
+
+const RingSpinner = dynamic(() => import('../RingSpinner/RingSpinner'));
 
 export type ButtonProps = ButtonBaseProps &
   React.ComponentPropsWithRef<'button'>;
@@ -15,8 +18,11 @@ function Button({
   css: cssProp,
   fadeAnimation = false,
   variant = 'base',
-  vibrate,
+  disabled,
+  loading,
+  loadingText = 'Loading...',
   onClick,
+  vibrate,
   ...props
 }: ButtonProps) {
   const styles = useMemo(
@@ -39,8 +45,21 @@ function Button({
   );
 
   return (
-    <button className={styles} onClick={onClickHandler} {...props}>
-      {children}
+    <button
+      className={styles}
+      onClick={onClickHandler}
+      {...props}
+      disabled={loading ?? disabled}
+      aria-disabled={loading ?? disabled}
+    >
+      {loading ? (
+        <>
+          <RingSpinner />
+          {loadingText}
+        </>
+      ) : (
+        children
+      )}
     </button>
   );
 }

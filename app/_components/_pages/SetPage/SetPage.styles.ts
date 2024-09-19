@@ -19,6 +19,13 @@ export const sectionStyles = css({
   }
 });
 
+export const reportCounterContainerStyles = css({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: '100%'
+});
+
 export const wordContainerStyles = css({
   display: 'flex',
   flexDirection: 'column',
