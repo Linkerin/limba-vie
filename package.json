@@ -26,7 +26,7 @@
     "classnames": "^2.5.1",
     "dexie": "^4.0.8",
     "dexie-react-hooks": "^1.1.7",
-    "next": "^14.2.5",
+    "next": "^14.2.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remark-gfm": "^4.0.0",
@@ -35,10 +35,10 @@
   "devDependencies": {
     "@pandacss/dev": "^0.45.0",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
     "eslint": "^8",
-    "eslint-config-next": "^14.2.5",
+    "eslint-config-next": "^14.2.15",
     "serwist": "^9.0.5",
     "typescript": "^5"
   }
