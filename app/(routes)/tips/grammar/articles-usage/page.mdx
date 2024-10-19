@@ -1,0 +1,51 @@
+import { ARTICLES } from '@/app/_lib/constants';
+
+export const description = ARTICLES.articlesUsage.description;
+export const title = ARTICLES.articlesUsage.title;
+export const ogImgUrl = `${
+  process.env.NEXT_PUBLIC_BASE_URL
+}/api/img/og-image/text?text=${encodeURIComponent(title)}`;
+
+export const metadata = {
+  title,
+  description,
+  openGraph: {
+    images: ogImgUrl,
+    description
+  },
+  twitter: {
+    images: ogImgUrl,
+    description
+  }
+};
+
+# {metadata.title}
+
+The Romanian language, like many others, uses definite and indefinite articles
+to indicate whether a noun is specific or general.
+
+<br />
+
+The definite article is **required**:
+
+| Rule                                                                                                                               | Example                        |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| When a noun is the subject of a sentence                                                                                           | _Pahar**ul** e pe masă._       |
+| After the verb<wbr /> "to like" _("a plăcea")_                                                                                     | _Îmi plăcea ceai**ul**._       |
+| When a noun is specified by an adjective or a phrase                                                                               | _Este baiat**ul** frumos._     |
+| When a noun is specified by a possessive adjective                                                                                 | _Este cart**ea** mea._         |
+| After tot/<wbr />toată/<wbr />toţi/<wbr />toate                                                                                    | _Toate mer**ele** sunt dulci._ |
+| When a noun is preceded<wbr /> by the preposition "cu"<wbr /> and refers to an instrument, association, or means of transportation | _Mergem cu elicopter**ul**._   |
+
+<br />
+
+The definite article is **not used**:
+
+| Rule                                                                                                  | Example                            |
+| ----------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| After mult/<wbr />multă/<wbr />mulţi/<wbr />multe and puţin/<wbr />puţină/<wbr />puţini/<wbr />puţine | _Sunt mulți elev**i**._            |
+| After numerals                                                                                        | _Sunt 4 barbați în casă._          |
+| After the word "each" _("fiecare")_                                                                   | _Fiecare copil primește un cadou._ |
+| After cât/<wbr />câtă/<wbr />câţi/<wbr />câte                                                         | _Câte cărț**i**?_                  |
+| Most of the times after prepositions                                                                  | _Pahar**ul** e pe mas**ă**._       |
+| With professions                                                                                      | _Ea este profesoar**ă**._          |

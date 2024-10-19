@@ -38,6 +38,12 @@ export const ARTICLES = Object.freeze({
       'Grammar explanation of definite and indefinite articles usage in Romanian language',
     link: 'articles'
   },
+  articlesUsage: {
+    title: 'Articles usage',
+    description:
+      'Grammar explanation of the usage of definite and indefinite articles in Romanian language',
+    link: 'articles-usage'
+  },
   plurals: {
     title: 'Plural number of the noun',
     description:

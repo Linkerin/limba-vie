@@ -48,6 +48,7 @@
 
   td {
     line-height: 1.25em;
+    max-width: 60dvw;
   }
 
   td > em {
