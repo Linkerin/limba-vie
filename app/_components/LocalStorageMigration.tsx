@@ -39,6 +39,7 @@ function LocalStorageMigration() {
 
         const itemsToAdd = setsArr.map(setId => ({
           setId,
+          wordsNum: 0,
           completedAt: now
         }));
 
@@ -101,6 +102,33 @@ function LocalStorageMigration() {
       } catch (err) {
         console.error(err);
       }
+    };
+
+    loader();
+  }, []);
+
+  // migrate `wordsForRepeat` table into `wordsLearned` table
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const loader = async () => {
+      const wordsForRepeat = await db.wordsForRepeat.toArray();
+      if (!wordsForRepeat.length) return;
+
+      const now = new Date();
+      const itemsToAdd = wordsForRepeat.map(word => ({
+        wordId: word.wordId,
+        level: 0,
+        mistakenLastTime: false,
+        correctAtCurrLevel: 0,
+        addedAt: word.addedAt,
+        reviewedAt: now
+      }));
+
+      db.transaction('rw', db.wordsLearned, db.wordsForRepeat, async () => {
+        await db.wordsLearned.bulkAdd(itemsToAdd);
+        await db.wordsForRepeat.clear();
+      });
     };
 
     loader();

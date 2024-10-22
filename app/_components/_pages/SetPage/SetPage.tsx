@@ -135,6 +135,7 @@ function SetPage({
             prevUnitId={prevUnitId}
             setInfo={setInfo}
             setName={setName}
+            checkPage={checkPage}
           />
         )}
       </section>

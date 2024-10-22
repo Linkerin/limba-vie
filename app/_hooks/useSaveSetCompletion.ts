@@ -1,16 +1,30 @@
 'use client';
 
-import db from '../_lib/db';
+import db, { type CompletedSet } from '../_lib/db';
 
-async function useSaveSetCompletion(setId: number | null | undefined) {
-  if (!setId) return false;
+interface UseSaveSetCompletionParams {
+  checkPage?: boolean;
+  setId: CompletedSet['setId'] | undefined;
+  wordsNum: CompletedSet['wordsNum'] | undefined;
+}
 
-  const record = await db.completedSets.put(
-    { setId, completedAt: new Date() },
-    setId
-  );
+async function useSaveSetCompletion({
+  checkPage,
+  setId,
+  wordsNum
+}: UseSaveSetCompletionParams) {
+  if (checkPage) {
+    await db.practices.add({ completedAt: new Date(), score: null });
+  } else {
+    if (!setId || !wordsNum) return false;
 
-  if (typeof record !== 'number') return false;
+    const record = await db.completedSets.put(
+      { setId, wordsNum, completedAt: new Date() },
+      setId
+    );
+
+    if (typeof record !== 'number') return false;
+  }
 
   return true;
 }

@@ -2,7 +2,8 @@ import Dexie, { type EntityTable } from 'dexie';
 import type { Tables } from './supabase.types';
 
 export interface CompletedSet {
-  setId: Tables<'sets'>['id'];
+  setId: Tables<'sets_view'>['id'];
+  wordsNum: Tables<'sets_view'>['words_count'];
   completedAt: Date;
 }
 
@@ -12,14 +13,33 @@ export interface WordsForRepeat {
   addedAt: Date;
 }
 
+export interface WordsLearned {
+  wordId: Tables<'words'>['id'];
+  level: 0 | 1 | 2 | 3 | 4 | number;
+  mistakenLastTime: boolean;
+  correctAtCurrLevel: number;
+  addedAt: Date;
+  reviewedAt: Date;
+}
+
+export interface Practices {
+  id: number;
+  completedAt: Date;
+  score: number | null;
+}
+
 const db = new Dexie('LimbaVieDB') as Dexie & {
   completedSets: EntityTable<CompletedSet, 'setId'>;
+  practices: EntityTable<Practices, 'id'>;
   wordsForRepeat: EntityTable<WordsForRepeat, 'wordId'>;
+  wordsLearned: EntityTable<WordsLearned, 'wordId'>;
 };
 
 db.version(1).stores({
-  completedSets: 'setId, completedAt',
-  wordsForRepeat: 'wordId, repeatTimes, addedAt'
+  completedSets: 'setId, wordsNum',
+  practices: '++id, completedAt',
+  wordsForRepeat: 'wordId, repeatTimes, addedAt',
+  wordsLearned: 'wordId, level, mistakenLastTime, reviewedAt'
 });
 
 export default db;

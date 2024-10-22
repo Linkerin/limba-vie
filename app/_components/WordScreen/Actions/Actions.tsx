@@ -28,7 +28,7 @@ export interface ActionsProps {
 
 function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
   const isApplePwa = useIsApplePwa();
-  const { learnedHandler, repeatHandler } = useWordHandlers({
+  const { learnedButtonHandler, repeatButtonHandler } = useWordHandlers({
     wordId
   });
 
@@ -36,18 +36,18 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
     useCallback(
       e => {
         setCurrWord();
-        learnedHandler();
+        learnedButtonHandler();
       },
-      [learnedHandler, setCurrWord]
+      [learnedButtonHandler, setCurrWord]
     );
 
   const repeatClickHandler: React.MouseEventHandler<HTMLButtonElement> =
     useCallback(
       e => {
         setCurrWord();
-        repeatHandler();
+        repeatButtonHandler();
       },
-      [repeatHandler, setCurrWord]
+      [repeatButtonHandler, setCurrWord]
     );
 
   return (

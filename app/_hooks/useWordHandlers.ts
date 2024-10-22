@@ -2,53 +2,65 @@
 
 import { useCallback } from 'react';
 
-import db from '../_lib/db';
+import db, { type WordsLearned } from '../_lib/db';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 interface UseWordHandlersProps {
   wordId: Tables<'words'>['id'];
 }
 
+async function recordNewWord(wordId: Tables<'words'>['id']) {
+  const record = await db.wordsLearned.add({
+    wordId,
+    level: 0,
+    mistakenLastTime: false,
+    correctAtCurrLevel: 0,
+    addedAt: new Date(),
+    reviewedAt: new Date()
+  });
+
+  return record;
+}
+
 function useWordHandlers({ wordId }: UseWordHandlersProps) {
-  const repeatHandler = useCallback(async () => {
-    if (!wordId) return false;
-
-    const record = await db.wordsForRepeat.put(
-      {
-        wordId,
-        repeatTimes: 3,
-        addedAt: new Date()
-      },
-      wordId
-    );
-
-    if (typeof record !== 'number') return false;
-
-    return true;
-  }, [wordId]);
-
-  const learnedHandler = useCallback(async () => {
-    const word = await db.wordsForRepeat.get(wordId);
-
-    if (!word) return false;
-
-    if (word.repeatTimes <= 1) {
-      await db.wordsForRepeat.delete(wordId);
-      return true;
+  const repeatButtonHandler = useCallback(async () => {
+    const word = await db.wordsLearned.get(wordId);
+    if (!word) {
+      await recordNewWord(wordId);
+      return;
     }
 
-    const record = await db.wordsForRepeat.update(wordId, {
-      repeatTimes: word.repeatTimes - 1
-    });
+    const miscData: Partial<WordsLearned> = {
+      correctAtCurrLevel: 0,
+      reviewedAt: new Date()
+    };
 
-    if (typeof record !== 'number') return false;
+    switch (word.level) {
+      case 0:
+        break;
 
-    return true;
+      case 1:
+        await db.wordsLearned.update(wordId, { level: 0, ...miscData });
+        break;
+
+      default:
+        await db.wordsLearned.update(wordId, { level: 1, ...miscData });
+        break;
+    }
+  }, [wordId]);
+
+  const learnedButtonHandler = useCallback(async () => {
+    const word = await db.wordsLearned.get(wordId);
+    if (word) return;
+
+    await recordNewWord(wordId);
+
+    return;
   }, [wordId]);
 
   return {
-    learnedHandler,
-    repeatHandler
+    learnedButtonHandler,
+    repeatButtonHandler
   };
 }
 

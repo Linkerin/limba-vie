@@ -11,16 +11,16 @@ interface UseFormHandlersParams {
   gender: Tables<'words'>['gender_ro'];
   plural: Tables<'words'>['plural'];
   wordRo: Tables<'words'>['ro'];
-  learnedHandler: () => void;
-  repeatHandler: () => void;
+  correctHandler: () => void;
+  incorrectHandler: () => void;
 }
 
 function useFormHandlers({
   gender,
   plural,
   wordRo,
-  repeatHandler,
-  learnedHandler
+  correctHandler,
+  incorrectHandler
 }: UseFormHandlersParams) {
   const [input, setInput] = useState('');
   const [resultStatus, setResultStatus] = useState<null | 'error' | 'success'>(
@@ -68,16 +68,16 @@ function useFormHandlers({
         removedPunctuationInput === answer.removedPunctuation
       ) {
         setResultStatus('success');
-        learnedHandler();
+        correctHandler();
         return;
       }
 
       setResultStatus('error');
-      repeatHandler();
+      incorrectHandler();
 
       return;
     },
-    [answer, input, learnedHandler, repeatHandler]
+    [answer, input, correctHandler, incorrectHandler]
   );
 
   return {

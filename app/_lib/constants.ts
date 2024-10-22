@@ -1,3 +1,6 @@
+/**
+ * Main audio format inside the app
+ */
 export const AUDIO_FILE_FORMAT = 'aac';
 
 export const CLOUDINARY_IMG_URL = `${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/image/upload`;
@@ -15,9 +18,12 @@ export const LOCAL_STORAGE_KEYS = Object.freeze({
   userId: 'lvUserId',
   cookiesConsent: 'lvCookies'
 });
-export const REPEAT_WORDS_CTY = 20;
 
-// report sending counter updates once in an hour
+export const REPEAT_WORDS_CTY = 15;
+
+/**
+ * User reports sending counter updates once in an hour
+ */
 export const REPORT_SENDING_COOLDOWN_SEC = 3600;
 
 export const REPORT_TYPES = [
@@ -31,6 +37,21 @@ export const REPORT_TYPES = [
 
 export const SUPABASE_STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public`;
 
+const DAY_IN_MS = 24 * 60 * 60 * 1000;
+/**
+ * Review period for words based on word level as a key
+ */
+export const WORD_REVIEW_PERIOD_MS = {
+  0: 0,
+  1: DAY_IN_MS,
+  2: DAY_IN_MS * 3,
+  3: DAY_IN_MS * 5,
+  4: DAY_IN_MS * 21
+};
+
+/**
+ * Grammar articles metadata
+ */
 export const ARTICLES = Object.freeze({
   articles: {
     title: 'Indefinite and definite articles',

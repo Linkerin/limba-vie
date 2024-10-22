@@ -20,13 +20,18 @@ import {
 } from './Finished.styles';
 
 interface FinishedProps {
+  checkPage?: boolean;
   prevUnitId?: number | null;
   setInfo?: SetInfo;
   setName?: Tables<'sets'>['set'];
 }
 
-function Finished({ prevUnitId, setInfo, setName }: FinishedProps) {
-  useSaveSetCompletion(setInfo?.id);
+function Finished({ checkPage, prevUnitId, setInfo, setName }: FinishedProps) {
+  useSaveSetCompletion({
+    setId: setInfo?.id,
+    wordsNum: setInfo?.words_count,
+    checkPage
+  });
 
   const url = useMemo(() => {
     if (!prevUnitId && !setInfo?.unit_id) return '/';
