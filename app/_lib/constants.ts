@@ -37,11 +37,15 @@ export const REPORT_TYPES = [
 
 export const SUPABASE_STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public`;
 
+export const WORD_LEVELS = [0, 1, 2, 3, 4] as const;
 const DAY_IN_MS = 24 * 60 * 60 * 1000;
+type WordReviewPeriodObj = {
+  [K in (typeof WORD_LEVELS)[number]]: number;
+};
 /**
  * Review period for words based on word level as a key
  */
-export const WORD_REVIEW_PERIOD_MS = {
+export const WORD_REVIEW_PERIOD_MS: WordReviewPeriodObj = {
   0: 0,
   1: DAY_IN_MS,
   2: DAY_IN_MS * 3,

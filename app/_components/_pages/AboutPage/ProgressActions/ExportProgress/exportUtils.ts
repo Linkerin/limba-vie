@@ -15,20 +15,23 @@ export function downloadFile(blob: Blob, filename: string) {
 
 export async function generateProgressJson() {
   const setsPromise = db.completedSets.toArray();
-  const wordsPromise = db.wordsForRepeat.toArray();
+  const wordsPromise = db.wordsLearned.toArray();
+  const practicesPromise = db.practices.toArray();
 
   const userId = ssrLocalStorage.getItem(LOCAL_STORAGE_KEYS.userId);
 
-  const [completedSets, wordsForRepeat] = await Promise.all([
+  const [completedSets, practices, wordsLearned] = await Promise.all([
     setsPromise,
+    practicesPromise,
     wordsPromise
   ]);
 
+  const version = 2;
   const now = new Date();
   const hash = self.crypto.randomUUID().slice(0, 8);
   const timestamp = new Intl.DateTimeFormat().format(now);
   const jsonString = JSON.stringify(
-    { completedSets, wordsForRepeat, userId, created: now },
+    { completedSets, wordsLearned, practices, userId, version, created: now },
     null,
     2
   );

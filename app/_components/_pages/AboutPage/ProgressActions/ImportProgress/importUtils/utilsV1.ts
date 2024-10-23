@@ -1,10 +1,10 @@
-import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import db, {
   type CompletedSet,
   type WordsForRepeat
-} from '../../../../../_lib/db';
-import type { Progress } from '../../../../../_lib/types';
-import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
+} from '../../../../../../_lib/db';
+import { mergeCompletedSets } from './importProgress';
+import type { Progress } from '@/app/_lib/types';
+import { recordUserId } from './importProgress';
 
 /**
  * Validates whether the provided `data` object is a valid `Progress` object.
@@ -105,32 +105,6 @@ const parseImportedData = (jsonStr: string): Progress => {
 };
 
 /**
- * Merges the provided completed sets with the existing sets in the database.
- *
- * This function compares the provided `importedSets` with the existing sets in the
- * database, and updates the database with any new or more recent completed sets.
- *
- * @param importedSets - An array of `CompletedSet` objects representing the sets to be imported.
- * @returns A Promise that resolves when the merge operation is complete.
- */
-const mergeCompletedSets = async (importedSets: CompletedSet[]) => {
-  const importedIds = importedSets.map(set => set.setId);
-  const existingSets = await db.completedSets.bulkGet(importedIds);
-  const setsForWriting: CompletedSet[] = [];
-
-  for (let i = 0; i < importedSets.length; i++) {
-    const importedSet: CompletedSet = importedSets[i];
-    const existingSet = existingSets[i];
-
-    if (!existingSet || importedSet.completedAt > existingSet.completedAt) {
-      setsForWriting.push(importedSet);
-    }
-  }
-
-  await db.completedSets.bulkPut(setsForWriting);
-};
-
-/**
  * Merges the provided words for repeat with the existing words in the database.
  *
  * This function compares the provided `importedWords` with the existing words in the
@@ -160,25 +134,7 @@ const mergeWordsForRepeat = async (importedWords: WordsForRepeat[]) => {
   await db.wordsForRepeat.bulkPut(wordsForWriting);
 };
 
-const recordUserId = (userId: string | null) => {
-  if (!userId) return;
-  ssrLocalStorage.setItem(LOCAL_STORAGE_KEYS.userId, userId);
-
-  return;
-};
-
-/**
- * Imports the progress data from a JSON file and merges it with the existing data in the database.
- *
- * The function parses the JSON data, and then merges the completed sets and words for repeat
- * with the existing data in the database.
- * If the imported data is valid, the function resolves when the merge operation is complete.
- *
- * @param file - The file containing the progress data to be imported.
- * @returns A Promise that resolves when the import operation is complete.
- */
-export const importProgress = async (file: File): Promise<void> => {
-  const jsonString = await file.text();
+async function processImportV1(jsonString: string) {
   const importedData = parseImportedData(jsonString);
 
   if (!importedData.completedSets.every(isValidCompletedSet)) {
@@ -193,6 +149,6 @@ export const importProgress = async (file: File): Promise<void> => {
   const wordsMergePromise = mergeWordsForRepeat(importedData.wordsForRepeat);
   recordUserId(importedData.userId);
   await Promise.all([setsMergePromise, wordsMergePromise]);
+}
 
-  console.log('Progress imported successfully');
-};
+export default processImportV1;

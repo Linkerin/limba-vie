@@ -4,7 +4,7 @@ import { useCallback, useRef, useState } from 'react';
 import { IconChecks, IconExclamationCircle } from '@tabler/icons-react';
 
 import Button from '../../../../_ui/Button/Button';
-import { importProgress } from './importUtils';
+import importProgress from './importUtils/importProgress';
 import Loader from '../../../../_ui/Loader/Loader';
 import Modal from '../../../../_ui/Modal/Modal';
 

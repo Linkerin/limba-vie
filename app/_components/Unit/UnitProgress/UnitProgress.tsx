@@ -2,7 +2,6 @@
 
 import { css } from '@/styled-system/css';
 
-import type { SetIdsArr } from '@/app/_lib/types';
 import Skeleton from '../../_ui/Skeleton/Skeleton';
 import useCompletedSetsNum, {
   type SetsInfo
