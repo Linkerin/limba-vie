@@ -120,6 +120,38 @@ export function getRandomValueFromArr(arr: any[]) {
   return arr[index];
 }
 
+/**
+ * Checks if the local words count matches the database words count
+ * or if the local words count was not initially set:
+ * `-1` value means that the set was completed before adding the `wordsNum` field.
+ * @param localWordsNum - The number of words in the local storage.
+ * @param dbWordsNum - The number of words in the database.
+ * @returns A boolean indicating whether the set of words is completed or not.
+ */
+export function isSetCompleted(
+  dbWordsNum: number | null,
+  localWordsNum: number | null | undefined
+) {
+  if (
+    typeof localWordsNum === 'undefined' ||
+    localWordsNum === null ||
+    dbWordsNum === null
+  ) {
+    return false;
+  }
+
+  if (localWordsNum === -1 || localWordsNum >= dbWordsNum) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Checks if the provided record is a valid user report record.
+ * @param record - The record to be checked.
+ * @returns A boolean indicating whether the record is a valid user report record.
+ */
 export function isUserReportRecord(
   record: any
 ): record is Tables<'user_reports'> {

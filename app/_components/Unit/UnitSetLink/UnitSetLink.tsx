@@ -7,7 +7,7 @@ import { IconCheck } from '@tabler/icons-react';
 import { useLiveQuery } from 'dexie-react-hooks';
 
 import ButtonLink from '../../_ui/Button/ButtonLink';
-import { capitalizeWord } from '@/app/_lib/utils';
+import { capitalizeWord, isSetCompleted } from '@/app/_lib/utils';
 import db from '@/app/_lib/db';
 import type { PopoverProps } from '../../_ui/Popover/Popover';
 import RingSpinner from '../../_ui/RingSpinner/RingSpinner';
@@ -41,6 +41,7 @@ function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
   const liRef = useRef<HTMLLIElement>(null);
 
   const setCompletionInfo = useLiveQuery(() => db.completedSets.get(id));
+  const isCompleted = isSetCompleted(wordsNum, setCompletionInfo?.wordsNum);
 
   const contentText = `${wordsNum} word${wordsNum === 1 ? '' : 's'}`;
   const setLink = set ? `/set/${encodeURIComponent(set)}` : '#';
@@ -91,8 +92,8 @@ function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
   }, [isPopoverOpened]);
 
   return (
-    <li ref={liRef} className={setStyles} data-completed={!!setCompletionInfo}>
-      {setCompletionInfo ? (
+    <li ref={liRef} className={setStyles} data-completed={isCompleted}>
+      {isCompleted ? (
         <button className={contentStyles} onClick={handleClick}>
           <span className={emojiStyles}>{emoji}</span>
           {contentText}

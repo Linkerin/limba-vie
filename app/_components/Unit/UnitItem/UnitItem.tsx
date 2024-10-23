@@ -13,6 +13,7 @@ import {
   progressContainerStyles,
   setsListStyles
 } from './UnitItem.styles';
+import type { SetsInfo } from '@/app/_hooks/useCompletedSetsNum';
 
 const UnitSetLink = dynamic(() => import('../UnitSetLink/UnitSetLink'), {
   loading: () => <UnitSetLinkLoading />,
@@ -25,14 +26,17 @@ interface UnitItemProps {
 
 async function UnitItem({ unit }: UnitItemProps) {
   const sets = await getUnitSets(unit.id);
-  const setIds = sets.map(set => set.id);
+  // const setIds = sets.map(set => set.id);
+  const setsInfo: SetsInfo = Object.fromEntries(
+    sets.map(set => [set.id, { wordsNum: set.words_count }])
+  );
 
   return (
     <li id={`unit-${unit.id}`}>
-      <UnitSummary setIds={setIds} unitId={unit.id}>
+      <UnitSummary unitId={unit.id} setsInfo={setsInfo}>
         <UnitHeading name={unit.name} image={unit.image} />
         <div className={progressContainerStyles}>
-          <UnitProgress setIds={setIds} />
+          <UnitProgress setsInfo={setsInfo} />
           <span className={arrowIconStyles} data-element="accordion-arrow">
             <IconChevronDown role="presentation" />
           </span>

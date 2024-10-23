@@ -5,22 +5,24 @@ import { card } from '@/styled-system/recipes';
 import { cx } from '@/styled-system/css';
 
 import type { Tables } from '@/app/_lib/supabase.types';
-import useCompletedSetsNum from '@/app/_hooks/useCompletedSetsNum';
+import useCompletedSetsNum, {
+  type SetsInfo
+} from '@/app/_hooks/useCompletedSetsNum';
 
 import { detailsStyles, unitContentStyles } from './UnitSummary.styles';
 
 interface UnitSummaryProps {
   children: React.ReactNode;
-  setIds: Tables<'sets_view'>['id'][];
+  setsInfo: SetsInfo;
   unitId: Tables<'units_view'>['id'];
 }
 
-function UnitSummary({ children, setIds, unitId }: UnitSummaryProps) {
+function UnitSummary({ children, unitId, setsInfo }: UnitSummaryProps) {
   const seachParams = useSearchParams();
   const openUnitId = seachParams.get('open-unit-id');
 
-  const completedSetsNum = useCompletedSetsNum(setIds);
-  const isCompleted = completedSetsNum === setIds.length;
+  const completedSetsNum = useCompletedSetsNum(setsInfo);
+  const isCompleted = completedSetsNum === Object.keys(setsInfo)?.length;
 
   return (
     <details className={detailsStyles} open={openUnitId === unitId?.toString()}>

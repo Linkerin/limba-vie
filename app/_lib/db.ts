@@ -35,11 +35,20 @@ const db = new Dexie('LimbaVieDB') as Dexie & {
   wordsLearned: EntityTable<WordsLearned, 'wordId'>;
 };
 
-db.version(1).stores({
-  completedSets: 'setId, wordsNum',
-  practices: '++id, completedAt',
-  wordsForRepeat: 'wordId, repeatTimes, addedAt',
-  wordsLearned: 'wordId, level, mistakenLastTime, reviewedAt'
-});
+db.version(2)
+  .stores({
+    completedSets: 'setId, wordsNum',
+    practices: '++id, completedAt',
+    wordsForRepeat: 'wordId, repeatTimes, addedAt',
+    wordsLearned: 'wordId, level, mistakenLastTime, reviewedAt'
+  })
+  .upgrade(trans => {
+    return trans
+      .table('completedSets')
+      .toCollection()
+      .modify(set => {
+        set.wordsNum = set.wordsNum ?? -1; // adds `-1` as default value
+      });
+  });
 
 export default db;

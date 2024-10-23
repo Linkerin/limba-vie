@@ -4,7 +4,9 @@ import { css } from '@/styled-system/css';
 
 import type { SetIdsArr } from '@/app/_lib/types';
 import Skeleton from '../../_ui/Skeleton/Skeleton';
-import useCompletedSetsNum from '@/app/_hooks/useCompletedSetsNum';
+import useCompletedSetsNum, {
+  type SetsInfo
+} from '@/app/_hooks/useCompletedSetsNum';
 
 const borderWidth = '1px';
 
@@ -32,8 +34,9 @@ const styles = css({
   }
 });
 
-function UnitProgress({ setIds }: { setIds: SetIdsArr }) {
-  const completedSetsNum = useCompletedSetsNum(setIds);
+function UnitProgress({ setsInfo }: { setsInfo: SetsInfo }) {
+  const completedSetsNum = useCompletedSetsNum(setsInfo);
+  const numOfSets = Object.keys(setsInfo)?.length;
 
   return (
     <Skeleton
@@ -42,14 +45,14 @@ function UnitProgress({ setIds }: { setIds: SetIdsArr }) {
       fitContent
     >
       <p id="progress" aria-label="Unit completion progress">
-        {completedSetsNum ?? 0} / {setIds.length} sets
+        {completedSetsNum ?? 0} / {numOfSets ?? 0} sets
       </p>
       <progress
         aria-labelledby="progress"
         className={styles}
         value={completedSetsNum ?? 0}
-        max={setIds.length}
-        data-completed={completedSetsNum === setIds.length}
+        max={numOfSets}
+        data-completed={completedSetsNum === numOfSets}
       />
     </Skeleton>
   );
