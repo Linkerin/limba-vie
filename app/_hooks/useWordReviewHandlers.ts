@@ -9,13 +9,16 @@ interface UseWordReviewHandlersProps {
   wordId: Tables<'words'>['id'];
 }
 
-async function recordNewWord(wordId: Tables<'words'>['id']) {
+async function recordNewWord(
+  wordId: Tables<'words'>['id'],
+  mistaken?: boolean
+) {
   const now = new Date();
 
   const record = await db.wordsLearned.add({
     wordId,
     level: 1,
-    mistakenLastTime: false,
+    mistakenLastTime: mistaken ?? false,
     correctAtCurrLevel: 0,
     addedAt: now,
     reviewedAt: now
@@ -71,7 +74,7 @@ function useWordReviewHandlers({ wordId }: UseWordReviewHandlersProps) {
     const word = await db.wordsLearned.get(wordId);
 
     if (!word) {
-      await recordNewWord(wordId);
+      await recordNewWord(wordId, true);
       return;
     }
 
