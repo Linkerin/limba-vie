@@ -9,19 +9,29 @@ interface UseWordReviewHandlersProps {
   wordId: Tables<'words'>['id'];
 }
 
-async function getWord(wordId: UseWordReviewHandlersProps['wordId']) {
-  const word = await db.wordsLearned.get(wordId);
+async function recordNewWord(wordId: Tables<'words'>['id']) {
+  const now = new Date();
 
-  if (!word) {
-    throw new Error('Handling answer: word record was not found');
-  }
+  const record = await db.wordsLearned.add({
+    wordId,
+    level: 1,
+    mistakenLastTime: false,
+    correctAtCurrLevel: 0,
+    addedAt: now,
+    reviewedAt: now
+  });
 
-  return word;
+  return record;
 }
 
 function useWordReviewHandlers({ wordId }: UseWordReviewHandlersProps) {
   const correctHandler = useCallback(async () => {
-    const word = await getWord(wordId);
+    const word = await db.wordsLearned.get(wordId);
+
+    if (!word) {
+      await recordNewWord(wordId);
+      return;
+    }
 
     let updateData: Partial<WordsLearned> = {
       mistakenLastTime: false,
@@ -58,7 +68,12 @@ function useWordReviewHandlers({ wordId }: UseWordReviewHandlersProps) {
   }, [wordId]);
 
   const incorrectHandler = useCallback(async () => {
-    const word = await getWord(wordId);
+    const word = await db.wordsLearned.get(wordId);
+
+    if (!word) {
+      await recordNewWord(wordId);
+      return;
+    }
 
     let updateData: Partial<WordsLearned> = {
       correctAtCurrLevel: 0,

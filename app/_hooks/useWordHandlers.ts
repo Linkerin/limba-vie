@@ -10,13 +10,15 @@ interface UseWordHandlersProps {
 }
 
 async function recordNewWord(wordId: Tables<'words'>['id']) {
+  const now = new Date();
+
   const record = await db.wordsLearned.add({
     wordId,
     level: 0,
     mistakenLastTime: false,
     correctAtCurrLevel: 0,
-    addedAt: new Date(),
-    reviewedAt: new Date()
+    addedAt: now,
+    reviewedAt: now
   });
 
   return record;
