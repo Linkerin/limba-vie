@@ -4,6 +4,17 @@ export const detailsStyles = css({
   position: 'relative',
   listStyle: 'none',
 
+  '&[data-disabled=true]': {
+    cursor: 'not-allowed',
+
+    '& > summary': {
+      filter: 'grayscale(80%)',
+      opacity: 0.6,
+      pointerEvents: 'none',
+      userSelect: 'none'
+    }
+  },
+
   _open: {
     '& > summary': {
       boxShadow: 'inset 0 0 0.75rem rgba(0, 0, 0, 0.3)',
@@ -57,4 +68,21 @@ export const unitContentStyles = css({
       filter: 'opacity(0.8) drop-shadow(0 0 0 token(success))'
     }
   }
+});
+
+export const practiceMarkStyles = css({
+  position: 'absolute',
+  top: '50%',
+  right: '50%',
+  backgroundColor: 'main.container',
+  border: '0.25rem solid token(colors.main)',
+  borderRadius: 'sm',
+  boxShadow: 'sm',
+  color: 'main',
+  fontSize: '3xl',
+  padding:
+    'token(spacing.1, 0.25rem) token(spacing.4, 1rem) token(spacing.2, 0.5rem)',
+  transform: 'rotate(-25deg) translate(50%, 25%)',
+  width: 'max-content',
+  zIndex: 1
 });

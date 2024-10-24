@@ -1,21 +1,25 @@
 'use client';
 
+import { useContext } from 'react';
 import { usePathname } from 'next/navigation';
 import { IconBarbell, IconBook2, IconHome } from '@tabler/icons-react';
 
 import NavItem from './NavItem/NavItem';
+import { UnitsDisableContext } from '@/app/_contexts/UnitsDisableProvider';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
 
 import {
   footerStyles,
   navContainerStyles,
-  navListStyles
+  navListStyles,
+  practiceItemStyles
 } from './NavBar.styles';
 
 function NavBar() {
   const pathname = usePathname();
 
+  const isUnitsDisabled = useContext(UnitsDisableContext);
   const isApplePwa = useIsApplePwa();
   const { show, url } = useRepeatBtn();
 
@@ -39,7 +43,13 @@ function NavBar() {
             <IconBook2 />
           </NavItem>
           {show && (
-            <NavItem ariaLabel="To practice set" href={url.href} prefetch>
+            <NavItem
+              ariaLabel="To practice set"
+              href={url.href}
+              css={practiceItemStyles}
+              animate={isUnitsDisabled}
+              prefetch
+            >
               <IconBarbell />
             </NavItem>
           )}

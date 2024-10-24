@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import { IconChevronDown } from '@tabler/icons-react';
 
 import { getUnitSets } from '@/app/_services/dbFetchers';
+import type { SetsInfo } from '@/app/_hooks/useCompletedSetsNum';
 import UnitSetLinkLoading from '../UnitSetLink/UnitSetLinkLoading';
 import UnitHeading from '../UnitHeading/UnitHeading';
 import type { Units } from '@/app/_services/dbFetchers';
@@ -13,7 +14,6 @@ import {
   progressContainerStyles,
   setsListStyles
 } from './UnitItem.styles';
-import type { SetsInfo } from '@/app/_hooks/useCompletedSetsNum';
 
 const UnitSetLink = dynamic(() => import('../UnitSetLink/UnitSetLink'), {
   loading: () => <UnitSetLinkLoading />,
@@ -26,7 +26,6 @@ interface UnitItemProps {
 
 async function UnitItem({ unit }: UnitItemProps) {
   const sets = await getUnitSets(unit.id);
-  // const setIds = sets.map(set => set.id);
   const setsInfo: SetsInfo = Object.fromEntries(
     sets.map(set => [set.id, { wordsNum: set.words_count }])
   );

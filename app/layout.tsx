@@ -4,8 +4,9 @@ import dynamic from 'next/dynamic';
 import CookieConsent from './_components/CookieConsent/CookieConsent';
 import Header from './_components/Header/Header';
 import SoundProvider from './_contexts/SoundProvider';
-// import WebVitals from './_components/WebVitals';
+import UnitsDisableProvider from './_contexts/UnitsDisableProvider';
 import UrlChangeAlert from './_components/UrlChangeAlert/UrlChangeAlert';
+// import WebVitals from './_components/WebVitals';
 
 import './globals.css';
 
@@ -41,13 +42,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={alata.className}>
         <SoundProvider>
-          <Header />
-          <main id="main">
-            <UrlChangeAlert />
-            {children}
-          </main>
-          <NavBar />
-          <div id="modal" />
+          <UnitsDisableProvider>
+            <Header />
+            <main id="main">
+              <UrlChangeAlert />
+              {children}
+            </main>
+            <NavBar />
+            <div id="modal" />
+          </UnitsDisableProvider>
         </SoundProvider>
         <CookieConsent />
         {isProd && <AnonymousSignIn />}

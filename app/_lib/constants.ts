@@ -5,6 +5,8 @@ export const AUDIO_FILE_FORMAT = 'aac';
 
 export const CLOUDINARY_IMG_URL = `${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/image/upload`;
 
+const DAY_IN_MS = 24 * 60 * 60 * 1000;
+
 export const GENDER_COLORS = Object.freeze({
   m: 'hsl(255, 58%, 40%)',
   n: 'hsl(43, 100%, 44%)',
@@ -17,6 +19,11 @@ export const LOCAL_STORAGE_KEYS = Object.freeze({
   sound: 'lvAudioAutoplay',
   userId: 'lvUserId',
   cookiesConsent: 'lvCookies'
+});
+
+export const OBLIGATORY_REVIEW = Object.freeze({
+  MISTAKES: 15,
+  PERIOD_WO_REVIEW: DAY_IN_MS * 3
 });
 
 export const REPEAT_WORDS_CTY = 15;
@@ -38,7 +45,6 @@ export const REPORT_TYPES = [
 export const SUPABASE_STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public`;
 
 export const WORD_LEVELS = [0, 1, 2, 3, 4] as const;
-const DAY_IN_MS = 24 * 60 * 60 * 1000;
 type WordReviewPeriodObj = {
   [K in (typeof WORD_LEVELS)[number]]: number;
 };

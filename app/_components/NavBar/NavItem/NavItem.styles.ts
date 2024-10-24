@@ -1,6 +1,6 @@
 import { css } from '@/styled-system/css';
 
-export const itemStyles = css({
+export const itemStyles = css.raw({
   height: '100%',
   width: '50%'
 });

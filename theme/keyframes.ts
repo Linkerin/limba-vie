@@ -41,5 +41,31 @@ export const keyframes = defineKeyframes({
   'move-in': {
     '0%': { bottom: '-300px' },
     '100%': { bottom: '0px' }
+  },
+  'shake-bottom': {
+    '0%, 100%': {
+      transform: ' rotate(0deg)',
+      transformOrigin: '50% 100%'
+    },
+
+    '10%': {
+      transform: 'rotate(2deg)'
+    },
+
+    '20%, 40%, 60%': {
+      transform: 'rotate(-4deg)'
+    },
+
+    '30%, 50%, 70%': {
+      transform: 'rotate(4deg)'
+    },
+
+    '80%': {
+      transform: 'rotate(-2deg)'
+    },
+
+    '90%': {
+      transform: 'rotate(2deg)'
+    }
   }
 });
