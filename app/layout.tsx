@@ -5,7 +5,6 @@ import CookieConsent from './_components/CookieConsent/CookieConsent';
 import Header from './_components/Header/Header';
 import SoundProvider from './_contexts/SoundProvider';
 import UnitsDisableProvider from './_contexts/UnitsDisableProvider';
-import UrlChangeAlert from './_components/UrlChangeAlert/UrlChangeAlert';
 // import WebVitals from './_components/WebVitals';
 
 import './globals.css';
@@ -44,10 +43,7 @@ export default function RootLayout({
         <SoundProvider>
           <UnitsDisableProvider>
             <Header />
-            <main id="main">
-              <UrlChangeAlert />
-              {children}
-            </main>
+            <main id="main">{children}</main>
             <NavBar />
             <div id="modal" />
           </UnitsDisableProvider>
