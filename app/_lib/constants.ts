@@ -52,7 +52,7 @@ type WordReviewPeriodObj = {
  * Review period for words based on word level as a key
  */
 export const WORD_REVIEW_PERIOD_MS: WordReviewPeriodObj = {
-  0: 0,
+  0: DAY_IN_MS / 24,
   1: DAY_IN_MS,
   2: DAY_IN_MS * 3,
   3: DAY_IN_MS * 5,
