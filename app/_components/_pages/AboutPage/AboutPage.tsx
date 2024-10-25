@@ -55,9 +55,8 @@ function AboutPage() {
         </p>
         <address className={addressStyles}>
           <p>
-            Have any questions, suggestions, or need assistance?
-            <br />
-            Reach out to us at{' '}
+            Have any questions, suggestions, or need assistance? Reach out to us
+            at{' '}
             <Link
               aria-label="Contact e-mail address"
               href="mailto:limba@ravenplan.com"

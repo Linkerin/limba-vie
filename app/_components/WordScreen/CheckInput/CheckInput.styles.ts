@@ -28,7 +28,7 @@ export const labelStyles = css({
 
 export const inputStyles = css({
   backgroundColor: 'background',
-  border: '2px solid token(colors.primary)',
+  border: '2px solid token(colors.main)',
   borderRadius: 'sm',
   color: 'on-primary-container',
   fontSize: 'xl',
