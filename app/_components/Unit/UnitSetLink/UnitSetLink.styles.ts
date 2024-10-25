@@ -43,6 +43,13 @@ export const setStyles = css({
     _active: {
       backgroundColor: 'success.container-dark'
     }
+  },
+
+  '&[data-disabled=true]': {
+    filter: 'grayscale(80%)',
+    opacity: 0.6,
+    pointerEvents: 'none',
+    userSelect: 'none'
   }
 });
 

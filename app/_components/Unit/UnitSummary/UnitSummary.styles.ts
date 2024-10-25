@@ -75,7 +75,7 @@ export const practiceMarkStyles = css({
   top: '50%',
   right: '50%',
   backgroundColor: 'main.container',
-  border: '0.25rem solid token(colors.main)',
+  border: '0.125rem solid token(colors.main)',
   borderRadius: 'sm',
   boxShadow: 'sm',
   color: 'main',

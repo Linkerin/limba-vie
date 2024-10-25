@@ -40,7 +40,9 @@ function useRepeatBtn() {
     ? completedSets.map(set => set.setId)
     : [];
 
-  const wordsLearned = useLiveQuery(() => db.wordsLearned.toArray());
+  const wordsLearned = useLiveQuery(() =>
+    db.wordsLearned.toCollection().reverse().sortBy('mistakenLastTime')
+  );
   const repeatWordsIds = getRepeatWordIds(wordsLearned);
 
   const show = useMemo(() => {

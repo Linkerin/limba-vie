@@ -1,14 +1,22 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { IconCheck } from '@tabler/icons-react';
+import { IconCheck, IconLock } from '@tabler/icons-react';
 import { useLiveQuery } from 'dexie-react-hooks';
 
 import ButtonLink from '../../_ui/Button/ButtonLink';
 import { capitalizeWord, isSetCompleted } from '@/app/_lib/utils';
 import db from '@/app/_lib/db';
+import { IsPracticeNecessaryContext } from '@/app/_contexts/IsPracticeNecessaryProvider';
 import type { PopoverProps } from '../../_ui/Popover/Popover';
 import RingSpinner from '../../_ui/RingSpinner/RingSpinner';
 import type { Tables } from '@/app/_lib/supabase.types';
@@ -43,9 +51,18 @@ function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
   const setCompletionInfo = useLiveQuery(() => db.completedSets.get(id));
   const isCompleted = isSetCompleted(wordsNum, setCompletionInfo?.wordsNum);
 
+  const isPracticeNecessary = useContext(IsPracticeNecessaryContext);
+  const isDisabled = isPracticeNecessary && !isCompleted;
+
   const contentText = `${wordsNum} word${wordsNum === 1 ? '' : 's'}`;
   const setLink = set ? `/set/${encodeURIComponent(set)}` : '#';
-  const setAriaLabel = `To '${set}' words set`;
+  const setAriaLabel = useMemo(
+    () =>
+      isDisabled
+        ? 'You need to practice before you continue'
+        : `To '${set}' words set`,
+    [isDisabled, set]
+  );
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
     e => {
@@ -92,7 +109,12 @@ function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
   }, [isPopoverOpened]);
 
   return (
-    <li ref={liRef} className={setStyles} data-completed={isCompleted}>
+    <li
+      ref={liRef}
+      className={setStyles}
+      data-completed={isCompleted}
+      data-disabled={isDisabled}
+    >
       {isCompleted ? (
         <button className={contentStyles} onClick={handleClick}>
           <span className={emojiStyles}>{emoji}</span>
@@ -106,10 +128,14 @@ function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
           <Link
             className={contentStyles}
             aria-label={setAriaLabel}
+            aria-disabled={isDisabled}
             href={setLink}
             target="_self"
+            tabIndex={isDisabled ? -1 : 0}
           >
-            <span className={emojiStyles}>{emoji}</span>
+            <span className={emojiStyles}>
+              {isDisabled ? <IconLock stroke={1.5} /> : emoji}
+            </span>
             {contentText}
           </Link>
         </>

@@ -40,7 +40,7 @@ db.version(2)
     completedSets: 'setId, wordsNum',
     practices: '++id, completedAt',
     wordsForRepeat: 'wordId, repeatTimes, addedAt',
-    wordsLearned: 'wordId, level, mistakenLastTime, reviewedAt'
+    wordsLearned: 'wordId, level, reviewedAt'
   })
   .upgrade(trans => {
     return trans

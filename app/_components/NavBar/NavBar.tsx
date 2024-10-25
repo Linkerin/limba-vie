@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { IconBarbell, IconBook2, IconHome } from '@tabler/icons-react';
 
 import NavItem from './NavItem/NavItem';
-import { UnitsDisableContext } from '@/app/_contexts/UnitsDisableProvider';
+import { IsPracticeNecessaryContext } from '@/app/_contexts/IsPracticeNecessaryProvider';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
 
@@ -19,7 +19,7 @@ import {
 function NavBar() {
   const pathname = usePathname();
 
-  const isUnitsDisabled = useContext(UnitsDisableContext);
+  const isPracticeNecessary = useContext(IsPracticeNecessaryContext);
   const isApplePwa = useIsApplePwa();
   const { show, url } = useRepeatBtn();
 
@@ -47,7 +47,7 @@ function NavBar() {
               ariaLabel="To practice set"
               href={url.href}
               css={practiceItemStyles}
-              animate={isUnitsDisabled}
+              animate={isPracticeNecessary}
               prefetch
             >
               <IconBarbell />

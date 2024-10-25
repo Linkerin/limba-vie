@@ -5,7 +5,7 @@ export const AUDIO_FILE_FORMAT = 'aac';
 
 export const CLOUDINARY_IMG_URL = `${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/image/upload`;
 
-const DAY_IN_MS = 24 * 60 * 60 * 1000;
+export const DAY_IN_MS = 24 * 60 * 60 * 1000;
 
 export const GENDER_COLORS = Object.freeze({
   m: 'hsl(255, 58%, 40%)',
@@ -22,7 +22,7 @@ export const LOCAL_STORAGE_KEYS = Object.freeze({
 });
 
 export const OBLIGATORY_REVIEW = Object.freeze({
-  MISTAKES: 15,
+  MISTAKES: process.env.NEXT_PUBLIC_ENVIRONMENT === 'PROD' ? 30 : 18,
   PERIOD_WO_REVIEW: DAY_IN_MS * 3
 });
 

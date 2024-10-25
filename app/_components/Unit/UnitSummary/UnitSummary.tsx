@@ -6,7 +6,7 @@ import { card } from '@/styled-system/recipes';
 import { cx } from '@/styled-system/css';
 
 import type { Tables } from '@/app/_lib/supabase.types';
-import { UnitsDisableContext } from '@/app/_contexts/UnitsDisableProvider';
+import { IsPracticeNecessaryContext } from '@/app/_contexts/IsPracticeNecessaryProvider';
 import useCompletedSetsNum, {
   type SetsInfo
 } from '@/app/_hooks/useCompletedSetsNum';
@@ -29,8 +29,8 @@ function UnitSummary({ children, unitId, setsInfo }: UnitSummaryProps) {
 
   const completedSetsNum = useCompletedSetsNum(setsInfo);
   const isCompleted = completedSetsNum === Object.keys(setsInfo)?.length;
-
-  const isUnitDisabled = useContext(UnitsDisableContext);
+  const isPracticeNecessary = useContext(IsPracticeNecessaryContext);
+  const isUnitDisabled = isPracticeNecessary && completedSetsNum === 0;
 
   return (
     <details
@@ -43,9 +43,14 @@ function UnitSummary({ children, unitId, setsInfo }: UnitSummaryProps) {
           card({ variant: isCompleted ? 'success' : 'base' }),
           unitContentStyles
         )}
-        aria-label="Click to open a list of unit sets"
+        aria-label={
+          isUnitDisabled
+            ? 'You need to practice before you continue'
+            : 'Click to open a list of unit sets'
+        }
         data-completed={isCompleted}
         tabIndex={isUnitDisabled ? -1 : 0}
+        aria-disabled={isUnitDisabled}
       >
         {isUnitDisabled && (
           <div className={practiceMarkStyles}>
