@@ -7,7 +7,7 @@ import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
 import Finished from '../../WordScreen/Finished/Finished';
 import ReportModal from '../../ReportModal/ReportModal';
 import Sentence from '../../Word/Sentence/Sentence';
-import { shuffleArr } from '@/app/_lib/utils';
+import { shuffleArr } from '@/app/_lib/utils/utils';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
 import Word from '../../Word/Word/Word';
 import WordCounter from '../../WordScreen/WordCounter/WordCounter';

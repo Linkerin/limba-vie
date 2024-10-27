@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 
 import db, { type WordsLearned } from '../_lib/db';
 import { REPEAT_WORDS_CTY, WORD_REVIEW_PERIOD_MS } from '@/app/_lib/constants';
-import { shuffleArr } from '../_lib/utils';
+import { shuffleArr } from '../_lib/utils/utils';
 import useCompletedSets from './useCompletedSets';
 import { useLiveQuery } from 'dexie-react-hooks';
 

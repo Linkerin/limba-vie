@@ -3,11 +3,10 @@
 import dynamic from 'next/dynamic';
 
 import Button from '../../_ui/Button/Button';
-import { getRandomValueFromArr } from '@/app/_lib/utils';
+import { getRandomValueFromArr } from '@/app/_lib/utils/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 import useFormHandlers from './useFormHandlers';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
-import useWordHandlers from '@/app/_hooks/useWordHandlers';
 import useWordReviewHandlers from '@/app/_hooks/useWordReviewHandlers';
 
 import {

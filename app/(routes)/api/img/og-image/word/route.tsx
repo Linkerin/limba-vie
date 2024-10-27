@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 
 import type { Gender } from '@/app/_lib/types';
-import { getArticle, getImageUrl } from '@/app/_lib/utils';
+import { getArticle, getImageUrl } from '@/app/_lib/utils/utils';
 
 export const runtime = 'edge';
 

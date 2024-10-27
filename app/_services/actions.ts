@@ -2,7 +2,7 @@
 
 import { headers, cookies } from 'next/headers';
 
-import { isUserReportRecord } from '../_lib/utils';
+import { isUserReportRecord } from '../_lib/utils/utils';
 import supabase from '../_lib/supabase';
 import isPostingAllowed from './redis/isPostingAllowed';
 

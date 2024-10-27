@@ -1,7 +1,7 @@
 import { cache } from 'react';
 import type { Metadata } from 'next';
 
-import { capitalizeWord } from '@/app/_lib/utils';
+import { capitalizeWord } from '@/app/_lib/utils/utils';
 import {
   getPrevUnitId,
   getSetInfo,

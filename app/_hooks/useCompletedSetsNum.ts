@@ -4,7 +4,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 
 import db from '../_lib/db';
 import type { Tables } from '../_lib/supabase.types';
-import { isSetCompleted } from '../_lib/utils';
+import { isSetCompleted } from '../_lib/utils/utils';
 
 export type SetsInfo = Record<
   Exclude<Tables<'sets_view'>['id'], null>,

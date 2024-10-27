@@ -7,7 +7,7 @@ import { REPEAT_WORDS_CTY } from '../_lib/constants';
 import type { RepeatPageSearchParams, WordsArr } from '../_lib/types';
 import supabase from '../_lib/supabase';
 import type { Tables } from '../_lib/supabase.types';
-import { trimVerb } from '../_lib/utils';
+import { trimVerb } from '../_lib/utils/utils';
 
 export const getDict = cache(async () => {
   const { data, error } = await supabase

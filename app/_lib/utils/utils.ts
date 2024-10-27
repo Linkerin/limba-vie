@@ -3,19 +3,24 @@ import {
   CLOUDINARY_IMG_URL,
   REPORT_TYPES,
   SUPABASE_STORAGE_URL
-} from './constants';
-import type { Gender } from './types';
-import type { Tables } from './supabase.types';
+} from '../constants';
+import type { Gender } from '../types';
+import type { Tables } from '../supabase.types';
 
 /**
  * Shuffles the elements of an array in a random order.
  * @param arr - The array to be shuffled.
+ * @throws {Error} If the input is not an array.
  * @returns The shuffled array.
  */
 export function shuffleArr<T>(arr: T[]): T[] {
+  if (!Array.isArray(arr)) {
+    throw new Error('Invalid array provided to shuffle');
+  }
+
   const shuffledArr = [...arr];
 
-  shuffledArr.reverse().forEach((_, i) => {
+  shuffledArr.forEach((_, i) => {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledArr[i], shuffledArr[j]] = [shuffledArr[j], shuffledArr[i]];
   });
@@ -52,9 +57,12 @@ export function getArticle(gender: Gender, plural: Tables<'words'>['plural']) {
   }
 }
 
+/**
+ * Converts a gender abbreviation to its full name.
+ * @param genderAbbr - The gender abbreviation to convert.
+ * @returns The full gender name, or `null` if the input is invalid.
+ */
 export function getFullGender(genderAbbr: Gender) {
-  if (!genderAbbr) return null;
-
   switch (genderAbbr) {
     case 'm':
       return 'masculin';
@@ -70,13 +78,26 @@ export function getFullGender(genderAbbr: Gender) {
   }
 }
 
-interface GetImgUrlOptions {
+export interface GetImgUrlOptions {
   folder?: string;
   format?: 'auto' | 'png' | 'svg' | 'webp';
   q?: number | 'auto';
   sanitize?: boolean;
 }
 
+/**
+ * Generates a URL for an image asset.
+ *
+ * @param imgName - The name of the image file, without the file extension.
+ * @param width - The desired width of the image, in pixels. Defaults to `480`.
+ * @param options - Additional options for the image URL:
+ *   - folder: The folder where the image is stored. Defaults to `'limba'`.
+ *   - format: The image format. Can be `'auto'`, `'png'`, `'svg'`, or `'webp'`.
+ *     Defaults to `'auto'`.
+ *   - q: The quality of the image, from 0 to 100, or `'auto'`. Defaults to `80`.
+ *   - sanitize: Whether to sanitize the image URL. Defaults to `false`.
+ * @returns The generated image URL.
+ */
 export function getImageUrl(
   imgName: Tables<'words'>['img_name'],
   width: number = 480,
@@ -103,17 +124,36 @@ interface GetAudioUrlParams {
   format?: 'aac' | 'mp3';
 }
 
+/**
+ * Generates a URL for an audio asset.
+ *
+ * @param audioName - The name of the audio file, without the file extension.
+ * @param folders - The folder(s) where the audio is stored. Defaults to `'ro'`.
+ * @param format - The audio format. Can be `'aac'` or `'mp3'`.
+ * @throws {Error} If audio format is not supported.
+ * @returns The generated audio URL.
+ */
 export function getAudioUrl({
   audioName,
   folders = 'ro',
   format = AUDIO_FILE_FORMAT
 }: GetAudioUrlParams) {
+  const formats = new Set(['aac', 'mp3']);
+  if (!formats.has(format)) {
+    throw new Error(`Invalid audio format provided: ${format}`);
+  }
+
   const route = format === 'mp3' ? 'mp3/' + folders : folders;
   const url = `${SUPABASE_STORAGE_URL}/audio/${route}/${audioName}.${format}`;
 
   return url;
 }
 
+/**
+ * Returns a random value from the provided array.
+ * @param arr - The array to select a random value from.
+ * @returns A random value from the provided array.
+ */
 export function getRandomValueFromArr(arr: any[]) {
   const index = Math.floor(Math.random() * arr.length);
 
@@ -160,6 +200,20 @@ export function isUserReportRecord(
     typeof record.type !== 'string' ||
     !REPORT_TYPES.includes(record.type)
   ) {
+    return false;
+  }
+
+  const keys = Object.keys(record);
+  const allowedKeys = new Set([
+    'type',
+    'comment',
+    'word_id',
+    'grammar_article',
+    'user_id',
+    'created_at',
+    'updated_at'
+  ]);
+  if (!keys.every(key => allowedKeys.has(key))) {
     return false;
   }
 
@@ -255,6 +309,13 @@ export function removePunctuationAtEdges(str: string): string {
   return removedAtEnd.trim();
 }
 
+/**
+ * Trims the leading 'a ' from a Romanian verb.
+ *
+ * @param word - The Romanian word to be trimmed.
+ * @param gender - The gender of the Romanian word, if any.
+ * @returns The trimmed word.
+ */
 export const trimVerb = (
   word: Tables<'words'>['ro'],
   gender: Tables<'words'>['gender_ro']

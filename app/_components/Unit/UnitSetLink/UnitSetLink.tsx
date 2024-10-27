@@ -14,7 +14,7 @@ import { IconCheck, IconLock } from '@tabler/icons-react';
 import { useLiveQuery } from 'dexie-react-hooks';
 
 import ButtonLink from '../../_ui/Button/ButtonLink';
-import { capitalizeWord, isSetCompleted } from '@/app/_lib/utils';
+import { capitalizeWord, isSetCompleted } from '@/app/_lib/utils/utils';
 import db from '@/app/_lib/db';
 import { IsPracticeNecessaryContext } from '@/app/_contexts/IsPracticeNecessaryProvider';
 import type { PopoverProps } from '../../_ui/Popover/Popover';

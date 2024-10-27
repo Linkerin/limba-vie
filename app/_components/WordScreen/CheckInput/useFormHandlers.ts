@@ -4,7 +4,7 @@ import {
   getArticle,
   normalizeWord,
   removePunctuationAtEdges
-} from '@/app/_lib/utils';
+} from '@/app/_lib/utils/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 interface UseFormHandlersParams {

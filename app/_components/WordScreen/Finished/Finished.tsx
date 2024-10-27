@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import Image from 'next/image';
 
 import ButtonLink from '../../_ui/Button/ButtonLink';
-import { capitalizeWord } from '@/app/_lib/utils';
+import { capitalizeWord } from '@/app/_lib/utils/utils';
 import FinishedSound from './FinishedSound/FinishedSound';
 import type { Tables } from '@/app/_lib/supabase.types';
 import taurImg from '@/public/taur.svg';

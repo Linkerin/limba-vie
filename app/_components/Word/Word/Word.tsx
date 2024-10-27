@@ -1,7 +1,7 @@
 import { Kalam } from 'next/font/google';
 import { css } from '@/styled-system/css';
 
-import { getArticle, getFullGender } from '@/app/_lib/utils';
+import { getArticle, getFullGender } from '@/app/_lib/utils/utils';
 import type { Gender } from '@/app/_lib/types';
 import type { Tables } from '@/app/_lib/supabase.types';
 

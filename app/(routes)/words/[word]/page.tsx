@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { capitalizeWord } from '@/app/_lib/utils';
+import { capitalizeWord } from '@/app/_lib/utils/utils';
 import { getWord } from '@/app/_services/dbFetchers';
 import WordPage from '@/app/_components/_pages/WordPage/WordPage';
 import supabase from '@/app/_lib/supabase';

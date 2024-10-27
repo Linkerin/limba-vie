@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 
 import { GENDER_COLORS } from '@/app/_lib/constants';
-import { getArticle, getImageUrl } from '@/app/_lib/utils';
+import { getArticle, getImageUrl } from '@/app/_lib/utils/utils';
 import supabase from '@/app/_lib/supabase';
 
 export const runtime = 'edge';
