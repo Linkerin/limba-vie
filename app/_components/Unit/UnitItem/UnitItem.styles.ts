@@ -1,5 +1,9 @@
 import { css } from '@/styled-system/css';
 
+export const liStyles = css({
+  scrollMarginBlockStart: '18vh'
+});
+
 export const progressContainerStyles = css({
   display: 'flex',
   alignItems: 'flex-end',

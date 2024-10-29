@@ -1,6 +1,5 @@
 'use client';
 
-import { useMemo } from 'react';
 import Image from 'next/image';
 
 import ButtonLink from '../../_ui/Button/ButtonLink';
@@ -21,25 +20,18 @@ import {
 
 interface FinishedProps {
   checkPage?: boolean;
-  prevUnitId?: number | null;
   setInfo?: SetInfo;
   setName?: Tables<'sets'>['set'];
 }
 
-function Finished({ checkPage, prevUnitId, setInfo, setName }: FinishedProps) {
+function Finished({ checkPage, setInfo, setName }: FinishedProps) {
   useSaveSetCompletion({
     setId: setInfo?.id,
     wordsNum: setInfo?.words_count,
     checkPage
   });
 
-  const url = useMemo(() => {
-    if (!prevUnitId && !setInfo?.unit_id) return '/';
-
-    const url = `#unit-${prevUnitId ? prevUnitId : setInfo?.unit_id}`;
-
-    return url;
-  }, [prevUnitId, setInfo?.unit_id]);
+  const url = setInfo?.unit_id ? `#unit-${setInfo?.unit_id}` : '/';
 
   const homeUrl = new URL(url, process.env.NEXT_PUBLIC_BASE_URL);
   const params = new URLSearchParams();

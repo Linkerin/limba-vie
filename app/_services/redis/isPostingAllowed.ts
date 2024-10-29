@@ -7,6 +7,12 @@ import {
 import redis from './redis';
 import ssrLocalStorage from '../SsrLocalStorage';
 
+/**
+ * Checks if posting is allowed for the current user based on a rate limit.
+ *
+ * @returns An object with `allowed` (boolean) and `message` (string) properties
+ * indicating whether posting is allowed and a message to display to the user.
+ */
 async function isPostingAllowed() {
   const userId = ssrLocalStorage.getItem(LOCAL_STORAGE_KEYS.userId) ?? 'anon';
 

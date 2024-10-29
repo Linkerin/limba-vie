@@ -30,18 +30,6 @@ export const getDict = cache(async () => {
 
 export type Dict = Awaited<ReturnType<typeof getDict>>;
 
-export async function getPrevUnitId(unitId: Tables<'units_view'>['id']) {
-  if (!unitId) return null;
-
-  const { data, error } = await supabase
-    .from('units_view')
-    .select('prev_unit')
-    .eq('id', unitId);
-  if (error) throw error;
-
-  return data.at(0)?.prev_unit;
-}
-
 const FIELDS = `id,
                 en,
                 en_alternatives,

@@ -11,6 +11,7 @@ import UnitSummary from '../UnitSummary/UnitSummary';
 
 import {
   arrowIconStyles,
+  liStyles,
   progressContainerStyles,
   setsListStyles
 } from './UnitItem.styles';
@@ -31,7 +32,11 @@ async function UnitItem({ unit }: UnitItemProps) {
   );
 
   return (
-    <li id={`unit-${unit.id}`} aria-label={`'${unit.name}' unit`}>
+    <li
+      id={`unit-${unit.id}`}
+      className={liStyles}
+      aria-label={`'${unit.name}' unit`}
+    >
       <UnitSummary unitId={unit.id} setsInfo={setsInfo}>
         <UnitHeading name={unit.name} image={unit.image} />
         <div className={progressContainerStyles}>

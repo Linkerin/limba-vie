@@ -34,18 +34,11 @@ const CheckInput = dynamic(
 export interface SetPageProps {
   words: SetWords | RepeatWords;
   checkPage?: boolean;
-  prevUnitId?: number | null;
   setInfo?: SetInfo;
   setName?: string;
 }
 
-function SetPage({
-  words,
-  checkPage,
-  prevUnitId,
-  setInfo,
-  setName
-}: SetPageProps) {
+function SetPage({ words, checkPage, setInfo, setName }: SetPageProps) {
   const [currWord, setCurrWord] = useState(0);
   const [showExample, setShowExample] = useState(false);
 
@@ -131,12 +124,7 @@ function SetPage({
           </>
         )}
         {currWord >= shuffled.length && (
-          <Finished
-            prevUnitId={prevUnitId}
-            setInfo={setInfo}
-            setName={setName}
-            checkPage={checkPage}
-          />
+          <Finished setInfo={setInfo} setName={setName} checkPage={checkPage} />
         )}
       </section>
     </>

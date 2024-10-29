@@ -2,11 +2,7 @@ import { cache } from 'react';
 import type { Metadata } from 'next';
 
 import { capitalizeWord } from '@/app/_lib/utils/utils';
-import {
-  getPrevUnitId,
-  getSetInfo,
-  getSetWords
-} from '@/app/_services/dbFetchers';
+import { getSetInfo, getSetWords } from '@/app/_services/dbFetchers';
 import SetPage from '@/app/_components/_pages/SetPage/SetPage';
 
 interface SetPageParams {
@@ -26,25 +22,14 @@ const getData = cache(async (setName: string) => {
 
   const [words, setInfo] = await Promise.all([wordsPromise, setInfoPromise]);
 
-  const prevUnitId = setInfo?.unit_id
-    ? await getPrevUnitId(setInfo.unit_id)
-    : null;
-
-  return { words, setInfo, prevUnitId };
+  return { words, setInfo };
 });
 
 async function Check({ params }: SetPageParams) {
   const setName = decodeURIComponent(params.setName);
-  const { words, setInfo, prevUnitId } = await getData(setName);
+  const { words, setInfo } = await getData(setName);
 
-  return (
-    <SetPage
-      words={words}
-      setInfo={setInfo}
-      prevUnitId={prevUnitId}
-      checkPage
-    />
-  );
+  return <SetPage words={words} setInfo={setInfo} checkPage />;
 }
 
 export default Check;
