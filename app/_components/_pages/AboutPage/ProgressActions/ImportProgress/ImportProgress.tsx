@@ -12,7 +12,6 @@ import { actionBtnStyles } from '../ProgressActions.styles';
 import {
   contentStyles,
   inputStyles,
-  labelStyles,
   modalBtnStyles
 } from './ImportProgress.styles';
 
@@ -56,7 +55,7 @@ function ImportProgress() {
 
   return (
     <>
-      <label className={labelStyles} htmlFor="progress-upload">
+      <label htmlFor="progress-upload">
         Import your progress to resume where you left off.
       </label>
       <input

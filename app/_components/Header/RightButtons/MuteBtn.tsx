@@ -29,7 +29,9 @@ function MuteBtn() {
       vibrate={isSoundAllowed ? false : true}
       variant="base"
     >
-      {isSoundAllowed ? <IconVolume /> : <IconVolumeOff />}
+      <span aria-hidden="true">
+        {isSoundAllowed ? <IconVolume /> : <IconVolumeOff />}
+      </span>
     </Button>
   );
 }

@@ -17,8 +17,12 @@ export const containerStyles = css({
     }
   },
 
-  '& p': {
+  '& p, & label': {
     marginBlockEnd: 'token(spacing.3, 0.75rem)'
+  },
+
+  '& label': {
+    display: 'block'
   }
 });
 

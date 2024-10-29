@@ -35,7 +35,11 @@ function NavItem({
         href={href}
         prefetch={prefetch}
       >
-        <span className={contentContainerStyles} data-current={isCurrent}>
+        <span
+          className={contentContainerStyles}
+          data-current={isCurrent}
+          aria-hidden="true"
+        >
           {children}
         </span>
       </Link>

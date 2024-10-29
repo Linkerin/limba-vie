@@ -31,7 +31,7 @@ async function UnitItem({ unit }: UnitItemProps) {
   );
 
   return (
-    <li id={`unit-${unit.id}`}>
+    <li id={`unit-${unit.id}`} aria-label={`'${unit.name}' unit`}>
       <UnitSummary unitId={unit.id} setsInfo={setsInfo}>
         <UnitHeading name={unit.name} image={unit.image} />
         <div className={progressContainerStyles}>

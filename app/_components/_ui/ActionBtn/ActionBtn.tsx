@@ -13,7 +13,8 @@ const styles = css.raw({
 const ariaLabes = {
   repeat: 'Add the word for repetition',
   learned: 'Mark the word as learned',
-  example: 'Show example usage of the word in the sentence'
+  example:
+    'Show plural variant (if applicable) and an example usage of the word in context'
 };
 
 interface ActionBtnProps extends ButtonProps {
@@ -28,7 +29,7 @@ function ActionBtn({ action, ...props }: ActionBtnProps) {
       title={ariaLabes[action]}
       {...props}
     >
-      <span>
+      <span aria-hidden="true">
         {action === 'repeat' && <IconRepeat stroke={2} />}
         {action === 'learned' && <IconCheck stroke={2} />}
         {action === 'example' && <IconMessage2 stroke={2} />}

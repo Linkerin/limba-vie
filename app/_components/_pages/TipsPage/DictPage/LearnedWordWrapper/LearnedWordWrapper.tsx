@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { css } from '@/styled-system/css';
 
 import type { Tables } from '@/app/_lib/supabase.types';
@@ -16,11 +17,19 @@ interface LearnedWordWrapperProps {
 
 function LearnedWordWrapper({ children, setId }: LearnedWordWrapperProps) {
   const completedSetIds = useCompletedSets()?.map(set => set.setId);
+  const isLearned = useMemo(
+    () => completedSetIds?.includes(setId),
+    [completedSetIds, setId]
+  );
 
-  return completedSetIds?.includes(setId) ? (
-    <span className={styles}>{children}</span>
-  ) : (
-    children
+  return (
+    <span
+      className={isLearned ? styles : undefined}
+      aria-label="Romanian word"
+      lang="ro-RO"
+    >
+      {children}
+    </span>
   );
 }
 

@@ -12,7 +12,7 @@ function About() {
       variant="base"
       css={styles}
     >
-      <IconMessage2Question />
+      <IconMessage2Question role="presentation" />
     </ButtonLink>
   );
 }

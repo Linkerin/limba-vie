@@ -49,7 +49,10 @@ function AboutPage() {
             target="_blank"
             prefetch={false}
           >
-            <IconBrandInstagram className={instagramIconStyles} />
+            <IconBrandInstagram
+              className={instagramIconStyles}
+              role="presentation"
+            />
             limba_vie
           </Link>
         </p>
@@ -72,7 +75,7 @@ function AboutPage() {
               rel="noopener external"
               target="_blank"
             >
-              Alexei Gusev <IconExternalLink />
+              Alexei Gusev <IconExternalLink role="presentation" />
             </Link>
           </p>
         </address>
@@ -93,7 +96,7 @@ function AboutPage() {
               target="_blank"
               prefetch={false}
             >
-              Tabler Icons
+              Tabler Icons <IconExternalLink role="presentation" />
             </Link>
           </li>
           <li>
@@ -105,7 +108,7 @@ function AboutPage() {
               prefetch={false}
             >
               Jingle_Achievement_00.wav
-              <IconExternalLink />
+              <IconExternalLink role="presentation" />
             </Link>{' '}
             by{' '}
             <Link
@@ -115,7 +118,7 @@ function AboutPage() {
               target="_blank"
               prefetch={false}
             >
-              LittleRobotSoundFactory <IconExternalLink />
+              LittleRobotSoundFactory <IconExternalLink role="presentation" />
             </Link>{' '}
             | License:{' '}
             <Link
@@ -125,7 +128,7 @@ function AboutPage() {
               target="_blank"
               prefetch={false}
             >
-              Attribution 4.0 <IconExternalLink />
+              Attribution 4.0 <IconExternalLink role="presentation" />
             </Link>
           </li>
           <li>
@@ -136,7 +139,7 @@ function AboutPage() {
               target="_blank"
               prefetch={false}
             >
-              Image by catalyststuff <IconExternalLink />
+              Image by catalyststuff <IconExternalLink role="presentation" />
             </Link>{' '}
             on Freepik
           </li>
@@ -149,7 +152,7 @@ function AboutPage() {
               target="_blank"
               prefetch={false}
             >
-              SVG Repo <IconExternalLink />
+              SVG Repo <IconExternalLink role="presentation" />
             </Link>{' '}
           </li>
         </ul>

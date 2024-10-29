@@ -46,13 +46,14 @@ function DeleteAllData() {
 
   return (
     <>
-      <p>
+      <label htmlFor="delete-progress">
         Permanently delete all progress and settings.
         <br />
         This action is <strong>irrevocable</strong>! Be sure to have a backup
         first.
-      </p>
+      </label>
       <Button
+        id="delete-progress"
         css={actionBtnStyles}
         onClick={openModalClickHandler}
         variant="secondary"

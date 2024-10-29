@@ -14,7 +14,7 @@ interface WordCounterProps {
 
 function WordCounter({ current, total }: WordCounterProps) {
   return (
-    <p className={styles}>
+    <p className={styles} aria-label="Current word of total words">
       {current} / {total}
     </p>
   );

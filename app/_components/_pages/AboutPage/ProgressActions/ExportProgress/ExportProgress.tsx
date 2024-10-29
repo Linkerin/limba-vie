@@ -14,8 +14,15 @@ const clickHandler = async () => {
 function ExportProgress() {
   return (
     <>
-      <p>Export your current progress for safekeeping.</p>
-      <Button css={actionBtnStyles} onClick={clickHandler} variant="primary">
+      <label htmlFor="download-progress">
+        Export your current progress for safekeeping.
+      </label>
+      <Button
+        id="download-progress"
+        css={actionBtnStyles}
+        onClick={clickHandler}
+        variant="primary"
+      >
         Download progress
       </Button>
     </>

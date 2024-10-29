@@ -62,7 +62,7 @@ function WordImg({ gender, wordEn, imgName = wordEn }: WordImgProps) {
           data-flipped={isFlipped}
           data-gender={gender}
         >
-          <IconView360Arrow className={flipIconStyles} />
+          <IconView360Arrow className={flipIconStyles} role="presentation" />
           <div className={sideStyles} aria-busy={!isLoaded}>
             <img
               ref={imgRef}

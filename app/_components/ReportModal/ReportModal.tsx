@@ -61,10 +61,11 @@ function ReportModal({ articleId, wordId, wordCheck }: ReportModalProps) {
     <>
       <Button
         css={btnStyles}
+        aria-label="Report content issue"
         onClick={() => setModalState('SHOW_MODAL')}
         variant="text"
       >
-        <IconFlag2 />
+        <IconFlag2 role="presentation" />
       </Button>
       <Modal state={modalState} closeHandler={closeHandler}>
         {formState.status === 'success' && (

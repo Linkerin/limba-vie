@@ -1,10 +1,5 @@
 import { css } from '@/styled-system/css';
 
-export const labelStyles = css({
-  display: 'block',
-  marginBlockEnd: 'token(spacing.3, 0.75rem)'
-});
-
 export const inputStyles = css({
   display: 'none'
 });
