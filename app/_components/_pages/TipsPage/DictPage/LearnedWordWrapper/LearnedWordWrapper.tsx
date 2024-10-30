@@ -1,10 +1,9 @@
 'use client';
 
-import { useMemo } from 'react';
 import { css } from '@/styled-system/css';
 
 import type { Tables } from '@/app/_lib/supabase.types';
-import useCompletedSets from '@/app/_hooks/useCompletedSets';
+import useIsWordLearned from '../../../../../_hooks/useIsWordLearned';
 
 const styles = css({
   color: 'success.darker'
@@ -12,15 +11,16 @@ const styles = css({
 
 interface LearnedWordWrapperProps {
   children: React.ReactNode;
-  setId: Tables<'words'>['set_id'];
+  setId?: Tables<'words'>['set_id'];
+  wordId?: Tables<'words'>['id'];
 }
 
-function LearnedWordWrapper({ children, setId }: LearnedWordWrapperProps) {
-  const completedSetIds = useCompletedSets()?.map(set => set.setId);
-  const isLearned = useMemo(
-    () => completedSetIds?.includes(setId),
-    [completedSetIds, setId]
-  );
+function LearnedWordWrapper({
+  children,
+  setId,
+  wordId
+}: LearnedWordWrapperProps) {
+  const isLearned = useIsWordLearned({ setId, wordId });
 
   return (
     <span

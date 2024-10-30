@@ -28,7 +28,7 @@ function DictPage({ words }: { words: Dict }) {
                 aria-label={`To the '${word.en}' word page`}
                 href={`/words/${encodeURIComponent(word.en)}`}
               >
-                <LearnedWordWrapper setId={word.set_id}>
+                <LearnedWordWrapper setId={word.set_id} wordId={word.id}>
                   {word.ro}
                 </LearnedWordWrapper>
               </Link>
