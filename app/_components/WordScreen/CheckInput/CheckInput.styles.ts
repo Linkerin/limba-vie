@@ -30,7 +30,7 @@ export const inputStyles = css({
   backgroundColor: 'background',
   border: '2px solid token(colors.main)',
   borderRadius: 'sm',
-  color: 'on-primary-container',
+  color: 'main',
   fontSize: 'xl',
   fontStyle: 'normal',
   fontWeight: 'normal',
@@ -40,8 +40,23 @@ export const inputStyles = css({
   width: '100%',
 
   _focusVisible: {
-    borderColor: 'primary.darker',
-    outline: '0.125rem solid token(colors.primary.darker)'
+    borderColor: 'main.lower',
+    outline: '0.125rem solid token(colors.main.lower)'
+  },
+
+  '&[data-gender="m"]:focus-visible': {
+    borderColor: 'g.masculine',
+    outlineColor: 'g.masculine'
+  },
+
+  '&[data-gender="f"]:focus-visible': {
+    borderColor: 'g.feminine',
+    outlineColor: 'g.feminine'
+  },
+
+  '&[data-gender="n"]:focus-visible': {
+    borderColor: 'g.neutral',
+    outlineColor: 'g.neutral'
   },
 
   _disabled: {

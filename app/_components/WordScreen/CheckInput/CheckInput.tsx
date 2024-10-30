@@ -84,6 +84,7 @@ function CheckInput({
             onChange={onChangeHandler}
             title="Type the word in Romanian"
             value={input}
+            data-gender={gender}
             required
           />
         </label>
