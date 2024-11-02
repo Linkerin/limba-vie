@@ -22,7 +22,7 @@ export const LOCAL_STORAGE_KEYS = Object.freeze({
 });
 
 export const OBLIGATORY_REVIEW = Object.freeze({
-  MISTAKES: process.env.NEXT_PUBLIC_ENVIRONMENT === 'PROD' ? 30 : 18,
+  MISTAKES: 18,
   PERIOD_WO_REVIEW: DAY_IN_MS * 3
 });
 
@@ -52,7 +52,7 @@ type WordReviewPeriodObj = {
  * Review period for words based on word level as a key
  */
 export const WORD_REVIEW_PERIOD_MS: WordReviewPeriodObj = {
-  0: DAY_IN_MS / 24,
+  0: DAY_IN_MS / 48, // after 30 mins
   1: DAY_IN_MS,
   2: DAY_IN_MS * 3,
   3: DAY_IN_MS * 5,

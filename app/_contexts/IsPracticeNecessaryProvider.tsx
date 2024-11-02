@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext } from 'react';
+import { createContext, useMemo } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 
 import db from '../_lib/db';
@@ -35,14 +35,17 @@ export default function IsPracticeNecessaryProvider({
     db.practices.orderBy('completedAt').last()
   );
 
-  const isPracticeDue =
-    lastPractice && lastPractice.completedAt
+  const isPracticeDue = useMemo(() => {
+    return lastPractice && lastPractice.completedAt
       ? Date.now() - lastPractice.completedAt.valueOf() >
-        OBLIGATORY_REVIEW.PERIOD_WO_REVIEW
+          OBLIGATORY_REVIEW.PERIOD_WO_REVIEW
       : false;
+  }, [lastPractice]);
 
-  const isDisabled =
-    mistakenWords.length >= OBLIGATORY_REVIEW.MISTAKES || isPracticeDue;
+  const isDisabled = useMemo(
+    () => mistakenWords.length >= OBLIGATORY_REVIEW.MISTAKES || isPracticeDue,
+    [isPracticeDue, mistakenWords.length]
+  );
 
   return (
     <IsPracticeNecessaryContext.Provider value={isDisabled}>
