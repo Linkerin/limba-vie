@@ -40,8 +40,8 @@ export const inputStyles = css({
   width: '100%',
 
   _focusVisible: {
-    borderColor: 'main.lower',
-    outline: '0.125rem solid token(colors.main.lower)'
+    borderColor: 'primary.container',
+    outline: '0.0625rem solid token(colors.primary.container)'
   },
 
   '&[data-gender="m"]:focus-visible': {

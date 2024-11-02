@@ -4,7 +4,7 @@ const popoverPosMargin = 'token(spacing.4, 1rem)';
 const popoverPosX = '0rem';
 const popoverPosY = `calc(100% + ${popoverPosMargin})`;
 const arrowPosX = `calc(var(--elem-width-for-popover, 25%) / 2 - ${popoverPosMargin} / 2)`;
-const arrowPosY = `calc(1px - ${popoverPosMargin})`;
+const arrowPosY = `calc(2px - ${popoverPosMargin})`;
 
 export const styles = css({
   position: 'absolute',
