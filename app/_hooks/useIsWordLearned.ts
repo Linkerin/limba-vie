@@ -9,7 +9,6 @@ interface UseISWordLearnedParams {
 }
 
 function useIsWordLearned({ setId, wordId }: UseISWordLearnedParams) {
-  console.log(wordId, setId);
   const [isLearned, setIsLearned] = useState(false);
 
   useEffect(() => {
