@@ -28,7 +28,7 @@ export const labelStyles = css({
 
 export const inputStyles = css({
   backgroundColor: 'background',
-  border: '2px solid token(colors.main)',
+  border: '2px solid token(colors.main.lower)',
   borderRadius: 'sm',
   color: 'main',
   fontSize: 'xl',
@@ -40,23 +40,8 @@ export const inputStyles = css({
   width: '100%',
 
   _focusVisible: {
-    borderColor: 'primary.container',
-    outline: '0.0625rem solid token(colors.primary.container)'
-  },
-
-  '&[data-gender="m"]:focus-visible': {
-    borderColor: 'g.masculine',
-    outlineColor: 'g.masculine'
-  },
-
-  '&[data-gender="f"]:focus-visible': {
-    borderColor: 'g.feminine',
-    outlineColor: 'g.feminine'
-  },
-
-  '&[data-gender="n"]:focus-visible': {
-    borderColor: 'g.neutral',
-    outlineColor: 'g.neutral'
+    borderColor: 'main',
+    outline: '0.0625rem solid token(colors.main)'
   },
 
   _disabled: {

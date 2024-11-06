@@ -81,10 +81,10 @@ function CheckInput({
             disabled={!!resultStatus}
             lang="ro-RO"
             minLength={1}
+            maxLength={256}
             onChange={onChangeHandler}
             title="Type the word in Romanian"
             value={input}
-            data-gender={gender}
             required
           />
         </label>
