@@ -146,7 +146,8 @@
     text-decoration: none;
   }
 
-  :where(a) > svg {
+  :where(a) > svg,
+  :where(p) > svg {
     display: inline-block;
   }
 }

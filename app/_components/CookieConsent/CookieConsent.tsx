@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { css } from '@/styled-system/css';
+import { IconCookie } from '@tabler/icons-react';
 
 import Button from '../_ui/Button/Button';
 import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
@@ -58,7 +59,9 @@ function CookieConsent() {
       showCloseBtn={false}
     >
       <form method="dialog" className={formStyles} onSubmit={handleClose}>
-        <p>Our application uses strictly necessary cookies 🍪.</p>
+        <p>
+          Our application uses strictly necessary cookies <IconCookie />.
+        </p>
         <p>
           Before continuing, you agree and accept our{' '}
           <Link
@@ -76,7 +79,7 @@ function CookieConsent() {
           </Link>
           .
         </p>
-        <Button css={btnStyles} variant="primary" type="submit" autoFocus>
+        <Button css={btnStyles} variant="base" type="submit" autoFocus>
           Accept
         </Button>
       </form>
