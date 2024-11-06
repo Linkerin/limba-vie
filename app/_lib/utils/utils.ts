@@ -11,7 +11,7 @@ import type { Tables } from '../supabase.types';
  * Shuffles the elements of an array in a random order.
  * @param arr - The array to be shuffled.
  * @throws {Error} If the input is not an array.
- * @returns The shuffled array.
+ * @returns The new shuffled array.
  */
 export function shuffleArr<T>(arr: T[]): T[] {
   if (!Array.isArray(arr)) {

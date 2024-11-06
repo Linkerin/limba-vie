@@ -8,30 +8,41 @@ import { shuffleArr } from '../_lib/utils/utils';
 import useCompletedSets from './useCompletedSets';
 import { useLiveQuery } from 'dexie-react-hooks';
 
-function getRepeatWordIds(words: WordsLearned[] | undefined) {
+function getRepeatWordIds(words: WordsLearned[] | undefined): number[] {
   if (!words) return [];
 
   const now = Date.now();
 
-  const repeatWordIds = words
-    .filter(word => {
-      switch (word.level) {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-          return (
-            now - word.reviewedAt.valueOf() >= WORD_REVIEW_PERIOD_MS[word.level]
-          );
+  const repeatWords = words.filter(word => {
+    switch (word.level) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        return (
+          now - word.reviewedAt.valueOf() >= WORD_REVIEW_PERIOD_MS[word.level]
+        );
 
-        default:
-          return false;
-      }
-    })
-    .map(word => word.wordId);
+      default:
+        return false;
+    }
+  });
 
-  return repeatWordIds;
+  const mistakeIds: number[] = [];
+  const correctIds: number[] = [];
+
+  repeatWords.forEach(word => {
+    if (word.mistakenLastTime) {
+      mistakeIds.push(word.wordId);
+    } else {
+      correctIds.push(word.wordId);
+    }
+  });
+
+  const shuffledCorrectIds = shuffleArr(correctIds);
+
+  return [...mistakeIds, ...shuffledCorrectIds];
 }
 
 function useRepeatBtn() {
@@ -53,12 +64,13 @@ function useRepeatBtn() {
     return false;
   }, [completedSetsIds.length, repeatWordsIds.length]);
 
+  const repeatParamArr = repeatWordsIds
+    .slice(0, REPEAT_WORDS_CTY)
+    .map(val => ['r', `${val}`]);
+
   const setParamArr = shuffleArr(completedSetsIds)
     .slice(0, 5)
     .map(val => ['set', `${val}`]);
-  const repeatParamArr = shuffleArr(repeatWordsIds)
-    .slice(0, REPEAT_WORDS_CTY)
-    .map(val => ['r', `${val}`]);
 
   const params = new URLSearchParams(
     [...repeatParamArr, ...setParamArr].slice(0, REPEAT_WORDS_CTY)

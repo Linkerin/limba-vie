@@ -14,6 +14,11 @@ function NavPracticeMsg() {
 
   const practiceMsg = useMemo(() => {
     switch (reason) {
+      case 'mistakes': {
+        const msg = `You have ${mistakesNum} mistakes. Time to reduce them to ${OBLIGATORY_REVIEW.MISTAKES}`;
+        return msg;
+      }
+
       case 'practice': {
         if (lastPractice) {
           const daysPassed = Math.floor(
@@ -23,11 +28,6 @@ function NavPracticeMsg() {
         }
 
         return "It's time to practice";
-      }
-
-      case 'mistakes': {
-        const msg = `You have ${mistakesNum} mistakes. Time to reduce them to ${OBLIGATORY_REVIEW.MISTAKES}`;
-        return msg;
       }
 
       default:
