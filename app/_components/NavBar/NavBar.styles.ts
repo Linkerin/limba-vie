@@ -28,12 +28,3 @@ export const navListStyles = css({
   listStyle: 'none',
   padding: '0rem'
 });
-
-export const practiceItemStyles = css.raw({
-  '&[data-animate=true]': {
-    animation: 'shake-bottom 3s ease-in-out 0s infinite normal',
-    '& *': {
-      color: 'primary.darker'
-    }
-  }
-});

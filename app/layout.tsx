@@ -41,12 +41,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={alata.className}>
         <SoundProvider>
+          <Header />
           <IsPracticeNecessaryProvider>
-            <Header />
             <main id="main">{children}</main>
             <NavBar />
-            <div id="modal" />
           </IsPracticeNecessaryProvider>
+          <div id="modal" />
         </SoundProvider>
         <CookieConsent />
         {isProd && <AnonymousSignIn />}

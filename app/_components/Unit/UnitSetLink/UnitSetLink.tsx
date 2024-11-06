@@ -51,8 +51,8 @@ function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
   const setCompletionInfo = useLiveQuery(() => db.completedSets.get(id));
   const isCompleted = isSetCompleted(wordsNum, setCompletionInfo?.wordsNum);
 
-  const isPracticeNecessary = useContext(IsPracticeNecessaryContext);
-  const isDisabled = isPracticeNecessary && !isCompleted;
+  const { isNecessary } = useContext(IsPracticeNecessaryContext);
+  const isDisabled = isNecessary && !isCompleted;
 
   const contentText = `${wordsNum} word${wordsNum === 1 ? '' : 's'}`;
   const setLink = set ? `/set/${encodeURIComponent(set)}` : '#';

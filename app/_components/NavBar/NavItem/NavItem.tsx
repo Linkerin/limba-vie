@@ -1,44 +1,42 @@
 import Link, { type LinkProps } from 'next/link';
-import type { SystemStyleObject } from '@/styled-system/types';
 import { css } from '@/styled-system/css';
+import type { SystemStyleObject } from '@/styled-system/types';
 
-import {
-  contentContainerStyles,
-  itemStyles,
-  linkStyles
-} from './NavItem.styles';
+import { iconContainerStyles, itemStyles, linkStyles } from './NavItem.styles';
 
 interface NavItemProps {
   children: React.ReactNode;
   ariaLabel: React.HTMLAttributes<'a'>['aria-label'];
-  animate?: boolean;
   css?: SystemStyleObject;
   href: LinkProps['href'];
   isCurrent?: boolean;
+  linkContent?: React.ReactNode;
   prefetch?: LinkProps['prefetch'];
 }
 
 function NavItem({
   children,
   ariaLabel,
-  animate,
   css: cssProp,
   href,
   isCurrent,
+  linkContent,
   prefetch
 }: NavItemProps) {
   return (
-    <li className={css(itemStyles, cssProp)} data-animate={animate}>
+    <li className={css(itemStyles, cssProp)}>
       <Link
         className={linkStyles}
         aria-label={ariaLabel}
         href={href}
         prefetch={prefetch}
       >
+        {linkContent}
         <span
-          className={contentContainerStyles}
+          className={iconContainerStyles}
           data-current={isCurrent}
           aria-hidden="true"
+          data-element="nav-item"
         >
           {children}
         </span>

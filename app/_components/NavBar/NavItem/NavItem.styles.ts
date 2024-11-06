@@ -2,6 +2,7 @@ import { css } from '@/styled-system/css';
 
 export const itemStyles = css.raw({
   height: '100%',
+  position: 'relative',
   width: '50%'
 });
 
@@ -26,7 +27,7 @@ export const linkStyles = css({
   }
 });
 
-export const contentContainerStyles = css({
+export const iconContainerStyles = css({
   borderRadius: 'md',
   padding: 'token(spacing.1.5, 0.375rem)',
 

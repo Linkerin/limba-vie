@@ -5,6 +5,7 @@ export const keyframes = defineKeyframes({
     '0%': { opacity: 0 },
     '100%': { opacity: 1 }
   },
+
   sound: {
     '0%': {
       transform: 'translateX(0) translateY(0) scale(1)',
@@ -19,15 +20,18 @@ export const keyframes = defineKeyframes({
       opacity: 1
     }
   },
+
   ringSpin: {
     '0%': { transform: 'rotate(0deg)' },
     '100%': { transform: 'rotate(360deg)' }
   },
+
   appearance: {
     '0%': { opacity: 0 },
     '85%': { opacity: 0 },
     '100%': { opacity: 1 }
   },
+
   flipIn: {
     '0%': {
       position: 'absolute',
@@ -38,10 +42,12 @@ export const keyframes = defineKeyframes({
       bottom: '0rem'
     }
   },
+
   'move-in': {
     '0%': { bottom: '-300px' },
     '100%': { bottom: '0px' }
   },
+
   'shake-bottom': {
     '0%, 100%': {
       transform: ' rotate(0deg)',
@@ -66,6 +72,20 @@ export const keyframes = defineKeyframes({
 
     '90%': {
       transform: 'rotate(2deg)'
+    }
+  },
+
+  overhang: {
+    '0%, 100%': {
+      transform: 'translateY(0)'
+    },
+
+    '25%': {
+      transform: 'translateY(-2px)'
+    },
+
+    '75%': {
+      transform: 'translateY(+2px)'
     }
   }
 });

@@ -1,25 +1,22 @@
 'use client';
 
-import { useContext } from 'react';
 import { usePathname } from 'next/navigation';
 import { IconBarbell, IconBook2, IconHome } from '@tabler/icons-react';
 
 import NavItem from './NavItem/NavItem';
-import { IsPracticeNecessaryContext } from '@/app/_contexts/IsPracticeNecessaryProvider';
+import NavPracticeMsg from './NavPracticeMsg/NavPracticeMsg';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
 
 import {
   footerStyles,
   navContainerStyles,
-  navListStyles,
-  practiceItemStyles
+  navListStyles
 } from './NavBar.styles';
 
 function NavBar() {
   const pathname = usePathname();
 
-  const isPracticeNecessary = useContext(IsPracticeNecessaryContext);
   const isApplePwa = useIsApplePwa();
   const { show, url } = useRepeatBtn();
 
@@ -43,15 +40,16 @@ function NavBar() {
             <IconBook2 />
           </NavItem>
           {show && (
-            <NavItem
-              ariaLabel="To practice set"
-              href={url.href}
-              css={practiceItemStyles}
-              animate={isPracticeNecessary}
-              prefetch
-            >
-              <IconBarbell />
-            </NavItem>
+            <>
+              <NavItem
+                ariaLabel="To practice set"
+                href={url.href}
+                linkContent={<NavPracticeMsg />}
+                prefetch
+              >
+                <IconBarbell />
+              </NavItem>
+            </>
           )}
         </ol>
       </nav>

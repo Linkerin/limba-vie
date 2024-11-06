@@ -29,8 +29,8 @@ function UnitSummary({ children, unitId, setsInfo }: UnitSummaryProps) {
 
   const completedSetsNum = useCompletedSetsNum(setsInfo);
   const isCompleted = completedSetsNum === Object.keys(setsInfo)?.length;
-  const isPracticeNecessary = useContext(IsPracticeNecessaryContext);
-  const isUnitDisabled = isPracticeNecessary && completedSetsNum === 0;
+  const { isNecessary } = useContext(IsPracticeNecessaryContext);
+  const isUnitDisabled = isNecessary && completedSetsNum === 0;
 
   return (
     <details
