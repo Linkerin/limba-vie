@@ -19,12 +19,14 @@ function MuteBtn() {
     [toggleSound]
   );
 
+  const label = `Turn ${isSoundAllowed ? 'off' : 'on'} word sounds autoplay`;
+
   return (
     <Button
-      aria-label={`Turn ${isSoundAllowed ? 'off' : 'on'} word sounds autoplay`}
+      aria-label={label}
       css={styles}
       onClick={clickHandler}
-      title={`Turn ${isSoundAllowed ? 'off' : 'on'} word sounds autoplay`}
+      title={label}
       fadeAnimation
       vibrate={isSoundAllowed ? false : true}
       variant="base"

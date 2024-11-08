@@ -57,12 +57,15 @@ function ReportModal({ articleId, wordId, wordCheck }: ReportModalProps) {
 
   const closeHandler = useCallback(() => setModalState('CLOSE'), []);
 
+  const label = 'Report content issue';
+
   return (
     <>
       <Button
         css={btnStyles}
-        aria-label="Report content issue"
+        aria-label={label}
         onClick={() => setModalState('SHOW_MODAL')}
+        title={label}
         variant="text"
       >
         <IconFlag2 role="presentation" />
