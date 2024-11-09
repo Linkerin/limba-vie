@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     const params = new URLSearchParams({ key: `${process.env.GOOGLE_AI_KEY}` });
 
     const url = new URL(
-      '/v1beta/models/gemini-1.5-pro-latest:generateContent',
+      '/v1beta/models/gemini-1.5-flash-8b-latest:generateContent',
       'https://generativelanguage.googleapis.com'
     );
     url.search = params.toString();
