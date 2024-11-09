@@ -6,26 +6,29 @@ import {
   removePunctuationAtEdges
 } from '@/app/_lib/utils/utils';
 import type { Tables } from '@/app/_lib/supabase.types';
+import useWordReviewHandlers from '@/app/_hooks/useWordReviewHandlers';
+
+export type ResultStatus = 'success' | 'error' | null;
 
 interface UseFormHandlersParams {
   gender: Tables<'words'>['gender_ro'];
   plural: Tables<'words'>['plural'];
+  wordId: Tables<'words'>['id'];
   wordRo: Tables<'words'>['ro'];
-  correctHandler: () => void;
-  incorrectHandler: () => void;
 }
 
 function useFormHandlers({
   gender,
   plural,
-  wordRo,
-  correctHandler,
-  incorrectHandler
+  wordId,
+  wordRo
 }: UseFormHandlersParams) {
   const [input, setInput] = useState('');
-  const [resultStatus, setResultStatus] = useState<null | 'error' | 'success'>(
-    null
-  );
+  const [resultStatus, setResultStatus] = useState<ResultStatus>(null);
+
+  const { correctHandler, incorrectHandler } = useWordReviewHandlers({
+    wordId
+  });
 
   const answer = useMemo(() => {
     const normalizedWord = normalizeWord(wordRo);

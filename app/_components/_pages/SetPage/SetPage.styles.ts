@@ -1,10 +1,5 @@
 import { css } from '@/styled-system/css';
 
-export const audioBtnStyles = css.raw({
-  fontSize: '4xl',
-  animation: 'appearance 7s ease-in'
-});
-
 export const sectionStyles = css({
   animation: 'fadeIn',
   display: 'flex',

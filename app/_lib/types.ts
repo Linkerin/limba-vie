@@ -37,4 +37,5 @@ export type WordsArr = Omit<
   | 'example_ro'
   | 'example_en'
   | 'instagram'
+  | 'en_alternatives'
 >[];

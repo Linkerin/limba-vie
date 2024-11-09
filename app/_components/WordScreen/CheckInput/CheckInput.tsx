@@ -3,11 +3,10 @@
 import dynamic from 'next/dynamic';
 
 import Button from '../../_ui/Button/Button';
+import CheckSound from '../CheckInputModal/CheckSound/CheckSound';
 import { getRandomValueFromArr } from '@/app/_lib/utils/utils';
-import type { Tables } from '@/app/_lib/supabase.types';
 import useFormHandlers from './useFormHandlers';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
-import useWordReviewHandlers from '@/app/_hooks/useWordReviewHandlers';
 
 import {
   answerStyles,
@@ -17,37 +16,25 @@ import {
   labelStyles,
   wrongInputStyles
 } from './CheckInput.styles';
+import type { WordsArr } from '@/app/_lib/types';
 
 const CheckInputModal = dynamic(
   () => import('../CheckInputModal/CheckInputModal'),
   { ssr: false }
 );
 
-const phrases = {
+const phrases = Object.freeze({
   success: ['Perfect!', 'Correct!', 'Great!', 'Nice job!'],
   error: ['Oh no,', 'Whoops,', 'Oh well,', 'Awww,']
-};
+});
 
 interface CheckInputProps {
-  gender: Tables<'words'>['gender_ro'];
-  plural: Tables<'words'>['plural'];
   setCurrWord: () => void;
-  wordId: Tables<'words'>['id'];
-  wordRo: Tables<'words'>['ro'];
+  word: WordsArr[0];
 }
 
-function CheckInput({
-  gender,
-  plural,
-  setCurrWord,
-  wordId,
-  wordRo
-}: CheckInputProps) {
+function CheckInput({ setCurrWord, word }: CheckInputProps) {
   const isApplePwa = useIsApplePwa();
-
-  const { correctHandler, incorrectHandler } = useWordReviewHandlers({
-    wordId
-  });
 
   const {
     input,
@@ -56,11 +43,10 @@ function CheckInput({
     onChangeHandler,
     onSubmitHandler
   } = useFormHandlers({
-    gender,
-    plural,
-    wordRo,
-    correctHandler,
-    incorrectHandler
+    gender: word.gender_ro,
+    plural: word.plural,
+    wordId: word.id,
+    wordRo: word.ro
   });
 
   return (
@@ -109,6 +95,7 @@ function CheckInput({
               Your answer: <span>{input}</span>
             </p>
           )}
+          <CheckSound status={resultStatus} audioName={word.audio_name} />
         </CheckInputModal>
       )}
     </>

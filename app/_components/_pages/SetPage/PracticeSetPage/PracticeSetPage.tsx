@@ -81,11 +81,8 @@ function PracticeSetPage({ words, setInfo, setName }: PracticeSetPageProps) {
 
             <CheckInput
               key={currWord.id}
-              gender={currWord.gender_ro}
-              plural={currWord.plural}
+              word={currWord}
               setCurrWord={nextWord}
-              wordId={currWord.id}
-              wordRo={currWord.ro}
             />
           </>
         )}

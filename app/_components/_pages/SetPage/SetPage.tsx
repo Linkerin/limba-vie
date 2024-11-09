@@ -1,18 +1,18 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import dynamic from 'next/dynamic';
 
-import AudioBtn from '../../_ui/AudioBtn/AudioBtn';
-import Finished from '../../WordScreen/Finished/Finished';
-import ReportModal from '../../ReportModal/ReportModal';
-import Sentence from '../../Word/Sentence/Sentence';
+import Actions from '@/app/_components/WordScreen/Actions/Actions';
+import AudioBtn from '@/app/_components/_ui/AudioBtn/AudioBtn';
+import Finished from '@/app/_components/WordScreen/Finished/Finished';
+import ReportModal from '@/app/_components/ReportModal/ReportModal';
+import Sentence from '@/app/_components/Word/Sentence/Sentence';
 import { shuffleArr } from '@/app/_lib/utils/utils';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
-import Word from '../../Word/Word/Word';
-import WordCounter from '../../WordScreen/WordCounter/WordCounter';
-import WordImg from '../../Word/WordImg/WordImg';
-import WordPlural from '../../Word/WordPlural/WordPlural';
+import Word from '@/app/_components/Word/Word/Word';
+import WordCounter from '@/app/_components/WordScreen/WordCounter/WordCounter';
+import WordImg from '@/app/_components/Word/WordImg/WordImg';
+import WordPlural from '@/app/_components/Word/WordPlural/WordPlural';
 import type {
   RepeatWords,
   SetInfo,
@@ -20,25 +20,18 @@ import type {
 } from '@/app/_services/dbFetchers';
 
 import {
-  audioBtnStyles,
   reportCounterContainerStyles,
   sectionStyles,
   wordContainerStyles
 } from './SetPage.styles';
 
-const Actions = dynamic(() => import('../../WordScreen/Actions/Actions'));
-const CheckInput = dynamic(
-  () => import('../../WordScreen/CheckInput/CheckInput')
-);
-
 export interface SetPageProps {
   words: SetWords | RepeatWords;
-  checkPage?: boolean;
   setInfo?: SetInfo;
   setName?: string;
 }
 
-function SetPage({ words, checkPage, setInfo, setName }: SetPageProps) {
+function SetPage({ words, setInfo, setName }: SetPageProps) {
   const [currWord, setCurrWord] = useState(0);
   const [showExample, setShowExample] = useState(false);
 
@@ -64,7 +57,6 @@ function SetPage({ words, checkPage, setInfo, setName }: SetPageProps) {
               <ReportModal
                 key={shuffled[currWord].id}
                 wordId={shuffled[currWord].id}
-                wordCheck={checkPage}
               />
               <WordCounter current={currWord + 1} total={shuffled.length} />
             </div>
@@ -74,28 +66,20 @@ function SetPage({ words, checkPage, setInfo, setName }: SetPageProps) {
                 gender={shuffled[currWord].gender_ro}
                 imgName={shuffled[currWord].img_name}
               />
-              {checkPage ? (
-                <AudioBtn
-                  key={shuffled[currWord].ro}
-                  css={audioBtnStyles}
-                  audioName={shuffled[currWord].audio_name}
+
+              <>
+                <Word
                   word={shuffled[currWord].ro}
-                  autoplay={false}
-                />
-              ) : (
-                <>
-                  <Word
+                  plural={shuffled[currWord].plural}
+                  gender={shuffled[currWord].gender_ro}
+                >
+                  <AudioBtn
+                    audioName={shuffled[currWord].audio_name}
                     word={shuffled[currWord].ro}
-                    plural={shuffled[currWord].plural}
-                    gender={shuffled[currWord].gender_ro}
-                  >
-                    <AudioBtn
-                      audioName={shuffled[currWord].audio_name}
-                      word={shuffled[currWord].ro}
-                    />
-                  </Word>
-                </>
-              )}
+                  />
+                </Word>
+              </>
+
               {showExample && (
                 <>
                   {shuffled[currWord].ro_plural && (
@@ -105,26 +89,15 @@ function SetPage({ words, checkPage, setInfo, setName }: SetPageProps) {
                 </>
               )}
             </div>
-            {checkPage ? (
-              <CheckInput
-                key={shuffled[currWord].id}
-                gender={shuffled[currWord].gender_ro}
-                plural={shuffled[currWord].plural}
-                setCurrWord={nextWord}
-                wordId={shuffled[currWord].id}
-                wordRo={shuffled[currWord].ro}
-              />
-            ) : (
-              <Actions
-                exampleClickHandler={exampleClickHandler}
-                setCurrWord={nextWord}
-                wordId={shuffled[currWord].id}
-              />
-            )}
+            <Actions
+              exampleClickHandler={exampleClickHandler}
+              setCurrWord={nextWord}
+              wordId={shuffled[currWord].id}
+            />
           </>
         )}
         {currWord >= shuffled.length && (
-          <Finished setInfo={setInfo} setName={setName} checkPage={checkPage} />
+          <Finished setInfo={setInfo} setName={setName} />
         )}
       </section>
     </>

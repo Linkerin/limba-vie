@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 };
 
 import { getRepeatWords } from '@/app/_services/dbFetchers';
-import SetPage from '@/app/_components/_pages/SetPage/SetPage';
+import PracticeSetPage from '@/app/_components/_pages/SetPage/PracticeSetPage/PracticeSetPage';
 import type { RepeatPageSearchParams } from '@/app/_lib/types';
 
 async function RepeatPage({
@@ -15,7 +15,7 @@ async function RepeatPage({
 }) {
   const words = await getRepeatWords(searchParams);
 
-  return <SetPage words={words} setName="practice" checkPage />;
+  return <PracticeSetPage words={words} setName="practice" />;
 }
 
 export default RepeatPage;
