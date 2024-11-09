@@ -92,6 +92,7 @@ function CheckInput({
           css={btnStyles}
           variant="primary"
           disabled={input.length === 0 || !!resultStatus}
+          aria-label="Check your answer"
         >
           Check
         </Button>

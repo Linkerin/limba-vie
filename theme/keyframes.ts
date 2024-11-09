@@ -28,8 +28,11 @@ export const keyframes = defineKeyframes({
 
   appearance: {
     '0%': { opacity: 0 },
-    '85%': { opacity: 0 },
-    '100%': { opacity: 1 }
+    '100%': {
+      opacity: 1,
+      pointerEvents: 'auto',
+      visibility: 'visible'
+    }
   },
 
   flipIn: {
