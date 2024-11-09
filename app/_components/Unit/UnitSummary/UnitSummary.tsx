@@ -7,9 +7,8 @@ import { cx } from '@/styled-system/css';
 
 import type { Tables } from '@/app/_lib/supabase.types';
 import { IsPracticeNecessaryContext } from '@/app/_contexts/IsPracticeNecessaryProvider';
-import useCompletedSetsNum, {
-  type SetsInfo
-} from '@/app/_hooks/useCompletedSetsNum';
+import type { SetsInfo } from '@/app/_services/dexie/queries/completedSets';
+import useCompletedSetsNum from '@/app/_hooks/useCompletedSetsNum';
 
 import {
   detailsStyles,

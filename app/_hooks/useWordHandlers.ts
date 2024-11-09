@@ -2,33 +2,23 @@
 
 import { useCallback } from 'react';
 
-import db, { type WordsLearned } from '../_lib/db';
+import {
+  getLearnedWord,
+  recordLearnedWord,
+  updateLearnedWord
+} from '@/app/_services/dexie/queries/learnedWords';
 import type { Tables } from '@/app/_lib/supabase.types';
+import type { WordsLearned } from '@/app/_services/dexie/db';
 
 interface UseWordHandlersProps {
   wordId: Tables<'words'>['id'];
 }
 
-async function recordNewWord(wordId: Tables<'words'>['id']) {
-  const now = new Date();
-
-  const record = await db.wordsLearned.add({
-    wordId,
-    level: 0,
-    mistakenLastTime: false,
-    correctAtCurrLevel: 0,
-    addedAt: now,
-    reviewedAt: now
-  });
-
-  return record;
-}
-
 function useWordHandlers({ wordId }: UseWordHandlersProps) {
   const repeatButtonHandler = useCallback(async () => {
-    const word = await db.wordsLearned.get(wordId);
+    const word = await getLearnedWord(wordId);
     if (!word) {
-      await recordNewWord(wordId);
+      await recordLearnedWord({ wordId });
       return;
     }
 
@@ -42,20 +32,20 @@ function useWordHandlers({ wordId }: UseWordHandlersProps) {
         break;
 
       case 1:
-        await db.wordsLearned.update(wordId, { level: 0, ...miscData });
+        await updateLearnedWord(wordId, { level: 0, ...miscData });
         break;
 
       default:
-        await db.wordsLearned.update(wordId, { level: 1, ...miscData });
+        await updateLearnedWord(wordId, { level: 1, ...miscData });
         break;
     }
   }, [wordId]);
 
   const learnedButtonHandler = useCallback(async () => {
-    const word = await db.wordsLearned.get(wordId);
+    const word = await getLearnedWord(wordId);
     if (word) return;
 
-    await recordNewWord(wordId);
+    await recordLearnedWord({ wordId });
 
     return;
   }, [wordId]);

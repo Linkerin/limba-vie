@@ -2,9 +2,9 @@
 
 import { useEffect } from 'react';
 
-import db from '../_lib/db';
-import ssrLocalStorage from '../_services/SsrLocalStorage';
-import { LOCAL_STORAGE_KEYS } from '../_lib/constants';
+import db from '@/app/_services/dexie/db';
+import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
+import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
 
 function LocalStorageMigration() {
   useEffect(() => {

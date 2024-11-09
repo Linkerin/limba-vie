@@ -2,11 +2,11 @@
 
 import { useMemo } from 'react';
 
-import db, { type WordsLearned } from '../_lib/db';
 import { REPEAT_WORDS_CTY, WORD_REVIEW_PERIOD_MS } from '@/app/_lib/constants';
-import { shuffleArr } from '../_lib/utils/utils';
+import { shuffleArr } from '@/app/_lib/utils/utils';
 import useCompletedSets from './useCompletedSets';
-import { useLiveQuery } from 'dexie-react-hooks';
+import { useLiveLearnedWordsSortedByMistaken } from '@/app/_services/dexie/queries/learnedWords';
+import type { WordsLearned } from '@/app/_services/dexie/db';
 
 function getRepeatWordIds(words: WordsLearned[] | undefined): number[] {
   if (!words) return [];
@@ -51,9 +51,7 @@ function useRepeatBtn() {
     ? completedSets.map(set => set.setId)
     : [];
 
-  const wordsLearned = useLiveQuery(() =>
-    db.wordsLearned.toCollection().reverse().sortBy('mistakenLastTime')
-  );
+  const wordsLearned = useLiveLearnedWordsSortedByMistaken();
   const repeatWordsIds = getRepeatWordIds(wordsLearned);
 
   const show = useMemo(() => {

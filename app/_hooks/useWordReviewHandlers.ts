@@ -2,37 +2,24 @@
 
 import { useCallback } from 'react';
 
-import db, { type WordsLearned } from '../_lib/db';
+import {
+  getLearnedWord,
+  recordLearnedWord,
+  updateLearnedWord
+} from '@/app/_services/dexie/queries/learnedWords';
 import type { Tables } from '@/app/_lib/supabase.types';
+import { type WordsLearned } from '@/app/_services/dexie/db';
 
 interface UseWordReviewHandlersProps {
   wordId: Tables<'words'>['id'];
 }
 
-async function recordNewWord(
-  wordId: Tables<'words'>['id'],
-  mistaken?: boolean
-) {
-  const now = new Date();
-
-  const record = await db.wordsLearned.add({
-    wordId,
-    level: 1,
-    mistakenLastTime: mistaken ?? false,
-    correctAtCurrLevel: 0,
-    addedAt: now,
-    reviewedAt: now
-  });
-
-  return record;
-}
-
 function useWordReviewHandlers({ wordId }: UseWordReviewHandlersProps) {
   const correctHandler = useCallback(async () => {
-    const word = await db.wordsLearned.get(wordId);
+    const word = await getLearnedWord(wordId);
 
     if (!word) {
-      await recordNewWord(wordId);
+      await recordLearnedWord({ wordId, level: 1 });
       return;
     }
 
@@ -65,16 +52,16 @@ function useWordReviewHandlers({ wordId }: UseWordReviewHandlersProps) {
         break;
     }
 
-    await db.wordsLearned.update(wordId, updateData);
+    await updateLearnedWord(wordId, updateData);
 
     return;
   }, [wordId]);
 
   const incorrectHandler = useCallback(async () => {
-    const word = await db.wordsLearned.get(wordId);
+    const word = await getLearnedWord(wordId);
 
     if (!word) {
-      await recordNewWord(wordId, true);
+      await recordLearnedWord({ wordId, level: 1, mistaken: true });
       return;
     }
 
@@ -101,7 +88,7 @@ function useWordReviewHandlers({ wordId }: UseWordReviewHandlersProps) {
         break;
     }
 
-    await db.wordsLearned.update(wordId, updateData);
+    await updateLearnedWord(wordId, updateData);
   }, [wordId]);
 
   return { correctHandler, incorrectHandler };

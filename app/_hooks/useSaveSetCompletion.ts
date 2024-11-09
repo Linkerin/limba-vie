@@ -1,6 +1,8 @@
 'use client';
 
-import db, { type CompletedSet } from '../_lib/db';
+import type { CompletedSet } from '@/app/_services/dexie/db';
+import { putCompletedSet } from '@/app/_services/dexie/queries/completedSets';
+import { recordPractice } from '@/app/_services/dexie/queries/practices';
 
 interface UseSaveSetCompletionParams {
   checkPage?: boolean;
@@ -14,14 +16,15 @@ async function useSaveSetCompletion({
   wordsNum
 }: UseSaveSetCompletionParams) {
   if (checkPage) {
-    await db.practices.add({ completedAt: new Date(), score: null });
+    await recordPractice({ completedAt: new Date(), score: null });
   } else {
     if (!setId || !wordsNum) return false;
 
-    const record = await db.completedSets.put(
-      { setId, wordsNum, completedAt: new Date() },
-      setId
-    );
+    const record = await putCompletedSet({
+      setId,
+      wordsNum,
+      completedAt: new Date()
+    });
 
     if (typeof record !== 'number') return false;
   }

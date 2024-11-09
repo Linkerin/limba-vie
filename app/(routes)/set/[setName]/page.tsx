@@ -33,5 +33,3 @@ async function Set({ params }: SetPageParams) {
 }
 
 export default Set;
-
-export const revalidate = Number(process.env.REVALIDATE_PERIOD_SEC);

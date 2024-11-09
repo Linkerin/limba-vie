@@ -1,7 +1,7 @@
 /**
  * Main audio format inside the app
  */
-export const AUDIO_FILE_FORMAT = 'aac';
+export const AUDIO_FILE_FORMAT = 'aac' as const;
 
 export const CLOUDINARY_IMG_URL = `${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/image/upload`;
 
@@ -26,7 +26,7 @@ export const OBLIGATORY_REVIEW = Object.freeze({
   PERIOD_WO_REVIEW: DAY_IN_MS * 3
 });
 
-export const REPEAT_WORDS_CTY = 15;
+export const REPEAT_WORDS_CTY = 15 as const;
 
 /**
  * User reports sending counter updates once in an hour
@@ -40,7 +40,7 @@ export const REPORT_TYPES = [
   'image_audio',
   'answer',
   'other'
-];
+] as const;
 
 export const SUPABASE_STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public`;
 
@@ -57,7 +57,7 @@ export const WORD_REVIEW_PERIOD_MS: WordReviewPeriodObj = {
   2: DAY_IN_MS * 3,
   3: DAY_IN_MS * 5,
   4: DAY_IN_MS * 21
-};
+} as const;
 
 /**
  * Grammar articles metadata

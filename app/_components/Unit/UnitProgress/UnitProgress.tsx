@@ -2,10 +2,9 @@
 
 import { css } from '@/styled-system/css';
 
-import Skeleton from '../../_ui/Skeleton/Skeleton';
-import useCompletedSetsNum, {
-  type SetsInfo
-} from '@/app/_hooks/useCompletedSetsNum';
+import type { SetsInfo } from '@/app/_services/dexie/queries/completedSets';
+import Skeleton from '@/app/_components/_ui/Skeleton/Skeleton';
+import useCompletedSetsNum from '@/app/_hooks/useCompletedSetsNum';
 
 const borderWidth = '1px';
 

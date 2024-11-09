@@ -1,8 +1,8 @@
-import db, {
-  type CompletedSet,
-  type WordsForRepeat
-} from '../../../../../../_lib/db';
-import { mergeCompletedSets } from './importProgress';
+import type { CompletedSet, WordsForRepeat } from '@/app/_services/dexie/db';
+import {
+  mergeCompletedSets,
+  mergeWordsForRepeat
+} from '@/app/_services/dexie/dbUtils';
 import type { Progress } from '@/app/_lib/types';
 import { recordUserId } from './importProgress';
 
@@ -102,36 +102,6 @@ const parseImportedData = (jsonStr: string): Progress => {
   }
 
   return parsed;
-};
-
-/**
- * Merges the provided words for repeat with the existing words in the database.
- *
- * This function compares the provided `importedWords` with the existing words in the
- * database, and updates the database with any new or more recent words for repeat.
- *
- * @param importedWords - An array of `WordsForRepeat` objects representing the words to be imported.
- * @returns A Promise that resolves when the merge operation is complete.
- */
-const mergeWordsForRepeat = async (importedWords: WordsForRepeat[]) => {
-  const importedIds = importedWords.map(word => word.wordId);
-  const existingWords = await db.wordsForRepeat.bulkGet(importedIds);
-  const wordsForWriting: WordsForRepeat[] = [];
-
-  for (let i = 0; i < importedWords.length; i++) {
-    const importedWord: WordsForRepeat = importedWords[i];
-    const existingWord = existingWords[i];
-
-    if (
-      !existingWord ||
-      importedWord.addedAt > existingWord.addedAt ||
-      importedWord.repeatTimes > existingWord.repeatTimes
-    ) {
-      wordsForWriting.push(importedWord);
-    }
-  }
-
-  await db.wordsForRepeat.bulkPut(wordsForWriting);
 };
 
 async function processImportV1(jsonString: string) {

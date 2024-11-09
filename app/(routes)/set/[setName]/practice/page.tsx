@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 import { capitalizeWord } from '@/app/_lib/utils/utils';
 import { getSetInfo, getSetWords } from '@/app/_services/dbFetchers';
-import SetPage from '@/app/_components/_pages/SetPage/SetPage';
+import PracticeSetPage from '@/app/_components/_pages/SetPage/PracticeSetPage/PracticeSetPage';
 
 interface SetPageParams {
   params: { setName: string };
@@ -25,13 +25,11 @@ const getData = cache(async (setName: string) => {
   return { words, setInfo };
 });
 
-async function Check({ params }: SetPageParams) {
+async function Practice({ params }: SetPageParams) {
   const setName = decodeURIComponent(params.setName);
   const { words, setInfo } = await getData(setName);
 
-  return <SetPage words={words} setInfo={setInfo} checkPage />;
+  return <PracticeSetPage words={words} setInfo={setInfo} />;
 }
 
-export default Check;
-
-export const revalidate = Number(process.env.REVALIDATE_PERIOD_SEC);
+export default Practice;

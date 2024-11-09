@@ -11,11 +11,9 @@ import {
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { IconCheck, IconLock } from '@tabler/icons-react';
-import { useLiveQuery } from 'dexie-react-hooks';
 
 import ButtonLink from '../../_ui/Button/ButtonLink';
 import { capitalizeWord, isSetCompleted } from '@/app/_lib/utils/utils';
-import db from '@/app/_lib/db';
 import { IsPracticeNecessaryContext } from '@/app/_contexts/IsPracticeNecessaryProvider';
 import type { PopoverProps } from '../../_ui/Popover/Popover';
 import RingSpinner from '../../_ui/RingSpinner/RingSpinner';
@@ -29,6 +27,7 @@ import {
   popoverSpinnerStyles,
   setStyles
 } from './UnitSetLink.styles';
+import { useLiveCompletedSet } from '@/app/_services/dexie/queries/completedSets';
 
 const Popover = dynamic(() => import('../../_ui/Popover/Popover'), {
   loading: () => <RingSpinner css={popoverSpinnerStyles} />
@@ -48,7 +47,7 @@ function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
 
   const liRef = useRef<HTMLLIElement>(null);
 
-  const setCompletionInfo = useLiveQuery(() => db.completedSets.get(id));
+  const setCompletionInfo = useLiveCompletedSet(id);
   const isCompleted = isSetCompleted(wordsNum, setCompletionInfo?.wordsNum);
 
   const { isNecessary } = useContext(IsPracticeNecessaryContext);
@@ -155,7 +154,7 @@ function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
           </ButtonLink>
           <ButtonLink
             aria-label={`${setAriaLabel} practice`}
-            href={set ? `/set/check/${encodeURIComponent(set)}` : '#'}
+            href={set ? `/set/${encodeURIComponent(set)}/practice` : '#'}
             variant="success"
           >
             Practice

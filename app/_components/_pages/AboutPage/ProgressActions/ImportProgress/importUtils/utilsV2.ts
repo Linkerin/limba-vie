@@ -1,8 +1,13 @@
-import db, {
-  type CompletedSet,
-  type WordsLearned
-} from '../../../../../../_lib/db';
-import { mergeCompletedSets } from './importProgress';
+import type {
+  CompletedSet,
+  Practices,
+  WordsLearned
+} from '@/app/_services/dexie/db';
+import {
+  mergeCompletedSets,
+  mergePractices,
+  mergeWordsLearned
+} from '@/app/_services/dexie/dbUtils';
 import type { ProgressV2 } from '@/app/_lib/types';
 import { recordUserId } from './importProgress';
 import { WORD_LEVELS } from '@/app/_lib/constants';
@@ -41,6 +46,23 @@ const isValidCompletedSet = (set: any): set is CompletedSet => {
     typeof set.wordsNum === 'number' &&
     set.completedAt instanceof Date &&
     !isNaN(set.completedAt.valueOf())
+  );
+};
+
+/**
+ * Validates whether the provided `practice` object is a valid `Practices` object.
+ *
+ * @param practice - The object to validate.
+ * @returns `true` if the `practice` object is valid, `false` otherwise.
+ */
+const isValidPracticeRecord = (practice: any): practice is Practices => {
+  return (
+    typeof practice === 'object' &&
+    practice !== null &&
+    typeof practice.id === 'number' &&
+    (typeof practice.score === 'number' || practice.score === null) &&
+    practice.completedAt instanceof Date &&
+    !isNaN(practice.completedAt.valueOf())
   );
 };
 
@@ -123,32 +145,6 @@ const parseImportedData = (jsonStr: string): ProgressV2 => {
   return parsed;
 };
 
-/**
- * Merges the provided words for repeat with the existing words in the database.
- *
- * This function compares the provided `importedWords` with the existing words in the
- * database, and updates the database with any new or more recent words for repeat.
- *
- * @param importedWords - An array of `WordsForRepeat` objects representing the words to be imported.
- * @returns A Promise that resolves when the merge operation is complete.
- */
-const mergeWordsLearned = async (importedWords: WordsLearned[]) => {
-  const importedIds = importedWords.map(word => word.wordId);
-  const existingWords = await db.wordsLearned.bulkGet(importedIds);
-  const wordsForWriting: WordsLearned[] = [];
-
-  for (let i = 0; i < importedWords.length; i++) {
-    const importedWord: WordsLearned = importedWords[i];
-    const existingWord = existingWords[i];
-
-    if (!existingWord || importedWord.reviewedAt > existingWord.reviewedAt) {
-      wordsForWriting.push(importedWord);
-    }
-  }
-
-  await db.wordsLearned.bulkPut(wordsForWriting);
-};
-
 async function processImportV2(jsonString: string) {
   const importedData = parseImportedData(jsonString);
 
@@ -156,14 +152,23 @@ async function processImportV2(jsonString: string) {
     throw new Error('Invalid "completed sets" data');
   }
 
+  if (!importedData.practices.every(isValidPracticeRecord)) {
+    throw new Error('Invalid "practices" data');
+  }
+
   if (!importedData.wordsLearned.every(isValidWordLearned)) {
     throw new Error('Invalid "wordsLearned" data');
   }
 
   const setsMergePromise = mergeCompletedSets(importedData.completedSets);
+  const practicesMergePromise = mergePractices(importedData.practices);
   const wordsMergePromise = mergeWordsLearned(importedData.wordsLearned);
   recordUserId(importedData.userId);
-  await Promise.all([setsMergePromise, wordsMergePromise]);
+  await Promise.all([
+    setsMergePromise,
+    practicesMergePromise,
+    wordsMergePromise
+  ]);
 }
 
 export default processImportV2;

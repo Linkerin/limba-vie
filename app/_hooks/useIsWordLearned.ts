@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import db from '@/app/_lib/db';
+import { getCompletedSet } from '@/app/_services/dexie/queries/completedSets';
+import { getLearnedWord } from '@/app/_services/dexie/queries/learnedWords';
 import type { Tables } from '@/app/_lib/supabase.types';
 
 interface UseISWordLearnedParams {
@@ -14,7 +15,7 @@ function useIsWordLearned({ setId, wordId }: UseISWordLearnedParams) {
   useEffect(() => {
     const checkIsLearned = async () => {
       if (wordId) {
-        const word = await db.wordsLearned.get(wordId);
+        const word = await getLearnedWord(wordId);
 
         if (word) {
           setIsLearned(true);
@@ -23,7 +24,7 @@ function useIsWordLearned({ setId, wordId }: UseISWordLearnedParams) {
       }
 
       if (setId) {
-        const set = await db.completedSets.get(setId);
+        const set = await getCompletedSet(setId);
 
         // condition for the old completed sets logic when words were not recorded
         if (set && set.wordsNum === -1) {

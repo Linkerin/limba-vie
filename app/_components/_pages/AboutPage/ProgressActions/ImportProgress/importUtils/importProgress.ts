@@ -1,34 +1,7 @@
-import db, { type CompletedSet } from '@/app/_lib/db';
 import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
-import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 import processImportV1 from './utilsV1';
 import processImportV2 from './utilsV2';
-
-/**
- * Merges the provided completed sets with the existing sets in the database.
- *
- * This function compares the provided `importedSets` with the existing sets in the
- * database, and updates the database with any new or more recent completed sets.
- *
- * @param importedSets - An array of `CompletedSet` objects representing the sets to be imported.
- * @returns A Promise that resolves when the merge operation is complete.
- */
-export const mergeCompletedSets = async (importedSets: CompletedSet[]) => {
-  const importedIds = importedSets.map(set => set.setId);
-  const existingSets = await db.completedSets.bulkGet(importedIds);
-  const setsForWriting: CompletedSet[] = [];
-
-  for (let i = 0; i < importedSets.length; i++) {
-    const importedSet: CompletedSet = importedSets[i];
-    const existingSet = existingSets[i];
-
-    if (!existingSet || importedSet.completedAt > existingSet.completedAt) {
-      setsForWriting.push(importedSet);
-    }
-  }
-
-  await db.completedSets.bulkPut(setsForWriting);
-};
+import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 
 export const recordUserId = (userId: string | null) => {
   if (!userId) return;

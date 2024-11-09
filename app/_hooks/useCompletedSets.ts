@@ -1,11 +1,9 @@
 'use client';
 
-import { useLiveQuery } from 'dexie-react-hooks';
-
-import db from '../_lib/db';
+import { useLiveCompletedSetsOrderedBySetId } from '@/app/_services/dexie/queries/completedSets';
 
 function useCompletedSets() {
-  const sets = useLiveQuery(() => db.completedSets.orderBy('setId').toArray());
+  const sets = useLiveCompletedSetsOrderedBySetId();
 
   return sets ? sets : null;
 }

@@ -1,5 +1,5 @@
 import Dexie, { type EntityTable } from 'dexie';
-import type { Tables } from './supabase.types';
+import type { Tables } from '../../_lib/supabase.types';
 
 export interface CompletedSet {
   setId: Tables<'sets_view'>['id'];
