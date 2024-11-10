@@ -1,4 +1,4 @@
-import { getUnits } from '../_services/dbFetchers';
+import { getUnits } from '../_services/supabase/dbFetchers';
 import HomePage from '../_components/_pages/HomePage/HomePage';
 async function Home() {
   const units = await getUnits();

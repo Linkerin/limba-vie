@@ -11,7 +11,7 @@ import type { ModalState } from '../_ui/Modal/Modal';
 import FormSubmitBtn from '../_ui/FormSubmitBtn/FormSubmitBtn';
 import { recordUserReport } from '@/app/_services/actions';
 import SuccessMessage from './SuccessMessage/SuccessMessage';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 
 import {
   btnStyles,
@@ -86,7 +86,7 @@ function ReportModal({ articleId, wordId, wordCheck }: ReportModalProps) {
                   type="radio"
                   id="incorrect_ro"
                   name="type"
-                  value="incorrect_ro"
+                  defaultValue="incorrect_ro"
                 />
                 Incorrect Romanian content
               </label>
@@ -97,7 +97,7 @@ function ReportModal({ articleId, wordId, wordCheck }: ReportModalProps) {
                   type="radio"
                   id="incorrect_en"
                   name="type"
-                  value="incorrect_en"
+                  defaultValue="incorrect_en"
                 />
                 Incorrect English content
               </label>
@@ -108,7 +108,7 @@ function ReportModal({ articleId, wordId, wordCheck }: ReportModalProps) {
                   type="radio"
                   id="offensive"
                   name="type"
-                  value="offensive"
+                  defaultValue="offensive"
                 />
                 Offensive or inappropriate content
               </label>
@@ -119,7 +119,7 @@ function ReportModal({ articleId, wordId, wordCheck }: ReportModalProps) {
                   type="radio"
                   id="image_audio"
                   name="type"
-                  value="image_audio"
+                  defaultValue="image_audio"
                 />
                 Incorrect audio or image
               </label>
@@ -131,7 +131,7 @@ function ReportModal({ articleId, wordId, wordCheck }: ReportModalProps) {
                     type="radio"
                     id="answer"
                     name="type"
-                    value="answer"
+                    defaultValue="answer"
                   />
                   My answer is correct
                 </label>
@@ -143,7 +143,7 @@ function ReportModal({ articleId, wordId, wordCheck }: ReportModalProps) {
                   type="radio"
                   id="other"
                   name="type"
-                  value="other"
+                  defaultValue="other"
                 />
                 Other issues
               </label>
@@ -171,7 +171,7 @@ function ReportModal({ articleId, wordId, wordCheck }: ReportModalProps) {
                 type="text"
                 id="word_id"
                 name="word_id"
-                value={wordId}
+                defaultValue={wordId}
               />
             )}
             {articleId && (
@@ -180,7 +180,7 @@ function ReportModal({ articleId, wordId, wordCheck }: ReportModalProps) {
                 type="text"
                 id="grammar_article"
                 name="grammar_article"
-                value={articleId}
+                defaultValue={articleId}
               />
             )}
             <FormSubmitBtn />

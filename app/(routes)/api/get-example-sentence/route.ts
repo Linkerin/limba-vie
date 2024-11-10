@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server';
 import { captureException } from '@sentry/nextjs';
 
 import { createClient } from '@supabase/supabase-js';
-import type { Database } from '@/app/_lib/supabase.types';
+import type { Database } from '@/app/_services/supabase/supabase.types';
 
 export const runtime = 'edge';
 export const preferredRegion = ['iad1', 'hnd1'];
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       response_mime_type: 'application/json'
     };
     const prompt = `Generate a simple sentence in Romanian language for beginner language learners
-                  with the word \`${record.ro}\` and it's translation into English.
+                  with the Romanian word \`${record.ro}\` and it's translation into English.
                   JSON response fields: \`ro\` and \`en\``;
 
     const body = {

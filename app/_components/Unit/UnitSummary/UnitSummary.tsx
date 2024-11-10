@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { card } from '@/styled-system/recipes';
 import { cx } from '@/styled-system/css';
 
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 import { IsPracticeNecessaryContext } from '@/app/_contexts/IsPracticeNecessaryProvider';
 import type { SetsInfo } from '@/app/_services/dexie/queries/completedSets';
 import useCompletedSetsNum from '@/app/_hooks/useCompletedSetsNum';

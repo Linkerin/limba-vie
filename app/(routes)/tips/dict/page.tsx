@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import DictPage from '@/app/_components/_pages/TipsPage/DictPage/DictPage';
-import { getDict } from '@/app/_services/dbFetchers';
+import { getDict } from '@/app/_services/supabase/dbFetchers';
 
 export const metadata: Metadata = {
   title: 'Dictionary',

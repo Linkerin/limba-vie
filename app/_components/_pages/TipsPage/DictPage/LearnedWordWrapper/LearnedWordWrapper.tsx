@@ -2,8 +2,8 @@
 
 import { css } from '@/styled-system/css';
 
-import type { Tables } from '@/app/_lib/supabase.types';
-import useIsWordLearned from '../../../../../_hooks/useIsWordLearned';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
+import useIsWordLearned from './useIsWordLearned';
 
 const styles = css({
   color: 'success.darker'

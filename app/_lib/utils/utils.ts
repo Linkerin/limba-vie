@@ -3,9 +3,9 @@ import {
   CLOUDINARY_IMG_URL,
   REPORT_TYPES,
   SUPABASE_STORAGE_URL
-} from '../constants';
-import type { Gender } from '../types';
-import type { Tables } from '../supabase.types';
+} from '@/app/_lib/constants';
+import type { Gender } from '@/app/_lib/types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 
 /**
  * Shuffles the elements of an array in a random order.
@@ -249,6 +249,11 @@ export function isUserReportRecord(
     typeof record.user_id !== 'string' &&
     record.user_id !== null
   ) {
+    return false;
+  }
+
+  // check if user_id is a valid UUID
+  if (typeof record.user_id === 'string' && record.user_id.length !== 36) {
     return false;
   }
 

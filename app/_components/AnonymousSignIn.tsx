@@ -32,7 +32,8 @@ function AnonymousSignIn() {
     (async () => {
       try {
         const id = ssrLocalStorage.getItem(key);
-        const supabase = (await import('@/app/_lib/supabase')).default;
+        const supabase = (await import('@/app/_services/supabase/supabase'))
+          .default;
 
         if (id) {
           const { error } = await supabase.auth.refreshSession();

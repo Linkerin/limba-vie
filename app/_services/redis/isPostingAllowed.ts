@@ -13,8 +13,13 @@ import ssrLocalStorage from '../SsrLocalStorage';
  * @returns An object with `allowed` (boolean) and `message` (string) properties
  * indicating whether posting is allowed and a message to display to the user.
  */
-async function isPostingAllowed() {
-  const userId = ssrLocalStorage.getItem(LOCAL_STORAGE_KEYS.userId) ?? 'anon';
+async function isPostingAllowed(userId: string) {
+  if (!userId) {
+    return {
+      allowed: false,
+      message: 'Invalid user id'
+    };
+  }
 
   const ratelimit = new Ratelimit({
     redis,

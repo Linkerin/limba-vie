@@ -2,9 +2,11 @@
 
 import { headers, cookies } from 'next/headers';
 
-import { isUserReportRecord } from '../_lib/utils/utils';
-import supabase from '../_lib/supabase';
+import { insertUserReport } from './supabase/dbFetchers';
+import { isUserReportRecord } from '@/app/_lib/utils/utils';
 import isPostingAllowed from './redis/isPostingAllowed';
+import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
+import ssrLocalStorage from './SsrLocalStorage';
 
 export async function getUserInfoFromReq() {
   const cookiesStore = cookies();
@@ -37,17 +39,21 @@ export async function recordUserReport(
   if (!recordObj.type) {
     return { status: 'error', message: 'Select a problem type' };
   }
+  const userId = ssrLocalStorage.getItem(LOCAL_STORAGE_KEYS.userId) ?? 'anon';
+  if (userId !== 'anon' && userId.length > 0) {
+    recordObj.user_id = userId;
+  }
 
   if (!isUserReportRecord(recordObj)) {
     return { status: 'error', message: 'Invalid report type' };
   }
 
-  const { allowed, message } = await isPostingAllowed();
+  const { allowed, message } = await isPostingAllowed(userId);
   if (!allowed) {
     return { status: 'error', message };
   }
 
-  const { error } = await supabase.from('user_reports').insert(recordObj);
+  const { error } = await insertUserReport(recordObj);
   if (error) {
     return {
       status: 'error',

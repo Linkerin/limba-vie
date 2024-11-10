@@ -1,7 +1,7 @@
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
+import { useLiveQuery } from 'dexie-react-hooks';
 
 import db, { type WordsLearned } from '../db';
-import { useLiveQuery } from 'dexie-react-hooks';
 import { DAY_IN_MS } from '@/app/_lib/constants';
 
 export async function getLearnedWord(wordId: Tables<'words'>['id']) {

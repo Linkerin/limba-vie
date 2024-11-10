@@ -17,7 +17,7 @@ import { capitalizeWord, isSetCompleted } from '@/app/_lib/utils/utils';
 import { IsPracticeNecessaryContext } from '@/app/_contexts/IsPracticeNecessaryProvider';
 import type { PopoverProps } from '../../_ui/Popover/Popover';
 import RingSpinner from '../../_ui/RingSpinner/RingSpinner';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 
 import {
   completedIconStyles,

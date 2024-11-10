@@ -8,7 +8,7 @@ import Sentence from '../../Word/Sentence/Sentence';
 import Word from '../../Word/Word/Word';
 import WordImg from '../../Word/WordImg/WordImg';
 import WordPlural from '../../Word/WordPlural/WordPlural';
-import type { WordType } from '@/app/_services/dbFetchers';
+import type { WordType } from '@/app/_services/supabase/dbFetchers';
 
 const sectionStyles = css({
   display: 'flex',

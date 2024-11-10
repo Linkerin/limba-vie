@@ -7,7 +7,7 @@ import {
   recordLearnedWord,
   updateLearnedWord
 } from '@/app/_services/dexie/queries/learnedWords';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 import type { WordsLearned } from '@/app/_services/dexie/db';
 
 interface UseWordHandlersProps {

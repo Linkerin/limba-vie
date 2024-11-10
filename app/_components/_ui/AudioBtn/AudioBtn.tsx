@@ -6,7 +6,7 @@ import { IconVolume } from '@tabler/icons-react';
 import type { SystemStyleObject } from '@/styled-system/types';
 
 import { getAudioUrl } from '@/app/_lib/utils/utils';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 import {
   useCurrentPlaying,
   useIsSoundAllowed

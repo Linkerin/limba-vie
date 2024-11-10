@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { css } from '@/styled-system/css';
 
 import { capitalizeWord, getImageUrl } from '@/app/_lib/utils/utils';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 
 const containerStyles = css({
   display: 'flex',

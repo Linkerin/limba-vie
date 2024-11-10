@@ -1,7 +1,7 @@
 import { css } from '@/styled-system/css';
 
 import UnitItem from '../../Unit/UnitItem/UnitItem';
-import type { Units } from '@/app/_services/dbFetchers';
+import type { Units } from '@/app/_services/supabase/dbFetchers';
 
 const styles = css({
   display: 'flex',

@@ -4,9 +4,9 @@ import { useCallback } from 'react';
 import { css } from '@/styled-system/css';
 
 import ActionBtn from '../../_ui/ActionBtn/ActionBtn';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
-import useWordHandlers from '../../../_hooks/useWordHandlers';
+import useWordHandlers from './useWordHandlers';
 
 const styles = css({
   backgroundColor: 'background',

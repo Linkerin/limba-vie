@@ -1,6 +1,6 @@
 import { css } from '@/styled-system/css';
 
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 
 const styles = css({
   animation: 'fadeIn',

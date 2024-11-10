@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 
 import { capitalizeWord } from '@/app/_lib/utils/utils';
-import { getWord } from '@/app/_services/dbFetchers';
+import { getEnWords, getWordByEn } from '@/app/_services/supabase/dbFetchers';
 import WordPage from '@/app/_components/_pages/WordPage/WordPage';
-import supabase from '@/app/_lib/supabase';
 
 interface WordPageParams {
   params: { word: string };
@@ -14,14 +13,8 @@ export async function generateMetadata({
 }: WordPageParams): Promise<Metadata> {
   const wordEn = decodeURIComponent(params.word);
 
-  const { data, error } = await supabase
-    .from('words')
-    .select('ro, gender_ro, img_name, plural')
-    .eq('en', wordEn);
-  if (error) throw error;
-
-  const wordData = data.at(0);
-  const wordRo = wordData?.ro ?? '';
+  const word = await getWordByEn(wordEn);
+  const wordRo = word?.ro ?? '';
 
   const description = `Learn about the Romanian word '${wordRo}' ('${wordEn}'). Find its definition, pronunciation, and usage examples to enhance your vocabulary with Limba Vie.`;
 
@@ -32,9 +25,9 @@ export async function generateMetadata({
   const imgParams = new URLSearchParams([
     ['en', encodeURIComponent(wordEn)],
     ['ro', encodeURIComponent(wordRo)],
-    ['img', wordData?.img_name ?? ''],
-    ['gender', wordData?.gender_ro ?? ''],
-    ['plural', `${wordData?.plural}`]
+    ['img', word?.img_name ?? ''],
+    ['gender', word?.gender_ro ?? ''],
+    ['plural', `${word?.plural}`]
   ]);
   url.search = imgParams.toString();
 
@@ -57,7 +50,7 @@ export async function generateMetadata({
 
 async function Word({ params }: WordPageParams) {
   const wordParam = decodeURIComponent(params.word);
-  const word = await getWord(wordParam);
+  const word = await getWordByEn(wordParam);
 
   return <WordPage word={word} />;
 }
@@ -65,8 +58,7 @@ async function Word({ params }: WordPageParams) {
 export default Word;
 
 export async function generateStaticParams() {
-  const { data, error } = await supabase.from('words').select('en');
-  if (error) throw error;
+  const data = await getEnWords();
 
   return data.map(word => ({
     word: word.en

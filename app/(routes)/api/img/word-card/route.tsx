@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server';
 
 import { GENDER_COLORS } from '@/app/_lib/constants';
 import { getArticle, getImageUrl } from '@/app/_lib/utils/utils';
-import supabase from '@/app/_lib/supabase';
+import { getWordByEn } from '@/app/_services/supabase/dbFetchers';
 
 export const runtime = 'edge';
 
@@ -24,13 +24,7 @@ export async function GET(request: NextRequest) {
     return res;
   }
 
-  const { data, error } = await supabase
-    .from('words')
-    .select('en, ro, gender_ro, plural, img_name')
-    .eq('en', decodeURIComponent(word));
-  if (error) throw error;
-
-  const wordObj = data[0];
+  const wordObj = await getWordByEn(decodeURIComponent(word));
 
   if (!wordObj) {
     const res = new Response(null, { status: 404 });

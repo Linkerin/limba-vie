@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import { getAudioUrl } from '@/app/_lib/utils/utils';
 import type { ResultStatus } from '../../CheckInput/useFormHandlers';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 import { useIsSoundAllowed } from '@/app/_hooks/useSoundMode';
 
 interface CheckSoundProps {

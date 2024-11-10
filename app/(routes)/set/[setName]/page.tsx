@@ -2,7 +2,7 @@ import { cache } from 'react';
 import type { Metadata } from 'next';
 
 import { capitalizeWord } from '@/app/_lib/utils/utils';
-import { getSetInfo, getSetWords } from '@/app/_services/dbFetchers';
+import { getSetInfo, getSetWords } from '@/app/_services/supabase/dbFetchers';
 import SetPage from '@/app/_components/_pages/SetPage/SetPage';
 
 interface SetPageParams {

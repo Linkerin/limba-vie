@@ -1,16 +1,15 @@
 import type { MetadataRoute } from 'next';
 
-import { ARTICLES } from './_lib/constants';
-import supabase from './_lib/supabase';
+import { ARTICLES } from '@/app/_lib/constants';
+import { getEnWords } from '@/app/_services/supabase/dbFetchers';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL ?? 'https://limba.vercel.app';
 
-  const { data, error } = await supabase.from('words').select('en');
-  if (error) throw error;
+  const enWords = await getEnWords();
 
-  const words: MetadataRoute.Sitemap = data.map(word => ({
+  const words: MetadataRoute.Sitemap = enWords.map(word => ({
     url: `${baseUrl}/words/${encodeURIComponent(word.en)}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',

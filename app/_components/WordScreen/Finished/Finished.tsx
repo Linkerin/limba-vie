@@ -5,10 +5,10 @@ import Image from 'next/image';
 import ButtonLink from '../../_ui/Button/ButtonLink';
 import { capitalizeWord } from '@/app/_lib/utils/utils';
 import FinishedSound from './FinishedSound/FinishedSound';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 import taurImg from '@/public/taur.svg';
-import type { SetInfo } from '@/app/_services/dbFetchers';
-import useSaveSetCompletion from '@/app/_hooks/useSaveSetCompletion';
+import type { SetInfo } from '@/app/_services/supabase/dbFetchers';
+import useSaveSetCompletion from '@/app/_components/WordScreen/Finished/useSaveSetCompletion';
 
 import {
   btnStyles,

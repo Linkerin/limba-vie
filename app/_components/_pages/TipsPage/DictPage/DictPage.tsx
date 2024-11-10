@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { cx } from '@/styled-system/css';
 
-import type { Dict } from '@/app/_services/dbFetchers';
+import type { Dict } from '@/app/_services/supabase/dbFetchers';
 import LearnedWordWrapper from './LearnedWordWrapper/LearnedWordWrapper';
 import { linkOverlay } from '@/styled-system/patterns';
 

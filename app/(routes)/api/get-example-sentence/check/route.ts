@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server';
 import { captureException } from '@sentry/nextjs';
 
-import supabase from '@/app/_lib/supabase';
+import { getWordsWoExamples } from '@/app/_services/supabase/dbFetchers';
 
 export const runtime = 'edge';
 export const preferredRegion = ['iad1', 'hnd1'];
@@ -14,13 +14,9 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const { data, error } = await supabase
-      .from('words')
-      .select('*')
-      .is('example_ro', null);
-    if (error) throw error;
+    const words = await getWordsWoExamples();
 
-    if (data.length === 0) {
+    if (words.length === 0) {
       return new Response(
         JSON.stringify({
           message: 'All the words have example sentences',
@@ -30,7 +26,9 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    for (const record of data) {
+    console.log(words);
+
+    for (const record of words) {
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append(
@@ -55,7 +53,7 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    const ids = data.map(record => record.id);
+    const ids = words.map(record => record.id);
 
     return Response.json({
       message: `The following IDs were updated: ${ids.join(', ')}`,

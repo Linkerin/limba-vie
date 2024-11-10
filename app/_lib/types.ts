@@ -4,7 +4,7 @@ import type {
   WordsForRepeat,
   WordsLearned
 } from '@/app/_services/dexie/db';
-import type { Tables } from './supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 
 export type Gender = Tables<'words'>['gender_ro'];
 

@@ -6,7 +6,7 @@ import { IconView360Arrow } from '@tabler/icons-react';
 import { cx } from '@/styled-system/css';
 
 import { getImageUrl } from '@/app/_lib/utils/utils';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 
 import {
   backStyles,

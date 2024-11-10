@@ -14,7 +14,7 @@ import type {
   RepeatWords,
   SetInfo,
   SetWords
-} from '@/app/_services/dbFetchers';
+} from '@/app/_services/supabase/dbFetchers';
 
 import {
   hintContainerStyles,

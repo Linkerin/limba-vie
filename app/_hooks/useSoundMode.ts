@@ -6,7 +6,7 @@ import {
   CurrPlayingContext,
   SoundContext,
   SoundToggleContext
-} from '../_contexts/SoundProvider';
+} from '@/app/_contexts/SoundProvider';
 
 export function useCurrentPlaying() {
   const current = useContext(CurrPlayingContext);

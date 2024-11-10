@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getCompletedSet } from '@/app/_services/dexie/queries/completedSets';
 import { getLearnedWord } from '@/app/_services/dexie/queries/learnedWords';
-import type { Tables } from '@/app/_lib/supabase.types';
+import type { Tables } from '@/app/_services/supabase/supabase.types';
 
 interface UseISWordLearnedParams {
   setId?: Tables<'words'>['set_id'];
