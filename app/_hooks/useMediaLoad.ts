@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 
 import { getAudioUrl, getImageUrl } from '../_lib/utils/utils';
-import type { SetPageProps } from '../_components/_pages/SetPage/SetPage';
+import type { SetPageProps } from '../_components/_views/set/SetView';
 
 function useMediaLoad(current: number, words: SetPageProps['words']) {
   useEffect(() => {

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import DictPage from '@/app/_components/_pages/TipsPage/DictPage/DictPage';
+import DictView from '@/app/_components/_views/tips/dict/DictView';
 import { getDict } from '@/app/_services/supabase/dbFetchers';
 
 export const metadata: Metadata = {
@@ -9,12 +9,12 @@ export const metadata: Metadata = {
     'Access a comprehensive dictionary of Romanian words available in the Limba Vie app. Explore definitions, pronunciations, and examples to expand your vocabulary.'
 };
 
-async function Dict() {
+async function DictPage() {
   const words = await getDict();
 
-  return <DictPage words={words} />;
+  return <DictView words={words} />;
 }
 
 export const revalidate = Number(process.env.REVALIDATE_PERIOD_SEC);
 
-export default Dict;
+export default DictPage;

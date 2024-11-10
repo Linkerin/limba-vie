@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import PrivacyPolicyPage from '@/app/_components/_pages/AboutPage/Legal/PrivacyPolicyPage/PrivacyPolicyPage';
+import PrivacyPolicyView from '@/app/_components/_views/about/legal/privacy-policy/PrivacyPolicyView';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   keywords: 'legal, information, privacy, policy'
 };
 
-function PrivacyPolicy() {
-  return <PrivacyPolicyPage />;
+function PrivacyPolicyPage() {
+  return <PrivacyPolicyView />;
 }
 
-export default PrivacyPolicy;
+export default PrivacyPolicyPage;

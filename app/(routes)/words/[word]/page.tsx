@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { capitalizeWord } from '@/app/_lib/utils/utils';
 import { getEnWords, getWordByEn } from '@/app/_services/supabase/dbFetchers';
-import WordPage from '@/app/_components/_pages/WordPage/WordPage';
+import WordView from '@/app/_components/_views/words/WordView';
 
 interface WordPageParams {
   params: { word: string };
@@ -48,14 +48,14 @@ export async function generateMetadata({
   };
 }
 
-async function Word({ params }: WordPageParams) {
+async function WordPage({ params }: WordPageParams) {
   const wordParam = decodeURIComponent(params.word);
   const word = await getWordByEn(wordParam);
 
-  return <WordPage word={word} />;
+  return <WordView word={word} />;
 }
 
-export default Word;
+export default WordPage;
 
 export async function generateStaticParams() {
   const data = await getEnWords();

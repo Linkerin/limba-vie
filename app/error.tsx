@@ -3,8 +3,8 @@
 import { useEffect } from 'react';
 import * as Sentry from '@sentry/nextjs';
 
-import ErrorPage from './_components/_pages/ErrorPage/ErrorPage';
-import ErrorPageFooter from './_components/_pages/ErrorPage/ErrorPageFooter/ErrorPageFooter';
+import ErrorView from './_components/_views/ErrorView/ErrorView';
+import ErrorViewFooter from './_components/_views/ErrorView/ErrorViewFooter';
 
 export default function Error({
   error,
@@ -18,11 +18,11 @@ export default function Error({
   }, [error]);
 
   return (
-    <ErrorPage
+    <ErrorView
       heading="Wooow, we've caught an error!"
       text="It will be investigated 🕵"
     >
-      <ErrorPageFooter reset={reset} />
-    </ErrorPage>
+      <ErrorViewFooter reset={reset} />
+    </ErrorView>
   );
 }

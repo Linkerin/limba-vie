@@ -32,7 +32,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: 'Repeat set',
         short_name: 'Repeat',
         description: 'Open repeat set',
-        url: '/set/lvrepeat/pwa-redirect',
+        url: '/set/lvpractice/pwa-redirect',
         icons: [{ src: '/icons/repeat.png', sizes: '192x192' }]
       },
       {

@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 import { capitalizeWord } from '@/app/_lib/utils/utils';
 import { getSetInfo, getSetWords } from '@/app/_services/supabase/dbFetchers';
-import PracticeSetPage from '@/app/_components/_pages/SetPage/PracticeSetPage/PracticeSetPage';
+import PracticeSetView from '@/app/_components/_views/set/PracticeSetView/PracticeSetView';
 
 interface SetPageParams {
   params: { setName: string };
@@ -29,7 +29,7 @@ async function Practice({ params }: SetPageParams) {
   const setName = decodeURIComponent(params.setName);
   const { words, setInfo } = await getData(setName);
 
-  return <PracticeSetPage words={words} setInfo={setInfo} />;
+  return <PracticeSetView words={words} setInfo={setInfo} />;
 }
 
 export default Practice;

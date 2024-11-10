@@ -1,7 +1,7 @@
-import NotFoundPage from './_components/_pages/NotFoundPage/NotFoundPage';
+import NotFoundView from './_components/_views/not-found/NotFoundView';
 
-function NotFound() {
-  return <NotFoundPage />;
+function NotFoundPage() {
+  return <NotFoundView />;
 }
 
-export default NotFound;
+export default NotFoundPage;

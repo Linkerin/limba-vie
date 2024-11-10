@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
-import OfflinePage from '@/app/_components/_pages/OfflinePage/OfflinePage';
+import OfflineView from '@/app/_components/_views/offline/OfflineView';
 
 export const metadata: Metadata = {
   title: 'Offline'
 };
 
-function Offline() {
-  return <OfflinePage />;
+function OfflinePage() {
+  return <OfflineView />;
 }
 
-export default Offline;
+export default OfflinePage;

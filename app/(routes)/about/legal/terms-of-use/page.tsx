@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import TermsOfUsePage from '@/app/_components/_pages/AboutPage/Legal/TermsOfUse/TermsOfUsePage';
+import TermsOfUseView from '@/app/_components/_views/about/legal/terms-of-use/TermsOfUseView';
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   keywords: 'legal, information, terms, service, use'
 };
 
-function TermsOfUse() {
-  return <TermsOfUsePage />;
+function TermsOfUsePage() {
+  return <TermsOfUseView />;
 }
 
-export default TermsOfUse;
+export default TermsOfUsePage;

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import TipsPage from '@/app/_components/_pages/TipsPage/TipsPage';
+import GrammarView from '@/app/_components/_views/tips/grammar/GrammarView/GrammarView';
 
 export const metadata: Metadata = {
   title: 'Grammar',
@@ -8,8 +8,8 @@ export const metadata: Metadata = {
     'Explore detailed explanations of essential Romanian grammar concepts. Master the rules of articles, verb conjugations, noun cases, and more to enhance your Romanian language skills with Limba Vie.'
 };
 
-async function Tips() {
-  return <TipsPage />;
+async function GrammarPage() {
+  return <GrammarView />;
 }
 
-export default Tips;
+export default GrammarPage;

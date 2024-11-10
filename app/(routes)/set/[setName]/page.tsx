@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 import { capitalizeWord } from '@/app/_lib/utils/utils';
 import { getSetInfo, getSetWords } from '@/app/_services/supabase/dbFetchers';
-import SetPage from '@/app/_components/_pages/SetPage/SetPage';
+import SetView from '@/app/_components/_views/set/SetView';
 
 interface SetPageParams {
   params: { setName: string };
@@ -25,11 +25,11 @@ const getData = cache(async (setName: string) => {
   return { words, setInfo };
 });
 
-async function Set({ params }: SetPageParams) {
+async function SetPage({ params }: SetPageParams) {
   const setName = decodeURIComponent(params.setName);
   const { words, setInfo } = await getData(setName);
 
-  return <SetPage words={words} setInfo={setInfo} />;
+  return <SetView words={words} setInfo={setInfo} />;
 }
 
-export default Set;
+export default SetPage;

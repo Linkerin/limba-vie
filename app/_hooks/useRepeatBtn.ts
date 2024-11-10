@@ -73,7 +73,7 @@ function useRepeatBtn() {
   const params = new URLSearchParams(
     [...repeatParamArr, ...setParamArr].slice(0, REPEAT_WORDS_CTY)
   );
-  const url = new URL('/set/lvrepeat', process.env.NEXT_PUBLIC_BASE_URL);
+  const url = new URL('/set/lvpractice', process.env.NEXT_PUBLIC_BASE_URL);
   url.search = params.toString();
 
   return { show, url };
