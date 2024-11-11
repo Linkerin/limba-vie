@@ -1,144 +1,116 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
-import {
-  getArticle,
-  normalizeWord,
-  removePunctuationAtEdges
-} from '@/app/_lib/utils/utils';
+import type { AnswerObj } from './getAnswerObj';
 import {
   getLearnedWord,
   recordLearnedWord,
   updateLearnedWord
 } from '@/app/_services/dexie/queries/learnedWords';
+import {
+  normalizeWord,
+  removePunctuationAtEdges
+} from '@/app/_lib/utils/utils';
 import type { Tables } from '@/app/_services/supabase/supabase.types';
+import {
+  useIncrementMistakesCorrected,
+  useIncrementMistakesMade
+} from '@/app/_hooks/useSetProvider';
 import type { WordsLearned } from '@/app/_services/dexie/db';
 
-interface UseWordReviewHandlersProps {
-  wordId: Tables<'words'>['id'];
+type WordId = Tables<'words'>['id'];
+
+async function correctHandler(wordId: WordId) {
+  const word = await getLearnedWord(wordId);
+  const result = { isMistakeCorrected: false };
+
+  if (!word) {
+    await recordLearnedWord({ wordId, level: 1 });
+
+    return result;
+  }
+
+  let updateData: Partial<WordsLearned> = {
+    mistakenLastTime: false,
+    reviewedAt: new Date()
+  };
+
+  if (word.level > 4 || word.level < 0) {
+    throw new Error('Handling correct answer: word level is not valid');
+  }
+
+  switch (word.level) {
+    case 3:
+      if (word.correctAtCurrLevel < 1) {
+        updateData.correctAtCurrLevel = 1;
+      } else {
+        updateData.level = 4;
+        updateData.correctAtCurrLevel = 0;
+      }
+      break;
+
+    case 4:
+      updateData.correctAtCurrLevel = word.correctAtCurrLevel + 1;
+      break;
+
+    default:
+      updateData.level = word.level + 1;
+      updateData.correctAtCurrLevel = 0;
+      break;
+  }
+
+  await updateLearnedWord(wordId, updateData);
+
+  if (word.mistakenLastTime) {
+    result.isMistakeCorrected = true;
+  }
+
+  return result;
 }
 
-function useWordReviewHandlers({ wordId }: UseWordReviewHandlersProps) {
-  const correctHandler = useCallback(async () => {
-    const word = await getLearnedWord(wordId);
+async function incorrectHandler(wordId: WordId) {
+  const word = await getLearnedWord(wordId);
 
-    if (!word) {
-      await recordLearnedWord({ wordId, level: 1 });
-      return;
-    }
-
-    let updateData: Partial<WordsLearned> = {
-      mistakenLastTime: false,
-      reviewedAt: new Date()
-    };
-
-    if (word.level > 4 || word.level < 0) {
-      throw new Error('Handling correct answer: word level is not valid');
-    }
-
-    switch (word.level) {
-      case 3:
-        if (word.correctAtCurrLevel < 1) {
-          updateData.correctAtCurrLevel = 1;
-        } else {
-          updateData.level = 4;
-          updateData.correctAtCurrLevel = 0;
-        }
-        break;
-
-      case 4:
-        updateData.correctAtCurrLevel = word.correctAtCurrLevel + 1;
-        break;
-
-      default:
-        updateData.level = word.level + 1;
-        updateData.correctAtCurrLevel = 0;
-        break;
-    }
-
-    await updateLearnedWord(wordId, updateData);
-
+  if (!word) {
+    await recordLearnedWord({ wordId, level: 1, mistaken: true });
     return;
-  }, [wordId]);
+  }
 
-  const incorrectHandler = useCallback(async () => {
-    const word = await getLearnedWord(wordId);
+  let updateData: Partial<WordsLearned> = {
+    correctAtCurrLevel: 0,
+    mistakenLastTime: true,
+    reviewedAt: new Date()
+  };
 
-    if (!word) {
-      await recordLearnedWord({ wordId, level: 1, mistaken: true });
-      return;
-    }
+  if (word.level > 4 || word.level < 0) {
+    throw new Error('Handling incorrect answer: word level is not valid');
+  }
 
-    let updateData: Partial<WordsLearned> = {
-      correctAtCurrLevel: 0,
-      mistakenLastTime: true,
-      reviewedAt: new Date()
-    };
+  switch (word.level) {
+    case 0:
+      break;
 
-    if (word.level > 4 || word.level < 0) {
-      throw new Error('Handling incorrect answer: word level is not valid');
-    }
+    case 3:
+      updateData.level = 1;
+      break;
 
-    switch (word.level) {
-      case 0:
-        break;
+    default:
+      updateData.level = word.level - 1;
+      break;
+  }
 
-      case 3:
-        updateData.level = 1;
-        break;
+  await updateLearnedWord(wordId, updateData);
 
-      default:
-        updateData.level = word.level - 1;
-        break;
-    }
-
-    await updateLearnedWord(wordId, updateData);
-  }, [wordId]);
-
-  return { correctHandler, incorrectHandler };
+  return;
 }
 
 export type ResultStatus = 'success' | 'error' | null;
 
-interface UseFormHandlersParams {
-  gender: Tables<'words'>['gender_ro'];
-  plural: Tables<'words'>['plural'];
-  wordId: Tables<'words'>['id'];
-  wordRo: Tables<'words'>['ro'];
-}
-
-function useFormHandlers({
-  gender,
-  plural,
-  wordId,
-  wordRo
-}: UseFormHandlersParams) {
+function useFormHandlers(wordId: WordId, answer: AnswerObj) {
   const [input, setInput] = useState('');
   const [resultStatus, setResultStatus] = useState<ResultStatus>(null);
 
-  const { correctHandler, incorrectHandler } = useWordReviewHandlers({
-    wordId
-  });
-
-  const answer = useMemo(() => {
-    const normalizedWord = normalizeWord(wordRo);
-    const article = getArticle(gender, plural);
-    const normalizedRemovedPunctuation =
-      removePunctuationAtEdges(normalizedWord);
-
-    const normalizedWithArticle = article
-      ? `${article} ${normalizedWord}`
-      : null;
-    const originalWithArticle = article ? `${article} ${wordRo}` : wordRo;
-
-    const result = {
-      word: normalizedWord,
-      withArticle: normalizedWithArticle,
-      removedPunctuation: normalizedRemovedPunctuation,
-      original: originalWithArticle
-    };
-
-    return result;
-  }, [wordRo, gender, plural]);
+  const incrementMistakesMade = useIncrementMistakesMade();
+  const incrementMistakesCorrected = useIncrementMistakesCorrected();
 
   const onChangeHandler: React.ChangeEventHandler<HTMLInputElement> =
     useCallback(e => {
@@ -148,7 +120,7 @@ function useFormHandlers({
     }, []);
 
   const onSubmitHandler: React.FormEventHandler<HTMLFormElement> = useCallback(
-    e => {
+    async e => {
       e.preventDefault();
 
       const normalizedInput = normalizeWord(input);
@@ -160,20 +132,24 @@ function useFormHandlers({
         removedPunctuationInput === answer.removedPunctuation
       ) {
         setResultStatus('success');
-        correctHandler();
+        const { isMistakeCorrected } = await correctHandler(wordId);
+        if (isMistakeCorrected) {
+          incrementMistakesCorrected();
+        }
+
         return;
       }
 
       setResultStatus('error');
-      incorrectHandler();
+      await incorrectHandler(wordId);
+      incrementMistakesMade();
 
       return;
     },
-    [answer, input, correctHandler, incorrectHandler]
+    [answer, input, wordId, incrementMistakesCorrected, incrementMistakesMade]
   );
 
   return {
-    originalWord: answer.original,
     input,
     resultStatus,
     onChangeHandler,

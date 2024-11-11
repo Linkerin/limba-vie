@@ -1,20 +1,16 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import AudioBtn from '@/app/_components/_ui/AudioBtn/AudioBtn';
 import CheckInput from '@/app/_components/SetScreen/CheckInput/CheckInput';
 import Finished from '@/app/_components/SetScreen/Finished/Finished';
 import ReportModal from '@/app/_components/ReportModal/ReportModal';
-import { shuffleArr } from '@/app/_lib/utils/utils';
+import type { SetInfo } from '@/app/_services/supabase/dbFetchers';
+import { useCurrWord, useSetState } from '@/app/_hooks/useSetProvider';
 import useMediaLoad from '@/app/_hooks/useMediaLoad';
 import WordCounter from '@/app/_components/SetScreen/WordCounter/WordCounter';
 import WordImg from '@/app/_components/Word/WordImg/WordImg';
-import type {
-  RepeatWords,
-  SetInfo,
-  SetWords
-} from '@/app/_services/supabase/dbFetchers';
 
 import {
   hintContainerStyles,
@@ -24,70 +20,52 @@ import {
 } from './PracticeSetView.styles';
 
 export interface PracticeSetPageProps {
-  words: SetWords | RepeatWords;
   setInfo?: SetInfo;
   setName?: string;
 }
 
-function PracticeSetView({ words, setInfo, setName }: PracticeSetPageProps) {
-  const [currWordIndex, setCurrWordIndex] = useState(0);
+function PracticeSetView({ setInfo, setName }: PracticeSetPageProps) {
+  const { currWordIndex, words } = useSetState();
+  const word = useCurrWord();
 
-  const shuffled = useMemo(() => shuffleArr(words), [words]);
-
-  const nextWord = useCallback(() => {
-    setCurrWordIndex(prevState => prevState + 1);
-  }, []);
-
-  const currWord = useMemo(
-    () => shuffled[currWordIndex],
-    [currWordIndex, shuffled]
+  const isFinished = useMemo(
+    () => currWordIndex >= words.length,
+    [currWordIndex, words.length]
   );
 
-  useMediaLoad(currWordIndex, shuffled);
+  useMediaLoad(currWordIndex, words);
 
   return (
     <>
       <section className={sectionStyles}>
-        {currWordIndex < shuffled.length && shuffled.at(currWordIndex) && (
+        {isFinished ? (
+          <Finished setInfo={setInfo} setName={setName} checkPage={true} />
+        ) : (
           <>
             <div className={reportCounterContainerStyles}>
-              <ReportModal
-                key={currWord.id}
-                wordId={currWord.id}
-                wordCheck={true}
-              />
-              <WordCounter
-                current={currWordIndex + 1}
-                total={shuffled.length}
-              />
+              <ReportModal key={word.id} wordId={word.id} wordCheck={true} />
+              <WordCounter current={currWordIndex + 1} total={words.length} />
             </div>
 
             <div className={wordContainerStyles}>
               <WordImg
-                wordEn={currWord.en}
-                gender={currWord.gender_ro}
-                imgName={currWord.img_name}
+                wordEn={word.en}
+                gender={word.gender_ro}
+                imgName={word.img_name}
               />
-              <div className={hintContainerStyles} key={currWord.id}>
+              <div className={hintContainerStyles} key={word.id}>
                 <AudioBtn
-                  key={currWord.ro}
-                  audioName={currWord.audio_name}
-                  word={currWord.ro}
+                  key={word.id}
+                  audioName={word.audio_name}
+                  word={word.ro}
                   autoplay={false}
                 />
-                <p>{currWord.en}</p>
+                <p>{word.en}</p>
               </div>
             </div>
 
-            <CheckInput
-              key={currWord.id}
-              word={currWord}
-              setCurrWord={nextWord}
-            />
+            <CheckInput key={word.id} />
           </>
-        )}
-        {currWordIndex >= shuffled.length && (
-          <Finished setInfo={setInfo} setName={setName} checkPage={true} />
         )}
       </section>
     </>

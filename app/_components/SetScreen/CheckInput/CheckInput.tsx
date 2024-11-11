@@ -2,9 +2,10 @@
 
 import dynamic from 'next/dynamic';
 
-import Button from '../../_ui/Button/Button';
+import Button from '@/app/_components/_ui/Button/Button';
 import CheckSound from '../CheckInputModal/CheckSound/CheckSound';
 import { getRandomValueFromArr } from '@/app/_lib/utils/utils';
+import { useCurrWord } from '@/app/_hooks/useSetProvider';
 import useFormHandlers from './useFormHandlers';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 
@@ -16,7 +17,8 @@ import {
   labelStyles,
   wrongInputStyles
 } from './CheckInput.styles';
-import type { WordsArr } from '@/app/_lib/types';
+import getAnswer from './getAnswerObj';
+import { useMemo } from 'react';
 
 const CheckInputModal = dynamic(
   () => import('../CheckInputModal/CheckInputModal'),
@@ -28,26 +30,24 @@ const phrases = Object.freeze({
   error: ['Oh no,', 'Whoops,', 'Oh well,', 'Awww,']
 });
 
-interface CheckInputProps {
-  setCurrWord: () => void;
-  word: WordsArr[0];
-}
-
-function CheckInput({ setCurrWord, word }: CheckInputProps) {
+function CheckInput() {
   const isApplePwa = useIsApplePwa();
 
   const {
-    input,
-    originalWord,
-    resultStatus,
-    onChangeHandler,
-    onSubmitHandler
-  } = useFormHandlers({
-    gender: word.gender_ro,
-    plural: word.plural,
-    wordId: word.id,
-    wordRo: word.ro
-  });
+    plural,
+    id: wordId,
+    ro: wordRo,
+    gender_ro: gender,
+    audio_name: audioName
+  } = useCurrWord();
+
+  const answer = useMemo(
+    () => getAnswer({ gender, plural, wordRo }),
+    [gender, plural, wordRo]
+  );
+
+  const { input, resultStatus, onChangeHandler, onSubmitHandler } =
+    useFormHandlers(wordId, answer);
 
   return (
     <>
@@ -84,18 +84,18 @@ function CheckInput({ setCurrWord, word }: CheckInputProps) {
         </Button>
       </form>
       {resultStatus && (
-        <CheckInputModal onBtnClick={setCurrWord} status={resultStatus}>
+        <CheckInputModal key={wordId} status={resultStatus}>
           <p>
             {getRandomValueFromArr(phrases[resultStatus])}{' '}
             {resultStatus === 'success' ? 'I' : 'i'}
-            t&apos;s <span className={answerStyles}>{originalWord}</span>.
+            t&apos;s <span className={answerStyles}>{answer.original}</span>.
           </p>
           {resultStatus === 'error' && (
             <p className={wrongInputStyles}>
               Your answer: <span>{input}</span>
             </p>
           )}
-          <CheckSound status={resultStatus} audioName={word.audio_name} />
+          <CheckSound status={resultStatus} audioName={audioName} />
         </CheckInputModal>
       )}
     </>
