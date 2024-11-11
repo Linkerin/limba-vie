@@ -1,44 +1,9 @@
-import { Kalam } from 'next/font/google';
-import { css } from '@/styled-system/css';
-
 import { getArticle, getFullGender } from '@/app/_lib/utils/utils';
 import type { Gender } from '@/app/_lib/types';
+import { kalam } from '@/theme/fonts';
 import type { Tables } from '@/app/_services/supabase/supabase.types';
 
-const kalam = Kalam({
-  subsets: ['latin-ext'],
-  weight: ['400']
-});
-
-const styles = css({
-  display: 'flex',
-  alignItems: 'center',
-  gap: 'token(spacing.2, 0.5rem)',
-  fontSize: 'min(2.75rem, 5.5vmax)',
-  textAlign: 'center',
-
-  '& > p:first-of-type': {
-    lineHeight: '1.125em'
-  }
-});
-
-const genderStyles = css({
-  fontSize: '1.75rem',
-  lineHeight: '1em',
-  marginBlockEnd: 'token(spacing.2, 0.5rem)',
-
-  '&[data-gender="m"]': {
-    color: 'g.masculine'
-  },
-
-  '&[data-gender="n"]': {
-    color: 'g.neutral'
-  },
-
-  '&[data-gender="f"]': {
-    color: 'g.feminine'
-  }
-});
+import { styles, genderStyles } from './Word.styles';
 
 interface WordProps {
   gender: Gender;

@@ -57,7 +57,7 @@ export default defineConfig({
           ...generateTokens('success', successColor)
         },
         sizes: {
-          'img.size': { value: 'min(60dvw, 480px)' }
+          'img.size': { value: 'min(55dvw, 480px)' }
         }
       }),
       semanticTokens

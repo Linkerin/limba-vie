@@ -90,5 +90,15 @@ export const keyframes = defineKeyframes({
     '75%': {
       transform: 'translateY(+2px)'
     }
+  },
+
+  blink: {
+    '0%, 100%': {
+      opacity: 0
+    },
+
+    '33%, 66%': {
+      opacity: 1
+    }
   }
 });

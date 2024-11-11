@@ -1,24 +1,28 @@
 'use client';
 
 import { useMemo } from 'react';
-import { cx } from '@/styled-system/css';
 
+import { kalam } from '@/theme/fonts';
 import { useSetState } from '@/app/_hooks/useSetProvider';
-import { card } from '@/styled-system/recipes';
 
-import { sectionStyles, statContainerStyles } from './Stats.styles';
+import {
+  sectionStyles,
+  timeStyles,
+  scoreStyles,
+  revisedStyles
+} from './Stats.styles';
 
 function Stats() {
   const { mistakesCorrected, mistakesMade, started, words } = useSetState();
 
-  const timeTakenMin = useMemo(() => {
+  const timeTaken = useMemo(() => {
     const totalSeconds = (Date.now() - started.valueOf()) / 1000;
     const sec = (totalSeconds % 60).toFixed(0).padStart(2, '0');
     const min = Math.floor(totalSeconds / 60)
       .toString()
       .padStart(2, '0');
 
-    return `${min}:${sec}`;
+    return { min, sec };
   }, [started]);
 
   const score = useMemo(() => {
@@ -29,20 +33,20 @@ function Stats() {
 
   return (
     <section className={sectionStyles}>
-      <div className={cx(card({ variant: 'success' }), statContainerStyles)}>
-        <p>{score} %</p>
-        <p>score</p>
+      <div className={scoreStyles}>
+        <p className={kalam.className}>{score}</p>
       </div>
-      <div className={cx(card({ variant: 'primary' }), statContainerStyles)}>
-        <p>{timeTakenMin}</p>
-        <p>time</p>
+      <div className={timeStyles}>
+        <p>
+          {timeTaken.min}
+          <span>:</span>
+          {timeTaken.sec}
+        </p>
       </div>
       {mistakesCorrected > 0 && (
-        <div
-          className={cx(card({ variant: 'secondary' }), statContainerStyles)}
-        >
+        <div className={revisedStyles}>
           <p>{mistakesCorrected}</p>
-          <p>corrected</p>
+          <p>revised</p>
         </div>
       )}
     </section>

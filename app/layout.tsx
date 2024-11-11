@@ -1,6 +1,6 @@
-import { Alata } from 'next/font/google';
 import dynamic from 'next/dynamic';
 
+import { alata } from '@/theme/fonts';
 import CookieConsent from './_components/CookieConsent/CookieConsent';
 import Header from './_components/Header/Header';
 import SoundProvider from './_contexts/SoundProvider';
@@ -22,13 +22,6 @@ const LocalStorageMigration = dynamic(
   () => import('./_components/LocalStorageMigration'),
   { ssr: false }
 );
-
-const alata = Alata({
-  subsets: ['latin'],
-  weight: '400',
-  preload: true,
-  variable: '--font-alata'
-});
 
 export default function RootLayout({
   children
