@@ -3,8 +3,8 @@
 import { headers, cookies } from 'next/headers';
 
 import { insertUserReport } from './supabase/dbFetchers';
-import { isUserReportRecord } from '@/app/_lib/utils/utils';
 import isPostingAllowed from './redis/isPostingAllowed';
+import { isUserReportRecord } from './supabase/validators';
 import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
 import ssrLocalStorage from './SsrLocalStorage';
 

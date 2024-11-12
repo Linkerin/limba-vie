@@ -41,6 +41,7 @@ const withSerwist = withSerwistInit({
     { url: '/about', revision: crypto.randomUUID() },
     { url: '/tips/grammar', revision: crypto.randomUUID() },
     { url: '/images/lost_connection.webp', revision: crypto.randomUUID() },
+    { url: '/images/marker_circle.svg', revision: crypto.randomUUID() },
     { url: '/images/no_image.svg', revision: crypto.randomUUID() },
     { url: '/sounds/tadam.aac', revision: crypto.randomUUID() },
     { url: '/sounds/error-modal.aac', revision: crypto.randomUUID() },
