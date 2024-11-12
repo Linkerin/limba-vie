@@ -45,6 +45,7 @@ is powerful, flexible, and easy to use. Our tech stack includes:
 - [Vercel](https://vercel.com) for scalable and reliable hosting.
 - [Panda CSS](https://panda-css.com) - for a modern CSS-in-JS solution
   compatible with React Server Components.
+- [Cloudinary](https://cloudinary.com) for image optimization and delivery.
 
 ## Contacts 📨 <a id="contacts"></a>
 
