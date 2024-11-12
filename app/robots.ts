@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         '/set/',
         '/404/',
         '/500/',
-        '/about/legal/terms-of-service',
+        '/about/legal/terms-of-use',
         '/about/legal/privacy-policy'
       ]
     },
