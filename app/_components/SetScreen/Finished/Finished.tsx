@@ -9,6 +9,7 @@ import type { SetInfo } from '@/app/_services/supabase/dbFetchers';
 import Stats from './Stats/Stats';
 import type { Tables } from '@/app/_services/supabase/supabase.types';
 import taurImg from '@/public/taur.svg';
+import usePracticeStats from './usePracticeStats';
 import useSaveSetCompletion from '@/app/_components/SetScreen/Finished/useSaveSetCompletion';
 
 import {
@@ -40,10 +41,14 @@ interface FinishedProps {
 }
 
 function Finished({ checkPage, setInfo, setName }: FinishedProps) {
+  const { timeTaken, score, mistakesCorrected } = usePracticeStats();
+
   useSaveSetCompletion({
     setId: setInfo?.id,
     wordsNum: setInfo?.words_count,
-    checkPage
+    checkPage,
+    score,
+    timeTaken
   });
 
   const homeUrl = getHomeUrl(setInfo);
@@ -62,7 +67,13 @@ function Finished({ checkPage, setInfo, setName }: FinishedProps) {
           You have finished the{' '}
           <span className={setNameStyles}>{capitalizeWord(set)}</span> set!
         </p>
-        {checkPage && <Stats />}
+        {checkPage && (
+          <Stats
+            mistakesCorrected={mistakesCorrected}
+            timeTaken={timeTaken}
+            score={score}
+          />
+        )}
       </div>
       <FinishedSound />
       <ButtonLink

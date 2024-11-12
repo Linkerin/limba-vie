@@ -26,6 +26,7 @@ export interface Practices {
   id: number;
   completedAt: Date;
   score: number | null;
+  timeTakenSec: number | null;
 }
 
 const db = new Dexie('LimbaVieDB') as Dexie & {
@@ -48,6 +49,22 @@ db.version(2)
       .toCollection()
       .modify(set => {
         set.wordsNum = set.wordsNum ?? -1; // adds `-1` as default value
+      });
+  });
+
+db.version(3)
+  .stores({
+    completedSets: 'setId, wordsNum',
+    practices: '++id, timeTakenSec, completedAt',
+    wordsForRepeat: 'wordId, repeatTimes, addedAt',
+    wordsLearned: 'wordId, level, reviewedAt'
+  })
+  .upgrade(trans => {
+    return trans
+      .table('practices')
+      .toCollection()
+      .modify(practice => {
+        practice.timeTakenSec = null;
       });
   });
 

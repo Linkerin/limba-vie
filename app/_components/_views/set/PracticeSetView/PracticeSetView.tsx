@@ -38,7 +38,7 @@ function PracticeSetView({ setInfo, setName }: PracticeSetPageProps) {
   return (
     <>
       <section className={sectionStyles}>
-        {isFinished ? (
+        {!isFinished ? (
           <Finished setInfo={setInfo} setName={setName} checkPage={true} />
         ) : (
           <>
