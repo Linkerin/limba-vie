@@ -12,6 +12,12 @@ import {
   revisedStyles
 } from './Stats.styles';
 
+const labels = Object.freeze({
+  score: 'Your practice score (out of 100%)',
+  time: 'Time taken to complete the practice session',
+  revised: 'Number of words you corrected from previous mistakes'
+});
+
 function Stats() {
   const { mistakesCorrected, mistakesMade, started, words } = useSetState();
 
@@ -33,18 +39,26 @@ function Stats() {
 
   return (
     <section className={sectionStyles}>
-      <div className={scoreStyles}>
+      <div
+        className={scoreStyles}
+        aria-label={labels.score}
+        title={labels.score}
+      >
         <p className={kalam.className}>{score}</p>
       </div>
-      <div className={timeStyles}>
-        <p>
+      <div className={timeStyles} aria-label={labels.time} title={labels.time}>
+        <time dateTime={`PT0H${timeTaken.min}M${timeTaken.sec}S`}>
           {timeTaken.min}
           <span>:</span>
           {timeTaken.sec}
-        </p>
+        </time>
       </div>
       {mistakesCorrected > 0 && (
-        <div className={revisedStyles}>
+        <div
+          className={revisedStyles}
+          aria-label={labels.revised}
+          title={labels.revised}
+        >
           <p>{mistakesCorrected}</p>
           <p>revised</p>
         </div>
