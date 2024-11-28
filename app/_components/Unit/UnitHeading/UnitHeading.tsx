@@ -30,17 +30,19 @@ interface UnitHeadingProps {
 }
 
 function UnitHeading({ image, name }: UnitHeadingProps) {
+  const imgSrc = getImageUrl(image, 256, {
+    folder: 'limba_units',
+    format: 'svg',
+    q: 'auto',
+    sanitize: true
+  }).src;
+
   return (
     <div className={containerStyles}>
       {name && <h2 className={headingStyles}>{capitalizeWord(name)}</h2>}
       <Image
         alt={`Decorative image of a ${image}`}
-        src={getImageUrl(image, 256, {
-          folder: 'limba_units',
-          format: 'svg',
-          q: 'auto',
-          sanitize: true
-        })}
+        src={imgSrc}
         width={90}
         height={90}
         fetchPriority="high"

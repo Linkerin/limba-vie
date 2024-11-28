@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { IconView360Arrow } from '@tabler/icons-react';
 import { cx } from '@/styled-system/css';
 
@@ -44,6 +44,11 @@ function WordImg({ gender, wordEn, imgName = wordEn }: WordImgProps) {
     setIsFlipped(prevState => !prevState);
   }, []);
 
+  const { src, srcSet } = useMemo(
+    () => getImageUrl(currentImage),
+    [currentImage]
+  );
+
   useEffect(() => {
     if (imgRef?.current?.complete) {
       setIsLoaded(true);
@@ -68,7 +73,8 @@ function WordImg({ gender, wordEn, imgName = wordEn }: WordImgProps) {
               ref={imgRef}
               className={sideContentStyles}
               alt={`${wordEn} picture`}
-              src={getImageUrl(imgName)}
+              src={src}
+              srcSet={srcSet}
               fetchPriority="high"
               loading="eager"
               onLoad={onLoadHandler}

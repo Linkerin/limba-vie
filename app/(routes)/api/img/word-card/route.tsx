@@ -33,6 +33,7 @@ export async function GET(request: NextRequest) {
 
   const gender = wordObj.gender_ro;
   const article = getArticle(gender, wordObj.plural);
+  const imgSrc = getImageUrl(wordObj.img_name, imgSizePx).src;
 
   return new ImageResponse(
     (
@@ -49,7 +50,7 @@ export async function GET(request: NextRequest) {
         }}
       >
         <img
-          src={getImageUrl(wordObj.img_name, imgSizePx)}
+          src={imgSrc}
           alt={`${wordObj.en} image`}
           height={`${imgSizePx}px`}
           width={`${imgSizePx}px`}
