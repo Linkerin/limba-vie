@@ -1,7 +1,6 @@
 import {
   AUDIO_FILE_FORMAT,
   CLOUDINARY_IMG_URL,
-  REPORT_TYPES,
   SUPABASE_STORAGE_URL
 } from '@/app/_lib/constants';
 import type { Gender } from '@/app/_lib/types';

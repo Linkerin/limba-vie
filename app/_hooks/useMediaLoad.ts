@@ -24,8 +24,6 @@ function useMediaLoad(current: number, words: SetPageProps['words']) {
 
     if (current === 0) {
       load(current + 1);
-      // const img = new Image();
-      // img.src = '/taur.svg';
     }
 
     load(current + 2);
