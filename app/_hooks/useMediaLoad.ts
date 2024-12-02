@@ -12,16 +12,18 @@ function useMediaLoad(current: number, words: SetPageProps['words']) {
 
     const load = (i: number) => {
       new Audio(getAudioUrl({ audioName: words[i].audio_name }));
+
+      const { src, srcSet } = getImageUrl(words[i].img_name);
       const img = new Image();
-      img.src = getImageUrl(words[i].img_name);
+      img.decoding = 'async';
+      img.src = src;
+      img.srcset = srcSet;
 
       return;
     };
 
     if (current === 0) {
       load(current + 1);
-      const img = new Image();
-      img.src = '/taur.svg';
     }
 
     load(current + 2);

@@ -145,7 +145,7 @@ describe('getImageUrl', () => {
 
   test('should generate URL with default', () => {
     const expectedUrl = `${CLOUDINARY_IMG_URL}/f_auto,q_80,w_480/v1/limba/${imgName}`;
-    const result = getImageUrl(imgName);
+    const result = getImageUrl(imgName).src;
     expect(result).toBe(expectedUrl);
   });
 
@@ -153,7 +153,7 @@ describe('getImageUrl', () => {
   test('should construct URL with specified image name and width', () => {
     const width = 600;
     const expectedUrl = `${CLOUDINARY_IMG_URL}/f_auto,q_80,w_${width}/v1/limba/${imgName}`;
-    const result = getImageUrl(imgName, width);
+    const result = getImageUrl(imgName, width).src;
     expect(result).toBe(expectedUrl);
   });
 
@@ -165,7 +165,7 @@ describe('getImageUrl', () => {
       q: 50,
       sanitize: true
     };
-    const result = getImageUrl(imgName, width, options);
+    const result = getImageUrl(imgName, width, options).src;
     const expectedUrl = `${CLOUDINARY_IMG_URL}/f_${options.format},q_${options.q},w_${width},fl_sanitize/v1/${options.folder}/${imgName}`;
 
     expect(result).toBe(expectedUrl);
@@ -174,16 +174,16 @@ describe('getImageUrl', () => {
   test('should handle empty string as image name', () => {
     const imgName = '';
     const expectedUrl = `${CLOUDINARY_IMG_URL}/f_auto,q_80,w_480/v1/limba/`;
-    const result = getImageUrl(imgName);
+    const result = getImageUrl(imgName).src;
     expect(result).toBe(expectedUrl);
   });
 
   test('should process undefined or null options gracefully', () => {
     const imgName = 'sample-image';
     const expectedUrl = `${CLOUDINARY_IMG_URL}/f_auto,q_80,w_480/v1/limba/${imgName}`;
-    const resultWithUndefined = getImageUrl(imgName, 480, undefined);
+    const resultWithUndefined = getImageUrl(imgName, 480, undefined).src;
     // @ts-expect-error
-    const resultWithNull = getImageUrl(imgName, 480, null);
+    const resultWithNull = getImageUrl(imgName, 480, null).src;
     expect(resultWithUndefined).toBe(expectedUrl);
     expect(resultWithNull).toBe(expectedUrl);
   });

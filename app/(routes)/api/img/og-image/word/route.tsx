@@ -18,6 +18,7 @@ export async function GET(request: NextRequest) {
   const ro = decodeURIComponent(searchParams.get('ro') ?? '');
   const en = decodeURIComponent(searchParams.get('en') ?? '');
   const img = searchParams.get('img');
+  const imgSrc = getImageUrl(img, imgSize).src;
   const gender = searchParams.get('gender') as Gender;
   const plural = searchParams.get('plural') === 'true' ? true : false;
 
@@ -97,7 +98,7 @@ export async function GET(request: NextRequest) {
           </div>
           <img
             alt={`'${en}' word image`}
-            src={getImageUrl(img, imgSize)}
+            src={imgSrc}
             height={imgSize}
             width={imgSize}
             style={{ borderRadius: '32px' }}

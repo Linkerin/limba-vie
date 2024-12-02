@@ -1,7 +1,6 @@
 import {
   AUDIO_FILE_FORMAT,
   CLOUDINARY_IMG_URL,
-  REPORT_TYPES,
   SUPABASE_STORAGE_URL
 } from '@/app/_lib/constants';
 import type { Gender } from '@/app/_lib/types';
@@ -90,13 +89,13 @@ export interface GetImgUrlOptions {
  *
  * @param imgName - The name of the image file, without the file extension.
  * @param width - The desired width of the image, in pixels. Defaults to `480`.
- * @param options - Additional options for the image URL:
+ * @param options - Additional options for the image `src` URL:
  *   - folder: The folder where the image is stored. Defaults to `'limba'`.
  *   - format: The image format. Can be `'auto'`, `'png'`, `'svg'`, or `'webp'`.
  *     Defaults to `'auto'`.
  *   - q: The quality of the image, from 0 to 100, or `'auto'`. Defaults to `80`.
  *   - sanitize: Whether to sanitize the image URL. Defaults to `false`.
- * @returns The generated image URL.
+ * @returns An object containing the generated image `src` URL and `srcSet` URLs.
  */
 export function getImageUrl(
   imgName: Tables<'words'>['img_name'],
@@ -111,11 +110,16 @@ export function getImageUrl(
     ...options
   };
 
-  const url = `${CLOUDINARY_IMG_URL}/f_${opt.format},q_${opt.q},w_${width}${
-    opt.sanitize ? ',fl_sanitize' : ''
-  }/v1/${opt.folder}/${imgName}`;
+  const generateUrl = (imgWidth: number, imgQuality: GetImgUrlOptions['q']) =>
+    `${CLOUDINARY_IMG_URL}/f_${opt.format},q_${imgQuality},w_${imgWidth}${
+      opt.sanitize ? ',fl_sanitize' : ''
+    }/v1/${opt.folder}/${imgName}`;
 
-  return url;
+  const src = generateUrl(width, opt.q);
+
+  const srcSet = `${generateUrl(480, opt.q)} 1x, ${generateUrl(720, 80)} 2x, ${generateUrl(1080, 80)} 3x`;
+
+  return { src, srcSet };
 }
 
 interface GetAudioUrlParams {
