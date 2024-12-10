@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import About from './RightButtons/About';
-import logoImg from '@/public/logo.svg';
+import logoImg from '@/public/logo_ny.svg';
 import flowerLogoImg from '@/public/images/flower_logo.svg';
 
 import {
