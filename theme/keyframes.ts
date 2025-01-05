@@ -100,5 +100,14 @@ export const keyframes = defineKeyframes({
     '33%, 66%': {
       opacity: 1
     }
+  },
+
+  'left-slide-in': {
+    from: {
+      transform: 'translateX(-100%)'
+    },
+    to: {
+      transform: 'translateX(0)'
+    }
   }
 });

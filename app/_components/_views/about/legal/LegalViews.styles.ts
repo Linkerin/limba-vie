@@ -1,6 +1,8 @@
 import { css } from '@/styled-system/css';
 
 export const styles = css({
+  animation: 'pageSlide',
+
   '& > h1 > span': {
     color: 'primary'
   },

@@ -1,7 +1,13 @@
 import { defineSemanticTokens } from '@pandacss/dev';
 
 export const semanticTokens = defineSemanticTokens({
-  animations: { fadeIn: { value: 'fade-in {easings.in} 0.4s' } },
+  animations: {
+    fadeIn: { value: 'fade-in {easings.in} 0.4s' },
+    pageSlide: {
+      value:
+        'left-slide-in 0.4s {easings.in-out}, appearance 0.6s {easings.in-out}'
+    }
+  },
   colors: {
     main: {
       DEFAULT: { value: '{colors.zinc.700}' },
