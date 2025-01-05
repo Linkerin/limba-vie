@@ -1,6 +1,7 @@
 import { cache } from 'react';
 import type { Metadata } from 'next';
 
+import { CANONICAL_URL } from '@/app/_lib/constants';
 import { capitalizeWord } from '@/app/_lib/utils/utils';
 import { getSetInfo, getSetWords } from '@/app/_services/supabase/dbFetchers';
 import SetView from '@/app/_components/_views/set/SetView';
@@ -12,7 +13,10 @@ interface SetPageParams {
 export function generateMetadata({ params }: SetPageParams): Metadata {
   const set = capitalizeWord(params.setName);
   return {
-    title: `${decodeURIComponent(set ?? '')} set`
+    title: `${decodeURIComponent(set ?? '')} set`,
+    alternates: {
+      canonical: `${CANONICAL_URL}/set/${params.setName}`
+    }
   };
 }
 

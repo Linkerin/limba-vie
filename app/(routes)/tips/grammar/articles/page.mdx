@@ -1,4 +1,4 @@
-import { ARTICLES } from '@/app/_lib/constants';
+import { ARTICLES, CANONICAL_URL } from '@/app/_lib/constants';
 import Attention from '@/app/_components/_ui/Attention/Attention';
 import GrammarExampleSentence from '@/app/_components/GrammarExampleSentence/GrammarExampleSentence';
 
@@ -11,6 +11,9 @@ export const ogImgUrl = `${
 export const metadata = {
   title,
   description,
+  alternates: {
+    canonical: `${CANONICAL_URL}/tips/grammar/${ARTICLES.articles.link}`
+  },
   openGraph: {
     images: ogImgUrl,
     description

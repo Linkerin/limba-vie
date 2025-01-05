@@ -3,6 +3,8 @@
  */
 export const AUDIO_FILE_FORMAT = 'aac' as const;
 
+export const CANONICAL_URL = 'https://limba.ravenplan.com';
+
 export const CLOUDINARY_IMG_URL = `${process.env.NEXT_PUBLIC_CLOUDINARY_URL}/image/upload`;
 
 export const DAY_IN_MS = 24 * 60 * 60 * 1000;

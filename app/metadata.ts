@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { CANONICAL_URL } from './_lib/constants';
+
 const description = `Master Romanian vocabulary with Limba Vie! Our fun and colorful flashcard app makes learning Romanian words easy. Perfect for anyone who learns Romanian language.`;
 const isPreview = process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW';
 const title = `Limba Vie${isPreview ? ' Preview' : ''}`;
@@ -8,6 +10,9 @@ export const metadata: Metadata = {
   title: {
     template: `%s · ${title}`,
     default: title
+  },
+  alternates: {
+    canonical: `${CANONICAL_URL}`
   },
   description: description,
   keywords: [

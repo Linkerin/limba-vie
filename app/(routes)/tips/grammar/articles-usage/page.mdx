@@ -1,4 +1,4 @@
-import { ARTICLES } from '@/app/_lib/constants';
+import { ARTICLES, CANONICAL_URL } from '@/app/_lib/constants';
 
 export const description = ARTICLES.articlesUsage.description;
 export const title = ARTICLES.articlesUsage.title;
@@ -9,6 +9,9 @@ export const ogImgUrl = `${
 export const metadata = {
   title,
   description,
+  alternates: {
+    canonical: `${CANONICAL_URL}/tips/grammar/${ARTICLES.articlesUsage.link}`
+  },
   openGraph: {
     images: ogImgUrl,
     description

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { CANONICAL_URL } from '@/app/_lib/constants';
 import { capitalizeWord } from '@/app/_lib/utils/utils';
 import { getEnWords, getWordByEn } from '@/app/_services/supabase/dbFetchers';
 import WordView from '@/app/_components/_views/words/WordView';
@@ -12,6 +13,7 @@ export async function generateMetadata({
   params
 }: WordPageParams): Promise<Metadata> {
   const wordEn = decodeURIComponent(params.word);
+  const encodedWordEn = encodeURIComponent(wordEn);
 
   const word = await getWordByEn(wordEn);
   const wordRo = word?.ro ?? '';
@@ -23,7 +25,7 @@ export async function generateMetadata({
     process.env.NEXT_PUBLIC_BASE_URL
   );
   const imgParams = new URLSearchParams([
-    ['en', encodeURIComponent(wordEn)],
+    ['en', encodedWordEn],
     ['ro', encodeURIComponent(wordRo)],
     ['img', word?.img_name ?? ''],
     ['gender', word?.gender_ro ?? ''],
@@ -33,15 +35,16 @@ export async function generateMetadata({
 
   return {
     title: `${capitalizeWord(wordRo)} (${capitalizeWord(wordEn)})`,
+    alternates: {
+      canonical: `${CANONICAL_URL}/words/${encodedWordEn}`
+    },
     openGraph: {
       images: url,
       description
     },
     twitter: {
       card: 'summary',
-      images: `${
-        process.env.NEXT_PUBLIC_BASE_URL
-      }/api/img/word-card?word=${encodeURIComponent(wordEn)}`,
+      images: `${process.env.NEXT_PUBLIC_BASE_URL}/api/img/word-card?word=${encodedWordEn}`,
       description
     },
     description
