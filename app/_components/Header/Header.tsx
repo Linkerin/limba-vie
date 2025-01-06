@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import About from './RightButtons/About';
-import logoImg from '@/public/logo_ny.svg';
 import flowerLogoImg from '@/public/images/flower_logo.svg';
+import logoImg from '@/public/logo.svg';
 
 import {
   headerStyles,
@@ -21,7 +21,6 @@ function Header() {
         aria-label="To homepage. LimbaVie logo"
         href="/"
         className={logoStyles}
-        prefetch={false}
       >
         <Image
           alt="Geometrical taur head image as Limba Vie logo"

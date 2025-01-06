@@ -59,4 +59,10 @@
   .grammar-container > * {
     animation: var(--animations-fade-in);
   }
+
+  @media (prefers-reduced-motion) {
+    .grammar-container > * {
+      animation: none;
+    }
+  }
 }

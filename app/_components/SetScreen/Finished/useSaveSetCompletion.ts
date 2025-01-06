@@ -45,7 +45,7 @@ async function recordPracticeCompletion({
   await recordPractice(payload);
 }
 
-async function useSaveSetCompletion({
+function useSaveSetCompletion({
   checkPage,
   setId,
   wordsNum,

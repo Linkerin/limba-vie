@@ -8,11 +8,13 @@ import {
   useRef,
   useState
 } from 'react';
+import { cx } from '@/styled-system/css';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { IconCheck, IconLock } from '@tabler/icons-react';
 
 import ButtonLink from '../../_ui/Button/ButtonLink';
+import { card } from '@/styled-system/recipes';
 import { capitalizeWord, isSetCompleted } from '@/app/_lib/utils/utils';
 import { IsPracticeNecessaryContext } from '@/app/_contexts/IsPracticeNecessaryProvider';
 import type { PopoverProps } from '../../_ui/Popover/Popover';
@@ -110,7 +112,10 @@ function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
   return (
     <li
       ref={liRef}
-      className={setStyles}
+      className={cx(
+        card({ variant: isCompleted ? 'success' : 'base' }),
+        setStyles
+      )}
       data-completed={isCompleted}
       data-disabled={isDisabled}
     >
@@ -119,7 +124,7 @@ function UnitSetLink({ id, emoji, set, wordsNum }: SetItemLinkProps) {
           <span className={emojiStyles}>{emoji}</span>
           {contentText}
           <span className={completedIconStyles}>
-            <IconCheck />
+            <IconCheck stroke={2.5} />
           </span>
         </button>
       ) : (

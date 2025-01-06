@@ -24,7 +24,6 @@ export const sectionStyles = css({
   },
 
   '& + *[data-element="nav-item"]': {
-    // animation: 'shake-bottom 3s ease-in-out 0s infinite normal',
     '& *': {
       color: 'primary.darker'
     }

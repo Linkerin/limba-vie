@@ -6,7 +6,11 @@ export const sectionStyles = css({
   alignItems: 'center',
   justifyContent: 'flex-start',
   height: '100%',
-  animation: 'fadeIn'
+  animation: 'fadeIn',
+
+  '@media (prefers-reduced-motion)': {
+    animation: 'none'
+  }
 });
 
 export const sentenceStyles = css.raw({

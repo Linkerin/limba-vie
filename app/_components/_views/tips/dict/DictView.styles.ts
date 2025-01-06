@@ -17,6 +17,10 @@ export const listStyles = css({
   padding: '0rem token(spacing.4, 1rem)',
   width: '100%',
 
+  '@media (prefers-reduced-motion)': {
+    animation: 'none'
+  },
+
   '& > li': {
     display: 'flex',
     alignItems: 'flex-start',

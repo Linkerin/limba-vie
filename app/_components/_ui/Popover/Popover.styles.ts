@@ -57,7 +57,7 @@ export const styles = css({
   },
 
   '&[data-y="bottom"]': {
-    top: popoverPosY,
+    top: `calc(2px + ${popoverPosY})`,
 
     _before: {
       top: arrowPosY

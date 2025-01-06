@@ -1,7 +1,13 @@
 import { css } from '@/styled-system/css';
 
 export const liStyles = css({
-  scrollMarginBlockStart: '18vh'
+  animation: 'leftSlideIn',
+  animationDuration: '0.6s',
+  scrollMarginBlockStart: '18vh',
+
+  '@media (prefers-reduced-motion)': {
+    animation: 'none'
+  }
 });
 
 export const progressContainerStyles = css({
@@ -35,6 +41,6 @@ export const setsListStyles = css({
 
   '& > li': {
     visibility: 'hidden',
-    transition: 'all 0.4s ease-in-out'
+    transition: 'all 0.3s ease-in-out'
   }
 });

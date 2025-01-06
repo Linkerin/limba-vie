@@ -27,9 +27,9 @@ function MuteBtn() {
       css={styles}
       onClick={clickHandler}
       title={label}
-      fadeAnimation
       vibrate={isSoundAllowed ? false : true}
       variant="base"
+      fadeAnimation
     >
       <span aria-hidden="true">
         {isSoundAllowed ? <IconVolume /> : <IconVolumeOff />}

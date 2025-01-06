@@ -15,34 +15,11 @@ export const setStyles = css({
   '--elem-width-for-popover': '5.5rem',
 
   aspectRatio: 'square',
-  backgroundColor: 'background-darker',
-  border: '2px solid token(colors.main)',
-  borderRadius: 'sm',
   color: 'main',
-  position: 'relative',
   width: 'var(--elem-width-for-popover, 5.5rem)',
 
-  _hover: {
-    backgroundColor: 'background-dark'
-  },
-
-  _active: {
-    backgroundColor: 'background-dark',
-    boxShadow: 'inset 0 0 0.375rem rgba(0, 0, 0, 0.3)'
-  },
-
   '&[data-completed=true]': {
-    borderColor: 'success.dark',
-    backgroundColor: 'success.container-low',
-    color: 'success.dark',
-
-    _hover: {
-      backgroundColor: 'success.container'
-    },
-
-    _active: {
-      backgroundColor: 'success.container-dark'
-    }
+    color: 'success.dark'
   },
 
   '&[data-disabled=true]': {
@@ -69,7 +46,6 @@ export const contentStyles = css({
 });
 
 export const emojiStyles = css({
-  filter: 'drop-shadow(0px 0px 1px token(colors.main))',
   fontSize: '3xl'
 });
 
@@ -77,9 +53,8 @@ export const completedIconStyles = css({
   position: 'absolute',
   top: '0rem',
   right: '0rem',
-  backgroundColor: 'success.container',
   border: 'solid token(colors.success.dark)',
-  borderWidth: '0 0 1px 1px',
+  borderWidth: '0 0 2px 2px',
   borderRadius: '0rem token(radii.sm, 0.25rem) 0rem token(radii.sm, 0.25rem)',
   padding: 'token(spacing.0.5, 0.125rem)'
 });
