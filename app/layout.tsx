@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import type { Viewport } from 'next';
 
 import { alata } from '@/theme/fonts';
 import CookieConsent from './_components/CookieConsent/CookieConsent';
@@ -10,6 +11,13 @@ import IsPracticeNecessaryProvider from './_contexts/IsPracticeNecessaryProvider
 import './globals.css';
 
 export { metadata } from './metadata';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false
+};
 
 const AnonymousSignIn = dynamic(() => import('./_components/AnonymousSignIn'), {
   ssr: false
