@@ -1,7 +1,11 @@
 import { css } from '@/styled-system/css';
 
 export const styles = css({
-  animation: 'pageSlide',
+  animation: 'leftSlideIn',
+
+  '@media (prefers-reduced-motion)': {
+    animation: 'none'
+  },
 
   '& > h1 > span': {
     color: 'primary'

@@ -1,7 +1,11 @@
 import { css } from '@/styled-system/css';
 
 export const containerStyles = css({
-  animation: 'pageSlide',
+  animation: 'leftSlideIn',
+
+  '@media (prefers-reduced-motion)': {
+    animation: 'none'
+  },
 
   '& > section:not(:last-of-type)': {
     marginBlockEnd: 'token(spacing.8, 2rem)'
