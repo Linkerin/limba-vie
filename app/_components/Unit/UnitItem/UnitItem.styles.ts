@@ -30,7 +30,7 @@ export const setsListStyles = css({
   display: 'flex',
   alignItems: 'stretch',
   flexWrap: 'wrap',
-  gap: 'token(spacing.2, 0.5rem)',
+  gap: 'token(spacing.3, 0.75rem)',
   height: 'auto',
   listStyle: 'none',
   maxHeight: '0rem',

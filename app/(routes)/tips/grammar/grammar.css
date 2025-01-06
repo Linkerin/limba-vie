@@ -57,7 +57,7 @@
   }
 
   .grammar-container > * {
-    animation: var(--animations-fade-in);
+    animation: var(--animations-left-slide-in);
   }
 
   @media (prefers-reduced-motion) {
