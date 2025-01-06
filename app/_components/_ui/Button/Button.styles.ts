@@ -120,6 +120,14 @@ export const buttonStyles = cva({
       outlineOffset: '4px'
     },
 
+    '&[data-fade=true]': {
+      animation: 'fadeIn',
+
+      '@media (prefers-reduced-motion)': {
+        animation: 'none'
+      }
+    },
+
     '& > svg': {
       margin: 'auto'
     }

@@ -51,6 +51,7 @@ function Button({
       {...props}
       disabled={loading ?? disabled}
       aria-disabled={loading ?? disabled}
+      data-fade={fadeAnimation}
     >
       {loading ? (
         <>
