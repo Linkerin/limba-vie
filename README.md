@@ -43,8 +43,8 @@ powerful, flexible, and easy to use. Our tech stack includes:
 - [Gemini AI](https://gemini.google.com/) for generating contextually accurate
   example sentences.
 - [Vercel](https://vercel.com) for scalable and reliable hosting.
-- [Panda CSS](https://panda-css.com) - for a modern CSS-in-JS solution
-  compatible with React Server Components.
+- [Panda CSS](https://panda-css.com) for a modern CSS-in-JS solution compatible
+  with React Server Components.
 - [Cloudinary](https://cloudinary.com) for image optimization and delivery.
 
 ## Contacts 📨 <a id="contacts"></a>
@@ -52,7 +52,7 @@ powerful, flexible, and easy to use. Our tech stack includes:
 If you want to get in touch, we will be glad to receive your e-mail 😉:
 [limba@ravenplan.com](mailto:limba@ravenplan.com).
 
-Follow us on [📷 Instagram](https://www.instagram.com/limba_vie)!
+Follow us on 📷 [Instagram](https://www.instagram.com/limba_vie)!
 
 ## License 🪪 <a id="license"></a>
 
