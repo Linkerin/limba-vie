@@ -1,12 +1,12 @@
-[![Limba Vie logo](./readme_images/logo_new.svg)](https://limba.ravenplan.com)
+[![Limba Vie logo](./readme_images/logo.svg)](https://limba.ravenplan.com)
 
 # Limba Vie
 
-[About us](#about)  
-[Key features](#features)  
-[Technologies used](#technologies)  
-[Contacts](#contacts)  
-[License](#license)
+- [About us](#about)
+- [Key features](#features)
+- [Technologies used](#technologies)
+- [Contacts](#contacts)
+- [License](#license)
 
 ## About us 👨‍💻 <a id="about"></a>
 
@@ -33,8 +33,8 @@ and a user-friendly interface. Start using it
 
 ## Technologies used ⌨️ <a id="technologies"></a>
 
-At **Limba Vie** we use cutting-edge technologies to create an application that
-is powerful, flexible, and easy to use. Our tech stack includes:
+At **Limba Vie** we use modern technologies to create an application that is
+powerful, flexible, and easy to use. Our tech stack includes:
 
 - [Next.js](https://nextjs.org) and [TypeScript](https://www.typescriptlang.org)
   for a fast and responsive frontend that is less prone to errors.
@@ -51,6 +51,8 @@ is powerful, flexible, and easy to use. Our tech stack includes:
 
 If you want to get in touch, we will be glad to receive your e-mail 😉:
 [limba@ravenplan.com](mailto:limba@ravenplan.com).
+
+Follow us on [📷 Instagram](https://www.instagram.com/limba_vie)!
 
 ## License 🪪 <a id="license"></a>
 
