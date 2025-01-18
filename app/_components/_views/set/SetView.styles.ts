@@ -30,5 +30,6 @@ export const wordContainerStyles = css({
   gap: 'token(spacing.1, 0.25rem)',
   height: '100%',
   paddingBlock: 'token(spacing.2, 0.5rem)',
+  scrollbarWidth: 'none',
   width: '100%'
 });
