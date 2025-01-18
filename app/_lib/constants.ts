@@ -39,7 +39,8 @@ export const OG_PARAMS = {
     fontSize: 48,
     height: 72,
     width: 72
-  }
+  },
+  cacheControl: `public, immutable, no-transform, s-maxage=${30 * 24 * 60 * 60}` // 30 days maxage
 } as const;
 
 export const OBLIGATORY_REVIEW = Object.freeze({

@@ -2,7 +2,7 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 
-import { GENDER_COLORS } from '@/app/_lib/constants';
+import { GENDER_COLORS, OG_PARAMS } from '@/app/_lib/constants';
 import { getArticle, getImageUrl } from '@/app/_lib/utils/utils';
 import { getWordByEn } from '@/app/_services/supabase/dbFetchers';
 
@@ -116,7 +116,10 @@ export async function GET(request: NextRequest) {
           style: 'normal',
           weight: 400
         }
-      ]
+      ],
+      headers: {
+        'cache-control': OG_PARAMS.cacheControl
+      }
     }
   );
 }

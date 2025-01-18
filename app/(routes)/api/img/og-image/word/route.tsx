@@ -123,7 +123,10 @@ export async function GET(request: NextRequest) {
           style: 'normal',
           weight: 400
         }
-      ]
+      ],
+      headers: {
+        'cache-control': OG_PARAMS.cacheControl
+      }
     }
   );
 }

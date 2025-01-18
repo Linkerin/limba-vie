@@ -73,7 +73,10 @@ export async function GET() {
           style: 'normal',
           weight: 400
         }
-      ]
+      ],
+      headers: {
+        'cache-control': OG_PARAMS.cacheControl
+      }
     }
   );
 }
