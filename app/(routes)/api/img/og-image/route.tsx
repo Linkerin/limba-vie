@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og';
 
+import { OG_PARAMS } from '@/app/_lib/constants';
+
 export const runtime = 'edge';
 
 export async function GET() {
@@ -14,32 +16,30 @@ export async function GET() {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          background: '#212121',
-          width: '100%',
-          height: '100%'
+          justifyContent: 'space-between',
+          background: OG_PARAMS.colors.bg,
+          color: OG_PARAMS.colors.text,
+          height: '100%',
+          padding: OG_PARAMS.canvas.padding,
+          width: '100%'
         }}
       >
         <div
           style={{
             display: 'flex',
-            alignItems: 'center',
             justifyContent: 'flex-start',
-            fontSize: 92,
-            height: '50%',
-            paddingLeft: 100,
+            fontSize: OG_PARAMS.logo.fontSize,
             width: '100%'
           }}
         >
-          <span style={{ color: '#3972C6' }}>Limba</span>
+          Limba
           <img
-            src={`${process.env.NEXT_PUBLIC_BASE_URL}/bour.svg`}
-            alt="Limba Vie bour head"
-            height="150"
-            width="150"
+            src={OG_PARAMS.logo.src}
+            alt={OG_PARAMS.logo.alt}
+            height={OG_PARAMS.logo.height}
+            width={OG_PARAMS.logo.width}
           />
-          <span style={{ color: '#C6394B' }}>Vie</span>
+          Vie
         </div>
         <div
           style={{
@@ -47,11 +47,9 @@ export async function GET() {
             alignItems: 'flex-end',
             flexDirection: 'column',
             justifyContent: 'center',
-            color: '#F0EEF7',
-            fontSize: 80,
-            lineHeight: '80px',
-            height: '50%',
-            paddingRight: 100,
+            fontSize: 92,
+            lineHeight: '92px',
+            padding: '2.5rem',
             width: '100%'
           }}
         >
@@ -66,8 +64,8 @@ export async function GET() {
       </div>
     ),
     {
-      width: 1200,
-      height: 630,
+      height: OG_PARAMS.canvas.height,
+      width: OG_PARAMS.canvas.width,
       fonts: [
         {
           name: 'Alata',

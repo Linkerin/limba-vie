@@ -2,6 +2,8 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 
+import { OG_PARAMS } from '@/app/_lib/constants';
+
 export const runtime = 'edge';
 
 export async function GET(request: NextRequest) {
@@ -20,9 +22,10 @@ export async function GET(request: NextRequest) {
           flexDirection: 'column',
           alignItems: 'flex-start',
           justifyContent: 'flex-start',
-          background: '#212121',
+          background: OG_PARAMS.colors.bg,
+          color: OG_PARAMS.colors.text,
           height: '100%',
-          padding: 40,
+          padding: OG_PARAMS.canvas.padding,
           width: '100%'
         }}
       >
@@ -31,31 +34,29 @@ export async function GET(request: NextRequest) {
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
-            fontSize: 92,
-            marginBottom: 40,
-            // height: '50%',
+            fontSize: OG_PARAMS.logo.fontSize,
             width: '100%'
           }}
         >
-          <span style={{ color: '#3972C6' }}>Limba</span>
+          Limba
           <img
-            src={`${process.env.NEXT_PUBLIC_BASE_URL}/bour.svg`}
-            alt="Limba Vie bour head"
-            height="150"
-            width="150"
+            src={OG_PARAMS.logo.src}
+            alt={OG_PARAMS.logo.alt}
+            height={OG_PARAMS.logo.height}
+            width={OG_PARAMS.logo.width}
           />
-          <span style={{ color: '#C6394B' }}>Vie</span>
+          Vie
         </div>
         <div
           style={{
             display: 'flex',
-            alignItems: 'flex-end',
-            flexDirection: 'column',
+            alignItems: 'center',
             justifyContent: 'center',
-            color: '#F0EEF7',
+            color: '#3d418f',
             fontSize: 76,
             lineHeight: '80px',
-            paddingRight: 100,
+            margin: 'auto',
+            overflowWrap: 'break-word',
             width: '100%'
           }}
         >
@@ -64,8 +65,8 @@ export async function GET(request: NextRequest) {
       </div>
     ),
     {
-      width: 1200,
-      height: 630,
+      width: OG_PARAMS.canvas.width,
+      height: OG_PARAMS.canvas.height,
       fonts: [
         {
           name: 'Alata',

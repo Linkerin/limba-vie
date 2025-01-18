@@ -23,6 +23,25 @@ export const LOCAL_STORAGE_KEYS = Object.freeze({
   cookiesConsent: 'lvCookies'
 });
 
+export const OG_PARAMS = {
+  canvas: {
+    width: 1200,
+    height: 630,
+    padding: 60
+  },
+  colors: {
+    bg: '#FAF7F5',
+    text: '#3F3F46'
+  },
+  logo: {
+    src: `${process.env.NEXT_PUBLIC_BASE_URL}/logo.svg`,
+    alt: 'Limba Vie logo',
+    fontSize: 48,
+    height: 72,
+    width: 72
+  }
+} as const;
+
 export const OBLIGATORY_REVIEW = Object.freeze({
   MISTAKES: 18,
   PERIOD_WO_REVIEW: DAY_IN_MS * 3
