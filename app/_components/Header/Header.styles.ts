@@ -14,6 +14,13 @@ export const headerStyles = css({
   zIndex: 1
 });
 
+export const logoContainerStyles = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 'token(spacing.6, 1.5rem)',
+  height: '100%'
+});
+
 export const logoStyles = css({
   height: '100%',
   paddingBlock: '0.125rem',

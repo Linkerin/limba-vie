@@ -23,6 +23,24 @@ export const LOCAL_STORAGE_KEYS = Object.freeze({
   cookiesConsent: 'lvCookies'
 });
 
+export const NAV_LINKS = {
+  home: {
+    link: '/',
+    label: 'To main page with units list',
+    text: 'Home',
+  },
+  articles: {
+    link: '/tips/grammar',
+    label: 'To grammar articles',
+    text: 'Grammar articles'
+  },
+  dictionary: {
+    link: '/tips/dict',
+    label: 'To dictionary page',
+    text: 'Dictionary'
+  }
+} as const;
+
 export const OG_PARAMS = {
   canvas: {
     width: 1200,

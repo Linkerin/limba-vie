@@ -10,6 +10,10 @@ export const footerStyles = css({
   width: '100%',
   animation: 'fadeIn',
 
+  '@media (min-width: 1280px)': {
+    display: 'none'
+  },
+
   '&[data-apple-pwa=true]': {
     paddingBlockEnd: 'apple-pwa-pd'
   }
