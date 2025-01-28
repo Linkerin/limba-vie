@@ -3,19 +3,21 @@ import { css } from '@/styled-system/css';
 import coatOfArmsMd from '@/public/icons/moldova_coat_of_arms.svg';
 
 const containerStyles = css({
-  display: 'flex',
+  display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: '0.25rem',
+  borderRadius: '0.125rem',
   boxShadow: '0px 1px 3px 1px rgba(0, 0, 0, 0.15)',
-  height: '1.875rem',
+  height: '1em',
+  marginInlineStart: '0.375em',
   overflow: 'hidden',
+  verticalAlign: '-10.5%',
   width: 'fit-content'
 });
 
 const stripeStyles = css.raw({
   height: '100%',
-  width: '1.25rem'
+  width: '0.6667em'
 });
 
 const yellowStripeStyles = css.raw({
@@ -24,28 +26,28 @@ const yellowStripeStyles = css.raw({
   alignItems: 'center',
   justifyContent: 'center',
   '& > svg': {
-    height: '0.875rem',
+    height: '0.466em',
     width: 'auto'
   }
 });
 
 function FlagMd() {
   return (
-    <div className={containerStyles}>
-      <div
+    <span className={containerStyles} role="presentation">
+      <span
         className={css(stripeStyles, {
           backgroundColor: 'hsl(216, 100%, 34%)'
         })}
       />
-      <div className={css(stripeStyles, yellowStripeStyles)}>
+      <span className={css(stripeStyles, yellowStripeStyles)}>
         <svg aria-hidden={true} role="presentation">
           <use href={`${coatOfArmsMd.src}#md-coat`} />
         </svg>
-      </div>
-      <div
+      </span>
+      <span
         className={css(stripeStyles, { backgroundColor: 'hsl(348, 92%, 42%)' })}
       />
-    </div>
+    </span>
   );
 }
 

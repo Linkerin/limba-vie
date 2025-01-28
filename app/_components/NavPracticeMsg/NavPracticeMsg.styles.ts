@@ -15,7 +15,7 @@ export const sectionStyles = css({
   padding: 'token(spacing.2, 0.5rem)',
   textAlign: 'center',
   zIndex: 1,
-  width: 'clamp(35dvw, 250px, 50dvw)',
+  width: 'clamp(15dvw, 250px, 50dvw)',
   animation: 'overhang 1.6s linear infinite',
 
   '& > *': {

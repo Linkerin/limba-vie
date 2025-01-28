@@ -16,7 +16,6 @@ export const asideStyles = css({
   flexDirection: 'column',
   alignItems: 'flex-end',
   justifyContent: 'flex-start',
-  gap: 'token(spacing.4, 1rem)',
   marginBlockStart: '4.5rem',
 
   '& > p': {

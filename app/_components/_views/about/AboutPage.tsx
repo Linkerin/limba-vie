@@ -7,6 +7,7 @@ import {
 
 import DeleteAllData from './ProgressActions/DeleteAllData/DeleteAllData';
 import ExportProgress from './ProgressActions/ExportProgress/ExportProgress';
+import FlagMd from './FlagMd/FlagMd';
 import ImportProgress from './ProgressActions/ImportProgress/ImportProgress';
 
 import {
@@ -34,7 +35,8 @@ function AboutPage() {
           tool for your language learning journey.
         </p>
         <p>
-          With <IconHeartFilled /> from Moldova 🇲🇩
+          With <IconHeartFilled /> from Moldova
+          <FlagMd />
         </p>
       </section>
 

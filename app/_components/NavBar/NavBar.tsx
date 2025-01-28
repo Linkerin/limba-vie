@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { IconBarbell, IconBook2, IconHome } from '@tabler/icons-react';
 
 import NavItem from './NavItem/NavItem';
-import NavPracticeMsg from './NavPracticeMsg/NavPracticeMsg';
+import NavPracticeMsg from '@/app/_components/NavPracticeMsg/NavPracticeMsg';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useRepeatBtn from '@/app/_hooks/useRepeatBtn';
 

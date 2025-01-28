@@ -8,6 +8,7 @@ const cardPaddings = {
 export const containerStyles = css({
   background: 'none',
   border: 'none',
+  cursor: 'pointer',
   padding: '0rem'
 });
 
