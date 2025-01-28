@@ -61,6 +61,7 @@ function WordImg({ gender, wordEn, imgName = wordEn }: WordImgProps) {
         aria-label={isFlipped ? 'Show image' : 'Show english translation'}
         className={containerStyles}
         onClick={flipHandler}
+        type="button"
       >
         <div
           className={cardStyles}

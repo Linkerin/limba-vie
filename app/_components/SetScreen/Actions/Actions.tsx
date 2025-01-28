@@ -8,17 +8,7 @@ import type { Tables } from '@/app/_services/supabase/supabase.types';
 import useIsApplePwa from '@/app/_hooks/useIsApplePwa';
 import useWordHandlers from './useWordHandlers';
 
-const styles = css({
-  backgroundColor: 'background',
-  display: 'flex',
-  justifyContent: 'space-around',
-  paddingBlock: 'token(spacing.4, 1rem)',
-  width: '100%',
-
-  '&[data-apple-pwa=true]': {
-    paddingBlockEnd: 'apple-pwa-pd'
-  }
-});
+import { containerStyles, exampleButtonStyles } from './Actions.styles';
 
 export interface ActionsProps {
   wordId: Tables<'words'>['id'];
@@ -51,7 +41,7 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
     );
 
   return (
-    <div className={styles} data-apple-pwa={isApplePwa}>
+    <div className={containerStyles} data-apple-pwa={isApplePwa}>
       <ActionBtn
         action="learned"
         onClick={learnedClickHandler}
@@ -61,6 +51,7 @@ function Actions({ exampleClickHandler, setCurrWord, wordId }: ActionsProps) {
         action="example"
         onClick={exampleClickHandler}
         variant="primary"
+        css={exampleButtonStyles}
       />
       <ActionBtn
         action="repeat"

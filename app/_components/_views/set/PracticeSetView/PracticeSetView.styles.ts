@@ -37,6 +37,7 @@ export const reportCounterContainerStyles = css({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  maxWidth: 'content',
   width: '100%'
 });
 

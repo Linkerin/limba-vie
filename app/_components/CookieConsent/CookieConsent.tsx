@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { css } from '@/styled-system/css';
 import { IconCookie } from '@tabler/icons-react';
 
 import Button from '../_ui/Button/Button';
@@ -11,21 +10,7 @@ import { LOCAL_STORAGE_KEYS } from '@/app/_lib/constants';
 import Modal, { type ModalState } from '../_ui/Modal/Modal';
 import ssrLocalStorage from '@/app/_services/SsrLocalStorage';
 
-const containerStyles = css.raw({
-  animation: 'flipIn 0.4s ease-in'
-});
-
-const formStyles = css({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: 'token(spacing.3, 0.75rem)'
-});
-
-const btnStyles = css.raw({
-  marginBlockStart: 'token(spacing.2, 0.5rem)'
-});
+import { containerStyles, formStyles, btnStyles } from './CookieConsent.styles';
 
 function CookieConsent() {
   const [modalState, setModalState] = useState<ModalState>('CLOSE');

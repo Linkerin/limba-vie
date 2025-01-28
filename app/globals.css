@@ -76,7 +76,6 @@
 
   main {
     margin-inline: auto;
-    max-width: var(--sizes-3xl, 48rem);
     padding: var(--spacing-4, 1rem);
     width: 100%;
     z-index: 0;

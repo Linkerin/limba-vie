@@ -3,7 +3,10 @@ import { css } from '@/styled-system/css';
 export const liStyles = css({
   animation: 'leftSlideIn',
   animationDuration: '0.6s',
+  marginInline: 'auto',
+  maxWidth: 'content',
   scrollMarginBlockStart: '18vh',
+  width: '100%',
 
   '@media (prefers-reduced-motion)': {
     animation: 'none'

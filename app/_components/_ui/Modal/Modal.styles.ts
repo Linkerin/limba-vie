@@ -6,7 +6,7 @@ export const containerStyles = css.raw({
   borderRadius: 'sm',
   margin: 'auto',
   padding: 'token(spacing.4, 1rem)',
-  width: 'min(768px, 80dvw)',
+  width: 'fit-content',
 
   '&::backdrop': {
     backdropFilter: 'blur(4px) brightness(90%)'

@@ -12,6 +12,8 @@ import NavBar from './_components/NavBar/NavBar';
 const mainStyles = css({
   height: '100%',
   paddingBlockStart: 'token(spacing.10, 2.5rem)',
+  marginInline: 'auto',
+  maxWidth: 'content',
   textAlign: 'center',
 
   '& > p': {

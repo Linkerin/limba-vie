@@ -2,7 +2,8 @@ import { css } from '@/styled-system/css';
 
 export const modalStyles = css.raw({
   backgroundColor: 'secondary.container',
-  borderColor: 'secondary.dark'
+  borderColor: 'secondary.dark',
+  maxWidth: 'content'
 });
 
 export const headingStyles = css({

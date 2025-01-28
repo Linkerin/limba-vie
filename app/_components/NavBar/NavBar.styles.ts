@@ -1,6 +1,8 @@
 import { css } from '@/styled-system/css';
 
 export const footerStyles = css({
+  hideFrom: 'xl',
+
   position: 'sticky',
   bottom: '0rem',
   left: '0rem',
@@ -9,10 +11,6 @@ export const footerStyles = css({
   fontSize: '2rem',
   width: '100%',
   animation: 'fadeIn',
-
-  '@media (min-width: 1280px)': {
-    display: 'none'
-  },
 
   '&[data-apple-pwa=true]': {
     paddingBlockEnd: 'apple-pwa-pd'

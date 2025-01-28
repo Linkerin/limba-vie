@@ -18,12 +18,16 @@ export const cardStyles = css({
   boxShadow: 'md',
   height: `calc(token(sizes.img.size) + calc(${cardPaddings.main} + ${cardPaddings.bottom}))`,
   width: `calc(token(sizes.img.size) + calc(${cardPaddings.main} * 2))`,
-  marginBottom: 'token(spacing.3, 0.75rem)',
+  marginBlockEnd: 'token(spacing.3, 0.75rem)',
   paddingInline: cardPaddings.main,
   paddingBlock: `${cardPaddings.main} ${cardPaddings.bottom}`,
   transformStyle: 'preserve-3d',
   transition: 'all 0.5s ease',
   zIndex: 0,
+
+  xl: {
+    marginBlockEnd: 'token(spacing.6, 1.5rem)'
+  },
 
   '&[data-flipped=true]': {
     transform: 'rotateY(180deg)'

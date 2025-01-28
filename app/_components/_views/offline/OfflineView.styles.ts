@@ -1,5 +1,10 @@
 import { css } from '@/styled-system/css';
 
+export const containerStyles = css({
+  marginInline: 'auto',
+  maxWidth: 'content'
+});
+
 export const imgStyles = css({
   height: '35dvh',
   marginInline: 'auto',

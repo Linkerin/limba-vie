@@ -27,7 +27,7 @@ export const NAV_LINKS = {
   home: {
     link: '/',
     label: 'To main page with units list',
-    text: 'Home',
+    text: 'Home'
   },
   articles: {
     link: '/tips/grammar',
@@ -38,6 +38,11 @@ export const NAV_LINKS = {
     link: '/tips/dict',
     label: 'To dictionary page',
     text: 'Dictionary'
+  },
+  about: {
+    link: '/about',
+    label: 'To about page',
+    text: 'About'
   }
 } as const;
 

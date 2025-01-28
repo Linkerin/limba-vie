@@ -3,12 +3,7 @@ import { css } from '@/styled-system/css';
 
 import Button, { type ButtonProps } from '../Button/Button';
 
-const styles = css.raw({
-  padding: 'token(spacing.2, 0.5rem)',
-  '& svg': {
-    fontSize: '2.875rem'
-  }
-});
+import { btnStyles, labelStyles } from './ActionBtn.styles';
 
 const ariaLabes = {
   repeat: 'Add the word for repetition',
@@ -21,10 +16,10 @@ interface ActionBtnProps extends ButtonProps {
   action: 'repeat' | 'learned' | 'example';
 }
 
-function ActionBtn({ action, ...props }: ActionBtnProps) {
+function ActionBtn({ action, css: cssProp, ...props }: ActionBtnProps) {
   return (
     <Button
-      css={styles}
+      css={css.raw({ ...btnStyles, ...cssProp })}
       aria-label={ariaLabes[action]}
       title={ariaLabes[action]}
       {...props}
@@ -33,6 +28,10 @@ function ActionBtn({ action, ...props }: ActionBtnProps) {
         {action === 'repeat' && <IconRepeat stroke={2} />}
         {action === 'learned' && <IconCheck stroke={2} />}
         {action === 'example' && <IconMessage2 stroke={2} />}
+      </span>
+      <span className={labelStyles}>
+        {action === 'repeat' && 'Repeat'}
+        {action === 'learned' && 'Got it!'}
       </span>
     </Button>
   );

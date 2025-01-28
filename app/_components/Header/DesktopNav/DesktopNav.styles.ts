@@ -1,11 +1,7 @@
 import { css } from '@/styled-system/css';
 
 export const navStyles = css({
-  display: 'none',
-
-  '@media (min-width: 1280px)': {
-    display: 'block'
-  }
+  hideBelow: 'xl'
 });
 
 export const listStyles = css({
@@ -14,6 +10,13 @@ export const listStyles = css({
   gap: 'token(spacing.6, 1.5rem)',
 
   '& a': {
-    color: 'main'
+    color: 'main',
+    textDecoration: 'none',
+    paddingBlock: 'token(spacing.1, 0.25rem)',
+
+    '&:hover': {
+      color: 'primary.darker',
+      borderBlockEnd: '2px solid token(colors.primary.darker)'
+    }
   }
 });

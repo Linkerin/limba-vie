@@ -84,7 +84,7 @@ export const buttonStyles = cva({
     height: 'fit-content',
     fontSize: 'token(fontSizes.xl, 1.25rem)',
     lineHeight: 'normal',
-    padding: '0.5em 1.5em',
+    padding: '0.5em 1.25em',
     position: 'relative',
     textAlign: 'center',
     userSelect: 'none',

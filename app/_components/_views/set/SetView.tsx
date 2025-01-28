@@ -20,9 +20,11 @@ import type {
 } from '@/app/_services/supabase/dbFetchers';
 
 import {
+  containerStyles,
+  asideStyles,
   reportCounterContainerStyles,
   sectionStyles,
-  wordContainerStyles
+  contentContainerStyles
 } from './SetView.styles';
 
 export interface SetPageProps {
@@ -49,7 +51,17 @@ function SetView({ words, setInfo, setName }: SetPageProps) {
   useMediaLoad(currWord, shuffled);
 
   return (
-    <>
+    <div className={containerStyles}>
+      <aside className={asideStyles}>
+        {currWord < shuffled.length ? (
+          <>
+            {shuffled[currWord]?.ro_plural && (
+              <WordPlural plural={shuffled[currWord].ro_plural} />
+            )}
+            <Sentence wordId={shuffled[currWord].id} />
+          </>
+        ) : null}
+      </aside>
       <section className={sectionStyles}>
         {currWord < shuffled.length && shuffled.at(currWord) && (
           <>
@@ -60,7 +72,7 @@ function SetView({ words, setInfo, setName }: SetPageProps) {
               />
               <WordCounter current={currWord + 1} total={shuffled.length} />
             </div>
-            <div className={wordContainerStyles}>
+            <div className={contentContainerStyles}>
               <WordImg
                 wordEn={shuffled[currWord].en}
                 gender={shuffled[currWord].gender_ro}
@@ -100,7 +112,7 @@ function SetView({ words, setInfo, setName }: SetPageProps) {
           <Finished setInfo={setInfo} setName={setName} />
         )}
       </section>
-    </>
+    </div>
   );
 }
 

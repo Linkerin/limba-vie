@@ -2,11 +2,16 @@
 
 import OfflineRefreshButton from './OfflineRefreshButton/OfflineRefreshButton';
 
-import { headingStyles, imgStyles, pStyles } from './OfflineView.styles';
+import {
+  containerStyles,
+  headingStyles,
+  imgStyles,
+  pStyles
+} from './OfflineView.styles';
 
 function OfflineView() {
   return (
-    <section>
+    <section className={containerStyles}>
       <img
         className={imgStyles}
         alt="A bit crazy taur that messed up with Internet cables"

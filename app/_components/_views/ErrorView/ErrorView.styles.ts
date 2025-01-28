@@ -6,6 +6,8 @@ export const sectionStyles = css({
   alignItems: 'center',
   justifyContent: 'space-evenly',
   height: '100%',
+  maxWidth: 'content',
+  marginInline: 'auto',
   textAlign: 'center'
 });
 

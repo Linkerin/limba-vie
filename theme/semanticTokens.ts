@@ -46,7 +46,8 @@ export const semanticTokens = defineSemanticTokens({
     'on-success-container': { value: '{colors.success.300}' }
   },
   sizes: {
-    'card-shadow-size': { value: '{sizes.0.5}' }
+    'card-shadow-size': { value: '{sizes.0.5}' },
+    content: { value: '{sizes.3xl}' }
   },
   spacing: {
     'apple-pwa-pd': { value: '{spacing.5}' }

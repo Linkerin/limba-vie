@@ -7,6 +7,7 @@ export const formStyles = css({
   justifyContent: 'center',
   gap: 'token(spacing.6, 1.5rem)',
   marginBlock: 'auto 0rem',
+  maxWidth: 'content',
   paddingBlock: 'token(spacing.4, 1rem)',
   width: '90%',
 

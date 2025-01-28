@@ -4,6 +4,7 @@ import type { Viewport } from 'next';
 import { alata } from '@/theme/fonts';
 import CookieConsent from './_components/CookieConsent/CookieConsent';
 import Header from './_components/Header/Header';
+import PracticeFloatingButton from './_components/PracticeFloatingButton/PracticeFloatingButton';
 import SoundProvider from './_contexts/SoundProvider';
 import IsPracticeNecessaryProvider from './_contexts/IsPracticeNecessaryProvider';
 // import WebVitals from './_components/WebVitals';
@@ -46,6 +47,7 @@ export default function RootLayout({
           <IsPracticeNecessaryProvider>
             <main id="main">{children}</main>
             <NavBar />
+            <PracticeFloatingButton />
           </IsPracticeNecessaryProvider>
           <div id="modal" />
         </SoundProvider>

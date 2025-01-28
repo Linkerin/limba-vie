@@ -8,6 +8,10 @@ export const sectionStyles = css({
   height: '100%',
   animation: 'fadeIn',
 
+  xl: {
+    paddingBlockStart: 'token(spacing.6, 1.5rem)'
+  },
+
   '@media (prefers-reduced-motion)': {
     animation: 'none'
   }
